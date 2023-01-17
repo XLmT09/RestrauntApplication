@@ -7,12 +7,25 @@ class Database:
 
     def connect(self):
         b = bitdotio.bitdotio(self.dbPassword)
-        with b.get_connection(self.dbName) as conn:
-            return conn
+        return b.get_connection(self.dbName)
+
+    def executeQuery(self, connection, query):
+        with connection as conn:
+            conn.cursor().execute(query)
+            
+    def createTable(self, connection, tableName, tableDescription):
+        self.executeQuery(connection, "DROP TABLE IF EXISTS " + tableName)
+        self.executeQuery(connection, tableDescription)
+        print("Table " + tableName + " successfully created")
 
 if __name__ == "__main__":
     try:
-        dbConnection = Database().connect()
+        myDatabase = Database()
+        dbConnection = myDatabase.connect()
         print("successfully connected to database!")
+
+        loginTableSql = "CREATE TABLE loginInfo(username varchar(10), password varchar(10) NOT NULL, role varchar(15), primary key(username))"
+        myDatabase.createTable(dbConnection, "loginInfo", loginTableSql)
+
     except Exception:
         print("Error connecting to database")
