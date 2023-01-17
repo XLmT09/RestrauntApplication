@@ -9,10 +9,14 @@ class Database:
         b = bitdotio.bitdotio(self.dbPassword)
         return b.get_connection(self.dbName)
 
-    def executeQuery(self, connection, query):
+    def executeQuery(self, connection, query, retrieveData = False):
         with connection as conn:
-            conn.cursor().execute(query)
-            
+            cursor = conn.cursor()
+            cursor.execute(query)
+        
+        if retrieveData:
+            return cursor.fetchall() #returns all the rows returned by a query result as a list. (useful for SELECT queries)
+
     def createTable(self, connection, tableName, tableDescription):
         self.executeQuery(connection, "DROP TABLE IF EXISTS " + tableName)
         self.executeQuery(connection, tableDescription)
@@ -26,11 +30,11 @@ if __name__ == "__main__":
         print("successfully connected to database!")
 
         #Create a table for storing login information about staff and customers
-        loginTableSql = "CREATE TABLE loginInfo(username varchar(10), password varchar(10) NOT NULL, role varchar(15), primary key(username))"
-        myDatabase.createTable(dbConnection, "loginInfo", loginTableSql)
+        userTableSql = "CREATE TABLE User(username varchar(10), password varchar(10) NOT NULL, role varchar(15), primary key(username))"
+        myDatabase.createTable(dbConnection, "User", userTableSql)
 
         #Create a table for storing information about each dish on the menu
-        dishTableSql = "CREATE TABLE Dish(dishID int, name varchar(20), price int, calories int, ingredients varchar(50), primary key(dishID))"
+        dishTableSql = "CREATE TABLE Dish(dishID int, name varchar(20), price float, calories int, ingredients varchar(50), primary key(dishID))"
         myDatabase.createTable(dbConnection, "Dish", dishTableSql)
 
     except Exception:
