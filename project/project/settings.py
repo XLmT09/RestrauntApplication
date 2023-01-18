@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #custom apps
     'project',
+    #django will look at the apps created for templates and databse models
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
