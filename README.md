@@ -1,5 +1,27 @@
-# Team Project
+## Restaurant Management System
 
-This repository has been created to store your Team Project.
+A web interface that helps in managing crucial daily tasks of a restaurant.
 
-You may edit it as you like, but please do not remove the default topics or the project members list. These need to stay as currently defined in order for your lecturer to be able to find and mark your work.
+### **Configuration**
+
+**Software and Tools**
+
+> Python 3.9.16
+
+> Django 4.1.5
+
+> Visual Studio Code
+
+> Remote PostgreSQL (bit.io)
+
+> PostgreSQL Database Adapter for Python (psycopg2)
+
+> Prettier - Code Formatter (Visual Studio Code Extension)
+
+> Requests Toolbelt 0.10.1
+
+**Operating Systems**
+
+> Windows
+
+> Linux
