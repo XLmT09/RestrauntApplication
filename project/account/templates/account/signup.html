@@ -6,7 +6,13 @@
 
   <body>
     <h1>Sign Up</h1>
-
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    </div>
     <form method="POST">
       <!-- Use csrf_token to add security to the registration-->
       {% csrf_token %} {{ form.as_p }}
