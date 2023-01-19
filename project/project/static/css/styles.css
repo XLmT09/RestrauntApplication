@@ -1,4 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  margin: 0;
+  padding: 0;
+}
+.bg {
   background-image: url("/static/images/newBackground.jpg");
   height: 100vh;
   background-position: center;
@@ -8,9 +16,20 @@ body {
   padding: 0;
 }
 
+.bg2 {
+  background-color: rgb(30, 40, 44);
+  height: 100vh;
+}
+
+.bg3 {
+  background-color: rgb(53, 61, 64);
+  height: 100vh;
+}
+
 .text {
   font-size: 200%;
   font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat;
   color: white;
   letter-spacing: 5px;
   margin-right: 20px;
@@ -40,4 +59,31 @@ body {
 
 .navButton:hover {
   border-color: white;
+}
+
+.logobox {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.aboutTitle {
+  text-align: center;
+  font-size: 150%;
+  font-family: Montserrat;
+  color: rgb(161, 161, 161);
+  letter-spacing: 5px;
+  position: relative;
+  top: 2%;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.dishbox {
+  float: left;
+  width: 50%;
+  height: 100%;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/static/images/dish.jpg");
 }
