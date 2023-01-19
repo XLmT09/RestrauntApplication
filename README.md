@@ -5,7 +5,7 @@ A web interface that helps in managing crucial daily tasks of a restaurant.
 ## **Configuration**
 Make sure to install required modules before running the application, you can simply type this command to achive this:
 ```console
-pip install -r requiremnts.txt
+pip install -r requirements.txt
 ```
 
 <br />
@@ -13,7 +13,7 @@ pip install -r requiremnts.txt
 ## **How to Run the Application**
 After installing the required modules, go onto the command prompt and under the "project" folder type the following command:
 ```console
-pyhton manage.py runserver
+python manage.py runserver
 ```
 You will now see a link to the webpage on the terminal, copy the link on the terminal and paste in the browser.
 Or use the link below instead:
