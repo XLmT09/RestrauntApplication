@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Sign Up</title>
-    </head>
+  <head>
+    <title>Sign Up</title>
+  </head>
 
-    <body>
-        <h1>Sign Up</h1>
-    </body>
+  <body>
+    <h1>Sign Up</h1>
+
+    <form>
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="fname" /><br />
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lname" name="lname" /><br />
+      <label for="cars">Role:</label>
+
+      <select name="role" id="user-role">
+        <option value="customer">Customer</option>
+        <option value="waiter">Waiter</option>
+        <option value="staff">Kitchen Staff</option>
+      </select>
+
+      <br />
+      <label for="pwd">Password:</label><br />
+      <input type="password" id="pwd" name="pwd" /><br />
+      <label for="cpwd">Confirm Password:</label><br />
+      <input type="password" id="cpwd" name="cpwd" /><br />
+    </form>
+  </body>
 </html>
