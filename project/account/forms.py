@@ -28,4 +28,6 @@ class UserRegisterForm(UserCreationForm):
     # This class states which model should be used to create this form
     class Meta:
         model = User
+        # The fields that will be shown on the webpage
+        # This also represents the ORDER the fields will be shown on the webpage
         fields = ['username', 'email', 'role', 'password1', 'password2']
