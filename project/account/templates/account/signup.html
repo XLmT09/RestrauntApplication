@@ -7,25 +7,11 @@
   <body>
     <h1>Sign Up</h1>
 
-    <form>
-      <label for="reg-fname">First name:</label><br />
-      <input type="text" id="reg-fname" name="reg-fname" /><br />
-      <label for="reg-lname">Last name:</label><br />
-      <input type="text" id="reg-lname" name="reg-lname" /><br />
-      <label for="reg-email">Email:</label><br />
-      <input type="email" id="reg-email" name="reg-email" /><br />
+    <form method="POST">
+      <!-- Use csrf_token to add security to the registration-->
+      {% csrf_token %} {{ form.as_p }}
 
-      <select name="reg-role" id="reg-user-role">
-        <option value="customer">Customer</option>
-        <option value="waiter">Waiter</option>
-        <option value="staff">Kitchen Staff</option>
-      </select>
-
-      <br />
-      <label for="reg-pwd">Password:</label><br />
-      <input type="password" id="reg-pwd" name="reg-pwd" /><br />
-      <label for="reg-cpwd">Confirm Password:</label><br />
-      <input type="password" id="reg-cpwd" name="reg-cpwd" /><br />
+      <button type="submit">Submit</button>
     </form>
   </body>
 </html>
