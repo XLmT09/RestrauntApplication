@@ -32,6 +32,18 @@ class Database:
         #Deletes all instances of that item if the productName matches 
         self.executeQuery(connection, "DELETE FROM Dish WHERE dishName = '" + productName +"'")
         connection.commit()
+        print(productName + " deleted from menu")
+
+    def updateItem(self, connection, productName, newPrice = None, newCalories = None):
+        itemsToUpdate = ""
+        if newPrice != None:
+            itemsToUpdate += "price = '" + str(newPrice) + "',"
+        if newCalories != None:
+            itemsToUpdate += "calories = '" + str(newCalories) + "',"
+        itemsToUpdate = itemsToUpdate[:len(itemsToUpdate)-1] #removes trailing comma
+        
+        self.executeQuery(dbConnection, "UPDATE Dish SET " + itemsToUpdate + " WHERE dishName = '" + productName + "'")
+        connection.commit()
 
 if __name__ == "__main__":
     try:
@@ -48,6 +60,8 @@ if __name__ == "__main__":
         myDatabase.createTable(dbConnection, "Dish", dishTableSql)
 
         myDatabase.addItem(dbConnection, 'Pizza', 12.99, 1000)
+
+        myDatabase.updateItem(dbConnection, 'Pizza', newPrice = 15.99, newCalories = 2000)
 
         items = myDatabase.executeQuery(dbConnection, "SELECT * FROM Dish", True)
         print(items)
