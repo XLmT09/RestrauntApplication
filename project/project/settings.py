@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'project',
     #django will look at the apps created for templates and databse models
     'account.apps.AccountConfig',
+    'crispy_forms', 
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # After user login it redirects them to the home page.
 LOGIN_REDIRECT_URL = 'home'
+
+# forms use bootstrap 4 css
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
