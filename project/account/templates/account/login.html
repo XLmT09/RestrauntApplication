@@ -1,10 +1,9 @@
 {% extends "base.html" %} {% block content %}
-{% load static %}
 <h1>Login</h1>
 <form method="POST">
   <!-- Use csrf_token to add security to the registration-->
   {% csrf_token %} {{ form.as_p }}
 
-  <button type="submit">Login</button>
+  <button type="submit">Sign Up</button>
 </form>
 {% endblock content %}
