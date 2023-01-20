@@ -23,10 +23,14 @@ class Database:
         print("Table " + tableName + " successfully created")
 
     def addItem(self, connection, name, price, calories):
-        query = "INSERT INTO Dish (name, price, calories) VALUES ('{}', '{}', '{}')".format(name, price, calories)
+        query = "INSERT INTO Dish (dishName, price, calories) VALUES ('{}', '{}', '{}')".format(name, price, calories)
         self.executeQuery(connection, query)
         print(name + " Added to the menu")
-        
+        connection.commit()
+
+    def deleteItem(self, connection, productName):
+        #Deletes all instances of that item if the productName matches 
+        self.executeQuery(connection, "DELETE FROM Dish WHERE dishName = '" + productName +"'")
         connection.commit()
 
 if __name__ == "__main__":
@@ -40,10 +44,18 @@ if __name__ == "__main__":
         myDatabase.createTable(dbConnection, "Users", userTableSql)
 
         #Create a table for storing information about each dish on the menu
-        dishTableSql = "CREATE TABLE Dish(name varchar(30), price float, calories int, primary key(name))"
+        dishTableSql = "CREATE TABLE Dish(dishName varchar(30), price float, calories int, primary key(dishName))"
         myDatabase.createTable(dbConnection, "Dish", dishTableSql)
 
         myDatabase.addItem(dbConnection, 'Pizza', 12.99, 1000)
+
+        items = myDatabase.executeQuery(dbConnection, "SELECT * FROM Dish", True)
+        print(items)
+
+        myDatabase.deleteItem(dbConnection, "Pizza")
+        items = myDatabase.executeQuery(dbConnection, "SELECT * FROM Dish", True)
+        print(items)
+
     except Exception as e:
         print("Error connecting to database")
         print(e)
