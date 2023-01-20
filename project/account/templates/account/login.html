@@ -6,11 +6,19 @@
 
   <body>
     <h1>Login</h1>
-    <form>
-      <label for="login-email">Email:</label><br />
-      <input type="email" id="login-email" name="login-email" /><br />
-      <label for="login-password">Last name:</label><br />
-      <input type="password" id="login-password" name="login-password" /><br />
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <form method="POST">
+      <!-- Use csrf_token to add security to the registration-->
+      {% csrf_token %} {{ form.as_p }}
+
+      <button type="submit">Login</button>
     </form>
   </body>
 </html>
+
