@@ -17,27 +17,27 @@
     <div class="bg">
       <div class="navbar">
         <button type="button" class="navButton">
-          <div class="text">Sign In</div>
+          <a class="nav-options" href="{% url 'account-login' %}">Login</a>
         </button>
         <button type="button" class="navButton">
-          <div class="text">Register</div>
+          <a class="nav-options" href="{% url 'account-signup' %}">Register</a>
         </button>
         <button
           type="button"
           class="navButton"
           onClick="document.getElementById('Menu').scrollIntoView();"
         >
-          <div class="text">Our Menu</div>
+          <div class="nav-options">Our Menu</div>
         </button>
         <div class="logo">
-          <div class="text">El Plato Dorado</div>
+          <div class="nav-options">El Plato Dorado</div>
         </div>
         <button
           type="button"
           class="navButton"
           onClick="document.getElementById('about').scrollIntoView();"
         >
-          <div class="text">About Us</div>
+          <div class="nav-options">About Us</div>
         </button>
       </div>
       <div class="logobox">
