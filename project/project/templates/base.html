@@ -29,10 +29,14 @@
       <div class="logo">
         <a class="nav-options" href="{% url 'home' %}">El Plato Dorado</a>
       </div>
+      {% if user.is_authenticated %}
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}">Logout</a>
+      {% else %}
       <a class="nav-options nav-btn" href="{% url 'account-login' %}">Login</a>
       <a class="nav-options nav-btn" href="{% url 'account-signup' %}"
-        >Register</a
+          >Register</a
       >
+      {% endif %}
       <a
         class="nav-options nav-btn"
         tabindex="-1"
