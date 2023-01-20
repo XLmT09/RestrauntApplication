@@ -9,5 +9,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='account/login.html'), name = 'account-login'),
     # we use a template for logout to because by default it will redirect to the admin page
     path('logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name = 'account-logout'),
+    path('profile/', views.profile, name='account-profile'),
     path('signup/', views.signup, name = 'account-signup')
 ]
