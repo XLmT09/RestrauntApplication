@@ -22,6 +22,11 @@ class Database:
         self.executeQuery(connection, tableDescription)
         print("Table " + tableName + " successfully created")
 
+    def addItem(self, connection, name, price, calories):
+        query = "INSERT INTO Dish (name, price, calories) VALUES ('{}', '{}', '{}')".format(name, price, calories)
+        self.executeQuery(connection, query)
+        print(name + " Added to the menu")
+        connection.commit()
 
 if __name__ == "__main__":
     try:
@@ -30,12 +35,16 @@ if __name__ == "__main__":
         print("successfully connected to database!")
 
         #Create a table for storing login information about staff and customers
-        userTableSql = "CREATE TABLE User(username varchar(10), password varchar(10) NOT NULL, role varchar(15), primary key(username))"
-        myDatabase.createTable(dbConnection, "User", userTableSql)
+        userTableSql = "CREATE TABLE Users(username varchar(30), password varchar(30) NOT NULL, role varchar(15), primary key(username))"
+        myDatabase.createTable(dbConnection, "Users", userTableSql)
 
         #Create a table for storing information about each dish on the menu
-        dishTableSql = "CREATE TABLE Dish(dishID int, name varchar(20), price float, calories int, ingredients varchar(50), primary key(dishID))"
+        dishTableSql = "CREATE TABLE Dish(name varchar(30), price float, calories int, primary key(name))"
         myDatabase.createTable(dbConnection, "Dish", dishTableSql)
 
-    except Exception:
+        myDatabase.addItem(dbConnection, 'Pizza', 12.99, 1000)
+    except Exception as e:
         print("Error connecting to database")
+        print(e)
+    
+    
