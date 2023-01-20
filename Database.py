@@ -26,6 +26,7 @@ class Database:
         query = "INSERT INTO Dish (name, price, calories) VALUES ('{}', '{}', '{}')".format(name, price, calories)
         self.executeQuery(connection, query)
         print(name + " Added to the menu")
+        
         connection.commit()
 
 if __name__ == "__main__":
