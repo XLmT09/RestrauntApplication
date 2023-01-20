@@ -22,6 +22,7 @@ body {
 }
 
 .bg3 {
+  text-align: center;
   background-color: rgb(53, 61, 64);
   height: 100vh;
 }
@@ -73,17 +74,38 @@ body {
   color: rgb(161, 161, 161);
   letter-spacing: 5px;
   position: relative;
-  top: 2%;
+  top: 20%;
   text-decoration: underline;
   text-decoration-thickness: 1px;
 }
 
 .dishbox {
   float: left;
-  width: 50%;
+  width: 70%;
   height: 100%;
-  background-position: left;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/static/images/dish.jpg");
+  background-image: url("/static/images/interior.jpg");
+}
+
+.dishbox2 {
+  float: right;
+  width: 67%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/static/images/menuPicture.jpg");
+}
+
+.informationtext {
+  position: relative;
+  top: 25%;
+  font-size: 100%;
+  font-family: Montserrat;
+  color: rgb(161, 161, 161);
+  letter-spacing: 2px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
