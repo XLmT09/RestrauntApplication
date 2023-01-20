@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>El Plato Dorado</title>
+    {% endif %}
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <div class="logo">
+        <a class="nav-options" href="{% url 'home' %}"
+          >El Plato Dorado</a
+        >
+      </div>
+      <a class="nav-options nav-btn" href="{% url 'account-login' %}">Login</a>
+      <a class="nav-options nav-btn" href="{% url 'account-signup' %}">Register</a>
+      <a
+        class="nav-options nav-btn"
+        onClick="document.getElementById('Menu').scrollIntoView();"
+        >Our Menu</a
+      >
+      <a
+        class="nav-options nav-btn"
+        onClick="document.getElementById('about').scrollIntoView();"
+        >About Us</a
+      >
+    </div>
+
+    <div>
+    {% if messages %}
+        {% for message in messages %} 
+            {{ message }} 
+        {% endfor %} 
+    {% endif %}
+    </div>
+
+    <div>{% block content %}{% endblock %}</div>
+  </body>
+</html>

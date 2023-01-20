@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Logout</title>
-  </head>
-
-  <body>
-    <h1>You have been Logged Out</h1>
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-    </div>
-    <a href = "{% url 'account-login' %}">Login Back In</a>
-
-  </body>
-</html>
+{% extends "base.html" %} {% block content %}
+{% load static %}
+<a href = "{% url 'account-login' %}">Login Back In</a>
+{% endblock content %}

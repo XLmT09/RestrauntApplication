@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-  </head>
+{% extends "base.html" %} {% block content %}
+{% load static %}
+<h1>Login</h1>
+<form method="POST">
+  <!-- Use csrf_token to add security to the registration-->
+  {% csrf_token %} {{ form.as_p }}
 
-  <body>
-    <h1>Login</h1>
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-    </div>
-    <form method="POST">
-      <!-- Use csrf_token to add security to the registration-->
-      {% csrf_token %} {{ form.as_p }}
-
-      <button type="submit">Login</button>
-    </form>
-  </body>
-</html>
-
+  <button type="submit">Login</button>
+</form>
+{% endblock content %}
