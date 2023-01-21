@@ -7,7 +7,6 @@ Make sure to install required modules before running the application, you can si
 ```console
 pip install -r requirements.txt
 ```
-
 <br />
 
 ## **How to Run the Application**
@@ -19,6 +18,48 @@ You will now see a link to the webpage on the terminal, copy the link on the ter
 Or use the link below instead:
 > http://127.0.0.1:8000/
 
+<br />
+
+## **Database**
+**A bit.io database has been setup by defualt**
+
+This application is compatiable with the **SQLlite** and **bit.io** database.
+SQLite will setup a database on your local machine whereas bit.io will setup an online database server (3GB MAX).
+
+### **Bit.io** 
+If you would like to use ***your own*** **bit.io** database then under **project/project/settings.py**, find the dictionary called **DATABASES** then replace with this code:
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '<DATABASE_NAME>',
+        'USER': '<USERNAME>',
+        'PASSWORD': '<v2_YOUR_PASSWORD_HERE>',
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
+    }
+}
+```
+You will also need to: setup a bit.io account, create a database and fill in the information for the above code.
+
+### **SQLite**
+If you would like to use a ***local SQLite*** database then under **project/project/settings.py**, find the dictionary called **DATABASES** then replace with this code: 
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+A database called **db.sqlite3** should be created on your local machine.
+
+### **Migrations**
+If you had decided to change the databse you will have to do a migration so the website is connected with your new database.
+To achive this go on the command prompt under **project/** directory and type the following command:
+```bash
+python manage.py makemigrations
+```
 <br />
 
 ## **Software and Tools**
