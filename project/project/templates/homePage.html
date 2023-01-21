@@ -1,56 +1,18 @@
+{% extends "base.html" %} {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link
-      rel="stylesheet"
-      href="//fonts.googleapis.com/css?family=Montserrat"
-    />
-  </head>
-  <body>
-    <div class="bg">
-      <div class="navbar">
-        <button type="button" class="navButton">
-          <div class="text">Sign In</div>
-        </button>
-        <button type="button" class="navButton">
-          <div class="text">Register</div>
-        </button>
-        <button
-          type="button"
-          class="navButton"
-          onClick="document.getElementById('Menu').scrollIntoView();"
-        >
-          <div class="text">Our Menu</div>
-        </button>
-        <div class="logo">
-          <div class="text">El Plato Dorado</div>
-        </div>
-        <button
-          type="button"
-          class="navButton"
-          onClick="document.getElementById('about').scrollIntoView();"
-        >
-          <div class="text">About Us</div>
-        </button>
-      </div>
-      <div class="logobox">
-        <img src="/static/images/logo-no-background.PNG" />
-      </div>
+<div>
+  <div class="bg">
+    <div class="logobox">
+      <img src="/static/images/logo-no-background.PNG" />
     </div>
-    <div class="bg2">
-      <div class="dishbox"></div>
-      <div class="aboutTitle" id="about">About Us</div>
-    </div>
-    <div class="bg3" id="Menu">
-      <div class="dishbox2">help me</div>
-      <div class="aboutTitle" id="about">Menu</div>
-    </div>
-  </body>
-</html>
+  </div>
+  <div class="bg2">
+    <div class="dishbox"></div>
+    <div class="aboutTitle" id="about">About Us</div>
+  </div>
+  <div class="bg3" id="Menu">
+    <div class="dishbox2">help me</div>
+    <div class="aboutTitle" id="about">Menu</div>
+  </div>
+</div>
+{% endblock content %}

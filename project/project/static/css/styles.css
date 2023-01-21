@@ -1,11 +1,13 @@
 html {
   scroll-behavior: smooth;
+  background-color: grey;
 }
 
 body {
   margin: 0;
   padding: 0;
 }
+
 .bg {
   background-image: url("/static/images/newBackground.jpg");
   height: 100vh;
@@ -26,43 +28,43 @@ body {
   height: 100vh;
 }
 
-.text {
+.nav-options {
   font-size: 200%;
   font-family: Arial, Helvetica, sans-serif;
   font-family: Montserrat;
   color: white;
-  letter-spacing: 5px;
-  margin-right: 20px;
-  margin-left: 20px;
+  text-decoration: none;
+  padding: 0.2em;
 }
 
-.navbar {
-  width: 100%;
-  height: 7%;
-}
-
-.navButton {
-  margin-top: 5px;
-  background-color: transparent;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 4px;
+.nav-btn {
+  border: 3px solid transparent;
   border-bottom: none;
   border-top: none;
-  float: right;
+  margin-right: 0.2em;
+}
+
+.nav-options:hover {
+  cursor: pointer;
+  border-color: white;
+  text-decoration: none;
+  color: white;
+}
+
+.navigator {
+  width: 100%;
+  height: 7%;
+  background-color: black;
+  padding: 1em;
 }
 
 .logo {
   float: left;
   margin-top: 5px;
-}
-
-.navButton:hover {
-  border-color: white;
+  margin-right: 30vw;
 }
 
 .logobox {
-  margin-top: 60px;
   text-align: center;
 }
 
@@ -87,3 +89,5 @@ body {
   background-size: cover;
   background-image: url("/static/images/dish.jpg");
 }
+
+
