@@ -89,10 +89,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# KEEP THIS CODE IF WE EVER WANT TO USE THE SQL DATABASE
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+#THIS CODE CONNECTS DATABSE WITH AN BIT.IO DB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'veghij/test',
+        'USER': 'w',
+        'PASSWORD': 'v2_3yCsA_5nV758MLy3jVvpe7scVTP8b',
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
     }
 }
 

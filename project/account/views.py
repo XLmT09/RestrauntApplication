@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login(request):
-    return render(request, 'account/login.html')
+    return render(request, 'account/login.html', {'title': 'Login'})
 
 def signup(request):
     # Get data which user entered into form, when they click submit
@@ -22,9 +22,9 @@ def signup(request):
     # Load a form for the user
     else:
         form = UserRegisterForm()
-    return render(request, 'account/signup.html', {'form': form})
+    return render(request, 'account/signup.html', {'form': form, 'title':'Sign Up'})
 
 #user must be logged in to use this page
 @login_required
 def profile(request):
-    return render(request, 'account/profile.html')
+    return render(request, 'account/profile.html', {'title': 'Profile'})
