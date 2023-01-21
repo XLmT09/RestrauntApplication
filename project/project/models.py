@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import User
+
+from account import forms
 
 # Create your models here.
 
@@ -25,8 +28,8 @@ class Order(models.Model):
         DELIVERED = "Delivered"
 
     ID = models.AutoField(primary_key=True)
-    customerID = models.IntegerField() #link to User table as foreign key
-    status = models.CharField(max_length=10,choices=orderStatus.choices) #add enums for status
+    customerID = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10,choices=orderStatus.choices)
     timeOfOrder = models.TimeField()
     orderedItems = ArrayField(models.IntegerField(), null=True)
 
