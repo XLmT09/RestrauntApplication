@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>El Plato Dorado</title>
+    {% endif %}
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat"
+    />
+  </head>
+  <body>
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+    </div>
+    {% endfor %}
+
+    <div>{% block content %}{% endblock %}</div>
+  </body>
+</html>

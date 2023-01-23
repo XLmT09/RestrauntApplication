@@ -6,7 +6,7 @@ foodList = [nutritionPopUp.item("food","55"),nutritionPopUp.item("food3","65"),n
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'homePage.html')
+    return render(request, 'homePage.html', {'title': 'Home'})
 
 def home(request):
     # this selects the name of the web page and sends the user to that page

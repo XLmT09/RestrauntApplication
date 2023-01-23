@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
+
+
+# Bootstrap classes for pop messages
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #custom apps
     'project',
+    #django will look at the apps created for templates and databse models
+    'account.apps.AccountConfig',
+    'crispy_forms', 
 ]
 
 MIDDLEWARE = [
@@ -55,7 +70,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR /'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,10 +89,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# KEEP THIS CODE IF WE EVER WANT TO USE THE SQL DATABASE
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+#THIS CODE CONNECTS DATABSE WITH AN BIT.IO DB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'veghij/test',
+        'USER': 'w',
+        'PASSWORD': 'v2_3yCsA_5nV758MLy3jVvpe7scVTP8b',
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
     }
 }
 
@@ -122,3 +150,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# After user login it redirects them to the home page.
+LOGIN_REDIRECT_URL = 'home'
+# If user tries to access a page that requires an account they get sent to the login page
+LOGIN_URL = 'account-login'
+# forms use bootstrap 4 css
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
