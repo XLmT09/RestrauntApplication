@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from .import nutritionPopUp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('account/', include('account.url')),
     path('customer/', views.home , name = 'home2'),
     path('management/', views.results,  name = 'results'),
+    path('menu/', views.menu,  name = 'menu'),
 ]
