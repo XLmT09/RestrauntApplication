@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .import nutritionPopUp
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', views.homePage , name = 'home'),
     path('customer/', views.home , name = 'home2'),
     path('management/', views.results,  name = 'results'),
+    path('menu/', views.menu,  name = 'menu'),
 ]
