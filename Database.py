@@ -22,6 +22,28 @@ class Database:
         self.executeQuery(connection, tableDescription)
         print("Table " + tableName + " successfully created")
 
+    def addItem(self, connection, name, price, calories):
+        query = "INSERT INTO Dish (dishName, price, calories) VALUES ('{}', '{}', '{}')".format(name, price, calories)
+        self.executeQuery(connection, query)
+        print(name + " Added to the menu")
+        connection.commit()
+
+    def deleteItem(self, connection, productName):
+        #Deletes all instances of that item if the productName matches 
+        self.executeQuery(connection, "DELETE FROM Dish WHERE dishName = '" + productName +"'")
+        connection.commit()
+        print(productName + " deleted from menu")
+
+    def updateItem(self, connection, productName, newPrice = None, newCalories = None):
+        itemsToUpdate = ""
+        if newPrice != None:
+            itemsToUpdate += "price = '" + str(newPrice) + "',"
+        if newCalories != None:
+            itemsToUpdate += "calories = '" + str(newCalories) + "',"
+        itemsToUpdate = itemsToUpdate[:len(itemsToUpdate)-1] #removes trailing comma
+        
+        self.executeQuery(dbConnection, "UPDATE Dish SET " + itemsToUpdate + " WHERE dishName = '" + productName + "'")
+        connection.commit()
 
 if __name__ == "__main__":
     try:
@@ -30,12 +52,26 @@ if __name__ == "__main__":
         print("successfully connected to database!")
 
         #Create a table for storing login information about staff and customers
-        userTableSql = "CREATE TABLE User(username varchar(10), password varchar(10) NOT NULL, role varchar(15), primary key(username))"
-        myDatabase.createTable(dbConnection, "User", userTableSql)
+        userTableSql = "CREATE TABLE Users(username varchar(30), password varchar(30) NOT NULL, role varchar(15), primary key(username))"
+        myDatabase.createTable(dbConnection, "Users", userTableSql)
 
         #Create a table for storing information about each dish on the menu
-        dishTableSql = "CREATE TABLE Dish(dishID int, name varchar(20), price float, calories int, ingredients varchar(50), primary key(dishID))"
+        dishTableSql = "CREATE TABLE Dish(dishName varchar(30), price float, calories int, primary key(dishName))"
         myDatabase.createTable(dbConnection, "Dish", dishTableSql)
 
-    except Exception:
+        myDatabase.addItem(dbConnection, 'Pizza', 12.99, 1000)
+
+        myDatabase.updateItem(dbConnection, 'Pizza', newPrice = 15.99, newCalories = 2000)
+
+        items = myDatabase.executeQuery(dbConnection, "SELECT * FROM Dish", True)
+        print(items)
+
+        myDatabase.deleteItem(dbConnection, "Pizza")
+        items = myDatabase.executeQuery(dbConnection, "SELECT * FROM Dish", True)
+        print(items)
+
+    except Exception as e:
         print("Error connecting to database")
+        print(e)
+    
+    

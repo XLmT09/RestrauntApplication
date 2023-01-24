@@ -2,10 +2,44 @@ html {
   scroll-behavior: smooth;
 }
 
+a {
+  color: white;
+  margin-right: 0px;
+  text-decoration: none;
+  outline: none;
+}
+
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+a:active {
+  color: white;
+  text-decoration: none;
+}
+
 body {
   margin: 0;
   padding: 0;
 }
+
+a {
+  text-decoration: none; /* no underline */
+  margin: 0;
+  padding: 0;
+}
+
 .bg {
   background-image: url("/static/images/newBackground.jpg");
   height: 100vh;
@@ -28,7 +62,7 @@ body {
 }
 
 .text {
-  font-size: 200%;
+  font-size: 150%;
   font-family: Arial, Helvetica, sans-serif;
   font-family: Montserrat;
   color: white;
@@ -38,6 +72,9 @@ body {
 }
 
 .navbar {
+  margin-left: 0;
+  margin-right: auto;
+  float: left;
   width: 100%;
   height: 7%;
 }
@@ -51,6 +88,7 @@ body {
   border-bottom: none;
   border-top: none;
   float: right;
+  outline: 0;
 }
 
 .logo {
@@ -63,8 +101,20 @@ body {
 }
 
 .logobox {
-  margin-top: 60px;
   text-align: center;
+}
+
+.logotext {
+  width: 35%;
+  position: relative;
+  top: 10%;
+  font-size: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat;
+  color: white;
+  letter-spacing: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .aboutTitle {
@@ -108,4 +158,63 @@ body {
   letter-spacing: 2px;
   margin-right: 20px;
   margin-left: 20px;
+}
+
+.navButton {
+  margin-top: 5px;
+  background-color: transparent;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 4px;
+  border-bottom: none;
+  border-top: none;
+  float: right;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.bg {
+  background-image: url("/static/images/newBackground.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.bg2 {
+  background-color: rgb(30, 40, 44);
+  height: 100vh;
+}
+
+.bg3 {
+  text-align: center;
+  background-color: rgb(53, 61, 64);
+  height: 100vh;
+}
+
+.text {
+  font-size: 200%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montserrat;
+  color: white;
+  letter-spacing: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.navbar {
+  width: 100%;
+  height: 7%;
+}
+
+.navButton:hover {
+  border-color: white;
 }
