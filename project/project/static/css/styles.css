@@ -94,13 +94,10 @@ a {
 .logo {
   float: left;
   margin-top: 5px;
-<<<<<<< HEAD
 }
 
 .navButton:hover {
   border-color: white;
-=======
->>>>>>> feature-main-menu
 }
 
 .logobox {
@@ -162,8 +159,6 @@ a {
   margin-right: 20px;
   margin-left: 20px;
 }
-<<<<<<< HEAD
-=======
 
 .navButton {
   margin-top: 5px;
@@ -223,4 +218,3 @@ body {
 .navButton:hover {
   border-color: white;
 }
->>>>>>> feature-main-menu
