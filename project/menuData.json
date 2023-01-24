@@ -1,0 +1,8 @@
+[
+
+    {
+        "model" : "project.MenuItem", "pk" : 1,
+        "fields" : {"name" : "pizza", "price" : 1.00, "calories" : 100, "cuisine" : "Italian", "ingredients" : ["cheese", "tomato", "dough"]}
+    }
+    
+]
