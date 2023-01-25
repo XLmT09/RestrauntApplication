@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'restaurant',
     'account.apps.AccountConfig',
     'crispy_forms',
-    'coverage'
+    'coverage',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-#Test views (Uses Reverse)
+# Test views (Uses Reverse)
 
 class HomePageTest(TestCase):
     def test_restaurant_view1(self):
