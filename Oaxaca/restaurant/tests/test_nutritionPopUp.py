@@ -13,3 +13,9 @@ class NutritionPopUpTest(unittest.TestCase):
 
         self.assertEquals(testObject.public_attr_1, "Another dish")
         self.assertEquals(testObject.public_attr_1, "188")
+
+    def test_values2(self):
+        testObject = item("Dish", 281)
+
+        self.assertNotEquals(testObject.public_attr_1, "Another dish")
+        self.assertEquals(testObject.public_attr_2, 281)
