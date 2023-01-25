@@ -1,7 +1,6 @@
 from django.test import TestCase
 from restaurant.models import MenuItem
-from django.utils import timezone
-from django.urls import reverse
+from restaurant.models import Order
 
 # Test models
 
