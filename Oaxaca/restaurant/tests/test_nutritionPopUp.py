@@ -7,3 +7,9 @@ class NutritionPopUpTest(unittest.TestCase):
         
         self.assertEquals(testObject.public_attr_1, "Dish")
         self.assertEquals(testObject.public_attr_2, 281)
+    
+    def test_values1(self):
+        testObject = item("Another dish", 188)
+
+        self.assertEquals(testObject.public_attr_1, "Another dish")
+        self.assertEquals(testObject.public_attr_1, "188")
