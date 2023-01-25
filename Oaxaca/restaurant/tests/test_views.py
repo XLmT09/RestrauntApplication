@@ -28,3 +28,11 @@ class MenuTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(menuItem.title, response.content)
+
+    def test_restaurant_menu2(self):
+        order = self.create_Order()
+        url = reverse("restaurant.views.menu")
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(order.title, response.content)
