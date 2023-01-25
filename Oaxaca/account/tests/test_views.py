@@ -16,3 +16,10 @@ class LogoutTest(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
+
+class ProfileTest(TestCase):
+    def test_account_profile(self):
+        url = reverse("acccount.views.profile")
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
