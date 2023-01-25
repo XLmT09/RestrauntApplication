@@ -14,12 +14,26 @@ class MenuItem(models.Model):
     class Meta:
         db_table = "MenuItem"
 
+    class MenuItemCourse(models.TextChoices):
+        STARTER = "Starter"
+        MAIN = "Main"
+        DESSERT = "Dessert"
+        SIDE = "Side"
+        DRINK = "Drink"
+
+    class MenuItemRequirements(models.TextChoices):
+        VEGAN = "Vegan"
+        VEGETARIAN = "Vegetarian"
+
     ID = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
     price = models.FloatField()
     calories = models.IntegerField()
     cuisine = models.CharField(max_length=10, null=True)
     ingredients = ArrayField(models.TextField())
+
+    course = models.CharField(max_length=10,choices=MenuItemCourse.choices)
+    dietRequirements = models.BooleanField(max_length=10,choices=MenuItemRequirements.choices)
     
 
 class Order(models.Model):
