@@ -32,8 +32,8 @@ class MenuItem(models.Model):
     cuisine = models.CharField(max_length=10, null=True)
     ingredients = ArrayField(models.TextField())
 
-    course = models.CharField(max_length=10,choices=MenuItemCourse.choices)
-    dietRequirements = models.BooleanField(max_length=10,choices=MenuItemRequirements.choices)
+    course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
+    dietRequirements = models.BooleanField(max_length=10,choices=MenuItemRequirements.choices, null=True)
     
 
 class Order(models.Model):
