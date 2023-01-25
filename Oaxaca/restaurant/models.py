@@ -29,7 +29,6 @@ class MenuItem(models.Model):
 
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
     dietRequirements = models.BooleanField(max_length=10,choices=MenuItemRequirements.choices, null=True)
-    
 
 class Order(models.Model):
     class Meta:
