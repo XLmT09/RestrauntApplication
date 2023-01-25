@@ -23,3 +23,10 @@ class ProfileTest(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
+
+class SignupTest(TestCase):
+    def test_account_signup(self):
+        url = reverse("account.views.signup")
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
