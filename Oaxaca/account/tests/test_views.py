@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-# Test views
+# Test views (Uses reverse)
 
 class LoginTest(TestCase):
     def test_account_login(self):

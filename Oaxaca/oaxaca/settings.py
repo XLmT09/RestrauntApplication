@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'crispy_forms',
     'coverage',
+    'package-configuration'
 ]
 
 MIDDLEWARE = [
