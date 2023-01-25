@@ -11,17 +11,24 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
   <body>
     <div class="bg">
-      {% for d in data %}
-      <button
-        type="button"
-        class="navButton"
-        onClick="testing('{{d.getName}}','{{d.getCals}}')"
-      >
-        {{d.getName}}
-      </button>
-      {% endfor %}
-      <div class="container">
-        <h1 id="calories"></h1>
+      <div class="dishbox2">
+
+        {% for d in data %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{d.getName}}</div>
+              <div class="price">£15</div>
+            </div>
+            <br />ingreedients <br />alergies <br /> calories 
+          </div>
+          </button>
+          {% endfor %}
+
+
+
+
+
+
       </div>
     </div>
   </body>

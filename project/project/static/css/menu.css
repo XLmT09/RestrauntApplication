@@ -1,7 +1,55 @@
+* {
+  outline: 1px solid red;
+}
 .container {
-  width: 10%;
-  height: 10%;
-  background-color: white;
+  margin-right: 1%;
+  margin-left: 1%;
+  display: inline-block;
+  text-align: center;
+  background-color: rgba(15, 167, 227, 0.1);
+  border-bottom: solid;
+  width: 30%;
+  height: 20%;
+  color: white;
+  font-family: Montserrat;
+  border-color: white;
+  margin-bottom: 1%;
+}
+
+.name {
+  margin-left: 1%;
+  float: left;
+  color: white;
+  font-family: Montserrat;
+  font-size: 120%;
+  width: 70%;
+}
+
+.name {
+  text-align: left;
+  margin-left: 1%;
+  float: left;
+  color: white;
+  font-family: Montserrat;
+  font-size: 120%;
+  width: 70%;
+}
+
+.header {
+  width: 100%;
+  float: left;
+  height: 20%;
+  margin: 0;
+  padding-bottom: 1%;
+}
+
+.price {
+  float: right;
+  width: 20%;
+  color: white;
+  font-family: Montserrat;
+  font-size: 120%;
+  text-decoration: wavy;
 }
 
 body {
@@ -9,8 +57,16 @@ body {
   padding: 0;
 }
 
+.dishbox2 {
+  position: relative;
+  top: 10%;
+  margin: auto;
+  width: 60%;
+  height: 70%;
+}
+
 .bg {
+  align-items: center;
   background-color: rgb(30, 40, 44);
   height: 100vh;
-  margin-top: 0px;
 }
