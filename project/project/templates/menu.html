@@ -12,72 +12,80 @@
   <body>
     <div class="background">
       <div class="dishbox2">
-        <div class="courses">
-          <div class="titles"><div class="name">Starters</div></div>
-          {% for d in data %} {% if d.getCourse == "Starter" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{d.getName}}</div>
-              <div class="price">£{{d.getPrice}}</div>
-            </div>
-            <br />
-            {{d.getIngredients}} <br />{{d.getAlergies}}<br />
-            Calories : {{d.getCals}}
+        <div class="titles"><div class="name">Starters</div></div>
+        {% for item in MenuItems %} {% if item.course == "Starter" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
           </div>
-          {% endif %} {% endfor %}
+          <br />
+          {% for i in item.ingredients %} {{i}} {% endfor %}
+
+          <br />
+          Calories : {{item.calories}}
         </div>
+        {% endif %} {% endfor %}
+
         <div class="titles"><div class="name">Mains</div></div>
-        {% for d in data %} {% if d.getCourse == "Main" %}
+        {% for item in MenuItems %} {% if item.course == "Main" %}
         <div class="container">
           <div class="header">
-            <div class="name">{{d.getName}}</div>
-            <div class="price">£{{d.getPrice}}</div>
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
-          Calories : {{d.getCals}}
+          {% for i in item.ingredients %} {{i}} {% endfor %}
+
+          <br />
+          Calories : {{item.calories}}
         </div>
         {% endif %} {% endfor %}
+
         <div class="titles"><div class="name">Sides</div></div>
-        <div class="line-1"></div>
-        {% for d in data %} {% if d.getCourse == "Side" %}
+        {% for item in MenuItems %} {% if item.course == "Side" %}
         <div class="container">
           <div class="header">
-            <div class="name">{{d.getName}}</div>
-            <div class="price">£{{d.getPrice}}</div>
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
-          Calories : {{d.getCals}}
-        </div>
-        {% endif %} {% endfor %}
-        <div class="line-1"></div>
-        <div class="titles"><div class="name">Drinks</div></div>
-        {% for d in data %} {% if d.getCourse == "Drink" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{d.getName}}</div>
-            <div class="price">£{{d.getPrice}}</div>
-          </div>
+          {% for i in item.ingredients %} {{i}} {% endfor %}
+
           <br />
-          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
-          Calories : {{d.getCals}}
+          Calories : {{item.calories}}
         </div>
         {% endif %} {% endfor %}
-        <div class="line-1"></div>
+
         <div class="titles"><div class="name">Desserts</div></div>
-        {% for d in data %} {% if d.getCourse == "Dessert" %}
+        {% for item in MenuItems %} {% if item.course == "Dessert" %}
         <div class="container">
           <div class="header">
-            <div class="name">{{d.getName}}</div>
-            <div class="price">£{{d.getPrice}}</div>
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
-          Calories : {{d.getCals}}
+          {% for i in item.ingredients %} {{i}} {% endfor %}
+
+          <br />
+          Calories : {{item.calories}}
         </div>
         {% endif %} {% endfor %}
-        <hr />
+
+        <div class="titles"><div class="name">Drink</div></div>
+        {% for item in MenuItems %} {% if item.course == "Drink" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          {% for i in item.ingredients %} {{i}} {% endfor %}
+
+          <br />
+          Calories : {{item.calories}}
+        </div>
+        {% endif %} {% endfor %}
       </div>
     </div>
   </body>

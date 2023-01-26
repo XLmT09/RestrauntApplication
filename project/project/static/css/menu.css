@@ -8,6 +8,7 @@
   width: 30%;
   height: 20%;
   color: white;
+  font-size: 75%;
   font-family: Montserrat;
   border-color: white;
   margin-bottom: 1%;
@@ -29,18 +30,8 @@
   float: left;
   color: white;
   font-family: Montserrat;
-  font-size: 120%;
-  width: 70%;
-}
-
-.name {
-  text-align: left;
-  margin-left: 1%;
-  float: left;
-  color: white;
-  font-family: Montserrat;
-  font-size: 120%;
-  width: 70%;
+  font-size: 160%;
+  width: 50%;
 }
 
 .header {
@@ -53,7 +44,8 @@
 
 .price {
   float: right;
-  width: 20%;
+  width: 40%;
+  text-align: right;
   color: white;
   font-family: Montserrat;
   font-size: 120%;
