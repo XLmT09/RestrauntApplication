@@ -9,12 +9,35 @@
     <title>Staff Area</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 
+    <style>
+        #navBar {
+            padding-left: 300px;
+            padding-top: 100px;
+            width : 800px;
+            margin: 0 auto;
+        }
+    </style>
+
     
   </head>
 
   <body>
     <div class="bg">
       <h1>hello</h1>
+
+      <div class="navbar" id="navBar">
+        <button class="navButton">
+            <div class="text">Logout</div>
+        </button>
+
+        <button class="navButton">
+            <div class="text">Update Menu</div>
+        </button>
+
+        <button class="navButton">
+            <div class="text">View Orders</div>
+        </button>
+      </div>
     </div>
     
   </body>
