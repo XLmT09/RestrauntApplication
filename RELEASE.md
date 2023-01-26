@@ -1,5 +1,12 @@
 # **Release Notes**
 
+## **Release-1.1**
+### 📅26/01/2023
+### 🪲Bug Fix
+- Fixed bug where css style not showing on the menu page.
+
+<br />
+
 ## **Release-1.0** 
 ### 📅26/01/2023
 ### 🎉First Release
