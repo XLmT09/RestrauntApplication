@@ -46,5 +46,53 @@
             "cuisine" : "Mexican",
             "ingredients" : ["corn"]
         }
+    },
+
+    {
+        "model" : "project.MenuItem",
+        "pk" : 5,
+        "fields" : {
+            "name" : "salsa",
+            "price" : 0.50,
+            "calories" : 200,
+            "cuisine" : "Mexican",
+            "ingredients" : ["tomato", "onion", "garlic", "lime"]
+        }
+    },
+
+    {
+        "model" : "project.MenuItem",
+        "pk" : 6,
+        "fields" : {
+            "name" : "breadsticks",
+            "price" : 2.00,
+            "calories" : 300,
+            "cuisine" : "Italian",
+            "ingredients" : ["bread"]
+        }
+    },
+
+    {
+        "model" : "project.MenuItem",
+        "pk" : 7,
+        "fields" : {
+            "name" : "carbonara",
+            "price" : 4.00,
+            "calories" : 700,
+            "cuisine" : "Italian",
+            "ingredients" : ["pasta", "cheese", "eggs"]
+        }
+    },
+
+    {
+        "model" : "project.MenuItem",
+        "pk" : 8,
+        "fields" : {
+            "name" : "champagne",
+            "price" : 5.00,
+            "calories" : 300,
+            "cuisine" : "French",
+            "ingredients" : ["grapes"]
+        }
     }
 ]
