@@ -25,4 +25,9 @@ urlpatterns = [
     path('customer/', views.home , name = 'home2'),
     path('management/', views.results,  name = 'results'),
     path('menu/', views.menu,  name = 'menu'),
+    path('staff/', views.staff, name = 'staffPage'),
+
+    path("staff/orders/", views.viewOrders, name = "viewOrders"),
+    path("staff/updateMenu/", views.updateMenu, name = "updateMenu")
+
 ]

@@ -23,7 +23,6 @@
 
   <body>
     <div class="bg">
-      <h1>hello</h1>
 
       <div class="navbar" id="navBar">
         <a class = "nav-options nav-btn", href="{% url 'home' %}">
@@ -32,13 +31,17 @@
         </button>
         </a>
 
+        <a class = "nav-options nav-btn", href="{% url 'updateMenu' %}">
         <button class="navButton">
             <div class="text">Update Menu</div>
         </button>
-
+        </a>
+        
+        <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
         <button class="navButton">
             <div class="text">View Orders</div>
         </button>
+        </a>
       </div>
     </div>
     

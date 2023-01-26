@@ -29,11 +29,4 @@ def signup(request):
 #user must be logged in to use this page
 @login_required
 def profile(request):
-    if (User.role == "Customer"):
-        return render(request, "account/customerPage.html", {'title' : 'profile'})
-    else:
-        return render(request, "account/staffPage.html", {'title' : 'profile'})
-    #return render(request, 'account/profile.html', {'title': 'Profile'})
-
-def staff(request):
-    return render(request, "staffPage.html", {'title' : 'staff'})
+    return render(request, 'account/profile.html', {'title': 'Profile'})

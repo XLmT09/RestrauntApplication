@@ -20,4 +20,12 @@ def menu(request):
     # this selects the name of the web page and sends the user to that page
     return render(request, 'menu.html',context={'data': foodList})
 
+def staff(request):
+    return render(request, "staffPage.html", {'title' : 'staff'})
+
+def viewOrders(request):
+    return render(request, "viewOrders.html")
+
+def updateMenu(request):
+    return render(request, "updateMenu.html")
 
