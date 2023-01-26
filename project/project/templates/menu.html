@@ -1,4 +1,4 @@
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8" />
@@ -10,26 +10,76 @@
   <title>Document</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
   <body>
-    <div class="bg">
+    <div class="background">
       <div class="dishbox2">
-
-        {% for d in data %}
+        <div class="courses">
+          <div class="titles"><div class="name">Starters</div></div>
+          {% for d in data %} {% if d.getCourse == "Starter" %}
           <div class="container">
             <div class="header">
               <div class="name">{{d.getName}}</div>
-              <div class="price">£15</div>
+              <div class="price">£{{d.getPrice}}</div>
             </div>
-            <br />ingreedients <br />alergies <br /> calories 
+            <br />
+            {{d.getIngredients}} <br />{{d.getAlergies}}<br />
+            Calories : {{d.getCals}}
           </div>
-          </button>
-          {% endfor %}
-
-
-
-
-
-
+          {% endif %} {% endfor %}
+        </div>
+        <div class="titles"><div class="name">Mains</div></div>
+        {% for d in data %} {% if d.getCourse == "Main" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{d.getName}}</div>
+            <div class="price">£{{d.getPrice}}</div>
+          </div>
+          <br />
+          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
+          Calories : {{d.getCals}}
+        </div>
+        {% endif %} {% endfor %}
+        <div class="titles"><div class="name">Sides</div></div>
+        <div class="line-1"></div>
+        {% for d in data %} {% if d.getCourse == "Side" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{d.getName}}</div>
+            <div class="price">£{{d.getPrice}}</div>
+          </div>
+          <br />
+          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
+          Calories : {{d.getCals}}
+        </div>
+        {% endif %} {% endfor %}
+        <div class="line-1"></div>
+        <div class="titles"><div class="name">Drinks</div></div>
+        {% for d in data %} {% if d.getCourse == "Drink" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{d.getName}}</div>
+            <div class="price">£{{d.getPrice}}</div>
+          </div>
+          <br />
+          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
+          Calories : {{d.getCals}}
+        </div>
+        {% endif %} {% endfor %}
+        <div class="line-1"></div>
+        <div class="titles"><div class="name">Desserts</div></div>
+        {% for d in data %} {% if d.getCourse == "Dessert" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{d.getName}}</div>
+            <div class="price">£{{d.getPrice}}</div>
+          </div>
+          <br />
+          {{d.getIngredients}} <br />{{d.getAlergies}}<br />
+          Calories : {{d.getCals}}
+        </div>
+        {% endif %} {% endfor %}
+        <hr />
       </div>
     </div>
   </body>
 </html>
+{% endblock content %}
