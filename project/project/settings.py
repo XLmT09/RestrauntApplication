@@ -161,7 +161,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # After user login it redirects them to the home page.
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'staffPage'
 # If user tries to access a page that requires an account they get sent to the login page
 LOGIN_URL = 'account-login'
 # forms use bootstrap 4 css
