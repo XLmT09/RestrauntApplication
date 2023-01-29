@@ -19,20 +19,46 @@
     />
   </head>
   <body>
-    <div class="navigator">
-      <div class="logo">
-        <a class="nav-options" href="{% url 'home' %}">Oaxaca</a>
+    <div class="navbar">
+      <div id="left">
+        <div class="text">
+          <a class="nav-options" href="/">Oaxaca</a>
+        </div>
       </div>
-      <a class="nav-options nav-btn" href="{% url 'account-login' %}">Login</a>
-      <a class="nav-options nav-btn" href="{% url 'account-signup' %}"
-        >Register</a
-      >
-      <a class="nav-options nav-btn" href="{% url 'menu' %}">Our Menu</a>
-      <a
-        class="nav-options nav-btn"
-        onClick="document.getElementById('about').scrollIntoView();"
-        >About Us</a
-      >
+      <div id="right">
+        {% if user.is_authenticated %}
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
+          <button class="navButton">
+            <div class="text">Logout</div>
+          </button></a
+        >
+        <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
+          <button class="navButton">
+            <div class="text">Profile</div>
+          </button></a
+        >
+
+        {% else %}
+        <a href="/account/login/">
+          <button class="navButton">
+            <div class="text">Login</div>
+          </button>
+        </a>
+        <a href="/account/signup/">
+          <button class="navButton">
+            <div class="text">Register</div>
+          </button>
+        </a>
+        {% endif %}
+
+        <button type="button" class="navButton">
+          <div class="text">Our Menu</div>
+        </button>
+
+        <button type="button" class="navButton">
+          <div class="text">About Us</div>
+        </button>
+      </div>
     </div>
 
     <div>
