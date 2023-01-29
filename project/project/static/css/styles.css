@@ -10,6 +10,17 @@ a {
   outline: none;
 }
 
+.aboutTitle {
+  position: relative;
+  top: 20%;
+  color: white;
+  font-family: Montserrat;
+  text-align: center;
+  font-size: 150%;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
 a:link {
   color: white;
   text-decoration: none;
