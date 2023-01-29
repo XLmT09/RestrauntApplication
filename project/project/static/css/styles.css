@@ -44,13 +44,16 @@ a {
 
 .bg {
   opacity: 1;
+  opacity: 1;
   height: 100vh;
+  background-color: rgb(29, 29, 39);
   background-color: rgb(29, 29, 39);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
   padding: 0;
+  border-bottom: 20px solid rgb(194, 194, 194);
   border-bottom: 20px solid rgb(194, 194, 194);
 }
 
@@ -71,6 +74,7 @@ a {
 
 .navbar {
   backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   margin-left: 0;
   margin-right: auto;
   width: 100%;
@@ -89,10 +93,12 @@ a {
 .navButton {
   background-color: transparent;
   border-color: rgba(225, 225, 225, 0);
+  border-color: rgba(225, 225, 225, 0);
   border-style: solid;
   border-width: 4px;
   border-bottom: none;
   border-top: none;
+  cursor: pointer;
   cursor: pointer;
   float: right;
   margin-left: 5px;
@@ -126,12 +132,30 @@ a {
   font-family: Arial, Helvetica, sans-serif;
   font-family: Montserrat;
   color: white;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   margin-right: 20px;
   margin-left: 20px;
 }
 
-.aboutTitle {
+.text:hover navButton {
+  border-color: rgba(225, 225, 225, 1);
+}
+
+.logobox {
+  position: absolute;
+  top: 10vh;
+  height: 80vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logobox > img {
+  width: 50%;
+}
+
+.logotext {
   text-align: center;
   font-size: 150%;
   font-family: Montserrat;
@@ -163,9 +187,13 @@ a {
 
 .dishbox {
   opacity: 0;
+  opacity: 0;
   float: left;
   width: 60%;
+  width: 60%;
   height: 100%;
+  filter: brightness(80%);
+  background-position: 1500% 1500%;
   filter: brightness(80%);
   background-position: 1500% 1500%;
   background-repeat: no-repeat;
@@ -179,10 +207,14 @@ a {
   width: 67%;
   height: 100%;
   filter: brightness(70%);
+  filter: brightness(70%);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("/static/images/menuPicture.jpg");
+  background-position: 0% -1500%;
+  opacity: 0;
+  transition: background-position 2s ease-out, opacity 6s ease-out;
   background-position: 0% -1500%;
   opacity: 0;
   transition: background-position 2s ease-out, opacity 6s ease-out;
@@ -192,9 +224,12 @@ a {
   position: relative;
   top: 25%;
   text-align: center;
+  text-align: center;
   font-size: 100%;
   width: 100%;
+  width: 100%;
   font-family: Montserrat;
+  color: white;
   color: white;
   letter-spacing: 2px;
 }
@@ -210,6 +245,7 @@ body {
 
 .text {
   font-size: 150%;
+  font-size: 150%;
   font-family: Arial, Helvetica, sans-serif;
   font-family: Montserrat;
   color: white;
@@ -224,6 +260,9 @@ body {
 
 .menuButton {
   margin-top: 5px;
+  background-color: transparent;
+  border-color: transparent;
+  border-width: 1px;
   background-color: transparent;
   border-color: transparent;
   border-width: 1px;
