@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% block content %}
 {% load crispy_forms_tags %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'login.css' %}">
 <h1>Login</h1>
 <form method="POST">
   <!-- Use csrf_token to add security to the registration-->
