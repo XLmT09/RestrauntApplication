@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import menuUpdateForm
+from project.models import Order
 
 # Make http requests to the waiter page
 def staff(request):
@@ -9,7 +10,9 @@ def staff(request):
 
 # Make http requests on page that gives list of customer orders
 def viewOrders(request):
-    return render(request, "Orders.html")
+    # retrive all customer orders
+    cust_orders = Order.objects.all()
+    return render(request, "Orders.html", {'cust_orders': cust_orders})
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
