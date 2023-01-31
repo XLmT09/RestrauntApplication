@@ -87,6 +87,22 @@
         </div>
         {% endif %} {% endfor %}
       </div>
+      <div class = "filter">
+        <label for = "filter">Filter by : </label>
+        <select name = "filter" id = "filter">
+          <optgroup label = "course">
+            <option value = "starters">Starters</option>
+            <option value = "mains">Mains</option>
+            <option value = "sides">Sides</option>
+            <option value = "dessert">Desserts</option>
+            <option value = "drink">Drink</option>
+          </optgroup>
+          <optgroup label = "preference">
+            <option value = "vegetarian">Vegetarian</option>
+            <option value = "non-vegetarian">Non-vegetarian</option>
+          </optgroup>
+        </select>
+      </div>
     </div>
   </body>
 </html>

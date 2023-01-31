@@ -58,10 +58,11 @@ body {
 }
 
 .dishbox2 {
+  float: left;
   overflow: auto;
   position: relative;
   top: 5%;
-  margin: auto;
+  margin-left: 6.2%;
   width: 60%;
   height: 85%;
 }
@@ -70,6 +71,19 @@ body {
   align-items: center;
   background-color: rgb(30, 40, 44);
   height: 93.2vh;
+}
+
+label[for = filter] {
+  color: white;
+  font-size: 160%;
+  font-family: Montserrat;
+}
+
+.filter {
+  float: right;
+  position: relative;
+  top: 5%;
+  margin-right: 6.2%;
 }
 
 .dishbox2::-webkit-scrollbar {
