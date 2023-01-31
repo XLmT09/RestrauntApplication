@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
   <script src="{% static 'javascript/test.js' %}"></script>
+  <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Document</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
@@ -89,15 +90,15 @@
       </div>
       <div class = "filter">
         <label for = "filter">Filter by : </label>
-        <select name = "filter" id = "filter">
-          <optgroup label = "course">
+        <select name = "filter" id = "filter" onchange = "hideAll()">
+          <optgroup label = "Course">
             <option value = "starters">Starters</option>
             <option value = "mains">Mains</option>
             <option value = "sides">Sides</option>
             <option value = "dessert">Desserts</option>
             <option value = "drink">Drink</option>
           </optgroup>
-          <optgroup label = "preference">
+          <optgroup label = "Preference">
             <option value = "vegetarian">Vegetarian</option>
             <option value = "non-vegetarian">Non-vegetarian</option>
           </optgroup>
