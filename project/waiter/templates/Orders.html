@@ -5,7 +5,9 @@
     <div class="bg">
 
       <h3 id="heading">Customer Orders</h3>
-
+      {% for order in cust_orders %}
+        <p>{{ order }}</p>
+      {% endfor %}
     </div>
 
 
