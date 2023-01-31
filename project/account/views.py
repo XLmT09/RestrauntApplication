@@ -14,6 +14,7 @@ def signup(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             # Store values in the field directly to the database
+            print(form.cleaned_data["role"])
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')

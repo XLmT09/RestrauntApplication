@@ -21,15 +21,6 @@ class Database:
         self.executeQuery(connection, "DROP TABLE IF EXISTS " + tableName)
         self.executeQuery(connection, tableDescription)
         print("Table " + tableName + " successfully created")
-        
-        
-    def executeQueryGet(self, connection, query, retrieveData = True):
-    
-        cursor = connection.cursor()
-        cursor.execute(query)
-        
-        if retrieveData:
-            return cursor.fetchall() 
 
 
 if __name__ == "__main__":
