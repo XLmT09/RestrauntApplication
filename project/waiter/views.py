@@ -3,14 +3,15 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import menuUpdateForm
 
-# Create your views here.
-
+# Make http requests to the waiter page
 def staff(request):
     return render(request, "staffPage.html", {'title' : 'staff'})
 
+# Make http requests on page that gives list of customer orders
 def viewOrders(request):
-    return render(request, "viewOrders.html")
+    return render(request, "Orders.html")
 
+# Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
     if request.method == "POST":
         form = menuUpdateForm(request.POST)
