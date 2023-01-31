@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'project',
     #django will look at the apps created for templates and databse models
     'account.apps.AccountConfig',
+    'waiter.apps.WaiterConfig',
     'crispy_forms', 
 ]
 
