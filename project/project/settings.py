@@ -100,23 +100,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 #THIS CODE CONNECTS DATABSE WITH AN BIT.IO DB
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'veghij/test',
-    #     'USER': 'w',
-    #     'PASSWORD': 'v2_3yCsA_5nV758MLy3jVvpe7scVTP8b',
-    #     'HOST': 'db.bit.io',
-    #     'PORT': '5432',
-    # }
-
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'zkac226/restaurantDB',
-        'USER': 'zkac226',
-        'PASSWORD': 'v2_3yDhd_4vkmgPmQcRBh3RBQKEZzLvy',
+        'NAME': 'veghij/x',
+        'USER': 'veghij',
+        'PASSWORD': 'v2_3yaim_aPPTDuxZdVT9EuTi88mhL3M',
         'HOST': 'db.bit.io',
         'PORT': '5432',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'zkac226/restaurantDB',
+    #     'USER': 'zkac226',
+    #     'PASSWORD': 'v2_3yDhd_4vkmgPmQcRBh3RBQKEZzLvy',
+    #     'HOST': 'db.bit.io',
+    #     'PORT': '5432',
+    # }
 }
 
 
