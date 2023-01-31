@@ -1,3 +1,72 @@
-h1 {
-    color: yellow
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(29, 29, 39);
+    height: 100vh;
+    overflow: hidden;
+    font-family: Montserrat;
+}
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    border-radius: 5px;
+}
+.center h1{
+    text-align: center;
+    padding: 0px 0px 4px 0px;
+    border-bottom: 1px solid silver;
+}
+.center form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+form div{
+    position: relative;
+    
+    margin: 20px 0;
+}
+form div label{
+    border-bottom: 2px solid #adadad;
+    bottom: -20%;
+    transform: translateY(-50%);
+    left: 5px;
+    font-size: 16px;
+    pointer-events: none;
+    color: #adadad;
+    transition: 1s;
+}
+div input{
+    width: 100%;
+    padding: 0 5px;
+    height: 20px;
+    font-size: 16px ;
+    border: none;
+    border-bottom: 2px solid #adadad;
+    outline: none;
+    
+}
+div input :focus ~ label,
+div input :valid ~ label{
+    top: 5px;
+    color: #2691d9;
+}
+button {
+    width: 100%;
+    height: 40px;
+    border: 2px solid;
+    background: #2691d9;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+}
+button :hover{
+    border-color: #2691d9;
+    transition: .5s;
 }
