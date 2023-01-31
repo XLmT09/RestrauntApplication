@@ -26,6 +26,6 @@ def staff(request):
 def viewOrders(request):
     return render(request, "viewOrders.html")
 
-def updateMenu(request):
-    return render(request, "updateMenu.html")
+# def updateMenu(request):
+#     return render(request, "updateMenu.html")
 
