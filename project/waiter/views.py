@@ -5,6 +5,12 @@ from .forms import menuUpdateForm
 
 # Create your views here.
 
+def staff(request):
+    return render(request, "staffPage.html", {'title' : 'staff'})
+
+def viewOrders(request):
+    return render(request, "viewOrders.html")
+
 def changeMenu(request):
     if request.method == "POST":
         form = menuUpdateForm(request.POST)
