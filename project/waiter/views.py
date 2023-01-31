@@ -10,8 +10,8 @@ def staff(request):
 
 # Make http requests on page that gives list of customer orders
 def viewOrders(request):
-    # retrive all customer orders
-    cust_orders = Order.objects.all()
+    # retrive all customer orders from oldest to newest
+    cust_orders = Order.objects.all().order_by('timeOfOrder')
     return render(request, "Orders.html", {'cust_orders': cust_orders})
 
 # Make http requests on page that shows menu and allows modification to the menu
