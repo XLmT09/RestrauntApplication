@@ -7,7 +7,7 @@ INGREDIENTS = [
 ]
 
 COURSE = [
-    ("Starter", "Starter")
+    ("Starter", "Starter"),
     ("Main", "Main"),
     ("Dessert", "Dessert")
 ]
@@ -25,4 +25,4 @@ class menuUpdateForm(forms.Form):
     cuisine = forms.CharField(label="cuisine", max_length=20)
     ingredients = forms.CharField(label = 'Select ingredients', widget = forms.Select(choices = INGREDIENTS))
     course = forms.CharField(label = 'Select course', widget = forms.Select(choices = COURSE))
-    dietRequirements = forms.CharField(label = 'Select dietary requirements', widget = forms.Select(choices = DIET))
+    dietRequirements = forms.BooleanField(label = 'Select dietary requirements', widget = forms.Select(choices = DIET))
