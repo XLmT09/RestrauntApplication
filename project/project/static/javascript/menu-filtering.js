@@ -1,3 +1,5 @@
-function hideAll() {
-    document.getElementsByClassName("dishbox2")[0].style.visibility = "hidden";
+function hide(selectedOption) {
+    for (var container of document.getElementsByClassName("titles")) {
+        container.style.visbility = "hidden";
+    }
 }
