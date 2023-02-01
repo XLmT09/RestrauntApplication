@@ -1,21 +1,28 @@
 .container {
-  margin-right: 1%;
-  margin-left: 1%;
+  position: relative;
+  padding: 1%;
+
   display: inline-block;
   text-align: left;
-  background-color: rgba(15, 167, 227, 0.1);
+
   border-bottom: solid;
-  width: 30%;
-  height: 20%;
+  width: 20%;
+  height: 17vh;
   color: white;
   font-size: 75%;
   font-family: Montserrat;
   border-color: white;
-  margin-bottom: 1%;
-  margin-top: 1%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .titles {
+  position: relative;
+
+  padding: 1%;
+  margin-top: 2%;
+  margin-bottom: 1%;
   width: 100%;
   border-width: 1px;
   border-color: white;
@@ -36,10 +43,23 @@
 
 .header {
   width: 100%;
-  float: left;
   height: 20%;
   margin: 0;
-  padding-bottom: 1%;
+  border: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
+  border-color: white;
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#right {
+  display: flex;
+  align-items: center;
 }
 
 .price {
@@ -55,32 +75,75 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: rgb(29, 29, 39);
 }
 
-.dishbox2 {
-  overflow: auto;
-  position: relative;
-  top: 5%;
+.menuBox {
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  top: 10%;
   margin: auto;
   width: 60%;
-  height: 85%;
+  opacity: 1;
+  transition: opacity 1s ease-in;
 }
 
-.background {
+.orderBox {
+  padding-top: 1%;
+  height: 40vh;
+  text-align: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, 0);
+  z-index: -1;
+  width: 30%;
+  background-color: rgba(17, 23, 23);
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.orderHeader {
+  width: 100%;
+  height: 20%;
+  margin: 0;
+  border: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
+  border-color: white;
+  display: flex;
   align-items: center;
-  background-color: rgb(30, 40, 44);
-  height: 93.2vh;
+  justify-content: space-between;
 }
 
-.dishbox2::-webkit-scrollbar {
-  width: 0.7em;
+.orderingBar {
+  text-align: center;
+  margin-top: 7px;
+  position: static;
+  width: 97%;
+  height: 15%;
+  border: none;
 }
 
-.dishbox2::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+.cross {
+  fill: white;
+  cursor: pointer;
 }
 
-.dishbox2::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
+.orderButton {
+  border-radius: 20px;
+  width: 35%;
+  height: 100%;
+  float: left;
+  background-color: gray;
+  font-family: Montserrat;
+  font-size: 100%;
+  color: white;
+  border: none;
 }
