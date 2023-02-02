@@ -4,31 +4,36 @@
 
   display: inline-block;
   text-align: left;
-
+  background-color: rgba(255, 255, 255, 0.03);
   border-bottom: solid;
-  width: 20%;
+  width: 26%;
   height: 17vh;
   color: white;
   font-size: 75%;
   font-family: Montserrat;
   border-color: white;
   margin-left: 2%;
+  margin-right: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
+  filter: brightness(90%);
+}
+.container:hover {
+  filter: brightness(110%);
 }
 
 .titles {
   position: relative;
-
   padding: 1%;
-  margin-top: 2%;
+  margin-top: 10%;
   margin-bottom: 1%;
-  width: 100%;
+  width: 98%;
   border-width: 1px;
   border-color: white;
   border-style: solid;
   border-left: none;
   border-right: none;
+  border-top: none;
   display: table;
 }
 
@@ -135,6 +140,12 @@ body {
   fill: white;
   cursor: pointer;
 }
+.basket {
+  fill: white;
+  cursor: pointer;
+  float: left;
+  margin-left: 20px;
+}
 
 .orderButton {
   border-radius: 20px;
@@ -146,4 +157,5 @@ body {
   font-size: 100%;
   color: white;
   border: none;
+  cursor: pointer;
 }
