@@ -22,6 +22,7 @@ class MenuItem(models.Model):
         DRINK = "Drink"
 
     class MenuItemRequirements(models.TextChoices):
+        NONE = "None"
         VEGAN = "Vegan"
         VEGETARIAN = "Vegetarian"
 
@@ -30,10 +31,10 @@ class MenuItem(models.Model):
     price = models.FloatField()
     calories = models.IntegerField()
     cuisine = models.CharField(max_length=10, null=True)
-    ingredients = ArrayField(models.TextField())
+    ingredients = models.CharField(max_length=50, null=True)
 
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
-    dietRequirements = models.BooleanField(max_length=10,choices=MenuItemRequirements.choices, null=True)
+    dietRequirements = models.CharField(max_length=10,choices=MenuItemRequirements.choices, null=False, default="None")
     
 
 class Order(models.Model):

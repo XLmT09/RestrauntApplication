@@ -8,6 +8,7 @@
       <br>
       <br>
       <form action="" method = "POST" id = "menuForm">
+        {% csrf_token %}
         <h3 id="heading">Use the below form to update the menu</h3>
         <ul>
           <li> Name: {{ form.name }} </li><br>
@@ -19,8 +20,8 @@
           <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
         </ul>
         <input type = "submit" value = "Save & Submit">
-        <input type = "submit" value = "Cancel">
-        <input type = "submit" value = "Delete Item">
+        <input type = "button" value = "Cancel">
+        <input type = "button" value = "Delete Item">
       </form>
     </div>
 
