@@ -2,8 +2,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: rgb(29, 29, 39);
-    height: 100vh;
-    overflow: hidden;
+    height: 200vh;
+    
     font-family: Montserrat;
     color: aliceblue;
 }
@@ -14,7 +14,7 @@ body{
     align-content: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -35%);
     background: rgb(56, 56, 79);
     border: #beddf1 1px solid;
     border-radius: 5px;
@@ -29,7 +29,7 @@ body{
 }
 
 .center button {
-    width: 100%;
+    width: 80%;
     height: 40px;
     border: 2px solid;
     border-radius: 20px;
@@ -40,6 +40,10 @@ body{
     margin-bottom: 10px;
     border-color: #2691d9;
     background: transparent;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    transform: translateX(10%);
 }
 .center button :hover{
     transition: 0.5s;
@@ -47,5 +51,47 @@ body{
 }
 
 .form-control {
+    width: 700px;
+}
+#id_username{
     width: 80%;
+    margin: 10px 10px;
+}
+#div_id_username label{
+    position: relative;
+    margin-left: 10px;
+}
+#id_email{
+    width: 80%;
+    margin: 10px 10px;
+}
+#div_id_email label{
+    position: relative;
+    margin-left: 10px;
+}
+#id_password1{
+    width: 80%;
+    margin: 10px 10px;
+}
+#div_id_password1 label{
+    position: relative;
+    margin-left: 10px;
+}
+#id_password2{
+    width: 80%;
+    margin: 10px 10px;
+}
+#div_id_password2 label{
+    position: relative;
+    margin-left: 10px;
+}
+#div_id_role{
+    width: 80%;
+    margin: 10px 10px;
+}
+#id_role{
+    width: 80%;
+}
+form{
+    width: 450px;
 }
