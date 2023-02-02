@@ -13,90 +13,100 @@
   <body>
     <div class="background">
       <div class="dishbox2">
-        <div class="titles"><div class="name">Starters</div></div>
-        {% for item in MenuItems %} {% if item.course == "Starter" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{item.name}}</div>
-            <div class="price">£{{item.price}}</div>
+        <div id = "starters">
+          <div class="titles"><div class="name">Starters</div></div>
+          {% for item in MenuItems %} {% if item.course == "Starter" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            {% for i in item.ingredients %} {{i}} {% endfor %}
+
+            <br />
+            Calories : {{item.calories}}
           </div>
-          <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
-
-          <br />
-          Calories : {{item.calories}}
+          {% endif %} {% endfor %}
         </div>
-        {% endif %} {% endfor %}
 
-        <div class="titles"><div class="name">Mains</div></div>
-        {% for item in MenuItems %} {% if item.course == "Main" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{item.name}}</div>
-            <div class="price">£{{item.price}}</div>
+        <div id = "mains">
+          <div class="titles"><div class="name">Mains</div></div>
+          {% for item in MenuItems %} {% if item.course == "Main" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            {% for i in item.ingredients %} {{i}} {% endfor %}
+
+            <br />
+            Calories : {{item.calories}}
           </div>
-          <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
-
-          <br />
-          Calories : {{item.calories}}
+          {% endif %} {% endfor %}
         </div>
-        {% endif %} {% endfor %}
 
-        <div class="titles"><div class="name">Sides</div></div>
-        {% for item in MenuItems %} {% if item.course == "Side" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{item.name}}</div>
-            <div class="price">£{{item.price}}</div>
+        <div id = "sides">
+          <div class="titles"><div class="name">Sides</div></div>
+          {% for item in MenuItems %} {% if item.course == "Side" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            {% for i in item.ingredients %} {{i}} {% endfor %}
+
+            <br />
+            Calories : {{item.calories}}
           </div>
-          <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
-
-          <br />
-          Calories : {{item.calories}}
+          {% endif %} {% endfor %}
         </div>
-        {% endif %} {% endfor %}
 
-        <div class="titles"><div class="name">Desserts</div></div>
-        {% for item in MenuItems %} {% if item.course == "Dessert" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{item.name}}</div>
-            <div class="price">£{{item.price}}</div>
+        <div id = "desserts">
+          <div class="titles"><div class="name">Desserts</div></div>
+          {% for item in MenuItems %} {% if item.course == "Dessert" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            {% for i in item.ingredients %} {{i}} {% endfor %}
+
+            <br />
+            Calories : {{item.calories}}
           </div>
-          <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
-
-          <br />
-          Calories : {{item.calories}}
+          {% endif %} {% endfor %}
         </div>
-        {% endif %} {% endfor %}
 
-        <div class="titles"><div class="name">Drink</div></div>
-        {% for item in MenuItems %} {% if item.course == "Drink" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{item.name}}</div>
-            <div class="price">£{{item.price}}</div>
+        <div id = "drink">
+          <div class="titles"><div class="name">Drink</div></div>
+          {% for item in MenuItems %} {% if item.course == "Drink" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            {% for i in item.ingredients %} {{i}} {% endfor %}
+
+            <br />
+            Calories : {{item.calories}}
           </div>
-          <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
-
-          <br />
-          Calories : {{item.calories}}
+          {% endif %} {% endfor %}
         </div>
-        {% endif %} {% endfor %}
       </div>
       <div class = "filter">
         <label for = "filter">Filter by : </label>
         <select name = "filter" id = "filter" onchange = "hide(this)">
           <optgroup label = "Course">
-            <option value = "Starters">Starters</option>
-            <option value = "Mains">Mains</option>
-            <option value = "Sides">Sides</option>
-            <option value = "Desserts">Desserts</option>
-            <option value = "Drink">Drink</option>
+            <option value = "starters">Starters</option>
+            <option value = "mains">Mains</option>
+            <option value = "sides">Sides</option>
+            <option value = "desserts">Desserts</option>
+            <option value = "drink">Drink</option>
           </optgroup>
           <optgroup label = "Preference">
             <option value = "vegetarian">Vegetarian</option>
