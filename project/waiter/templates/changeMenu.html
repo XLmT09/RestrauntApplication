@@ -7,20 +7,20 @@
     <div class="bg">
       <br>
       <br>
-      
-
-      <form action="" method = "POST">
+      <form action="" method = "POST" id = "menuForm">
         <h3 id="heading">Use the below form to update the menu</h3>
         <ul>
-          <li id = "nameField" class = "name">{{ form.name }}</li>
-          <li id = "priceField" class = "price">{{ form.price }}</li>
-          <li id = "caloriesField" class = "price">{{ form.calories }}</li>
-          <li id = "cuisineField" class = "price">{{ form.cuisine }}</li>
-          <li id = "ingredientsField" class = "price">{{ form.ingredients }}</li>
-          <li id = "courseField" class = "price">{{ form.course }}</li>
-          <li id = "dietField" class = "price">{{ form.diestRequirements }}</li>
+          <li> Name: {{ form.name }} </li><br>
+          <li> Price: {{ form.price }} </li><br>
+          <li> Calories: {{ form.calories }} </li><br>
+          <li> Cuisine: {{ form.cuisine }} </li><br>
+          <li> Ingredients: {{ form.ingredients }} </li><br>
+          <li> Course: {{ form.course }} </li><br>
+          <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
         </ul>
-        <input type = "submit" value = "Submit">
+        <input type = "submit" value = "Save & Submit">
+        <input type = "submit" value = "Cancel">
+        <input type = "submit" value = "Delete Item">
       </form>
     </div>
 
