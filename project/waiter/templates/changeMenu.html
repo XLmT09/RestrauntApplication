@@ -2,12 +2,25 @@
 {% block content %} 
 {% load static %}
 
+
+
     <div class="bg">
+      <br>
+      <br>
+      
 
-      <h3 id="heading">Use the below form to update the menu</h3>
-
-      <form method = "POST">
-        {{form}}
+      <form action="" method = "POST">
+        <h3 id="heading">Use the below form to update the menu</h3>
+        <ul>
+          <li id = "nameField" class = "name">{{ form.name }}</li>
+          <li id = "priceField" class = "price">{{ form.price }}</li>
+          <li id = "caloriesField" class = "price">{{ form.calories }}</li>
+          <li id = "cuisineField" class = "price">{{ form.cuisine }}</li>
+          <li id = "ingredientsField" class = "price">{{ form.ingredients }}</li>
+          <li id = "courseField" class = "price">{{ form.course }}</li>
+          <li id = "dietField" class = "price">{{ form.diestRequirements }}</li>
+        </ul>
+        <input type = "submit" value = "Submit">
       </form>
     </div>
 
