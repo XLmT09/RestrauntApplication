@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import menuUpdateForm
+from project.models import MenuItem
 
 # Create your views here.
 
@@ -17,11 +18,12 @@ def changeMenu(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'Menu has been updated successfully')
-            HttpResponseRedirect("staffPage.html")
+        else:
+            messages.error(request, f'Failed to update menu!')
     else:
         form = menuUpdateForm()
     
-    return render(request, "changeMenu.html", {'form' : form})
+    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
 
 
 

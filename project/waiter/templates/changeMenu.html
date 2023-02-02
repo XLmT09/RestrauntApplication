@@ -10,6 +10,16 @@
       <form action="" method = "POST" id = "menuForm">
         {% csrf_token %}
         <h3 id="heading">Use the below form to update the menu</h3>
+
+        <label for="menuDropDown">Select Menu Item:</label>
+
+        <select id = "menuDropDown">
+          <option value = "NULL">Add New Item</option>
+          {% for item in menuData %}
+              <option value="{{ item.id }}">{{ item.name }}</option>
+          {% endfor %}
+          </select>
+
         <ul>
           <li> Name: {{ form.name }} </li><br>
           <li> Price: {{ form.price }} </li><br>
