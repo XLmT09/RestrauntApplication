@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
+import sys
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -117,6 +117,14 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# This is the test db to be used during testing.
+# db is automatically created and deleted when running the test command.
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase'
+    }
 
 
 # Password validation
