@@ -4,6 +4,8 @@
 
 
 
+
+
     <div class="bg">
       <br>
       <br>
@@ -13,10 +15,10 @@
 
         <label for="menuDropDown">Select Menu Item:</label>
 
-        <select id = "menuDropDown">
+        <select id = "menuDropDown" onchange="refreshMenuForm()">
           <option value = "NULL">Add New Item</option>
           {% for item in menuData %}
-              <option value="{{ item.id }}">{{ item.name }}</option>
+              <option value="{{ item.name }}">{{ item.name }}</option>
           {% endfor %}
           </select>
 

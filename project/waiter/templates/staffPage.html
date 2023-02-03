@@ -9,6 +9,14 @@
     <title>Staff Area</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 
+    <script type="text/javascript">
+      function refreshMenuForm(){
+        const selected = document.getElementById("menuDropDown");
+        const value = selected.value
+        alert("you have chosen " + value)
+      }
+    </script>
+
     <style>
         #navBar {
             padding-left: 350px;
@@ -25,7 +33,6 @@
           padding-left: 40px;
         }
     </style>
-
     
   </head>
 
