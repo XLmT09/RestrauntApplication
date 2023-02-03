@@ -1,5 +1,9 @@
 function hide(selectedOption) {
-    for (var container of document.getElementsByClassName("titles")) {
-        container.style.display = "none";
+    optionValue = selectedOption.value;
+
+    for (var container of document.getElementsByClassName("course")) {
+        if (container.id != optionValue) {
+            container.style.display = "none";
+        }
     }
 }
