@@ -1,11 +1,25 @@
 body{
-    margin: 0;
+    margin: auto;
     padding: 0;
     background-color: rgb(29, 29, 39);
     height: 200vh;
-    
+    overflow: scroll;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
     font-family: Montserrat;
     color: aliceblue;
+}
+small{
+    position: relative;
+    display: flex;
+}
+#hint_id_username{
+    padding: 5px 5px;
+    margin-bottom: 7px;
+}
+#hint_id_password2{
+    padding: 5px 10px;
+    margin-bottom: 4px;
 }
 
 .center{
@@ -15,7 +29,7 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -35%);
-    background: rgb(56, 56, 79);
+    background: #121819    ;
     border: #beddf1 1px solid;
     border-radius: 5px;
     width: fit-content;
@@ -29,57 +43,67 @@ body{
 }
 
 .center button {
-    width: 80%;
+    width: 100%;
     height: 40px;
     border: 2px solid;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: 800;
     cursor: pointer;
     outline: none;
     margin-bottom: 10px;
-    border-color: #2691d9;
+    border: #2691d9 1px solid;
     background: transparent;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    transform: translateX(10%);
+    left: 100px;
+    color: white;
+    transition: .5s;
 }
-.center button :hover{
+.center button:hover{
     transition: 0.5s;
     background-color: #2691d9;
+    color: black;
+    box-shadow: 0 0.5em 0.5em -0.4em;
+    transform: translateY(-0.25em);
 }
 
 .form-control {
     width: 700px;
 }
 #id_username{
-    width: 80%;
+    width: 100%;
     margin: 10px 10px;
+    border-radius: 5px;
+    padding: 5px 0px;
 }
 #div_id_username label{
     position: relative;
     margin-left: 10px;
 }
 #id_email{
-    width: 80%;
+    width: 100%;
     margin: 10px 10px;
+    border-radius: 5px;
+    padding: 5px 0px;
 }
 #div_id_email label{
     position: relative;
     margin-left: 10px;
 }
 #id_password1{
-    width: 80%;
+    width: 100%;
     margin: 10px 10px;
+    border-radius: 5px;
+    padding: 5px 0px;
 }
 #div_id_password1 label{
     position: relative;
     margin-left: 10px;
 }
 #id_password2{
-    width: 80%;
+    width: 100%;
     margin: 10px 10px;
+    border-radius: 5px;
+    padding: 5px 0px;
 }
 #div_id_password2 label{
     position: relative;
@@ -94,4 +118,11 @@ body{
 }
 form{
     width: 450px;
+    padding: 0 20px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(12, 22, 33) 0px 20px 30px -10px;
+}
+span{
+    display: none;
 }
