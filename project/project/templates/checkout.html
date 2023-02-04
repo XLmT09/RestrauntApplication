@@ -16,11 +16,35 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
   <body>
     <div class="checkOutBox">
+      <div
+        class="itemRow"
+        style="border-bottom: 1px solid white; padding-bottom: 3px"
+      >
+        <text class="itemName">Item</text>
+        <text class="itemPrice">Price</text>
+        <text class="itemNumber">Quantity</text>
+      </div>
       {% for i in MenuItems %}
       <div class="itemRow">
-        {{i.0}} <text style="float: right">{{i.1}}</text>
+        <text class="itemName">{{i.0}}</text>
+        <text class="itemPrice">£ {{i.1}}</text>
+        <text class="itemNumber">{{i.2}}</text>
       </div>
       {% endfor %}
+      <div
+        class="itemRow"
+        <div
+        class="itemRow"
+        style="border-top: 1px solid white; padding-top: 3px"
+      >
+        <text class="itemName">Total</text>
+        <text class="itemNumber">{{items}}</text>
+        <text class="itemPrice">£ {{total}}</text>
+
+        <a class="nav-options nav-btn">
+          <button class="submitButton">Confirm Order</button></a
+        >
+      </div>
     </div>
   </body>
 </html>

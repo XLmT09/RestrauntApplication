@@ -5,10 +5,11 @@ body {
 }
 
 .checkOutBox {
+  text-align: center;
   left: 50%;
   transform: translate(-50%, 0);
   position: absolute;
-  top: 10%;
+  top: 15%;
   width: 40%;
   font-size: 140%;
   font-family: Montserrat;
@@ -17,6 +18,49 @@ body {
 
 .itemRow {
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.itemNumber {
+  text-align: left;
+  width: 20%;
+  height: 100%;
+}
+.itemName {
+  text-align: left;
+  float: left;
+  width: 40%;
+  height: 100%;
+}
+.itemPrice {
+  text-align: right;
+  float: right;
+  width: 30%;
+  height: 100%;
+}
+
+.submitButton {
+  width: 25%;
+  text-align: center;
+  margin-top: 22px;
+  height: 4vh;
+
+  background-color: transparent;
+  float: right;
+  border-width: 1.2px;
+  border-color: white;
+  font-size: 60%;
+  font-family: Montserrat;
+  color: white;
+  border-top: none;
+  border-bottom: none;
+  border-width: 4px;
+  border-color: transparent;
+  transition: border-color 0.7s ease-in;
+}
+
+.submitButton:hover {
+  border-color: white;
 }
