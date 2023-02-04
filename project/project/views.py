@@ -21,3 +21,29 @@ def menu(request):
     return render(request, 'menu.html',{'MenuItems': items})
 
 
+def checkout(request):
+    test = request.COOKIES.get('test') 
+    testArray = test.split(',')
+    print(testArray)
+    print("tes")
+    itemArray=[]
+    usedItems = []
+    for i in range(0, len(testArray)):
+        if(i%2 ==0):
+            tempArray = []
+            tempArray.append(testArray[i])
+            tempArray.append(testArray[i+1])
+            itemArray.append(tempArray)
+            
+    for i in itemArray:
+        if not (i in usedItems):
+            usedItems.append(i)
+    for i in usedItems:
+        numberOfItems = itemArray.count(i)
+        i[1] =round( float(i[1]) * numberOfItems,2)
+        if(numberOfItems>1):
+            i[0] = i[0] + "   {0}".format(numberOfItems)
+        
+    return render(request, 'checkout.html',context={'MenuItems': usedItems})
+
+

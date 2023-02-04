@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(29, 29, 39);
+}
+
+.checkOutBox {
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  top: 10%;
+  width: 40%;
+  font-size: 140%;
+  font-family: Montserrat;
+  color: white;
+}
+
+.itemRow {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

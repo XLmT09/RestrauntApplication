@@ -84,7 +84,6 @@ body {
 }
 
 .menuBox {
-  z-index: 1;
   left: 50%;
   transform: translate(-50%, 0);
   position: absolute;
@@ -105,7 +104,7 @@ body {
   left: 50%;
   top: 30%;
   transform: translate(-50%, 0);
-  z-index: -1;
+
   width: 30%;
   background-color: rgba(17, 23, 23);
   opacity: 0;
