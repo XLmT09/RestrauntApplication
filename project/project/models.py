@@ -26,8 +26,7 @@ class MenuItem(models.Model):
         VEGAN = "Vegan"
         VEGETARIAN = "Vegetarian"
 
-    ID = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, primary_key=True)
     price = models.FloatField()
     calories = models.IntegerField()
     cuisine = models.CharField(max_length=10, null=True)
