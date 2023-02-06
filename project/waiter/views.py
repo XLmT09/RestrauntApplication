@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import menuUpdateForm
 from project.models import MenuItem
+from django.core import serializers
+import json
 
 # Create your views here.
 
@@ -22,8 +24,15 @@ def changeMenu(request):
             messages.error(request, f'Failed to update menu!')
     else:
         form = menuUpdateForm()
-    
+
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
 
+
+def refreshMenu(request, item):
+    if item == None:
+        form = menuUpdateForm()
+    else:
+        form = menuUpdateForm(instance=MenuItem.objects.get(name=item))
+    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
 
 

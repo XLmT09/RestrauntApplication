@@ -2,10 +2,6 @@
 {% block content %} 
 {% load static %}
 
-
-
-
-
     <div class="bg">
       <br>
       <br>
@@ -15,10 +11,10 @@
 
         <label for="menuDropDown">Select Menu Item:</label>
 
-        <select id = "menuDropDown" onchange="refreshMenuForm()">
-          <option value = "NULL">Add New Item</option>
+        <select id = "menuDropDown" onchange = "location = this.value">
+          <option value = "{% url 'refreshMenu' None %}">Add New Item</option>
           {% for item in menuData %}
-              <option value="{{ item.name }}">{{ item.name }}</option>
+              <option value = "{% url 'refreshMenu' item.name %}">{{ item.name }}</option>
           {% endfor %}
           </select>
 
