@@ -5,9 +5,11 @@ function hide(selectedOption) {
         container.style.display = "block";
     }
 
-    for (var container of document.getElementsByClassName("course")) {
-        if (container.id != optionValue) {
-            container.style.display = "none";
+    if (optionValue != "default") {
+        for (var container of document.getElementsByClassName("course")) {
+            if (container.id != optionValue) {
+                container.style.display = "none";
+            }
         }
     }
 }
