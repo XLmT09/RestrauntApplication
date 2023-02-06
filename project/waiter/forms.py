@@ -9,9 +9,7 @@ class menuUpdateForm(forms.ModelForm):
     class Meta:
         model = MenuItem
         fields = ["name", "price", "calories", "cuisine", "ingredients", "course", "dietRequirements"]
-
-    class Meta:
-        model = MenuItem
+        
         def delete(self, comit=True):
             self.instance.delete()
             if comit:
