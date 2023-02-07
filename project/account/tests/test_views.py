@@ -8,9 +8,11 @@ class TestView(TestCase):
         self.assertEqual(response.status_code, 200, 
         "Check if login page loads up.")
         self.assertTemplateUsed(response, "account/login.html", 
-        "Check if correct html template is being used")
+        "Check if login.html template is being used")
 
     # Test if signup page loads up
     def test_signup_page(self):
         response = self.client.get("/account/signup/")
         self.assertEqual(response.status_code, 200, "Check if signup page loads up.")
+        self.assertTemplateUsed(response, "account/signup.html", 
+        "Check if signup.html template is being used")
