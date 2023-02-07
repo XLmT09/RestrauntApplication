@@ -21,4 +21,5 @@ def menu(request):
     return render(request, 'menu.html',{'MenuItems': items})
 
 def ltohSort(request):
+    items = MenuItem.objects.all().order_by('price')
     return render(request)
