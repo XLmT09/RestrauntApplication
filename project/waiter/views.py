@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .forms import menuUpdateForm
@@ -27,6 +27,14 @@ def changeMenu(request):
 
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
 
+def deleteItem(request):
+    if request.method == 'POST':
+        form = menuUpdateForm(request.POST)
+        if 'Delete Item' in request.POST:
+            menu_item = MenuItem.objects.filter(name=form.data['name']   )
+        if menu_item.exists():
+            menu_item.delete()
+            return redirect('changeMenu.html')
 
 def refreshMenu(request, item):
     if item == None:
