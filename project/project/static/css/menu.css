@@ -73,19 +73,6 @@ body {
   height: 93.2vh;
 }
 
-label[for = filter] {
-  color: white;
-  font-size: 160%;
-  font-family: Montserrat;
-}
-
-.filter {
-  float: right;
-  position: relative;
-  top: 5%;
-  margin-right: 6.2%;
-}
-
 .dishbox2::-webkit-scrollbar {
   width: 0.7em;
 }
