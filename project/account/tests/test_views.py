@@ -1,8 +1,12 @@
 from django.test import TestCase
 
-# Create your tests here.
+# IMPORTANT
+# This application uses a built in django registration form so testing
+# such as checking for a strong password, will not be needed as it has 
+# already been tested by django themselves.
 class TestView(TestCase):
     # Add some setup data for the database
+    # user objects are data ready to be passed into forms
     def setUp(self):
         self.user1  = {
         "username":"bob",
@@ -31,3 +35,16 @@ class TestView(TestCase):
         response = self.client.post("/account/signup/", self.user1, format="text/html")
         # Check html page informs user account has been created
         self.assertContains(response, f"Account created for {self.user1['username']}!", html=True)
+        self.assertEqual(response.status_code, 200)
+
+    # Check that user cannot create an account with the same username
+    def test_same_user_cant_be_created(self):
+        # Create a user account
+        response = self.client.post("/account/signup/", self.user1, format="text/html")
+        self.assertContains(response, f"Account created for {self.user1['username']}!", html=True)
+        self.assertEqual(response.status_code, 200)
+
+        # Now check that account with same username cannot be created
+        response = self.client.post("/account/signup/", self.user1, format="text/html")
+        self.assertContains(response, f"Account failed to be created!", html=True)
+        self.assertEqual(response.status_code, 200)
