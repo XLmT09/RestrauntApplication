@@ -35,6 +35,7 @@ def deleteItem(request):
         if menu_item.exists():
             menu_item.delete()
             return redirect('changeMenu.html')
+    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
 
 def refreshMenu(request, item):
     if item == None:
