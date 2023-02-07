@@ -9,10 +9,8 @@
         {% csrf_token %}
         <h3 id="heading">Use the below form to update the menu</h3>
 
-        <label for="menuDropDown">Select Menu Item:</label>
-
         <select id = "menuDropDown" onchange = "location = this.value">
-          <option value = "{% url 'refreshMenu' None %}">Add New Item</option>
+          <option disabled selected hidden>Select Menu Item</option>
           {% for item in menuData %}
               <option value = "{% url 'refreshMenu' item.name %}">{{ item.name }}</option>
           {% endfor %}
@@ -28,7 +26,7 @@
           <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
         </ul>
         <input type = "submit" value = "Save & Submit">
-        <input type = "button" value = "Cancel">
+        <button type="button"><a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a></button>
         <input type = "button" value = "Delete Item">
       </form>
     </div>
