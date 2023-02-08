@@ -91,7 +91,7 @@ body {
 
 select {
   border: none;
-  background-color: transparent;
+  background-color: rgb(30, 40, 44);
   color: white;
   font-family: Montserrat;
 }
