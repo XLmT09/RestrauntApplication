@@ -9,8 +9,7 @@
   <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
-  <script src = "{% static 'javascript/menu-sorting-low-to-high.js' %}"></script>
-  <script src = "{% static 'javascript/menu-sorting-high-to-low.js' %}"></script>
+  <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Document</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
@@ -104,7 +103,7 @@
       </div>
       <div class = "filter">
         <label for = "filter">Filter by : </label>
-        <select name = "filter" id = "filter" onchange = "hide(this)">
+        <select name = "filter" id = "filter" onchange = "filter(this)">
           <optgroup label = "Course">
             <option value = "default" selected>Default</option>
             <option value = "starters">Starters</option>
