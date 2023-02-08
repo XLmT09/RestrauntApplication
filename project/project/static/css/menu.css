@@ -98,6 +98,11 @@ select option {
   font-family: Montserrat;
 }
 
+optgroup[label] {
+  color: white;
+  font-family: Montserrat;
+}
+
 .dishbox2::-webkit-scrollbar {
   width: 0.7em;
 }
