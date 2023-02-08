@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # IMPORTANT
-# This application uses a built in django registration form so testing
+# This application uses a built in django registration/login form so testing
 # such as checking for a strong password, will not be needed as it has 
 # already been tested by django themselves.
 
@@ -27,6 +27,7 @@ class RegisterTest(BaseTest):
     # Check that user can successfully register an account
     def test_can_user_register(self):
         response = self.client.post("/account/signup/", self.user1, format="text/html")
+        
         # Check html page informs user account has been created
         self.assertContains(response, f"Account created for {self.user1['username']}!", html=True)
         self.assertEqual(response.status_code, 200)
@@ -37,6 +38,7 @@ class RegisterTest(BaseTest):
         response = self.client.post("/account/signup/", self.user1, format="text/html")
         self.assertContains(response, f"Account created for {self.user1['username']}!", html=True)
         self.assertEqual(response.status_code, 200)
+       
         # Now check that account with same username cannot be created
         response = self.client.post("/account/signup/", self.user1, format="text/html")
         self.assertContains(response, f"Account failed to be created!", html=True)
@@ -57,6 +59,7 @@ class LoginTest(BaseTest):
         self.client.post("/account/signup/", self.user1, format="text/html")
         # user logs in using account they created
         response = self.client.post("/account/login/", {"username":"bob", "password":"Codyby@25"})
+        
         # If account was created successfully they should be redirected to the homepage
         self.assertRedirects(response, "/", 
                          status_code=302, 
@@ -70,12 +73,32 @@ class LoginTest(BaseTest):
     def test_invalid_login_fail(self):
         # user tries to login using an invalid account
         response = self.client.post("/account/login/", {"username":"bob", "password":"Codyby@25"})
+        
         # The user should see a error message on screen saying that the login was invalid
         self.assertContains(response, "Please enter a correct username")
+        
         # User should still be on login page because login had failed
         self.assertTemplateUsed(response, "account/login.html", 
         "Check if login.html template is being used")
         self.assertEqual(response.status_code, 200)
 
+class LogoutTest(BaseTest):
+    # Test if user can logout after creating an account
+    def test_user_logout(self):
+        # user creates an account
+        self.client.post("/account/signup/", self.user1, format="text/html")
+        # user logs in using account they created
+        response = self.client.post("/account/login/", {"username":"bob", "password":"Codyby@25"})
+        
+        # user can access the profile page when they are logged in
+        response = self.client.get('/account/profile/')
+        self.assertEqual(response.status_code, 200)
+
+        # log the user out
+        response = self.client.get('/account/logout/')
+
+        # check that the user is logged out, by redirecting them when trieng to access profile page
+        response = self.client.get('/account/profile/')
+        self.assertEqual(response.status_code, 302)
     
 
