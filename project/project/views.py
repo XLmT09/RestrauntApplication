@@ -23,6 +23,11 @@ def menu(request):
 
 def checkout(request):
     test = request.COOKIES.get('test') 
+    if len(test) == 0:
+        items = MenuItem.objects.all()
+    # this selects the name of the web page and sends the user to that page
+        return render(request, 'menu.html',{'MenuItems': items})
+        
     testArray = test.split(',')
     print(testArray)
     print("tes")
@@ -46,7 +51,10 @@ def checkout(request):
         itemNumber = itemNumber + numberOfItems
         i[1] =round( float(i[1]) * numberOfItems,2)
         i.append(numberOfItems)
-        
     return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
+
+
+# add order - set status to placed
+
 
 

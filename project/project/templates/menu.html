@@ -69,7 +69,6 @@
     <div class="background">
       <div class="menuBox" id="menuBox">
         <div class="titles"><div class="name">Starters</div></div>
-
         {% for item in MenuItems %} {% if item.course == "Starter" %}
         <div class="container">
           <div class="header">
@@ -77,30 +76,34 @@
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
+          <div class="descriptionBox">{{item.description}}</div>
           <br />
-          Calories : {{item.calories}}
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
           <div class="orderingBar">
             <button
               class="orderButton"
               onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
-            >
-              -
+            > -
+              
             </button>
             <text id="{{item.name}}item">0</text>
             <button
               class="orderButton"
               style="float: right"
               onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
-            >
-              +
+            >+
+              
             </button>
           </div>
         </div>
-        {% endif %} {% endfor %}
+         {% endif %} {% endfor %}
 
+ 
         <div class="titles"><div class="name">Mains</div></div>
-
         {% for item in MenuItems %} {% if item.course == "Main" %}
         <div class="container">
           <div class="header">
@@ -108,30 +111,35 @@
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
+          <div class="descriptionBox">{{item.description}}</div>
           <br />
-          Calories : {{item.calories}}
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
           <div class="orderingBar">
             <button
               class="orderButton"
               onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
-            >
-              -
+            > -
+              
             </button>
             <text id="{{item.name}}item">0</text>
             <button
               class="orderButton"
               style="float: right"
               onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
-            >
-              +
+            >+
+              
             </button>
           </div>
         </div>
-        {% endif %} {% endfor %}
+         {% endif %} {% endfor %}
+
+
 
         <div class="titles"><div class="name">Sides</div></div>
-
         {% for item in MenuItems %} {% if item.course == "Side" %}
         <div class="container">
           <div class="header">
@@ -139,30 +147,35 @@
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
+          <div class="descriptionBox">{{item.description}}</div>
           <br />
-          Calories : {{item.calories}}
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
           <div class="orderingBar">
             <button
               class="orderButton"
               onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
-            >
-              -
+            > -
+              
             </button>
             <text id="{{item.name}}item">0</text>
             <button
               class="orderButton"
               style="float: right"
               onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
-            >
-              +
+            >+
+              
             </button>
           </div>
         </div>
-        {% endif %} {% endfor %}
+         {% endif %} {% endfor %}
+
+
 
         <div class="titles"><div class="name">Desserts</div></div>
-
         {% for item in MenuItems %} {% if item.course == "Dessert" %}
         <div class="container">
           <div class="header">
@@ -170,12 +183,33 @@
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
-
+          <div class="descriptionBox">{{item.description}}</div>
           <br />
-          Calories : {{item.calories}}
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+            >+
+              
+            </button>
+          </div>
         </div>
-        {% endif %} {% endfor %}
+         {% endif %} {% endfor %}
+
+
 
         <div class="titles"><div class="name">Drink</div></div>
 
@@ -186,27 +220,31 @@
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
-          {% for i in item.ingredients %} {{i}} {% endfor %}
+          <div class="descriptionBox">{{item.description}}</div>
           <br />
-          Calories : {{item.calories}}
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
           <div class="orderingBar">
             <button
               class="orderButton"
               onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
-            >
-              -
+            > -
+              
             </button>
             <text id="{{item.name}}item">0</text>
             <button
               class="orderButton"
               style="float: right"
               onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
-            >
-              +
+            >+
+              
             </button>
           </div>
         </div>
-        s {% endif %} {% endfor %}
+         {% endif %} {% endfor %}
       </div>
     </div>
   </body>
