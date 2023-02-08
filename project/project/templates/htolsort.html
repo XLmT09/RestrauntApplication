@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
@@ -127,6 +128,9 @@
             <option value = "htol" selected>High to Low</option>
           </optgroup>
         </select>
+      </div>
+      <div class = "searchbar">
+        <input type = "text" placeholder = "Search menu" oninput = "searchItems()" required />
       </div>
     </div>
   </body>
