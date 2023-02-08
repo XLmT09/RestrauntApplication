@@ -90,7 +90,10 @@ body {
 }
 
 select {
-  background-color: rgb(30, 40, 44);
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-family: Montserrat;
 }
 
 select option {
