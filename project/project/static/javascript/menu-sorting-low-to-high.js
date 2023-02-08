@@ -2,13 +2,17 @@ function sort(selectedOption) {
     optionValue = selectedOption.value;
 
     switch (optionValue) {
+        case 'none':
+            window.location.href = 'http://127.0.0.1:8000/menu'
+
+            break;
         case 'ltoh':
-            if (! ('' + window.location).includes("low-to")) {
-                window.location.href = 'http://127.0.0.1:8000/menu/sort-low-to-high'
-            }
+            window.location.href = 'http://127.0.0.1:8000/menu/sort-low-to-high'
+
+            break;
         case 'htol':
-            if (! ('' + window.location).includes("high-to")) {
-                window.location.href = 'http://127.0.0.1:8000/menu/sort-high-to-low'
-            }
+            window.location.href = 'http://127.0.0.1:8000/menu/sort-high-to-low'
+
+            break;
     }
 }
