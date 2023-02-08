@@ -27,13 +27,15 @@ class MenuItem(models.Model):
         VEGETARIAN = "Vegetarian"
 
     name = models.CharField(max_length=30, primary_key=True)
-    price = models.FloatField()
-    calories = models.IntegerField()
+    price = models.FloatField(null=True)
+    calories = models.IntegerField(null=True)
     cuisine = models.CharField(max_length=10, null=True)
     ingredients = models.CharField(max_length=50, null=True)
-
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
     dietRequirements = models.CharField(max_length=10,choices=MenuItemRequirements.choices, null=False, default="None")
+    alergies = ArrayField(models.TextField())
+    description = models.TextField()
+
     
 
 class Order(models.Model):

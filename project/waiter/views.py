@@ -45,3 +45,8 @@ def refreshMenu(request, item):
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
 
 
+
+# need to:
+# pull changes to DB table
+# add/update form fields accordingly
+# make sure form can still be submitted without error

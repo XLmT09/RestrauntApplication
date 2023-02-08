@@ -24,6 +24,8 @@
           <li> Ingredients: {{ form.ingredients }} </li><br>
           <li> Course: {{ form.course }} </li><br>
           <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
+          <li> alergies: {{ form.alergies }} </li><br>
+          <li> Description: <br> {{ form.description }} </li><br>
         </ul>
         <input type = "submit" value = "Save & Submit">
         <button type="button"><a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a></button>
