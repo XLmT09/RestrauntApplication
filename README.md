@@ -62,6 +62,28 @@ python manage.py makemigrations
 ```
 <br />
 
+## **Testing**
+### **How to Run Test**
+To run the test write the command below:
+```console
+python manage.py test
+```
+
+### **Notes on Testing**
+Testing has been done on a dummy database which only stays alive during runtime of tests and destroyed when tests are complete.
+The tests will run on a local sqlite database and the implemention can be found under settings.py with the following code:
+```python
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase'
+    }
+```
+You may modify the test database by altering these lines of code.
+
+
+<br />
+
 ## **Software and Tools**
 Software and tools to be used in devlopment:
 1. Python 3.9.16
