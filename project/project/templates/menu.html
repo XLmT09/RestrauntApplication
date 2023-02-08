@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
@@ -103,7 +104,7 @@
       </div>
       <div class = "filter">
         <label for = "filter">Filter by : </label>
-        <select name = "filter" id = "filter" onchange = "filter(this)">
+        <select name = "filter" id = "filter" onchange = "hide(this)">
           <optgroup label = "Course">
             <option value = "default" selected>Default</option>
             <option value = "starters">Starters</option>
@@ -127,6 +128,9 @@
             <option value = "htol">High to Low</option>
           </optgroup>
         </select>
+      </div>
+      <div class = "searchbar">
+        <input type = "text" placeholder = "Search menu" oninput = "searchItems()" required />
       </div>
     </div>
   </body>
