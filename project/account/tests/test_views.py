@@ -4,10 +4,11 @@ from django.test import TestCase
 # This application uses a built in django registration form so testing
 # such as checking for a strong password, will not be needed as it has 
 # already been tested by django themselves.
-class TestView(TestCase):
+
+class BaseTest(TestCase):
     # Add some setup data for the database
-    # user objects are data ready to be passed into forms
     def setUp(self):
+        # user object data that are ready to be passed into forms
         self.user1  = {
         "username":"bob",
         "email":"bob@gmail.com",
@@ -15,14 +16,7 @@ class TestView(TestCase):
         "password2":"Codyby@25"
         }
 
-    # Test if login page loads up
-    def test_login_page(self):
-        response = self.client.get("/account/login/")
-        self.assertEqual(response.status_code, 200, 
-        "Check if login page loads up.")
-        self.assertTemplateUsed(response, "account/login.html", 
-        "Check if login.html template is being used")
-
+class RegisterTest(BaseTest):
     # Test if signup page loads up
     def test_signup_page(self):
         response = self.client.get("/account/signup/")
@@ -43,8 +37,35 @@ class TestView(TestCase):
         response = self.client.post("/account/signup/", self.user1, format="text/html")
         self.assertContains(response, f"Account created for {self.user1['username']}!", html=True)
         self.assertEqual(response.status_code, 200)
-
         # Now check that account with same username cannot be created
         response = self.client.post("/account/signup/", self.user1, format="text/html")
         self.assertContains(response, f"Account failed to be created!", html=True)
         self.assertEqual(response.status_code, 200)
+
+class LoginTest(BaseTest):
+    # Test if login page loads up
+    def test_login_page(self):
+        response = self.client.get("/account/login/")
+        self.assertEqual(response.status_code, 200, 
+        "Check if login page loads up.")
+        self.assertTemplateUsed(response, "account/login.html", 
+        "Check if login.html template is being used")
+        
+    # Test if user can login after creating an account
+    def test_valid_user_login(self):
+        # user creates an account
+        self.client.post("/account/signup/", self.user1, format="text/html")
+        # user logs in using account they created
+        response = self.client.post("/account/login/", {"username":"bob", "password":"Codyby@25"})
+        # If account was created successfully they should be redirected to the homepage
+        self.assertRedirects(response, "/", 
+                         status_code=302, 
+                         target_status_code=200, 
+                         msg_prefix="Check if the user was redirected to their profile page")
+        final_response = self.client.get(response.url)
+        self.assertTemplateUsed(final_response, "homePage.html", 
+                            "Check if homePage.html template is being used")
+
+
+    
+
