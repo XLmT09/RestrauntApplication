@@ -23,3 +23,6 @@ def menu(request):
 def ltohSort(request):
     items = MenuItem.objects.all().order_by('price')
     return render(request, 'ltohsort.html', {'MenuItems': items})
+
+def htolSort(request):
+    return render(request)
