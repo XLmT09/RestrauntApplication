@@ -26,4 +26,5 @@ urlpatterns = [
     path('management/', views.results,  name = 'results'),
     path('menu/', views.menu,  name = 'menu'),
     path('menu/sort-low-to-high', views.ltohSort)
+    path('menu/sort-high-to-low', views.htolSort)
 ]
