@@ -8,6 +8,7 @@
   <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
+  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
@@ -130,7 +131,7 @@
         </select>
       </div>
       <div class = "searchbar">
-        <input type = "text" placeholder = "Search menu" oninput = "searchItems()" required />
+        <input type = "text" placeholder = "Search menu" oninput = "searchItems(this)" required />
       </div>
     </div>
   </body>

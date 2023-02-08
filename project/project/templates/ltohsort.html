@@ -11,6 +11,7 @@
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
+  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Document</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
@@ -130,7 +131,7 @@
         </select>
       </div>
       <div class = "searchbar">
-        <input type = "text" placeholder = "Search menu" oninput = "searchItems()" required />
+        <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
       </div>
     </div>
   </body>
