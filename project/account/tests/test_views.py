@@ -50,7 +50,7 @@ class LoginTest(BaseTest):
         "Check if login page loads up.")
         self.assertTemplateUsed(response, "account/login.html", 
         "Check if login.html template is being used")
-        
+
     # Test if user can login after creating an account
     def test_valid_user_login(self):
         # user creates an account
@@ -61,11 +61,21 @@ class LoginTest(BaseTest):
         self.assertRedirects(response, "/", 
                          status_code=302, 
                          target_status_code=200, 
-                         msg_prefix="Check if the user was redirected to their profile page")
+                         msg_prefix="Check if the user was redirected to  home page")
         final_response = self.client.get(response.url)
         self.assertTemplateUsed(final_response, "homePage.html", 
                             "Check if homePage.html template is being used")
-
+    
+    # Test that typing an invalid account to login page will fail
+    def test_invalid_login_fail(self):
+        # user tries to login using an invalid account
+        response = self.client.post("/account/login/", {"username":"bob", "password":"Codyby@25"})
+        # The user should see a error message on screen saying that the login was invalid
+        self.assertContains(response, "Please enter a correct username")
+        # User should still be on login page because login had failed
+        self.assertTemplateUsed(response, "account/login.html", 
+        "Check if login.html template is being used")
+        self.assertEqual(response.status_code, 200)
 
     
 
