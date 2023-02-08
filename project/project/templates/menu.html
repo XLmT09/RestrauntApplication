@@ -26,11 +26,15 @@
               <div class="name">{{item.name}}</div>
               <div class="price">£{{item.price}}</div>
             </div>
-            <br />
+            <div class = "details">
+
             {% for i in item.ingredients %} {{i}} {% endfor %}
 
-            <br />
+            <br/>
+
             Calories : {{item.calories}}
+
+            </div>
           </div>
           {% endif %} {% endfor %}
         </div>
