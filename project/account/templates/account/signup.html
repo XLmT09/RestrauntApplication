@@ -1,9 +1,29 @@
 {% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
-<h1>Sign Up</h1>
-<form method="POST">
-  <!-- Use csrf_token to add security to the registration-->
-  {% csrf_token %} {{ form|crispy }}
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <button type="submit">Sign Up</button>
-</form>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat"
+    />
+  </head>
+  <div class="bg">
+    <h1>Sign Up</h1>
+
+    <form method="POST">
+      <!-- Use csrf_token to add security to the registration-->
+      {% csrf_token %} {{ form }}
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</html>
 {% endblock content %}

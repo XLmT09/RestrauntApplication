@@ -26,4 +26,5 @@ urlpatterns = [
     path('management/', views.results,  name = 'results'),
     path('menu/', views.menu,  name = 'menu'),
     path('checkout/', views.checkout, name = 'checkout'),
+    path('orderComplete/',views.orderComplete, name = 'orderComplete'),
 ]

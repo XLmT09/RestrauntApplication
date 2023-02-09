@@ -23,7 +23,7 @@ class Database:
         print("Table " + tableName + " successfully created")
         
         
-    def executeQueryGet(self, connection, query, retrieveData = True):
+    def executeQueryGet(self, connection, query, retrieveData):
     
         cursor = connection.cursor()
         cursor.execute(query)

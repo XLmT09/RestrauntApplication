@@ -41,8 +41,8 @@
         <text class="itemNumber">{{items}}</text>
       </div>
 
-      <a class="nav-options nav-btn">
-        <button class="submitButton">Confirm Order</button></a
+      <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
+        <button class="submitButton">Confirm Order {{ user.id }}</button></a
       >
     </div>
   </body>

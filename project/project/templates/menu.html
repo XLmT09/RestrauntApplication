@@ -23,7 +23,7 @@
       </div>
       <div id="right">
         <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
-          <button class="navButton" onclick="checkout()">
+          <button class="navButton" onclick="checkout({{ user.id }})">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -86,7 +86,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             > -
               
             </button>
@@ -94,7 +94,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             >+
               
             </button>
@@ -121,7 +121,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             > -
               
             </button>
@@ -129,7 +129,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             >+
               
             </button>
@@ -157,7 +157,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             > -
               
             </button>
@@ -165,7 +165,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             >+
               
             </button>
@@ -193,7 +193,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             > -
               
             </button>
@@ -201,7 +201,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             >+
               
             </button>
@@ -230,7 +230,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             > -
               
             </button>
@@ -238,7 +238,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
             >+
               
             </button>

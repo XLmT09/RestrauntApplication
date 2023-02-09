@@ -1,5 +1,6 @@
 var itemsOrdered = [];
-function addItem(id, addSubtract, price, name) {
+var itemIds = [];
+function addItem(id, addSubtract, price, name, itemId) {
   var element = document.getElementById(id);
   var text = element.textContent;
   var numberOfItems = parseInt(text);
@@ -17,12 +18,15 @@ function addItem(id, addSubtract, price, name) {
     element.innerHTML = numberOfItems;
     basket.innerHTML = parseFloat(priceText) - parseFloat(newPrice);
     var index = itemsOrdered.indexOf([name, price]);
+    var idIndex = itemIds.indexOf(id);
     itemsOrdered.splice(index, 1);
+    itemIds.splice(idIndex, 1);
   } else if (addSubtract > 0) {
     numberOfItems = numberOfItems + 1;
     element.innerHTML = numberOfItems;
     basket.innerHTML = parseFloat(priceText) + parseFloat(newPrice);
     itemsOrdered.push([name, price]);
+    itemIds.push(itemId);
   }
 
   console.log(itemsOrdered);
@@ -35,6 +39,10 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function checkout() {
-  setCookie("test", itemsOrdered, 3000);
+function checkout(id) {
+  setCookie("items", itemsOrdered, 3000);
+  setCookie("itemIds", itemIds, 3000);
+  setCookie("userId", id, 3000);
 }
+
+function order(user) {}
