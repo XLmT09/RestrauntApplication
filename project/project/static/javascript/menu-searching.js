@@ -8,6 +8,8 @@ function search(searchText) {
     var resultPrice = document.getElementById("resultprice");
     var resultDetails = document.getElementById("resultdetails");
 
+    resultContainer.style.display = "none";
+
     for (var itemContainer of itemContainers) {
         itemHeader = itemContainer.getElementsByClassName("header")[0];
         itemName = itemHeader.getElementsByClassName("name")[0];
