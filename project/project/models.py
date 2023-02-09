@@ -46,7 +46,7 @@ class Order(models.Model):
 
     ID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10,choices=orderStatus.choices)
+    status = models.CharField(max_length=10,choices=orderStatus.choices,default="Placed")
     timeOfOrder = models.TimeField()
     orderedItems = ArrayField(models.IntegerField(), null=True)
 
