@@ -1,90 +1,37 @@
-html {
-  scroll-behavior: smooth;
-  background-color: grey;
+.navbar {
+  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  margin-left: 0;
+  margin-right: auto;
+  width: 100%;
+  height: 10vh;
+  background-color: rgba(17, 23, 23, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+#right {
+  display: flex;
+  align-items: center;
 }
 
-.bg {
-  background-image: url("/static/images/newBackground.jpg");
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-}
-
-.bg2 {
-  background-color: rgb(30, 40, 44);
-  height: 100vh;
-}
-
-.bg3 {
-  background-color: rgb(53, 61, 64);
-  height: 100vh;
-}
-
-.nav-options {
-  font-size: 210%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-family: Montserrat;
-  color: white;
-  text-decoration: none;
-  padding: 0.2em;
-}
-
-.nav-btn {
-  border: 3px solid transparent;
+.navButton {
+  background-color: transparent;
+  border-color: rgba(225, 225, 225, 0);
+  border-color: rgba(225, 225, 225, 0);
+  border-style: solid;
+  border-width: 4px;
   border-bottom: none;
   border-top: none;
-  margin-right: 0.2em;
-}
-
-.nav-options:hover {
   cursor: pointer;
-  border-color: white;
-  text-decoration: none;
-  color: white;
+  cursor: pointer;
+  float: right;
+  margin-left: 5px;
+  margin-right: 15px;
+  transition: border-color 0.7s ease-in;
 }
 
-.navigator {
-  width: 100%;
-  height: 7%;
-  background-color: black;
-  padding: 1em;
-}
-
-.logo {
-  float: left;
-  margin-right: 30vw;
-}
-
-.logobox {
-  text-align: center;
-}
-
-.aboutTitle {
-  text-align: center;
-  font-size: 150%;
-  font-family: Montserrat;
-  color: rgb(161, 161, 161);
-  letter-spacing: 5px;
-  position: relative;
-  top: 2%;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-}
-
-.dishbox {
-  float: left;
-  width: 50%;
-  height: 100%;
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("/static/images/dish.jpg");
+.text:hover navButton {
+  border-color: rgba(225, 225, 225, 1);
 }

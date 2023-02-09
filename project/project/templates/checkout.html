@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <script src="{% static 'javascript/menu.js' %}" defer></script>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
+  <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
+  <title>Document</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
+  <body>
+    <div class="checkOutBox">
+      <div
+        class="itemRow"
+        style="border-bottom: 1px solid white; padding-bottom: 3px"
+      >
+        <text class="itemName">Item</text>
+        <text class="itemPrice">Price</text>
+        <text class="itemNumber">Quantity</text>
+      </div>
+      {% for i in MenuItems %}
+      <div class="itemRow">
+        <text class="itemName">{{i.0}}</text>
+        <text class="itemPrice">£ {{i.1}}</text>
+        <text class="itemNumber">{{i.2}}</text>
+      </div>
+      {% endfor %}
+
+      <div
+        class="itemRow"
+        style="border-top: 1px solid white; padding-top: 3px"
+      >
+        <text class="itemName">Total</text>
+        <text class="itemPrice">£ {{total}}</text>
+        <text class="itemNumber">{{items}}</text>
+      </div>
+
+      <a class="nav-options nav-btn">
+        <button class="submitButton">Confirm Order</button></a
+      >
+    </div>
+  </body>
+</html>
+{% endblock content %}

@@ -5,23 +5,246 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
-  <script src="{% static 'javascript/test.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <script src="{% static 'javascript/menu.js' %}" defer></script>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Document</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
   <body>
-    <div class="bg">
-      {% for d in data %}
-      <button
-        type="button"
-        class="navButton"
-        onClick="testing('{{d.getName}}','{{d.getCals}}')"
-      >
-        {{d.getName}}
-      </button>
-      {% endfor %}
-      <div class="container">
-        <h1 id="calories"></h1>
+    <div class="navbar">
+      <div id="left">
+        <div class="text">
+          <a class="nav-options" href="/">Oaxaca</a>
+        </div>
+      </div>
+      <div id="right">
+        <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
+          <button class="navButton" onclick="checkout()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              width="24"
+              class="basket"
+            >
+              <path
+                d="M7 22q-.825 0-1.412-.587Q5 20.825 5 20q0-.825.588-1.413Q6.175 18 7 18t1.412.587Q9 19.175 9 20q0 .825-.588 1.413Q7.825 22 7 22Zm10 0q-.825 0-1.412-.587Q15 20.825 15 20q0-.825.588-1.413Q16.175 18 17 18t1.413.587Q19 19.175 19 20q0 .825-.587 1.413Q17.825 22 17 22ZM6.15 6l2.4 5h7l2.75-5ZM7 17q-1.125 0-1.7-.988-.575-.987-.05-1.962L6.6 11.6 3 4H1.975q-.425 0-.7-.288Q1 3.425 1 3t.288-.713Q1.575 2 2 2h1.625q.275 0 .525.15t.375.425L5.2 4h14.75q.675 0 .925.5t-.025 1.05l-3.55 6.4q-.275.5-.725.775-.45.275-1.025.275H8.1L7 15h11.025q.425 0 .7.287.275.288.275.713t-.288.712Q18.425 17 18 17Zm1.55-6h7Z"
+              />
+            </svg>
+            <div class="text" style="float: right">
+              £<text id="basket">0</text>
+            </div>
+          </button></a
+        >
+
+        {% if user.is_authenticated %}
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}"'>
+          <button class="navButton">
+            <div class="text">Logout</div>
+          </button></a
+        >
+        <a class="nav-options nav-btn" href="{% url 'account-profile' %}"'>
+          <button class="navButton">
+            <div class="text">Profile</div>
+          </button></a
+        >
+
+        {% else %}
+        <a href="/account/login/">
+          <button class="navButton">
+            <div class="text">Login</div>
+          </button>
+        </a>
+        <a href="/account/signup/">
+          <button class="navButton">
+            <div class="text">Register</div>
+          </button>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="background">
+      <div class="menuBox" id="menuBox">
+        <div class="titles"><div class="name">Starters</div></div>
+        {% for item in MenuItems %} {% if item.course == "Starter" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+            >+
+              
+            </button>
+          </div>
+        </div>
+         {% endif %} {% endfor %}
+
+ 
+        <div class="titles"><div class="name">Mains</div></div>
+        {% for item in MenuItems %} {% if item.course == "Main" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+            >+
+              
+            </button>
+          </div>
+        </div>
+         {% endif %} {% endfor %}
+
+
+
+        <div class="titles"><div class="name">Sides</div></div>
+        {% for item in MenuItems %} {% if item.course == "Side" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+            >+
+              
+            </button>
+          </div>
+        </div>
+         {% endif %} {% endfor %}
+
+
+
+        <div class="titles"><div class="name">Desserts</div></div>
+        {% for item in MenuItems %} {% if item.course == "Dessert" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+            >+
+              
+            </button>
+          </div>
+        </div>
+         {% endif %} {% endfor %}
+
+
+
+        <div class="titles"><div class="name">Drink</div></div>
+
+        {% for item in MenuItems %} {% if item.course == "Drink" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}')"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}')"
+            >+
+              
+            </button>
+          </div>
+        </div>
+         {% endif %} {% endfor %}
       </div>
     </div>
   </body>
