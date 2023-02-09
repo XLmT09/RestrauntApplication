@@ -4,7 +4,7 @@ function sort(selectedOption) {
     var filterSelectedOption = document.querySelector('#filter');
 
     switch (optionValue) {
-        case 'none':
+        case 'default':
             window.location.href = 'http://127.0.0.1:8000/menu'
 
             break;

@@ -5,7 +5,7 @@ function hide(selectedOption) {
         container.style.display = "block";
     }
 
-    if (optionValue != "default") {
+    if (optionValue != "none") {
         for (var container of document.getElementsByClassName("course")) {
             if (container.id != optionValue) {
                 container.style.display = "none";
