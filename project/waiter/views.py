@@ -12,7 +12,7 @@ def staff(request):
 def viewOrders(request):
     # retrive all customer orders from oldest to newest
     cust_orders = Order.objects.all().order_by('timeOfOrder')
-    return render(request, "Orders.html", {'cust_orders': cust_orders})
+    return render(request, "orders.html", {'cust_orders': cust_orders})
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
@@ -43,10 +43,3 @@ def refreshMenu(request, item):
     else:
         form = menuUpdateForm(instance=MenuItem.objects.get(name=item))
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(), 'itemToDelete': item})
-
-
-
-# need to:
-# pull changes to DB table
-# add/update form fields accordingly
-# make sure form can still be submitted without error
