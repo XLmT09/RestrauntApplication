@@ -5,6 +5,7 @@ from .forms import menuUpdateForm
 from project.models import MenuItem
 from django.core import serializers
 import json
+from django.urls import resolve
 
 # Create your views here.
 
@@ -25,24 +26,24 @@ def changeMenu(request):
     else:
         form = menuUpdateForm()
 
-    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
+    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(),"itemToDelete" : None})
 
-def deleteItem(request):
-    if request.method == 'POST':
-        form = menuUpdateForm(request.POST)
-        if 'Delete Item' in request.POST:
-            menu_item = MenuItem.objects.filter(name=form.data['name']   )
-        if menu_item.exists():
-            menu_item.delete()
-            return redirect('changeMenu.html')
-    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
+def deleteItem(request, itemToDelete):
+    print("deleting", itemToDelete)
+    if itemToDelete == None:
+        messages.error(request, f'No item selected to delete')
+    else:
+        MenuItem.objects.filter(name=itemToDelete).delete()
+        messages.success(request, f'Item has successfully been deleted')
+    form = menuUpdateForm()
+    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(), "itemToDelete" : None})
 
 def refreshMenu(request, item):
     if item == None:
         form = menuUpdateForm()
     else:
         form = menuUpdateForm(instance=MenuItem.objects.get(name=item))
-    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all()})
+    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(), 'itemToDelete': item})
 
 
 

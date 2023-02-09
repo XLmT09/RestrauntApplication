@@ -2,6 +2,13 @@
 {% block content %} 
 {% load static %}
 
+    <script type="text/javascript">
+      function findSelectedItem(){
+        var item = document.getElementById("nameTextField").innerHTML;
+        alert("you have chosen", item);
+      }
+    </script>
+
     <div class="bg">
       <br>
       <br>
@@ -28,7 +35,7 @@
         </ul>
         <input type = "submit" value = "Save & Submit">
         <button type="button"><a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a></button>
-        <input type = "button" value = "Delete Item">
+        <button type="button"><a href="{% url 'deleteItem' itemToDelete %}" id="buttonText">Delete Item</a></button>
       </form>
     </div>
 
