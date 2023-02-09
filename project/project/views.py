@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from. import nutritionPopUp
-
-foodList = [nutritionPopUp.item("food","55"),nutritionPopUp.item("food3","65"),nutritionPopUp.item("food2",75)]
+from django.db import models
+from .models import MenuItem
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
@@ -17,8 +16,9 @@ def results(request):
     return render(request, 'results.html')
 
 def menu(request):
+    items = MenuItem.objects.all()
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',context={'data': foodList})
+    return render(request, 'menu.html',{'MenuItems': items})
 
 def checkout(request):
     test = request.COOKIES.get('test') 

@@ -1,4 +1,4 @@
-{% load static %}
+{% block content %} {% load static %}
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8" />
@@ -66,6 +66,7 @@
         {% endif %}
       </div>
     </div>
+    
     <div class="background">
       <div class="menuBox" id="menuBox">
         <div class="titles"><div class="name">Starters</div></div>
@@ -249,3 +250,4 @@
     </div>
   </body>
 </html>
+{% endblock content %}

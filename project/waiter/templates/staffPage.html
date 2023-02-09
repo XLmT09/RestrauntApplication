@@ -1,35 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends "base.html" %} {% block content %}
+{%load static %}
 
-    <title>Staff Area</title>
+{% endblock content %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-
-    <style>
-        #navBar {
-            width : 800px;
-            margin: 0 auto;
-        }
-        #menuForm {
-          position: absolute;
-          padding-left: 40%;
-          color: white;
-        }
-        #menuDropDown {
-          margin-left: 30px;
-          padding-left: 40px;
-        }
-        #buttonText {
-          color:black;
-        }
-    </style>
-    
-  </head>
-
   <body>
     <div class="bg">
 
@@ -52,9 +25,6 @@
         </button>
         </a>
       </div>
-
-      <div>{% block content %}{% endblock %}</div>
-
     </div>
     
   </body>

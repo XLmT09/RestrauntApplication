@@ -102,9 +102,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'veghij/test',
-    #     'USER': 'w',
-    #     'PASSWORD': 'v2_3yCsA_5nV758MLy3jVvpe7scVTP8b',
+    #     'NAME': 'veghij/x',
+    #     'USER': 'veghij',
+    #     'PASSWORD': 'v2_3yaim_aPPTDuxZdVT9EuTi88mhL3M',
     #     'HOST': 'db.bit.io',
     #     'PORT': '5432',
     # }
