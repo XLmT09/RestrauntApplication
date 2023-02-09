@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
+from .models import Order
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
