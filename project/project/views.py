@@ -20,4 +20,10 @@ def menu(request):
     # this selects the name of the web page and sends the user to that page
     return render(request, 'menu.html',{'MenuItems': items})
 
+def ltohSort(request):
+    items = MenuItem.objects.all().order_by('price')
+    return render(request, 'ltohsort.html', {'MenuItems': items})
 
+def htolSort(request):
+    items = MenuItem.objects.all().order_by('-price')
+    return render(request, 'htolsort.html', {'MenuItems': items})

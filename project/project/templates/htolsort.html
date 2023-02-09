@@ -9,10 +9,10 @@
   <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/result.css' %}" />
+  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
-  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Document</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
@@ -29,12 +29,12 @@
             </div>
             <div class = "details">
 
-            {% for i in item.ingredients %} {{i}} {% endfor %}
-
-            <br/>
-
-            Calories : {{item.calories}}
-
+              {% for i in item.ingredients %} {{i}} {% endfor %}
+  
+              <br/>
+  
+              Calories : {{item.calories}}
+  
             </div>
           </div>
           {% endif %} {% endfor %}
@@ -48,15 +48,14 @@
               <div class="name">{{item.name}}</div>
               <div class="price">£{{item.price}}</div>
             </div>
-            <br />
             <div class = "details">
 
-            {% for i in item.ingredients %} {{i}} {% endfor %}
-
-            <br />
-
-            Calories : {{item.calories}}
-
+              {% for i in item.ingredients %} {{i}} {% endfor %}
+  
+              <br/>
+  
+              Calories : {{item.calories}}
+  
             </div>
           </div>
           {% endif %} {% endfor %}
@@ -72,12 +71,12 @@
             </div>
             <div class = "details">
 
-            {% for i in item.ingredients %} {{i}} {% endfor %}
-
-            <br/>
-
-            Calories : {{item.calories}}
-
+              {% for i in item.ingredients %} {{i}} {% endfor %}
+  
+              <br/>
+  
+              Calories : {{item.calories}}
+  
             </div>
           </div>
           {% endif %} {% endfor %}
@@ -141,10 +140,10 @@
       <div class = "sort">
         <label for = "sort">Sort by : </label>
         <select name = "sort" id = "sort" onchange = "sort(this)">
-          <option value = "dlt" selected>Default</option>
+          <option value = "dlt">Default</option>
           <optgroup label = "Price">
             <option value = "ltoh">Low to High</option>
-            <option value = "htol">High to Low</option>
+            <option value = "htol" selected>High to Low</option>
           </optgroup>
         </select>
       </div>

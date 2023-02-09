@@ -1,0 +1,61 @@
+.result {
+  float: right;
+  position: relative;
+  top: 15px;
+  margin-right: 1%;
+}
+
+.resultcontainer {
+  float: right;
+  position: relative;
+  top: 10%;
+  margin-right: 6.6%;
+  text-align: left;
+  background-color: rgba(15, 167, 227, 0.1);
+  border-bottom: solid;
+  width: 190px;
+  height: 120px;
+  color: white;
+  font-size: 75%;
+  font-family: Montserrat;
+  border-color: white;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  display: none;
+}
+
+.resultname {
+  margin-left: 1%;
+  float: left;
+  color: white;
+  font-family: Montserrat;
+  font-size: 160%;
+  width: 50%;
+}
+
+.resultheader {
+  width: 100%;
+  float: left;
+  height: 20%;
+  margin: 0;
+  padding-bottom: 1%;
+}
+
+.resultprice {
+  float: right;
+  width: 40%;
+  text-align: right;
+  color: white;
+  font-family: Montserrat;
+  font-size: 120%;
+  text-decoration: wavy;
+}
+
+.resultdetails {
+  width: 100%;
+  float: left;
+  height: 20%;
+  margin: 0;
+  padding-top: 32%;
+  padding-left: 2px;
+}
