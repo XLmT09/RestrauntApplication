@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+    {% if title %}
+      <title>{{ title }}</title>
+    {% else %}
+      <title>El Plato Dorado</title>
+    {% endif %}
+
+    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat"
+    />
+  </head>
+
+  <body>
+    {% if messages %}
+      {% for message in messages %}
+      <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+      </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="bg">
+      <div class="navbar">
+        <div id="left">
+          <div class="text">
+            <a class="nav-options" href="/">Oaxaca</a>
+          </div>
+        </div>
+        <div id="right">
+          {% if user.is_authenticated %}
+          <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
+            <button class="navButton">
+              <div class="text">Logout</div>
+            </button></a
+          >
+          <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
+            <button class="navButton">
+              <div class="text">Profile</div>
+            </button></a
+          >
+
+          {% else %}
+          <a href="/account/login/">
+            <button class="navButton">
+              <div class="text">Login</div>
+            </button>
+          </a>
+          <a href="/account/signup/">
+            <button class="navButton">
+              <div class="text">Register</div>
+            </button>
+          </a>
+          {% endif %}
+
+          <a class = "nav-options nav-btn", href="{% url 'changeMenu' %}">
+            <button class="navButton">
+                <div class="text">Update Menu</div>
+            </button>
+            </a>
+            
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+            <button class="navButton">
+                <div class="text">View Orders</div>
+            </button>
+            </a>
+        </div>
+      </div>
+      <div>{% block content %}{% endblock %}</div>
+    </div>
+  </body>
+</html>

@@ -1,32 +1,3 @@
-{% extends "base.html" %} {% block content %}
+{% extends "waiterBase.html" %} {% block content %}
 {%load static %}
-
 {% endblock content %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  <body>
-    <div class="bg">
-
-      <div class="navbar" id="navBar">
-        <a class = "nav-options nav-btn", href="{% url 'home' %}">
-        <button class="navButton">
-            <div class="text">Logout/Home</div>
-        </button>
-        </a>
-
-        <a class = "nav-options nav-btn", href="{% url 'changeMenu' %}">
-        <button class="navButton">
-            <div class="text">Update Menu</div>
-        </button>
-        </a>
-        
-        <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
-        <button class="navButton">
-            <div class="text">View Orders</div>
-        </button>
-        </a>
-      </div>
-    </div>
-    
-  </body>
-
-</html>
