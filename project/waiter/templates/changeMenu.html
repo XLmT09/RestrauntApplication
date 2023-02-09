@@ -32,10 +32,15 @@
           <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
           <li> alergies: {{ form.alergies }} </li><br>
           <li> Description: <br> {{ form.description }} </li><br>
+          <li> Currently selected: {{ itemToDelete }}</li>
         </ul>
         <input type = "submit" value = "Save & Submit">
         <button type="button"><a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a></button>
-        <button type="button"><a href="{% url 'deleteItem' itemToDelete %}" id="buttonText">Delete Item</a></button>
+        {% if itemToDelete == None %}
+          <button type="button" disabled value="Disabled"><a id="buttonText">Delete Item</a></button>
+        {% else %}
+          <button type="button" value="Enabled"><a href="{% url 'deleteItem' itemToDelete %}" id="buttonText">Delete Item</a></button>
+        {% endif %}
       </form>
     </div>
 

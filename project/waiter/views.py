@@ -29,7 +29,6 @@ def changeMenu(request):
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(),"itemToDelete" : None})
 
 def deleteItem(request, itemToDelete):
-    print("deleting", itemToDelete)
     if itemToDelete == None:
         messages.error(request, f'No item selected to delete')
     else:
