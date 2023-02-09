@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.db import models
-from .models import MenuItem
-from .models import Order
+from .models import MenuItem, Order
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
@@ -32,3 +31,8 @@ def htolSort(request):
 def orders(request):
     orders = Order.objects.all()
     return render(request, 'orders.html', {'Orders': orders})
+
+def deleteOrder(request, ID):
+    order = Order.objects.get(ID=ID)
+    order.delete()
+    return HttpResponseRedirect(reverse('orders'))
