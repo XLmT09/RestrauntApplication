@@ -1,4 +1,4 @@
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,34 +12,31 @@
     <title>El Plato Dorado</title>
     {% endif %}
 
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
   </head>
   <body>
-    <div class="navigator">
-      <div class="logo">
-        <a class="nav-options" href="{% url 'home' %}">Oaxaca</a>
-      </div>
-      <a class="nav-options nav-btn" href="{% url 'account-login' %}">Login</a>
-      <a class="nav-options nav-btn" href="{% url 'account-signup' %}"
-        >Register</a
-      >
-      <a class="nav-options nav-btn" href="{% url 'menu' %}">Our Menu</a>
-      <a
-        class="nav-options nav-btn"
-        onClick="document.getElementById('about').scrollIntoView();"
-        >About Us</a
-      >
-    </div>
-
-    <div>
-      {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
-      {% endif %}
-    </div>
-
-    <div>{% block content %}{% endblock %}</div>
+    <div class="background">
+        <div class="dishbox2">
+          <div class = "course" id = "orders">
+            <div class="titles"><div class="name">Orders</div></div>
+            {% for order in Orders %}
+            <div class="container">
+                <div class="header">
+                    <div class="name">{{order.ID}}</div>
+                    <div class="price">{{order.status}}</div>
+                    <div class="details">
+                        {% for i in order.orderedItems %} {{i}} {% endfor %}
+                        <br/>
+                        {{order.timeOfOrder}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
   </body>
 </html>
+{% endblock content %}
