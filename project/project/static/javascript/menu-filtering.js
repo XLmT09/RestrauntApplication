@@ -1,14 +1,14 @@
 function hide(selectedOption) {
     optionValue = selectedOption.value;
 
-    for (var container of document.getElementsByClassName("course")) {
-        container.style.display = "block";
+    for (showContainer of document.getElementsByClassName("course")) {
+        showContainer.style.display = "block";
     }
 
     if (optionValue != "none") {
-        for (var container of document.getElementsByClassName("course")) {
-            if (container.id != optionValue) {
-                container.style.display = "none";
+        for (hideContainer of document.getElementsByClassName("course")) {
+            if (hideContainer.id != optionValue) {
+                hideContainer.style.display = "none";
             }
         }
     }
