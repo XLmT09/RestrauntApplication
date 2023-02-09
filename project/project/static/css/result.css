@@ -21,6 +21,7 @@
   border-color: white;
   margin-bottom: 1%;
   margin-top: 1%;
+  display: none;
 }
 
 .resultname {

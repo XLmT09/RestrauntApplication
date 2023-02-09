@@ -22,6 +22,8 @@ function search(searchText) {
             resultName.innerHTML = itemName.innerHTML;
             resultPrice.innerHTML = itemPriceValue;
             resultDetails.innerHTML = itemDetailsValue;
+
+            resultContainer.style.display = "block";
         }
     }
 }
