@@ -27,4 +27,5 @@ urlpatterns = [
     path('menu/', views.menu,  name = 'menu'),
     path('menu/sort-low-to-high', views.ltohSort),
     path('menu/sort-high-to-low', views.htolSort)
+    path('orders/', views.orders, name = 'orders')
 ]

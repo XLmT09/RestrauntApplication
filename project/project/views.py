@@ -27,3 +27,7 @@ def ltohSort(request):
 def htolSort(request):
     items = MenuItem.objects.all().order_by('-price')
     return render(request, 'htolsort.html', {'MenuItems': items})
+
+def orders(request):
+    orders = Order.objects.all()
+    return render(request, 'orders.html', {'Orders': orders})
