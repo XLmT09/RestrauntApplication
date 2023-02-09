@@ -8,6 +8,7 @@
   <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/result.css' %}" />
   <script src="{% static 'javascript/test.js' %}"></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
@@ -153,6 +154,14 @@
       </div>
       <div class = "searchbar">
         <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
+      </div>
+      <div class = "resultcontainer" id = "resultcontainer">
+        <div class = "resultheader" id = "resultheader">
+          <div class = "resultname" id = "resultname"></div>
+          <div class = "resultprice" id = "resultprice"></div>
+        </div>
+        <div class = "resultdetails" id = "resultdetails">
+        </div>
       </div>
     </div>
   </body>

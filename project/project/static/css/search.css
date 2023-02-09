@@ -1,8 +1,8 @@
 .searchbar {
     float: right;
     position: relative;
-    top: 20%;
-    margin-right: 6.2%;
+    top: 10%;
+    margin-right: 6.6%;
 }
 
 .searchbar input {
@@ -13,9 +13,5 @@
     border-bottom-style: solid;
     color: white;
     font-family: Montserrat;
-    font-size: 150%;
-}
-
-.highlight {
-    background-color: yellow;
+    font-size: 132%;
 }
