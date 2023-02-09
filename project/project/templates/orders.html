@@ -29,7 +29,7 @@
                     <div class="name">{{order.ID}}</div>
                     <div class="price">{{order.status}}</div>
                     <div class="details">
-                        {% for i in order.orderedItems %} {{i}} {% endfor %}
+                        {% for items in order.orderedItems %} {{items}} {% endfor %}
                         <br/>
                         {{order.timeOfOrder}}
                     </div>
