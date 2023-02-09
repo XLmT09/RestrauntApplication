@@ -28,12 +28,12 @@ def changeMenu(request):
 
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(),"itemToDelete" : None})
 
-def deleteItem(request, itemToDelete):
+def deleteItem(request, itemToDelete): 
     if itemToDelete == None:
         messages.error(request, f'No item selected to delete')
     else:
         MenuItem.objects.filter(name=itemToDelete).delete()
-        messages.success(request, f'Item has successfully been deleted')
+        messages.success(request, f'Item has successfully been deleted') #Message is displayed on the main page when it's not supposed to
     form = menuUpdateForm()
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(), "itemToDelete" : None})
 
