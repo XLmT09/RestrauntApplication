@@ -1,11 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
-
-from account import forms
-
-
-
+import datetime
 
 
 # Create your models here.
@@ -22,33 +18,43 @@ class MenuItem(models.Model):
         DRINK = "Drink"
 
     class MenuItemRequirements(models.TextChoices):
+        NONE = "None"
         VEGAN = "Vegan"
         VEGETARIAN = "Vegetarian"
 
-    ID = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30)
-    price = models.FloatField()
-    calories = models.IntegerField()
+    name = models.CharField(max_length=30, primary_key=True)
+    price = models.FloatField(null=True)
+    calories = models.IntegerField(null=True)
     ingredients = ArrayField(models.TextField())
     alergies = ArrayField(models.TextField())
     description = models.TextField()
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
-    dietRequirements = models.BooleanField(max_length=10,choices=MenuItemRequirements.choices, null=True)
-    
+    dietRequirements = models.CharField(max_length=10,choices=MenuItemRequirements.choices, null=False, default="None")
 
+# Table which will store all live orders from customers
 class Order(models.Model):
+    # Add meta data to the order table
     class Meta:
+        # Add custom name for the the table
         db_table = "Order"
 
-    class orderStatus(models.TextChoices):
-        PLACED = "Placed"
-        CONFIRMED = "Confirmed"
-        DELIVERED = "Delivered"
+    # Possible status choices during an customer order
+    PLACED = 'PL'
+    CONFIRMED = 'CO'
+    DELIVERED = 'DE'
+    
+    STATUS_CHOICES = [
+        (PLACED, 'Placed'),
+        (CONFIRMED, 'Confirmed'),
+        (DELIVERED, 'Delivered'),
+    ]
 
     ID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10,choices=orderStatus.choices)
-    timeOfOrder = models.TimeField()
+    # A feild which should contain one of three status choices
+    status = models.CharField(max_length=2,choices=STATUS_CHOICES)
+    # Will automatically get the current time due to the auto_now attrbuite
+    timeOfOrder = models.TimeField(auto_now=True)
     orderedItems = ArrayField(models.IntegerField(), null=True)
 
     

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'project',
     #django will look at the apps created for templates and databse models
     'account.apps.AccountConfig',
+    'waiter.apps.WaiterConfig',
     'crispy_forms', 
 ]
 
@@ -101,9 +102,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'veghij/test',
-    #     'USER': 'w',
-    #     'PASSWORD': 'v2_3yCsA_5nV758MLy3jVvpe7scVTP8b',
+    #     'NAME': 'veghij/x',
+    #     'USER': 'veghij',
+    #     'PASSWORD': 'v2_3yaim_aPPTDuxZdVT9EuTi88mhL3M',
     #     'HOST': 'db.bit.io',
     #     'PORT': '5432',
     # }
@@ -169,7 +170,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # After user login it redirects them to the home page.
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'staffPage'
 # If user tries to access a page that requires an account they get sent to the login page
 LOGIN_URL = 'account-login'
 # forms use bootstrap 4 css

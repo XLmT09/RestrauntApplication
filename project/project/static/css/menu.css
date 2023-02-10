@@ -6,7 +6,6 @@
   background-color: rgba(255, 255, 255, 0.03);
   border-bottom: solid;
   width: 26%;
-
   color: white;
   font-size: 75%;
   font-family: Montserrat;
@@ -87,7 +86,6 @@ body {
   transform: translate(-50%, 0);
   position: absolute;
   top: 10%;
-
   width: 80%;
   opacity: 1;
   transition: opacity 1s ease-in;
@@ -103,7 +101,6 @@ body {
   left: 50%;
   top: 30%;
   transform: translate(-50%, 0);
-
   width: 30%;
   background-color: rgba(17, 23, 23);
   opacity: 0;
@@ -166,3 +163,4 @@ body {
   width: 100%;
   height: 3vh;
 }
+

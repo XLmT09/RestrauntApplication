@@ -1,0 +1,16 @@
+.header {
+  height: 100px;
+  width: 100%;
+  background-color: #e0aa3e;
+}
+
+.name {
+  position: absolute;
+  font-size: large;
+  font-family: "Papyrus", "Fantasy";
+  font-variant: small-caps;
+  color: #0a0a0a;
+  left: 20px;
+  top: 25px;
+}
+

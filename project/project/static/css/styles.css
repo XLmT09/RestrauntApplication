@@ -260,7 +260,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-family: Montserrat;
   color: white;
-
   margin-right: 20px;
   margin-left: 20px;
 }
@@ -299,4 +298,8 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+h3 {
+  color: white;
 }

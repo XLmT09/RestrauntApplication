@@ -64,17 +64,20 @@
           </a>
           {% endif %}
 
-          <button type="button" class="navButton" onclick="scrollToMenu();">
-            <div class="text">Our Menu</div>
-          </button>
-
-          <button type="button" class="navButton" onclick="scrollToAboutUs();">
-            <div class="text">About Us</div>
-          </button>
+          <a class = "nav-options nav-btn", href="{% url 'changeMenu' %}">
+            <button class="navButton">
+                <div class="text">Update Menu</div>
+            </button>
+            </a>
+            
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+            <button class="navButton">
+                <div class="text">View Orders</div>
+            </button>
+            </a>
         </div>
       </div>
       <div>{% block content %}{% endblock %}</div>
     </div>
   </body>
 </html>
-
