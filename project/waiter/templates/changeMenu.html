@@ -15,13 +15,6 @@
           <option value = "{% url 'refreshMenu' item.name %}">{{ item.name }}</option>
       {% endfor %}
       </select>
-
-      {% if itemToDelete %}
-        <p>Are you sure you want to delete this item from the Menu?</p>
-        <input type="submit" name="confirm_delete" value="Delete">
-        <input type="submit" name="cancel" value="Cancel">
-      {% endif %} 
-
     <ul>
       <li> Name: {{ form.name }} </li><br>
       <li> Price: {{ form.price }} </li><br>
@@ -31,25 +24,16 @@
       <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
       <li> alergies: {{ form.alergies }} </li><br>
       <li> Description: <br> {{ form.description }} </li><br>
-      <li> Currently selected: {{ itemToDelete }}</li>
     </ul>
     <input type = "submit" value = "Save & Submit">
     <button type="button"><a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a></button>
-    {% if itemToDelete == None %}
-      <button type="button" disabled value="Disabled"><a id="buttonText">Delete Item</a></button>
-    {% endif %}
+
     {% if itemToDelete != None %}
-      <p>Are you sure you want to delete this item from the Menu?</p>
-      <input type="submit" name="Delete" value="Delete">
-      <input type="submit" name="Cancel" value="Cancel">
-      {% if request.POST.Delete %}
-        <button type="button" value="Enabled"><a href="{% url 'deleteItem' itemToDelete %}" id="buttonText">Delete Item</a></button>
-      {% else %}
-        <button type="button" disabled value="Disabled"><a id="buttonText">Delete Item</a>
-      {% endif %}
+        <button type="button" value="Enabled" onclick="return confirm('Are you sure you want to delete this item?');"><a href="{% url 'deleteItem' itemToDelete %}" id="buttonText">Delete Item</a></button>
     {% else %}
       <button type="button" disabled value="Disabled"><a id="buttonText">Delete Item</a></button>
     {% endif %}
+
   </form>
 </div>
 {% endblock content %} 
