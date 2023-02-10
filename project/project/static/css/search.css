@@ -1,42 +1,17 @@
-.header {
-  height: 100px;
-  width: 100%;
-  background-color: #e0aa3e;
+.searchbar {
+    float: right;
+    position: relative;
+    top: 10%;
+    margin-right: 6.6%;
 }
 
-.name {
-  position: absolute;
-  font-size: large;
-  font-family: "Papyrus", "Fantasy";
-  font-variant: small-caps;
-  color: #0a0a0a;
-  left: 20px;
-  top: 25px;
-}
-
-.searchBar {
-  position: absolute;
-  right: 20px;
-  top: 25px;
-}
-
-.searchBar input {
-  height: 50px;
-  width: 350px;
-  background-color: #e0aa3e;
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: solid;
-  color: #0a0a0a;
-  font-size: large;
-  font-family: "Papyrus", "Fantasy";
-  font-variant: small-caps;
-}
-
-::placeholder {
-  color: #0a0a0a;
-  font-size: large;
-  font-family: "Papyrus", "Fantasy";
-  font-variant: small-caps;
+.searchbar input {
+    background-color: rgb(30, 40, 44);
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: solid;
+    color: white;
+    font-family: Montserrat;
+    font-size: 134%;
 }

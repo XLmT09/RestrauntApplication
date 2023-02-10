@@ -5,8 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/result.css' %}" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <script src="{% static 'javascript/menu.js' %}" defer></script>
+  <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
+  <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
+  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -67,8 +74,58 @@
       </div>
     </div>
     <div class="background">
-      <div class="menuBox" id="menuBox">
+
+
+
+
+
+    <div class="menuBox" id="menuBox">
+        <div class = "filter">
+          <label for = "filter">Filter by : </label>
+          <select name = "filter" id = "filter" onchange = "hide(this)">
+            <optgroup label = "Course">
+              <option value = "none" selected>None</option>
+              <option value = "starters">Starters</option>
+              <option value = "mains">Mains</option>
+              <option value = "sides">Sides</option>
+              <option value = "desserts">Desserts</option>
+              <option value = "drink">Drink</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class = "sort">
+          <label for = "sort">Sort by : </label>
+          <select name = "sort" id = "sort" onchange = "sort(this)">
+            <option value = "dlt" selected>Default</option>
+            <optgroup label = "Price">
+              <option value = "ltoh">Low to High</option>
+              <option value = "htol">High to Low</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class = "searchbar">
+          <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
+        </div>
+
+        <div class = "resultcontainer" id = "resultcontainer">
+          <div class = "resultheader" id = "resultheader">
+            <div class = "resultname" id = "resultname"></div>
+            <div class = "resultprice" id = "resultprice"></div>
+        </div>
+
+        <div class = "resultdetails" id = "resultdetails">
+              {% if item.dietRequirements != 'N'%}
+                <text style="float: right">{{item.dietRequirements}}</text>
+              {% endif %}
+        </div>
+           
+    
+         
+       
+        </div>
+      <div class = "course" id = "starters">
         <div class="titles"><div class="name">Starters</div></div>
+      
         {% for item in MenuItems %} {% if item.course == "Starter" %}
         <div class="container">
           <div class="header">
@@ -100,44 +157,50 @@
             </button>
           </div>
         </div>
-         {% endif %} {% endfor %}
-
+        {%endif%}{%endfor%}
+      </div>
  
-        <div class="titles"><div class="name">Mains</div></div>
-        {% for item in MenuItems %} {% if item.course == "Main" %}
-        <div class="container">
-          <div class="header">
-            <div class="name">{{item.name}}</div>
-            <div class="price">£{{item.price}}</div>
+  
+        <div class = "course" id = "mains">
+          <div class="titles"><div class="name">Mains</div></div>
+          {% for item in MenuItems %} {% if item.course == "Main" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            <div class="descriptionBox">{{item.description}}</div>
+            <br />
+            <div class="nutritionBox" >Calories : {{item.calories}}
+              {% if item.dietRequirements != 'N'%}
+                <text style="float: right">{{item.dietRequirements}}</text>
+              {% endif %}
+            </div>
+            <div class="orderingBar">
+              <button
+                class="orderButton"
+                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              > -
+                
+              </button>
+              <text id="{{item.name}}item">0</text>
+              <button
+                class="orderButton"
+                style="float: right"
+                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              >+
+                
+              </button>
+            </div>
           </div>
-          <br />
-          <div class="descriptionBox">{{item.description}}</div>
-          <br />
-          <div class="nutritionBox" >Calories : {{item.calories}}
-            {% if item.dietRequirements != 'N'%}
-              <text style="float: right">{{item.dietRequirements}}</text>
-            {% endif %}
-          </div>
-          <div class="orderingBar">
-            <button
-              class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
-            > -
-              
-            </button>
-            <text id="{{item.name}}item">0</text>
-            <button
-              class="orderButton"
-              style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
-            >+
-              
-            </button>
-          </div>
+          {%endif%}{%endfor%}
         </div>
-         {% endif %} {% endfor %}
 
+          
+      <div class = "course" id = "sides">
 
+  
 
         <div class="titles"><div class="name">Sides</div></div>
         {% for item in MenuItems %} {% if item.course == "Side" %}
@@ -171,9 +234,11 @@
             </button>
           </div>
         </div>
-         {% endif %} {% endfor %}
-
-
+        {%endif%}{%endfor%}
+      </div>
+      <div class = "course" id = "desserts">
+        
+  
 
         <div class="titles"><div class="name">Desserts</div></div>
         {% for item in MenuItems %} {% if item.course == "Dessert" %}
@@ -207,12 +272,15 @@
             </button>
           </div>
         </div>
-         {% endif %} {% endfor %}
+        {%endif%}{%endfor%}
+      </div>
+     
 
-
+      <div class = "course" id = "drink">
+  
 
         <div class="titles"><div class="name">Drink</div></div>
-
+  
         {% for item in MenuItems %} {% if item.course == "Drink" %}
         <div class="container">
           <div class="header">
@@ -244,8 +312,10 @@
             </button>
           </div>
         </div>
-         {% endif %} {% endfor %}
+        {%endif%}{%endfor%}
       </div>
+      
+
     </div>
   </body>
 </html>

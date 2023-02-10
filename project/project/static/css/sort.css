@@ -1,0 +1,12 @@
+label[for = sort] {
+    color: white;
+    font-size: 160%;
+    font-family: Montserrat;
+  }
+  
+  .sort {
+    float: right;
+    position: relative;
+    top: 7.5%;
+    margin-right: 6.2%;
+  }
