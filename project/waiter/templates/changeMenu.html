@@ -2,10 +2,11 @@
 {% block content %} 
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/changeMenu.css' %}" />
+
 <div class="bg">
   <br>
   <br>
-  <form action="" method = "POST" id = "menuForm">
+  <form action="{% url 'changeMenu' %}" method = "GET" id = "menuForm">
     {% csrf_token %}
     <h3 id="heading">Use the below form to update the menu</h3>
 
@@ -19,10 +20,10 @@
       <li> Name: {{ form.name }} </li><br>
       <li> Price: {{ form.price }} </li><br>
       <li> Calories: {{ form.calories }} </li><br>
-      <li> Ingredients: {{ form.ingredients }} </li><br>
+      <li> Ingredients: {{ form.ingredients }} <a> must be enclosed with curly braces {} </a></li><br>
       <li> Course: {{ form.course }} </li><br>
       <li> Dietary Requirements: {{ form.dietRequirements }} </li><br>
-      <li> alergies: {{ form.alergies }} </li><br>
+      <li> alergies: {{ form.alergies }} <a> must be enclosed with curly braces {} </a></li><br>
       <li> Description: <br> {{ form.description }} </li><br>
     </ul>
     <input type = "submit" value = "Save & Submit">
@@ -33,7 +34,7 @@
     {% else %}
       <button type="button" disabled value="Disabled"><a id="buttonText">Delete Item</a></button>
     {% endif %}
-
   </form>
+
 </div>
 {% endblock content %} 
