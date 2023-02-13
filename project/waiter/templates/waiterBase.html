@@ -46,6 +46,27 @@
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
+
+    <script type="text/javascript">
+      var v = 0;
+      function myFunction2(val){
+        alert("second function", val);
+      }
+      function myFunction(){
+        alert("function has been called");
+        var selected = null;
+        var x = document.querySelectorAll("input[type=checkbox]");
+        alert(x.length);
+        for (var i = 0; i < x.length; i++){
+          alert("next", x[i]);
+          if (x[i].checked) {
+            selected = x[i];
+            break;
+          }
+        }
+        alert("you have chosen", selected);
+      }
+    </script>
   </head>
 
   <body>
