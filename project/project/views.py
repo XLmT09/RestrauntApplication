@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
 from django.contrib.auth.decorators import login_required
-from .forms import addOrderForm
 from . import models
 
 def homePage(request):
