@@ -1,10 +1,11 @@
 from django.shortcuts import render
+import logging
 from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
 from django.contrib.auth.decorators import login_required
-import time
-from . import Database
+from .forms import addOrderForm
+from . import models
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
@@ -59,31 +60,20 @@ def checkout(request):
         itemNumber = itemNumber + numberOfItems
         i[1] =round( float(i[1]) * numberOfItems,2)
         i.append(numberOfItems)
+        
+    print("before")
+
+    
     return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
 def orderComplete(request):
-    itemIds = request.COOKIES.get('itemIds') 
-    userId = request.COOKIES.get('userId') 
-    print(type(itemIds))
-    print(type(userId))
-    idList = itemIds.split(',')
-    idIntList=[]
-    for i in idList:
-        idIntList.append(int(i))
-        
-    database = Database.Database()
-    maxId = database.executeQueryGet(database.connect(),'SELECT MAX("ID") FROM "Order";',True)
-    database.executeQueryGet(database.connect(),'INSERT INTO "Order" ("ID", "customerID_id","status","timeOfOrder","orderedItems")VALUES (3,4,"Placed","21:11:17","4,4");',False)
+    Ids = request.COOKIES.get('itemIds').split(',')
+    idIntList = []
+    for id in Ids:
+        idIntList.append(int(id))
     
-
-    newTime = time.localtime()
-    current_time = time.strftime("%H:%M:%S", newTime)
-    new_entry = models.Order(ID= (maxId +1) , customerID=int(userId),status="Placed",timeOfOrder=current_time,orderedItems=idIntList)
-    new_entry.save()
-
-
-    
-
+    order = models.Order(customerID=request.user,status='Placed',orderedItems=idIntList)
+    order.save()
     return render(request, 'orderComplete.html')
 
 # add order - set status to placed

@@ -1,15 +1,15 @@
 var itemsOrdered = [];
 var itemIds = [];
 function addItem(id, addSubtract, price, name, itemId) {
+  console.log(itemId);
   var element = document.getElementById(id);
   var text = element.textContent;
   var numberOfItems = parseInt(text);
 
   var basket = document.getElementById("basket");
   var priceText = parseFloat(basket.textContent);
-  console.log(typeof priceText);
+
   var newPrice = parseFloat(price);
-  console.log(typeof newPrice);
 
   var numberOfItems = parseInt(text);
 
@@ -28,8 +28,6 @@ function addItem(id, addSubtract, price, name, itemId) {
     itemsOrdered.push([name, price]);
     itemIds.push(itemId);
   }
-
-  console.log(itemsOrdered);
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -39,10 +37,9 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function checkout(id) {
+function checkout(user) {
   setCookie("items", itemsOrdered, 3000);
   setCookie("itemIds", itemIds, 3000);
-  setCookie("userId", id, 3000);
 }
 
 function order(user) {}

@@ -1,7 +1,9 @@
 from django import forms
 from django.db import models
 from project.models import MenuItem
+from django.contrib.postgres.fields import ArrayField
 from project.models import Order
+from django.contrib.auth.models import User
 
 class menuUpdateForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'id':'nameTextField'}))
@@ -11,3 +13,8 @@ class menuUpdateForm(forms.ModelForm):
         fields = ["name", "price", "calories", "ingredients", "course", "dietRequirements","alergies", "description"]
         
         
+
+        
+        
+
+

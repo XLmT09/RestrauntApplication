@@ -128,6 +128,7 @@
         <div class="titles"><div class="name">Starters</div></div>
       
         {% for item in MenuItems %} {% if item.course == "Starter" %}
+
         <div class="container">
           <div class="header">
             <div class="name">{{item.name}}</div>
@@ -135,6 +136,7 @@
           </div>
           <br />
           <div class="descriptionBox">{{item.description}}</div>
+        
           <br />
           <div class="nutritionBox" >Calories : {{item.calories}}
             {% if item.dietRequirements != 'N'%}
