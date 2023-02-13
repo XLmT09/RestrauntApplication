@@ -6,13 +6,14 @@
     <h3 id="heading">Customer Orders</h3>
     {% for order in cust_orders %}
 
-    <input type="checkbox"><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
+    <input type="checkbox" value="{{ order.ID }}"><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
     <a> Status: {{ order.status }} </a> <br>
     <a> Ordered by: {{ order.customerID }} </a> <br>
     <a> Ordered at: {{ order.timeOfOrder }} </a> <br>
-    <a> Ordered items: {{ order.orderedItems }} </a> <br>
-    <br>
+    <a> Ordered items: {{ order.orderedItems }} </a> <br> <br>
 
     {% endfor %}
+    <button type="button">Confirm Order</button>
+
 </div>
 {% endblock content %} 
