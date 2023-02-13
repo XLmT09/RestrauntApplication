@@ -39,22 +39,19 @@ class Order(models.Model):
         db_table = "Order"
 
     # Possible status choices during an customer order
-    PLACED = 'PL'
-    CONFIRMED = 'CO'
-    DELIVERED = 'DE'
-    
-    STATUS_CHOICES = [
-        (PLACED, 'Placed'),
-        (CONFIRMED, 'Confirmed'),
-        (DELIVERED, 'Delivered'),
-    ]
+
+    class orderStatuses(models.TextChoices):
+        PLACED = "Placed"
+        CONFIRMED = "Confirmed"
+        PREPARED = "Prepared"
+        DELIVERED = "Delivered"
 
     ID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey(User, on_delete=models.CASCADE)
     # A feild which should contain one of three status choices
-    status = models.CharField(max_length=2,choices=STATUS_CHOICES)
+    status = models.CharField(max_length=10, choices=orderStatuses.choices, null=False, default="Placed")
     # Will automatically get the current time due to the auto_now attrbuite
-    timeOfOrder = models.TimeField(auto_now=True)
+    timeOfOrder = models.TimeField(auto_now=True, null=False)
     orderedItems = ArrayField(models.IntegerField(), null=True)
 
     
