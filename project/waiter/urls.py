@@ -6,4 +6,6 @@ urlpatterns = [
     path('', views.staff, name = 'staffPage'),
     path("orders", views.viewOrders, name = "viewOrders"),
     path("deleteItem/<str:itemToDelete>", views.deleteItem, name="deleteItem"),
+
+    path("updateStatus/<int:orderID>", views.updateOrderStatus, name="updateStatus"),
 ]

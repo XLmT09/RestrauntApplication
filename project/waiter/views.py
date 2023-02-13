@@ -12,9 +12,26 @@ def staff(request):
 # Make http requests on page that gives list of customer orders
 def viewOrders(request):
     # retrive all customer orders from oldest to newest
-    cust_orders = Order.objects.all().order_by('timeOfOrder').filter()
+    cust_orders = Order.objects.all().order_by('timeOfOrder')
 
     return render(request, "orders.html", {'cust_orders': cust_orders})
+
+
+
+def updateOrderStatus(request, orderID):
+    order = Order.objects.get(id = orderID)
+
+    if (order.status == "Placed"):
+        setattr(order, "status", "Confirmed")
+
+    order.save()
+
+    return render(request, "orders.html", {'cust_orders': Order.objects.all().order_by('timeOfOrder')}) 
+
+
+
+
+
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
