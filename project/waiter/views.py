@@ -3,6 +3,7 @@ from django.contrib import messages
 from .forms import menuUpdateForm
 from project.models import MenuItem
 from project.models import Order
+from django.shortcuts import redirect
 
 # Make http requests to the waiter page
 def staff(request):
@@ -16,17 +17,21 @@ def viewOrders(request):
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
-    if request.method == "POST":
-        form = menuUpdateForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, f'Menu has been updated successfully')
+    form_data = request.GET.copy()
+    if len(form_data) > 0:
+        if (MenuItem.objects.filter(name = form_data['name']).exists()):
+            myItem = MenuItem.objects.get(name = form_data['name'])
+            for name in form_data:
+                setattr(myItem, name, form_data[name])
+            myItem.save()
+            messages.success(request, f'Item has successfully been updated')
         else:
-            messages.error(request, f'Failed to update menu!')
-    else:
-        form = menuUpdateForm()
+            values = form_data.dict()
+            values.pop('csrfmiddlewaretoken', None)
+            MenuItem.objects.create(**values)
+            messages.success(request, f'Item has successfully been added to the menu')
 
-    return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(),"itemToDelete" : None})
+    return render(request, "changeMenu.html", {'form' : menuUpdateForm(), 'menuData': MenuItem.objects.all(),"itemToDelete" : None})
 
 def deleteItem(request, itemToDelete): 
     if itemToDelete == None:
