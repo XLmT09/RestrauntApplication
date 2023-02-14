@@ -7,5 +7,5 @@ urlpatterns = [
     path("orders", views.viewOrders, name = "viewOrders"),
     path("deleteItem/<str:itemToDelete>", views.deleteItem, name="deleteItem"),
 
-    path("updateStatus/<int:orderID>", views.updateOrderStatus, name="updateStatus"),
+    path("orders/updateStatus", views.updateOrderStatus, name="updateStatus")
 ]

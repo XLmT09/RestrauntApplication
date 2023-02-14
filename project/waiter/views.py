@@ -18,12 +18,12 @@ def viewOrders(request):
 
 
 
-def updateOrderStatus(request, orderID):
-    order = Order.objects.get(id = orderID)
+def updateOrderStatus(request):
+    orderID = request.COOKIES.get('chosenOrderID')
+    order = Order.objects.get(ID = orderID)
 
     if (order.status == "Placed"):
         setattr(order, "status", "Confirmed")
-
     order.save()
 
     return render(request, "orders.html", {'cust_orders': Order.objects.all().order_by('timeOfOrder')}) 

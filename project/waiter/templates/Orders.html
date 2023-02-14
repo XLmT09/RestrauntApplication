@@ -9,7 +9,7 @@
     <form name = "myForm">
     {% for order in cust_orders %}
 
-    <input type="radio"><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
+    <input type="radio" name="orderChoices" value = {{order.ID}}><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
     <a> Status: {{ order.status }} </a> <br>
     <a> Ordered by: {{ order.customerID }} </a> <br>
     <a> Ordered at: {{ order.timeOfOrder }} </a> <br>
@@ -17,7 +17,8 @@
 
     {% endfor %}
     </form>
-    <button type="button">Confirm Order</button>
+
+    <button type="button" onclick="getSelectedValue();"><a href="{% url 'updateStatus' %}" id="buttonText">Confirm Order</a></button>
 
 </div>
 {% endblock content %} 
