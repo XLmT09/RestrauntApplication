@@ -121,9 +121,28 @@
             
             <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
             <button class="navButton">
-                <div class="text">View Orders</div>
+                <div class="text">Placed Orders</div>
             </button>
             </a>
+
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+              <button class="navButton">
+                  <div class="text">Confirmed Orders</div>
+              </button>
+            </a>
+
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+              <button class="navButton">
+                  <div class="text">Prepared Orders</div>
+              </button>
+            </a>
+
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+              <button class="navButton">
+                  <div class="text">Delivered Orders</div>
+              </button>
+            </a>
+
         </div>
       </div>
       <div>{% block content %}{% endblock %}</div>
