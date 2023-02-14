@@ -10,10 +10,31 @@ def staff(request):
     return render(request, "staffPage.html", {'title' : 'staff'})
 
 # Make http requests on page that gives list of customer orders
-def viewOrders(request):
+def viewOrders(request, orderStatus):
     # retrive all customer orders from oldest to newest
-    cust_orders = Order.objects.all().order_by('timeOfOrder')
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
+
     return render(request, "orders.html", {'cust_orders': cust_orders})
+
+
+
+def updateOrderStatus(request):
+    orderID = request.COOKIES.get('chosenOrderID')
+    order = Order.objects.get(ID = orderID)
+
+    if (order.status == "Placed"):
+        setattr(order, "status", "Confirmed")
+        filterStatus = "Placed"
+    order.save()
+
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = filterStatus)
+
+    return render(request, "orders.html", {'cust_orders': cust_orders}) 
+
+
+
+
+
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
