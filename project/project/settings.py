@@ -38,9 +38,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,11 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #custom apps
+    # The main app for the website
     'project',
-    #django will look at the apps created for templates and databse models
+    # These are the other custom apps we have created
+    # This app contains the user login/signup components
     'account.apps.AccountConfig',
+    # This app contains the waiter page and functionality
     'waiter.apps.WaiterConfig',
+    # This app contains the kitchen staff page and functionality
+    'kitchen.apps.KitchenConfig',
+    # A built in djnago form we are using to make form styling easier
     'crispy_forms', 
 ]
 
@@ -126,7 +129,6 @@ if 'test' in sys.argv:
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase'
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
