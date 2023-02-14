@@ -7,7 +7,7 @@
 
     <h3 id="heading">Customer Orders</h3>
     <form name = "myForm">
-    {% for order in cust_orders %}
+    {% for order in placed_orders %}
 
     <input type="radio" name="orderChoices" value = {{order.ID}}><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
     <a> Status: {{ order.status }} </a> <br>

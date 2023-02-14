@@ -13,8 +13,9 @@ def staff(request):
 def viewOrders(request):
     # retrive all customer orders from oldest to newest
     cust_orders = Order.objects.all().order_by('timeOfOrder')
+    placed_orders = cust_orders.filter(status = "Placed")
 
-    return render(request, "orders.html", {'cust_orders': cust_orders})
+    return render(request, "orders.html", {'placed_orders': placed_orders})
 
 
 
@@ -26,7 +27,10 @@ def updateOrderStatus(request):
         setattr(order, "status", "Confirmed")
     order.save()
 
-    return render(request, "orders.html", {'cust_orders': Order.objects.all().order_by('timeOfOrder')}) 
+    cust_orders = Order.objects.all().order_by('timeOfOrder')
+    placed_orders = cust_orders.filter(status = "Placed")
+
+    return render(request, "orders.html", {'placed_orders': placed_orders}) 
 
 
 
