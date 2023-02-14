@@ -2,9 +2,13 @@
 {%load static %}
 <link rel="stylesheet" href="{% static 'order.css' %}" />
 <h1>Confirmed Orders</h1>
-{% for order in cust_orders %}
-<p>{{ order.ID }}, {{ order.customerID }}, {{ order.status }}, 
-    {{ order.timeOfOrder }}, {{ order.orderdItems }}</p>
-{% endfor %}
+{% if cust_orders %}
+    {% for order in cust_orders %}
+        <p>{{ order.ID }}, {{ order.customerID }}, {{ order.status }}, 
+        {{ order.timeOfOrder }}, {{ order.orderdItems }}</p>
+    {% endfor %}
+{% else %}
+        <P>No Confirmed Orders Currently</P>
+{% endif %}
 {% endblock content %}
 
