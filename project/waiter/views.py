@@ -10,12 +10,11 @@ def staff(request):
     return render(request, "staffPage.html", {'title' : 'staff'})
 
 # Make http requests on page that gives list of customer orders
-def viewOrders(request):
+def viewOrders(request, orderStatus):
     # retrive all customer orders from oldest to newest
-    cust_orders = Order.objects.all().order_by('timeOfOrder')
-    placed_orders = cust_orders.filter(status = "Placed")
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
 
-    return render(request, "orders.html", {'placed_orders': placed_orders})
+    return render(request, "orders.html", {'cust_orders': cust_orders})
 
 
 
@@ -25,12 +24,12 @@ def updateOrderStatus(request):
 
     if (order.status == "Placed"):
         setattr(order, "status", "Confirmed")
+        filterStatus = "Placed"
     order.save()
 
-    cust_orders = Order.objects.all().order_by('timeOfOrder')
-    placed_orders = cust_orders.filter(status = "Placed")
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = filterStatus)
 
-    return render(request, "orders.html", {'placed_orders': placed_orders}) 
+    return render(request, "orders.html", {'cust_orders': cust_orders}) 
 
 
 

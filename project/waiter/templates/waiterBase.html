@@ -119,25 +119,25 @@
             </button>
             </a>
             
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Placed' %}">
             <button class="navButton">
                 <div class="text">Placed Orders</div>
             </button>
             </a>
 
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Confirmed' %}">
               <button class="navButton">
                   <div class="text">Confirmed Orders</div>
               </button>
             </a>
 
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Prepared' %}">
               <button class="navButton">
                   <div class="text">Prepared Orders</div>
               </button>
             </a>
 
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Delivered' %}">
               <button class="navButton">
                   <div class="text">Delivered Orders</div>
               </button>
