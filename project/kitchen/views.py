@@ -2,7 +2,7 @@ from django.shortcuts import render
 from project.models import Order
 from django.contrib.auth.decorators import user_passes_test
 
-#This lambda expression checks if the user is logged in and has the correct permissions
+# This lambda expression checks if the user is logged in and has the correct permissions
 # If the user does not meet requirments they get redirected to login page
 @user_passes_test(lambda u: u.groups.filter(name="KitchenStaff").exists())
 # This page wil contain a list of all the confirmed customer orders for the kitchen staff
