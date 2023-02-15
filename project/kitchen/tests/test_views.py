@@ -14,3 +14,11 @@ class KitchenStaffLoginsTest(TestCase):
         self.client = Client()
         self.client.login(username='myuser', password='mypassword')
         
+
+    # Test if kitchen page loads up for user in kitchen staff group
+    def test_kitchen_page(self):
+        response = self.client.get("/kitchen/")
+        self.assertEqual(response.status_code, 200, 
+        "Check if login page loads up.")
+        self.assertTemplateUsed(response, "account/login.html", 
+        "Check if login.html template is being used")
