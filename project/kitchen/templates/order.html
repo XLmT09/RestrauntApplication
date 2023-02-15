@@ -2,11 +2,14 @@
 {%load static %}
 <link rel="stylesheet" href="{% static 'order.css' %}" />
 <h1>Confirmed Orders</h1>
+<!-- Check if there are any customer orders available-->
 {% if cust_orders %}
+    <!--For each order object unpack its elemnts and display on the page-->
     {% for order in cust_orders %}
         <p>{{ order.ID }}, {{ order.customerID }}, {{ order.status }}, 
         {{ order.timeOfOrder }}, {{ order.orderdItems }}</p>
     {% endfor %}
+<!-- If there are no customer orders then display an appropriate message-->
 {% else %}
         <P>No Confirmed Orders Currently</P>
 {% endif %}

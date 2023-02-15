@@ -32,6 +32,13 @@
         </div>
         <div id="right">
           {% if user.is_authenticated %}
+          {% if "KitchenStaff" in user_groups %}
+          <a class="nav-options nav-btn" href="{% url 'kitchen-order' %}">
+            <button class="navButton">
+              <div class="text">Kitchen Page</div>
+            </button></a
+          >
+          {% endif %}
           <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
             <button class="navButton">
               <div class="text">Logout</div>
@@ -42,7 +49,6 @@
               <div class="text">Profile</div>
             </button></a
           >
-
           {% else %}
           <a href="/account/login/">
             <button class="navButton">
@@ -56,12 +62,12 @@
           </a>
           {% endif %}
 
-          <button type="button" class="navButton" onclick="scrollToMenu();">
-            <div class="text">Our Menu</div>
-          </button>
-
           <button type="button" class="navButton" onclick="scrollToAboutUs();">
             <div class="text">About Us</div>
+          </button>
+
+          <button type="button" class="navButton" onclick="scrollToMenu();">
+            <div class="text">Our Menu</div>
           </button>
         </div>
       </div>

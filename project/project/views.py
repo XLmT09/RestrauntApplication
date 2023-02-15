@@ -1,14 +1,14 @@
 from django.shortcuts import render
-import logging
-from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
 from django.contrib.auth.decorators import login_required
 from . import models
 
+# The default home page for the website
 def homePage(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'homePage.html', {'title': 'Home'})
+    # Gets a list of all the groups a user is in
+    user_groups = request.user.groups.values_list('name', flat=True)
+    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups})
 
 def home(request):
     # this selects the name of the web page and sends the user to that page
