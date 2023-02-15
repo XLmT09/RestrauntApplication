@@ -50,11 +50,18 @@
     <script>
       function getSelectedValue(){
         choices = document.getElementsByName("orderChoices");
+        let selectedOrder = false;
         for (let i of choices){
           if (i.checked){
             setCookie("chosenOrderID", i.value, 3000);
+            selectedOrder = true;
             break;
           }
+        }
+        if(selectedOrder){
+          alert("Order has been confirmed");
+        } else {
+          alert("Please select an order that you wish to confirm")
         }
       }
 
