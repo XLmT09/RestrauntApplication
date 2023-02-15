@@ -1,164 +1,97 @@
-{% extends "base.html" %} {% block content %} {% load static %}
+{% load static %}
 <!DOCTYPE html>
-<html>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
-  <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
-  <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
-  <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
-  <link rel = "stylesheet" href = "{% static 'css/result.css' %}" />
-  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
-  <script src="{% static 'javascript/test.js' %}"></script>
-  <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
-  <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
-  <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
-  <title>Document</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat"
+    />
+  </head>
+
   <body>
-    <div class="background">
-      <div class="dishbox2">
-        <div class = "course" id = "starters">
-          <div class="titles"><div class="name">Starters</div></div>
-          {% for item in MenuItems %} {% if item.course == "Starter" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <div class = "details">
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+    </div>
+    {% endfor %}
 
-              {% for i in item.ingredients %} {{i}} {% endfor %}
-  
-              <br/>
-  
-              Calories : {{item.calories}}
-  
-            </div>
+    <div class="bg">
+      <div class="navbar">
+        <div id="left">
+          <div class="text">
+            <a class="nav-options" href="/">Oaxaca</a>
           </div>
-          {% endif %} {% endfor %}
         </div>
+        <div id="right">
+          {% if user.is_authenticated %}
+          <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
+            <button class="navButton">
+              <div class="text">Logout</div>
+            </button></a
+          >
+          <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
+            <button class="navButton">
+              <div class="text">Profile</div>
+            </button></a
+          >
 
-        <div class = "course" id = "mains">
-          <div class="titles"><div class="name">Mains</div></div>
-          {% for item in MenuItems %} {% if item.course == "Main" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <div class = "details">
+          {% else %}
+          <a href="/account/login/">
+            <button class="navButton">
+              <div class="text">Login</div>
+            </button>
+          </a>
+          <a href="/account/signup/">
+            <button class="navButton">
+              <div class="text">Register</div>
+            </button>
+          </a>
+          {% endif %}
 
-              {% for i in item.ingredients %} {{i}} {% endfor %}
-  
-              <br/>
-  
-              Calories : {{item.calories}}
-  
-            </div>
-          </div>
-          {% endif %} {% endfor %}
-        </div>
+          <button type="button" class="navButton" onclick="scrollToMenu();">
+            <div class="text">Our Menu</div>
+          </button>
 
-        <div class = "course" id = "sides">
-          <div class="titles"><div class="name">Sides</div></div>
-          {% for item in MenuItems %} {% if item.course == "Side" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <div class = "details">
-
-              {% for i in item.ingredients %} {{i}} {% endfor %}
-  
-              <br/>
-  
-              Calories : {{item.calories}}
-  
-            </div>
-          </div>
-          {% endif %} {% endfor %}
-        </div>
-
-        <div class = "course" id = "desserts">
-          <div class="titles"><div class="name">Desserts</div></div>
-          {% for item in MenuItems %} {% if item.course == "Dessert" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <div class = "details">
-
-              {% for i in item.ingredients %} {{i}} {% endfor %}
-  
-              <br/>
-  
-              Calories : {{item.calories}}
-  
-            </div>
-          </div>
-          {% endif %} {% endfor %}
-        </div>
-
-        <div class = "course" id = "drink">
-          <div class="titles"><div class="name">Drink</div></div>
-          {% for item in MenuItems %} {% if item.course == "Drink" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <div class = "details">
-
-              {% for i in item.ingredients %} {{i}} {% endfor %}
-  
-              <br/>
-  
-              Calories : {{item.calories}}
-  
-            </div>
-          </div>
-          {% endif %} {% endfor %}
+          <button type="button" class="navButton" onclick="scrollToAboutUs();">
+            <div class="text">About Us</div>
+          </button>
         </div>
       </div>
-      <div class = "filter">
-        <label for = "filter">Filter by : </label>
-        <select name = "filter" id = "filter" onchange = "hide(this)">
-          <optgroup label = "Course">
-            <option value = "none" selected>None</option>
-            <option value = "starters">Starters</option>
-            <option value = "mains">Mains</option>
-            <option value = "sides">Sides</option>
-            <option value = "desserts">Desserts</option>
-            <option value = "drink">Drink</option>
-          </optgroup>
-        </select>
+
+      <div class="logobox">
+        <img src="/static/images/OaxacaLogo.png" />
       </div>
-      <div class = "sort">
-        <label for = "sort">Sort by : </label>
-        <select name = "sort" id = "sort" onchange = "sort(this)">
-          <option value = "dlt">Default</option>
-          <optgroup label = "Price">
-            <option value = "ltoh">Low to High</option>
-            <option value = "htol" selected>High to Low</option>
-          </optgroup>
-        </select>
+    </div>
+    <div class="bg2" id="about">
+      <div class="dishbox" id="aboutImage"></div>
+      <div class="aboutConatiner" id="aboutText">
+        <div class="aboutTitle">About Us</div>
+        <div class="informationtext">Since our modest beginnings in 2001 with a little space in Eghams stylish high street, Oaxacas development has been enlivened with the energy to cook and serve solid, italian fine dining.</div>
+        <br />
+        <br />
       </div>
-      <div class = "searchbar">
-        <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
-      </div>
-      <div class = "resultcontainer" id = "resultcontainer">
-        <div class = "resultheader" id = "resultheader">
-          <div class = "resultname" id = "resultname"></div>
-          <div class = "resultprice" id = "resultprice"></div>
-        </div>
-        <div class = "resultdetails" id = "resultdetails">
-        </div>
+    </div>
+    <div class="bg3" id="Menu">
+      <div class="dishbox2" id="menuImage"></div>
+      <div class="menuConatiner" id="menuText">
+        <div class="aboutTitle">Menu</div>
+        <div class="informationtext">Here at Oaxaca, our love for Italian will be given to you!. gourmet pizza , simmering sauces,  homemade cheese dough and mixing up hand-crafted cocktails. Our talented chefs use the best ingredients to create delicious seasonal favourites and Italian classics, from pizza and pasta dishes to succulent offerings from the grill. Please click our link below to see further our menu </div>
+        <a href="{% url 'menu' %}">
+          <button class="menuButton">
+            <div class="text">Menu</div>
+          </button>
+        </a>
       </div>
     </div>
   </body>
 </html>
-{% endblock content %}
+
+
