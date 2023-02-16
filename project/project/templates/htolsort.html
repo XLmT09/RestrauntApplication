@@ -1,97 +1,323 @@
-{% load static %}
+{% block content %} {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Document</title>
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
-    <link
-      rel="stylesheet"
-      href="//fonts.googleapis.com/css?family=Montserrat"
-    />
-  </head>
-
+<html>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/filter.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/sort.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'css/result.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <script src="{% static 'javascript/menu.js' %}" defer></script>
+  <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
+  <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
+  <script src = "{% static 'javascript/menu-searching.js' %}"></script>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
+  <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
+  <title>Document</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
   <body>
-    {% for message in messages %}
-    <div class="container-fluid p-0">
-      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
-    </div>
-    {% endfor %}
-
-    <div class="bg">
-      <div class="navbar">
-        <div id="left">
-          <div class="text">
-            <a class="nav-options" href="/">Oaxaca</a>
-          </div>
-        </div>
-        <div id="right">
-          {% if user.is_authenticated %}
-          <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
-            <button class="navButton">
-              <div class="text">Logout</div>
-            </button></a
-          >
-          <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
-            <button class="navButton">
-              <div class="text">Profile</div>
-            </button></a
-          >
-
-          {% else %}
-          <a href="/account/login/">
-            <button class="navButton">
-              <div class="text">Login</div>
-            </button>
-          </a>
-          <a href="/account/signup/">
-            <button class="navButton">
-              <div class="text">Register</div>
-            </button>
-          </a>
-          {% endif %}
-
-          <button type="button" class="navButton" onclick="scrollToMenu();">
-            <div class="text">Our Menu</div>
-          </button>
-
-          <button type="button" class="navButton" onclick="scrollToAboutUs();">
-            <div class="text">About Us</div>
-          </button>
+    <div class="navbar">
+      <div id="left">
+        <div class="text">
+          <a class="nav-options" href="/">Oaxaca</a>
         </div>
       </div>
+      <div id="right">
+        <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
+          <button class="navButton" onclick="checkout({{ user.id }})">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              width="24"
+              class="basket"
+            >
+              <path
+                d="M7 22q-.825 0-1.412-.587Q5 20.825 5 20q0-.825.588-1.413Q6.175 18 7 18t1.412.587Q9 19.175 9 20q0 .825-.588 1.413Q7.825 22 7 22Zm10 0q-.825 0-1.412-.587Q15 20.825 15 20q0-.825.588-1.413Q16.175 18 17 18t1.413.587Q19 19.175 19 20q0 .825-.587 1.413Q17.825 22 17 22ZM6.15 6l2.4 5h7l2.75-5ZM7 17q-1.125 0-1.7-.988-.575-.987-.05-1.962L6.6 11.6 3 4H1.975q-.425 0-.7-.288Q1 3.425 1 3t.288-.713Q1.575 2 2 2h1.625q.275 0 .525.15t.375.425L5.2 4h14.75q.675 0 .925.5t-.025 1.05l-3.55 6.4q-.275.5-.725.775-.45.275-1.025.275H8.1L7 15h11.025q.425 0 .7.287.275.288.275.713t-.288.712Q18.425 17 18 17Zm1.55-6h7Z"
+              />
+            </svg>
+            <div class="text" style="float: right">
+              £<text id="basket">0</text>
+            </div>
+          </button></a
+        >
 
-      <div class="logobox">
-        <img src="/static/images/OaxacaLogo.png" />
-      </div>
-    </div>
-    <div class="bg2" id="about">
-      <div class="dishbox" id="aboutImage"></div>
-      <div class="aboutConatiner" id="aboutText">
-        <div class="aboutTitle">About Us</div>
-        <div class="informationtext">Since our modest beginnings in 2001 with a little space in Eghams stylish high street, Oaxacas development has been enlivened with the energy to cook and serve solid, italian fine dining.</div>
-        <br />
-        <br />
-      </div>
-    </div>
-    <div class="bg3" id="Menu">
-      <div class="dishbox2" id="menuImage"></div>
-      <div class="menuConatiner" id="menuText">
-        <div class="aboutTitle">Menu</div>
-        <div class="informationtext">Here at Oaxaca, our love for Italian will be given to you!. gourmet pizza , simmering sauces,  homemade cheese dough and mixing up hand-crafted cocktails. Our talented chefs use the best ingredients to create delicious seasonal favourites and Italian classics, from pizza and pasta dishes to succulent offerings from the grill. Please click our link below to see further our menu </div>
-        <a href="{% url 'menu' %}">
-          <button class="menuButton">
-            <div class="text">Menu</div>
+        {% if user.is_authenticated %}
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}"'>
+          <button class="navButton">
+            <div class="text">Logout</div>
+          </button></a
+        >
+        <a class="nav-options nav-btn" href="{% url 'account-profile' %}"'>
+          <button class="navButton">
+            <div class="text">Profile</div>
+          </button></a
+        >
+
+        {% else %}
+        <a href="/account/login/">
+          <button class="navButton">
+            <div class="text">Login</div>
           </button>
         </a>
+        <a href="/account/signup/">
+          <button class="navButton">
+            <div class="text">Register</div>
+          </button>
+        </a>
+        {% endif %}
       </div>
+    </div>
+    
+    <div class="background">
+
+
+
+
+
+    <div class="menuBox" id="menuBox">
+        <div class = "filter">
+          <label for = "filter">Filter by : </label>
+          <select name = "filter" id = "filter" onchange = "hide(this)">
+            <optgroup label = "Course">
+              <option value = "none" selected>None</option>
+              <option value = "starters">Starters</option>
+              <option value = "mains">Mains</option>
+              <option value = "sides">Sides</option>
+              <option value = "desserts">Desserts</option>
+              <option value = "drink">Drink</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class = "sort">
+          <label for = "sort">Sort by : </label>
+          <select name = "sort" id = "sort" onchange = "sort(this)">
+            <option value = "dlt" selected>Default</option>
+            <optgroup label = "Price">
+              <option value = "ltoh">Low to High</option>
+              <option value = "htol">High to Low</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class = "searchbar">
+          <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
+        </div>
+
+        <div class = "resultcontainer" id = "resultcontainer">
+          <div class = "resultheader" id = "resultheader">
+            <div class = "resultname" id = "resultname"></div>
+            <div class = "resultprice" id = "resultprice"></div>
+        </div>
+
+        <div class = "resultdetails" id = "resultdetails">
+              {% if item.dietRequirements != 'N'%}
+                <text style="float: right">{{item.dietRequirements}}</text>
+              {% endif %}
+        </div>
+           
+    
+         
+       
+        </div>
+      <div class = "course" id = "starters">
+        <div class="titles"><div class="name">Starters</div></div>
+      
+        {% for item in MenuItems %} {% if item.course == "Starter" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            >+
+              
+            </button>
+          </div>
+        </div>
+        {%endif%}{%endfor%}
+      </div>
+ 
+  
+        <div class = "course" id = "mains">
+          <div class="titles"><div class="name">Mains</div></div>
+          {% for item in MenuItems %} {% if item.course == "Main" %}
+          <div class="container">
+            <div class="header">
+              <div class="name">{{item.name}}</div>
+              <div class="price">£{{item.price}}</div>
+            </div>
+            <br />
+            <div class="descriptionBox">{{item.description}}</div>
+            <br />
+            <div class="nutritionBox" >Calories : {{item.calories}}
+              {% if item.dietRequirements != 'N'%}
+                <text style="float: right">{{item.dietRequirements}}</text>
+              {% endif %}
+            </div>
+            <div class="orderingBar">
+              <button
+                class="orderButton"
+                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              > -
+                
+              </button>
+              <text id="{{item.name}}item">0</text>
+              <button
+                class="orderButton"
+                style="float: right"
+                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              >+
+                
+              </button>
+            </div>
+          </div>
+          {%endif%}{%endfor%}
+        </div>
+
+          
+      <div class = "course" id = "sides">
+
+  
+
+        <div class="titles"><div class="name">Sides</div></div>
+        {% for item in MenuItems %} {% if item.course == "Side" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            >+
+              
+            </button>
+          </div>
+        </div>
+        {%endif%}{%endfor%}
+      </div>
+      <div class = "course" id = "desserts">
+        
+  
+
+        <div class="titles"><div class="name">Desserts</div></div>
+        {% for item in MenuItems %} {% if item.course == "Dessert" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            >+
+              
+            </button>
+          </div>
+        </div>
+        {%endif%}{%endfor%}
+      </div>
+     
+
+      <div class = "course" id = "drink">
+  
+
+        <div class="titles"><div class="name">Drink</div></div>
+  
+        {% for item in MenuItems %} {% if item.course == "Drink" %}
+        <div class="container">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">0</text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+            >+
+              
+            </button>
+          </div>
+        </div>
+        {%endif%}{%endfor%}
+      </div>
+      
+
     </div>
   </body>
 </html>
-
-
+{% endblock content %}
