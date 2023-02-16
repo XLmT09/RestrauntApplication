@@ -29,10 +29,11 @@ def updateOrderStatus(request):
 
     cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = filterStatus)
 
+    #sends message to customer once order is confirmed 
+    customer_id = order.customerID
+    messages.info(request, f'The order (#{orderID}) has been confirmed by a member of staff.')
+
     return render(request, "orders.html", {'cust_orders': cust_orders}) 
-
-
-
 
 
 
