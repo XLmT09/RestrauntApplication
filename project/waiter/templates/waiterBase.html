@@ -7,15 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(29, 29, 39);
+      }
+
       #menuForm {
-          position: absolute;
-          padding-left: 40%;
-          color: white;
-        }
+        position: absolute;
+        padding-left: 40%;
+        color: white;
+      }
       #menuDropDown {
-          margin-left: 35px;
-          padding-left: 40px;
-        }
+        margin-left: 35px;
+        padding-left: 40px;
+      }
 
       a {
         font-size: 15px;
@@ -24,14 +30,12 @@
       li {
         font-size: 10px;
       }
-
     </style>
 
-    
     {% if title %}
-      <title>{{ title }}</title>
+    <title>{{ title }}</title>
     {% else %}
-      <title>El Plato Dorado</title>
+    <title>El Plato Dorado</title>
     {% endif %}
 
     <script src="{% static 'javascript/animations.js' %}" defer></script>
@@ -44,15 +48,13 @@
   </head>
 
   <body>
-    {% if messages %}
-      {% for message in messages %}
-      <div class="container-fluid p-0">
-        <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
-      </div>
-      {% endfor %}
-    {% endif %}
+    {% if messages %} {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
 
-    <div class="bg">
+    <div>
       <div class="navbar">
         <div id="left">
           <div class="text">
@@ -85,17 +87,17 @@
           </a>
           {% endif %}
 
-          <a class = "nav-options nav-btn", href="{% url 'changeMenu' %}">
+          <a class="nav-options nav-btn" , href="{% url 'changeMenu' %}">
             <button class="navButton">
-                <div class="text">Update Menu</div>
+              <div class="text">Update Menu</div>
             </button>
-            </a>
-            
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' %}">
+          </a>
+
+          <a class="nav-options nav-btn" , href="{% url 'viewOrders' %}">
             <button class="navButton">
-                <div class="text">View Orders</div>
+              <div class="text">View Orders</div>
             </button>
-            </a>
+          </a>
         </div>
       </div>
       <div>{% block content %}{% endblock %}</div>
