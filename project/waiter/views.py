@@ -31,7 +31,10 @@ def updateOrderStatus(request):
 
     #sends message to customer once order is confirmed 
     customer_id = order.customerID
-    messages.info(request, f'The order (#{orderID}) has been confirmed by a member of staff.')
+    messages.info(request, f"The order (#{orderID}) has been confirmed by a member of staff.")
+
+    #message sent to the waiter notifying them of the message being delivered to the customer 
+    messages.success(request, f"Message confirming this order has been sent to {customer_id}.")
 
     return render(request, "orders.html", {'cust_orders': cust_orders}) 
 
