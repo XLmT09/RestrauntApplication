@@ -10,9 +10,7 @@ class KitchenStaffLoginsTest(TestCase):
         self.customer = User.objects.create_user(
             username='cutomer', email='customer@example.com', password='mypassword')
         # Add customer to the order table which is marked as confirmed
-        self.order1 = Order(customerID = self.customer, status="Confirmed")
-        # save this order to the Order db table
-        self.order1.save()
+        self.order1 = Order.objects.create(customerID = self.customer, status='Confirmed')
 
         # Make a kitchen staff user for the test db
         self.user = User.objects.create_user(
@@ -27,26 +25,31 @@ class KitchenStaffLoginsTest(TestCase):
     # Test if kitchen page loads up for user in kitchen staff
     def test_kitchen_page(self):
         # Go to kitchen staff page
-        response = self.client.get("/kitchen/")
+        response = self.client.get('/kitchen/')
         # Check if page loads up correctly
         self.assertEqual(response.status_code, 200)
         # Check if correct html page is being used
-        self.assertTemplateUsed(response, "order.html")
+        self.assertTemplateUsed(response, 'order.html')
 
     # Test if unathorised user cannot access the kitchen staff page
     def test_invalid__kitchen_page_access(self):
         # kitchen staff is currently logged in, so first logout out
         self.client.logout()
         # Default user tries to access the page
-        response = self.client.get("/kitchen/")
+        response = self.client.get('/kitchen/')
         # The user should now be redirected to the login page
-        self.assertRedirects(response, reverse("account-login"), 
+        self.assertRedirects(response, reverse('account-login'), 
                          status_code=302, 
                          target_status_code=200, 
-                         msg_prefix="Check if the user was redirected to  login page")
+                         msg_prefix='Check if the user was redirected to  login page')
         # See if the correct html page is loaded up at the login url
         final_response = self.client.get(response.url)
-        self.assertTemplateUsed(final_response, "account/login.html")
+        self.assertTemplateUsed(final_response, 'account/login.html')
 
-
+    # Test if confirmed customer orders appear on the page
+    def test_customer_order_showing(self):
+            response = self.client.get('/kitchen/')
+            # Test if the customer ordermade on setup appears on the page
+            self.assertContains(response, self.customer.id)
+            self.assertContains(response, 'Confirmed')
 
