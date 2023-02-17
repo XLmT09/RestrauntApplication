@@ -84,3 +84,9 @@ def htolSort(request):
     items = MenuItem.objects.all().order_by('-price')
     return render(request, 'htolsort.html', {'MenuItems': items})
 
+
+
+def sendHelpRequest(request):
+    print("sending request")
+
+    return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all()})

@@ -55,14 +55,14 @@
         </a>
 
         <div class="form-popup" id="myHelpForm">
-          <form class="form-container">
-            <input type="text" placeholder="Enter message (optional)">
-            <button type="button" class = "btn" onclick="submitHelpForm()">Submit</button>
+          <form class="form-container" method="get" action="{% url 'requestHelp' %}">
+            <input type="text" placeholder="Enter message (optional)" id="messageEntry">
+            <input type="submit" class = "btn" value="Submit">
           </form>
         </div>
 
         {% if user.is_authenticated %}
-        <a class="nav-options nav-btn" href="{% url 'account-logout' %}"'>
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
           <button class="navButton">
             <div class="text">Logout</div>
           </button></a
