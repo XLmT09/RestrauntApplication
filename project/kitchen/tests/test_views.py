@@ -1,20 +1,28 @@
 from django.contrib.auth.models import User, Group
 from django.test import Client, TestCase
 from django.urls import reverse
+from project.models import Order
 
 class KitchenStaffLoginsTest(TestCase):
     # Setup code to be used within tests for this class
     def setUp(self):
-        # Create a kitchenStaff group for new test databse
-        self.group = Group.objects.create(name='KitchenStaff')
-        # Make a new user for the test database
+        # Create a customer user for test db
+        self.customer = User.objects.create_user(
+            username='cutomer', email='customer@example.com', password='mypassword')
+        # Add customer to the order table which is marked as confirmed
+        self.order1 = Order(customerID = self.customer, status="Confirmed")
+        # save this order to the Order db table
+        self.order1.save()
+
+        # Make a kitchen staff user for the test db
         self.user = User.objects.create_user(
             username='myuser', email='myuser@example.com', password='mypassword')
+        # Create a kitchenStaff group for new test databse
+        self.group = Group.objects.create(name='KitchenStaff')
         # Add test user to the kitchenStaff group
         self.user.groups.add(self.group)
         self.client = Client()
-        self.client.login(username='myuser', password='mypassword')
-        
+        self.client.login(username='myuser', password='mypassword')        
 
     # Test if kitchen page loads up for user in kitchen staff
     def test_kitchen_page(self):
@@ -39,3 +47,6 @@ class KitchenStaffLoginsTest(TestCase):
         # See if the correct html page is loaded up at the login url
         final_response = self.client.get(response.url)
         self.assertTemplateUsed(final_response, "account/login.html")
+
+
+
