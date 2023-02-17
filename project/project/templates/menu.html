@@ -58,6 +58,7 @@
           <form class="form-container" method="get" action="{% url 'requestHelp' %}">
             {{ helpForm.message }}
             <br><input type="submit" class = "btn" value="Submit">
+            <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
           </form>
         </div>
 
