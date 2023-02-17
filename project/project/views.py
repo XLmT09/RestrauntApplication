@@ -3,9 +3,11 @@ import logging
 from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
+from .models import HelpRequest
 from django.contrib.auth.decorators import login_required
 from . import models
 from .forms import helpRequestForm
+from django.contrib import messages
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
@@ -88,6 +90,15 @@ def htolSort(request):
 
 
 def sendHelpRequest(request):
-    print("sending request")
+    form_data = request.GET.copy()
+    form_message = form_data['message']
+
+    if (form_message == ""):
+        form_message = None
+
+    current_user = request.user
+    HelpRequest.objects.create(customerID = current_user, message = form_message)
+
+    messages.success(request, f'Your request has been sent successfully')
 
     return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})

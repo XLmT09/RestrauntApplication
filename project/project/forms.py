@@ -15,7 +15,7 @@ class menuUpdateForm(forms.ModelForm):
 
 
 class helpRequestForm(forms.ModelForm):
-    message = forms.CharField(widget=forms.Textarea(attrs={'rows' : 3, 'placeholder' : 'Enter message (optional)'}))
+    message = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows' : 3, 'placeholder' : 'Enter message (optional)'}))
     class Meta:
         model = HelpRequest
         fields = ["message"]
