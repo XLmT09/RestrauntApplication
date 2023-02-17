@@ -47,6 +47,12 @@
           </button></a
         >
 
+        <a class="nav-options nav-btn">
+          <button class="navButton">
+            <div class="text">Request Help</div>
+          </button>
+        </a>
+
         {% if user.is_authenticated %}
         <a class="nav-options nav-btn" href="{% url 'account-logout' %}"'>
           <button class="navButton">
