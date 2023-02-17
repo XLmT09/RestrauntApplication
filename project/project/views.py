@@ -5,6 +5,7 @@ from django.db import models
 from .models import MenuItem
 from django.contrib.auth.decorators import login_required
 from . import models
+from .forms import helpRequestForm
 
 def homePage(request):
     # this selects the name of the web page and sends the user to that page
@@ -22,7 +23,7 @@ def results(request):
 def menu(request):
     items = MenuItem.objects.all()
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items})
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm()})
 
 def ltohSort(request):
     items = MenuItem.objects.all().order_by('price')
@@ -34,7 +35,7 @@ def checkout(request):
     if len(test) == 0:
         items = MenuItem.objects.all()
     # this selects the name of the web page and sends the user to that page
-        return render(request, 'menu.html',{'MenuItems': items})
+        return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm()})
         
     testArray = test.split(',')
     print(testArray)
@@ -89,4 +90,4 @@ def htolSort(request):
 def sendHelpRequest(request):
     print("sending request")
 
-    return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all()})
+    return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})

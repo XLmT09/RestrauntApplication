@@ -56,8 +56,8 @@
 
         <div class="form-popup" id="myHelpForm">
           <form class="form-container" method="get" action="{% url 'requestHelp' %}">
-            <input type="text" placeholder="Enter message (optional)" id="messageEntry">
-            <input type="submit" class = "btn" value="Submit">
+            {{ helpForm.message }}
+            <br><input type="submit" class = "btn" value="Submit">
           </form>
         </div>
 
