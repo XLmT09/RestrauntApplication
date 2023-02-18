@@ -12,6 +12,7 @@ function search(searchText) {
         if (itemNameValue == searchValue) {
             itemContainer.scrolIntoView();
             itemContainer.classList.add("highlight");
+            document.documentElement.scrollTop -= searchResult.offsetHeight;
         }
         else {
             itemContainer.classList.remove("highlight");
