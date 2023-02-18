@@ -163,22 +163,3 @@ body {
   width: 100%;
   height: 3vh;
 }
-
-.highlight {
-  position: relative;
-  padding: 1%;
-  float: left;
-  text-align: left;
-  background-color: #1d0320;
-  border-bottom: solid;
-  width: 26%;
-  color: white;
-  font-size: 75%;
-  font-family: Montserrat;
-  border-color: white;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  filter: brightness(90%);
-}
