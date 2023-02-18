@@ -5,7 +5,7 @@ function search(searchText) {
     var itemContainers = document.getElementsByClassName("container");
 
     for (var itemContainer of itemContainers) {
-        if (itemContainer.match(/(?:^|\s)highlight(?!\S)/)) {
+        if (itemContainer.classList.contains("highlight")) {
             itemContainer.classList.remove("highlight");
         }
 
