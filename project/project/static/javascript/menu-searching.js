@@ -1,3 +1,5 @@
+var resetContainer;
+
 function search(searchText) {
     var searchValue = searchText.value;
     searchValue = searchValue.toLowerCase();
@@ -10,12 +12,13 @@ function search(searchText) {
         itemNameValue = itemName.innerHTML.toLowerCase();
         
         if (itemNameValue == searchValue) {
-            itemContainer.scrolIntoView();
             itemContainer.classList.add("highlight");
-            document.documentElement.scrollTop -= searchResult.offsetHeight;
+            itemContainer.classList.remove("container");
+            resetContaner = itemContainer;
         }
         else {
-            itemContainer.classList.remove("highlight");
+            resetContainer.classList.add("container");
+            resetContainer.classList.remove("highlight");
         }
     }
 }
