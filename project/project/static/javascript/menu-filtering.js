@@ -1,4 +1,4 @@
-function hide(selectedOption) {
+function filter(selectedOption) {
     optionValue = selectedOption.value;
 
     for (showContainer of document.getElementsByClassName("course")) {
