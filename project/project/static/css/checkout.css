@@ -25,9 +25,12 @@ body {
 
 .itemNumber {
   text-align: left;
-  width: 20%;
   height: 100%;
   margin-bottom: 2px;
+  top: 0%;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
 }
 .itemName {
   text-align: left;
@@ -65,4 +68,14 @@ body {
 
 .submitButton:hover {
   border-color: white;
+}
+
+.arrows {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+svg {
+  fill: white;
+  cursor: pointer;
 }
