@@ -54,6 +54,14 @@ class Order(models.Model):
     timeOfOrder = models.TimeField(auto_now=True, null=False)
     orderedItems = ArrayField(models.IntegerField(), null=True)
 
-    
+
+
+class HelpRequest(models.Model):
+    class Meta:
+        db_table = "HelpRequest"
+
+    requestID = models.AutoField(primary_key=True, null = False)
+    customerID = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.CharField(max_length=100, null=True)
 
     

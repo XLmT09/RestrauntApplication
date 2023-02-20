@@ -14,6 +14,8 @@
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
   <script src = "{% static 'javascript/menu-searching.js' %}"></script>
+  <script src = "{% static 'javascript/helpform.js' %}"></script>
+
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -28,6 +30,15 @@
           <a class="nav-options" href="/">Oaxaca</a>
         </div>
       </div>
+
+      <div id="middle">
+        <a class="nav-options nav-btn">
+          <button class="navButton" onclick="openHelpForm();">
+            <div class="text">Request Help</div>
+          </button>
+        </a>
+      </div>
+
       <div id="right">
         <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
           <button class="navButton" onclick="checkout({{ user.id }})">
@@ -44,11 +55,10 @@
             <div class="text" style="float: right">
               £<text id="basket">0</text>
             </div>
-          </button></a
-        >
+          </button></a>
 
         {% if user.is_authenticated %}
-        <a class="nav-options nav-btn" href="{% url 'account-logout' %}"'>
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
           <button class="navButton">
             <div class="text">Logout</div>
           </button></a
@@ -76,14 +86,10 @@
     
     <div class="background">
 
-
-
-
-
     <div class="menuBox" id="menuBox">
         <div class = "filter">
           <label for = "filter">Filter by : </label>
-          <select name = "filter" id = "filter" onchange = "hide(this)">
+          <select name = "filter" id = "filter" onchange = "filter(this)">
             <optgroup label = "Course">
               <option value = "none" selected>None</option>
               <option value = "starters">Starters</option>
@@ -106,6 +112,13 @@
         </div>
         <div class = "searchbar">
           <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
+        </div>
+        <div class="form-popup" id="myHelpForm">
+          <form class="form-container" method="get" action="{% url 'requestHelp' %}">
+            {{ helpForm.message }}
+            <br><input type="submit" class = "btn" value="Submit">
+            <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
+          </form>
         </div>
 
         <div class = "resultcontainer" id = "resultcontainer">
@@ -319,6 +332,13 @@
       </div>
       
 
+      <div class="form-popup" id="myHelpForm">
+        <form class="form-container" method="get" action="{% url 'requestHelp' %}">
+          {{ helpForm.message }}
+          <br><input type="submit" class = "btn" value="Submit">
+          <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
