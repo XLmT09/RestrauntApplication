@@ -166,12 +166,10 @@ body {
 
 .form-popup {
   display: none;
-  position: fixed;
+  position: relative;
   bottom: 0;
   border: 3px solid #f1f1f1;
-  z-index: 10;
-  top: 100px;
-  right: 230px;
+
   text-align: center;
 }
 
