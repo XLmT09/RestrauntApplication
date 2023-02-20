@@ -9,5 +9,5 @@ urlpatterns = [
 
     path("orders/updateStatus", views.updateOrderStatus, name="updateStatus"),
 
-    path('clientHelpRequests', views.viewOrders, name='clientHelpRequests'),
+    path('clientHelpRequests', views.viewOrders, name='clientHelpRequests'), # edit the path to the clientHelpRequest by adding views for it and edit the code inside html
 ]
