@@ -31,15 +31,14 @@
         </div>
       </div>
 
-      <div id="middle">
+      <div id="right">
+
         <a class="nav-options nav-btn">
           <button class="navButton" onclick="openHelpForm();">
             <div class="text">Request Help</div>
           </button>
         </a>
-      </div>
 
-      <div id="right">
         <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
           <button class="navButton" onclick="checkout({{ user.id }})">
             <svg
