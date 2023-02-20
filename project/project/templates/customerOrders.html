@@ -1,0 +1,102 @@
+{% extends "base.html" %}{% block content %} {% load static %}
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/customerOrder.css' %}" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
+  <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
+  <title>Document</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
+  <body>
+    <div class="itemsBox">
+      <div class="titles">Placed Orders</div>
+      <div class="itemRow" style="margin-bottom: 10px">
+        <div id="right">
+          <text class="itemText">Order Id</text>
+          <text class="itemText">Order Status</text>
+          <text class="itemText">Time of Order</text>
+          <text class="itemText">Item Ids</text>
+        </div>
+      </div>
+      {% for order in Orders %} {% if order.status == "Placed"%}
+      <div class="itemRow">
+        <div id="right">
+          <text class="itemText">{{order.ID}}</text>
+          <text class="itemText">{{order.status}}</text>
+          <text class="itemText">{{order.timeOfOrder}}</text>
+          <text class="itemText">{{order.orderedItems}}</text>
+        </div>
+        <div id="left"></div>
+      </div>
+      {% endif %} {% endfor %}
+
+      <div class="titles">Confirmed Orders</div>
+      <div class="itemRow" style="margin-bottom: 10px">
+        <div id="right">
+          <text class="itemText">Order Id</text>
+          <text class="itemText">Order Status</text>
+          <text class="itemText">Time of Order</text>
+          <text class="itemText">Item Ids</text>
+        </div>
+      </div>
+      {% for order in Orders %} {% if order.status == "Confirmed" %}
+      <div class="itemRow">
+        <div id="right">
+          <text class="itemText">{{order.ID}}</text>
+          <text class="itemText">{{order.status}}</text>
+          <text class="itemText">{{order.timeOfOrder}}</text>
+          <text class="itemText">{{order.orderedItems}}</text>
+        </div>
+        <div id="left"></div>
+      </div>
+      {% endif %} {% endfor %}
+      <div class="titles">Prepared Orders</div>
+      <div class="itemRow" style="margin-bottom: 10px">
+        <div id="right">
+          <text class="itemText">Order Id</text>
+          <text class="itemText">Order Status</text>
+          <text class="itemText">Time of Order</text>
+          <text class="itemText">Item Ids</text>
+        </div>
+      </div>
+      {% for order in Orders %} {% if order.status == "Prepared" %}
+      <div class="itemRow">
+        <div id="right">
+          <text class="itemText">{{order.ID}}</text>
+          <text class="itemText">{{order.status}}</text>
+          <text class="itemText">{{order.timeOfOrder}}</text>
+          <text class="itemText">{{order.orderedItems}}</text>
+        </div>
+        <div id="left"></div>
+      </div>
+      {% endif %} {% endfor %}
+      <div class="titles">Delivered Orders</div>
+      <div class="itemRow" style="margin-bottom: 10px">
+        <div id="right">
+          <text class="itemText">Order Id</text>
+          <text class="itemText">Order Status</text>
+          <text class="itemText">Time of Order</text>
+          <text class="itemText">Item Ids</text>
+        </div>
+      </div>
+      {% for order in Orders %} {% if order.status == "Delivered"%}
+      <div class="itemRow">
+        <div id="right">
+          <text class="itemText">{{order.ID}}</text>
+          <text class="itemText">{{order.status}}</text>
+          <text class="itemText">{{order.timeOfOrder}}</text>
+          <text class="itemText">{{order.orderedItems}}</text>
+        </div>
+        <div id="left"></div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+  </body>
+</html>
+{% endblock content %}

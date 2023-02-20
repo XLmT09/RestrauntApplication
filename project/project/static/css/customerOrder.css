@@ -1,0 +1,32 @@
+.itemsBox {
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  top: 15%;
+  width: 85%;
+  font-size: 70%;
+  font-family: Montserrat;
+  color: white;
+}
+
+.itemText {
+  display: table;
+  text-align: left;
+  width: 20%;
+  margin-bottom: 2px;
+}
+
+.itemRow {
+  margin-left: 0;
+  margin-right: 50px;
+  width: 100%;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+#right {
+  display: flex;
+  align-items: center;
+}

@@ -66,10 +66,7 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
   var items = getCookie("items").split(",");
   var Ids = getCookie("itemIds").split(",");
   var itemWidthIds = getCookie("itemWithIds").split(",");
-  console.log("Old");
-  console.log(items);
-  console.log(Ids);
-  console.log(itemWidthIds);
+
   var itemId = itemWidthIds.at(itemWidthIds.indexOf(itemName) + 1);
 
   var individualPrice = parseFloat(items[items.indexOf(itemName) + 1]);
@@ -77,8 +74,6 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
   var itemTotal = parseFloat(
     document.getElementById(itemName + itemPrice).textContent.substring(1)
   );
-  console.log("Total");
-  console.log(typeof individualPrice);
 
   var quantity = parseInt(document.getElementById(itemName).textContent);
 
@@ -100,9 +95,6 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
     Ids.splice(Ids.indexOf(itemId), 1);
     setCookie("items", items, 3000);
     setCookie("itemIds", Ids, 3000);
-    console.log("New");
-    console.log(items);
-    console.log(Ids);
   } else if (operation > 0) {
     console.log(items.indexOf(itemName));
     document.getElementById(itemName).textContent = quantity + 1;
@@ -116,8 +108,5 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
     items.push(individualPrice);
     setCookie("items", items, 3000);
     setCookie("itemIds", Ids, 3000);
-    console.log("New");
-    console.log(items);
-    console.log(Ids);
   }
 }
