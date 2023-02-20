@@ -86,14 +86,6 @@
     
     <div class="background">
 
-      <div class="form-popup" id="myHelpForm">
-        <form class="form-container" method="get" action="{% url 'requestHelp' %}">
-          {{ helpForm.message }}
-          <br><input type="submit" class = "btn" value="Submit">
-          <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
-        </form>
-      </div>
-
     <div class="menuBox" id="menuBox">
         <div class = "filter">
           <label for = "filter">Filter by : </label>
@@ -340,6 +332,13 @@
       </div>
       
 
+      <div class="form-popup" id="myHelpForm">
+        <form class="form-container" method="get" action="{% url 'requestHelp' %}">
+          {{ helpForm.message }}
+          <br><input type="submit" class = "btn" value="Submit">
+          <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

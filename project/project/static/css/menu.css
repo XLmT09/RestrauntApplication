@@ -16,6 +16,7 @@
   margin-bottom: 2%;
   filter: brightness(90%);
 }
+
 .container:hover {
   filter: brightness(110%);
 }
@@ -167,12 +168,11 @@ body {
 .form-popup {
   display: none;
   float: right;
-  margin-top: 30px;
-  margin-right: 146px;
+  position: relative;
+  top: -34px;
+  left: 642px;
   border: 3px solid #f1f1f1;
   z-index: 10;
-  top: 28px;
-  right: 230px;
   text-align: center;
 }
 
