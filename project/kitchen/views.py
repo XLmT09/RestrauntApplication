@@ -6,6 +6,6 @@ from decerators import group_required
 @group_required("KitchenStaff")
 def order(request):
     # Make a querey to get all customer orders which are confirmed sorted from oldest to newest
-    cust_orders = Order.objects.filter(status="Confirmed").order_by('timeOfOrder')
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status="Confirmed")
     # list of confimred orders are passed to the html page
     return render(request, 'order.html', {'title': 'Kitchen Staff Orders','cust_orders': cust_orders})
