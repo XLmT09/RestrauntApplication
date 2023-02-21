@@ -58,6 +58,7 @@ small{
     transform: translateX(3%);
     color: white;
     transition: .5s;
+    margin-bottom: 20px;
 }
 .center button:hover{
     transition: 0.5s;
@@ -131,7 +132,15 @@ span{
 form div small{
     display: none;
 }
-form input:valid ~ form div small,
-form input:focus ~ form div small{
+#id_username:valid ~ #hint_id_username,
+#id_username:focus ~ #hint_id_username{
+    display: block;
+}
+#id_password1:valid ~ #hint_id_password1,
+#id_password1:focus ~ #hint_id_password1{
+    display: block;
+}
+#id_password2:valid ~ #hint_id_password2,
+#id_password2:focus ~ #hint_id_password2{
     display: block;
 }
