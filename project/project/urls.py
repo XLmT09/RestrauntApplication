@@ -31,4 +31,5 @@ urlpatterns = [
     path('checkout/', views.checkout, name = 'checkout'),
     path('orderComplete/',views.orderComplete, name = 'orderComplete'),
     path('customerOrder/',views.customerOrder, name = 'customerOrder'),
+    path('menu/help/', views.sendHelpRequest, name = 'requestHelp')
 ]

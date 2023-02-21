@@ -16,6 +16,7 @@
   margin-bottom: 2%;
   filter: brightness(90%);
 }
+
 .container:hover {
   filter: brightness(110%);
 }
@@ -164,3 +165,28 @@ body {
   height: 3vh;
 }
 
+.form-popup {
+  display: none;
+  float: right;
+  position: relative;
+  top: -34px;
+  left: 642px;
+  border: 3px solid #f1f1f1;
+  z-index: 10;
+  text-align: center;
+}
+
+.form-container {
+  max-width: 400px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.btn {
+  margin-right: 30px;
+  margin-left: 30px;
+}
