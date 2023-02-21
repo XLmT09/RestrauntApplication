@@ -8,6 +8,25 @@
     transition: opacity 1s ease-in;
 }
 
+.order {
+  position: relative;
+  padding: 1%;
+  float: left;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-bottom: solid;
+  width: 26%;
+  color: white;
+  font-size: 75%;
+  font-family: Montserrat;
+  border-color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  filter: brightness(90%);
+}
+
 .title {
     font-family: Montserrat;
     font-size: 120%;
@@ -18,3 +37,42 @@
     border-right: none;
     padding-bottom: 1%;
 }
+
+.ordersummary {
+  width: 100%;
+  height: 20%;
+  margin: 0;
+  border: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
+  border-color: white;
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderno {
+    margin-left: 1%;
+    float: left;
+    color: white;
+    font-family: Montserrat;
+    font-size: 120%;
+    width: 80%;
+}
+
+.orderstatus {
+    float: right;
+    width: 20%;
+    text-align: right;
+    color: white;
+    font-family: Montserrat;
+    font-size: 120%;
+}
+
+.orderitems {
+    width: 100%;
+    height: 10vh;
+  }

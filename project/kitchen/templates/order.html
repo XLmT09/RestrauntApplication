@@ -4,9 +4,25 @@
 <div class = "background">
 	<div class = "orderbox">
 		<div class = "title">Orders</div>
-		<div class = "order">
 
+		{% for order in cust_orders %} {% if order.status == "Confirmed" %}
+
+		<div class = "order">
+			<div class = "ordersummary">
+				<div class = "orderno">{{order.ID}}</div>
+				<div class = "orderstatus">{{order.status}}</div>
+			</div>
+			<div class = "orderitems">
+				Items: {{order.orderedItems}}
+				<br/><br/>
+				Placed by: {{order.customerID}}
+				<br/><br/>
+				Placed at: {{order.timeOfOrder}}
+			</div>
 		</div>
+
+		{%endif%}{%endfor%}
+
 	</div>
 </div>
 {% endblock content %}
