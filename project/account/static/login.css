@@ -98,3 +98,19 @@ span{
     font-size: 16px;
     transform: translateX(-10%);
 }
+.link{
+    color: white;
+    align-items: center;
+    align-content: center;
+    transform: translateX(12%);
+}
+.link a {
+    cursor: pointer;
+    color: #2691d9;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.link a :hover{
+    color: white;
+    transition: 0.5s;
+}
