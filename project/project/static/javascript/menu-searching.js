@@ -3,29 +3,20 @@ function search(searchText) {
     searchValue = searchValue.toLowerCase();
 
     var itemContainers = document.getElementsByClassName("container");
-    var resultContainer = document.getElementById("resultcontainer");
-    var resultName = document.getElementById("resultname");
-    var resultPrice = document.getElementById("resultprice");
-    var resultDetails = document.getElementById("resultdetails");
-
-    resultContainer.style.display = "none";
 
     for (var itemContainer of itemContainers) {
+        if (itemContainer.classList.contains("highlight")) {
+            itemContainer.classList.remove("highlight");
+        }
+
         itemHeader = itemContainer.getElementsByClassName("header")[0];
         itemName = itemHeader.getElementsByClassName("name")[0];
         itemNameValue = itemName.innerHTML.toLowerCase();
         
         if (itemNameValue == searchValue) {
-            itemPrice = itemHeader.getElementsByClassName("price")[0];
-            itemPriceValue = itemPrice.innerHTML;
-            itemDetails = itemContainer.getElementsByClassName("details")[0];
-            itemDetailsValue = itemDetails.innerHTML;
+            itemContainer.classList.toggle("highlight");
 
-            resultName.innerHTML = itemName.innerHTML;
-            resultPrice.innerHTML = itemPriceValue;
-            resultDetails.innerHTML = itemDetailsValue;
-
-            resultContainer.style.display = "block";
+            break;
         }
     }
 }
