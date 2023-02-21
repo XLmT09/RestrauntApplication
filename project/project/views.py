@@ -3,6 +3,7 @@ import logging
 from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
+from .models import Order
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -83,4 +84,10 @@ def orderComplete(request):
 def htolSort(request):
     items = MenuItem.objects.all().order_by('-price')
     return render(request, 'htolsort.html', {'MenuItems': items})
+
+def customerOrder(request):
+    Orders = Order.objects.filter(customerID_id=request.user)
+
+    return render(request, 'customerOrders.html',{'Orders':Orders})
+    
 

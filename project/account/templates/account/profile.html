@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
 <h1>Hello {{ user.username }}!!</h1>
+<a href="{% url 'customerOrder' %}" style="color: black">View Orders </a>
+
 {% endblock content %}
