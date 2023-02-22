@@ -5,8 +5,8 @@ label[for = filter] {
   }
   
   .filter {
-    float: right;
+    float: middle;
     position: relative;
-    top: 5%;
-    margin-right: 6.2%;
+    top: 54px;
+    margin-left: 24%;
   }

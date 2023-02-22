@@ -30,7 +30,7 @@ class MenuItem(models.Model):
     description = models.TextField()
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
     dietRequirements = models.CharField(max_length=10,choices=MenuItemRequirements.choices, null=False, default="None")
-
+    ID = models.IntegerField(null=True)
 # Table which will store all live orders from customers
 class Order(models.Model):
     # Add meta data to the order table
@@ -54,6 +54,14 @@ class Order(models.Model):
     timeOfOrder = models.TimeField(auto_now=True, null=False)
     orderedItems = ArrayField(models.IntegerField(), null=True)
 
-    
+
+
+class HelpRequest(models.Model):
+    class Meta:
+        db_table = "HelpRequest"
+
+    requestID = models.AutoField(primary_key=True, null = False)
+    customerID = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.CharField(max_length=100, null=True)
 
     

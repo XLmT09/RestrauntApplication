@@ -1,7 +1,7 @@
 .searchbar {
-    float: right;
+    float: left;
     position: relative;
-    top: 10%;
+    top: 24px;
     margin-right: 6.6%;
 }
 
@@ -15,3 +15,22 @@
     font-family: Montserrat;
     font-size: 134%;
 }
+
+.highlight {
+    position: relative;
+    padding: 1%;
+    float: left;
+    text-align: left;
+    background-color: #1d0320;
+    border-bottom: solid;
+    width: 26%;
+    color: white;
+    font-size: 75%;
+    font-family: Montserrat;
+    border-color: white;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    filter: brightness(90%);
+  }
