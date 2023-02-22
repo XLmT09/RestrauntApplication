@@ -41,9 +41,12 @@
         <text class="itemNumber">{{items}}</text>
       </div>
 
-      <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
-        <button class="submitButton">Confirm Order {{ user.id }}</button></a
-      >
+      <form action="{% url 'orderComplete' %}" method="POST" id="menuForm">
+        {% csrf_token %} {{ form.errors }} {{ form.non_field_errors }}
+        <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
+          <button class="submitButton">Confirm Order</button></a
+        >
+      </form>
     </div>
   </body>
 </html>
