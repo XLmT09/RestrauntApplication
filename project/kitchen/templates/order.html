@@ -4,20 +4,22 @@
 
 <div class="bg">	
 	<h3 style="text-align:center;">Confirmed Orders</h3>
-	<div>
-		<form name = "myForm">
-		{% for order in cust_orders %}
+	
+	<form name = "myForm">
+	{% for order in cust_orders %}
+	<div class = "bg4">
 		<input type="radio" name="orderChoices" value = {{order.ID}}><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
 		<a> Status: {{ order.status }} </a> 
 		<a> Ordered by: {{ order.customerID }} </a> 
 		<a> Ordered at: {{ order.timeOfOrder }} </a> <br>
-		<a> Ordered items: {{ order.orderedItems }} </a> <br> <br>
-		
-		<br>
-		{% endfor %}
-		<br>
-		</form>
+		<a> Ordered items: {{ order.orderedItems }} </a><br>
 	</div>
+		
+	<br>
+	{% endfor %}
+	<br>
+	</form>
+	
 	<br>
 	<br>
     <button type="button" onclick="getSelectedValue();"><a href="{% url 'updateStatus' %}" id="buttonText">Update Status</a></button>
