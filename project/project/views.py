@@ -102,3 +102,7 @@ def sendHelpRequest(request):
     messages.success(request, f'Your request has been sent successfully')
 
     return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+
+def clientHelpRequests(request):
+    help_requests = HelpRequest.objects.all()
+    return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
