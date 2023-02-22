@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homePage , name = 'home'),
     path('account/', include('account.url')),
-    path('staff/', include('waiter.urls')),
+    path('waiter/', include('waiter.urls')),
     path('customer/', views.home , name = 'home2'),
     path('management/', views.results,  name = 'results'),
     path('menu/', views.menu,  name = 'menu'),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('menu/sort-high-to-low', views.htolSort),
     path('checkout/', views.checkout, name = 'checkout'),
     path('orderComplete/',views.orderComplete, name = 'orderComplete'),
+    path('customerOrder/',views.customerOrder, name = 'customerOrder'),
     path('menu/help/', views.sendHelpRequest, name = 'requestHelp')
 ]

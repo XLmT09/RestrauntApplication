@@ -3,6 +3,7 @@ import logging
 from django.http import JsonResponse
 from django.db import models
 from .models import MenuItem
+from .models import Order
 from .models import HelpRequest
 from django.contrib.auth.decorators import login_required
 from . import models
@@ -87,6 +88,12 @@ def htolSort(request):
     items = MenuItem.objects.all().order_by('-price')
     return render(request, 'htolsort.html', {'MenuItems': items})
 
+def customerOrder(request):
+    Orders = Order.objects.filter(customerID_id=request.user)
+
+    return render(request, 'customerOrders.html',{'Orders':Orders})
+    
+
 
 
 def sendHelpRequest(request):
@@ -102,3 +109,7 @@ def sendHelpRequest(request):
     messages.success(request, f'Your request has been sent successfully')
 
     return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+
+def clientHelpRequests(request):
+    help_requests = HelpRequest.objects.all()
+    return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})

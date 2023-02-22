@@ -6,11 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
     {% if title %}
-      <title>{{ title }}</title>
+    <title>{{ title }}</title>
     {% else %}
-      <title>El Plato Dorado</title>
+    <title>El Plato Dorado</title>
     {% endif %}
 
     <script src="{% static 'javascript/animations.js' %}" defer></script>
@@ -22,16 +21,14 @@
     />
   </head>
 
-  <body>
-    {% if messages %}
-      {% for message in messages %}
-      <div class="container-fluid p-0">
-        <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
-      </div>
-      {% endfor %}
-    {% endif %}
+  <body style="background-color : background-color: rgb(29, 29, 39)">
+    {% if messages %} {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+    </div>
+    {% endfor %} {% endif %}
 
-    <div class="bg">
+    <div>
       <div class="navbar">
         <div id="left">
           <div class="text">
@@ -77,4 +74,3 @@
     </div>
   </body>
 </html>
-
