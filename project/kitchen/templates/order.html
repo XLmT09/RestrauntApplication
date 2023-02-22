@@ -12,12 +12,19 @@
 				<div class = "orderno">{{order.ID}}</div>
 				<div class = "orderstatus">{{order.status}}</div>
 			</div>
-			<div class = "orderitems">
+			<div class = "orderdetails">
 				Items: {{order.orderedItems}}
 				<br/><br/>
 				Placed by: {{order.customerID}}
 				<br/><br/>
 				Placed at: {{order.timeOfOrder}}
+			</div>
+			<div class = "statusbar">
+				<button class = "changestatus"
+						onlick = "changeOrderStatus()"
+				>
+				Mark as prepared
+				</button>
 			</div>
 		</div>
 
