@@ -27,6 +27,12 @@ def updateOrderStatus(request):
         filterStatus = "Placed"
     else:
         messages.error(request, "There was an error with confirming the order for the customer")
+
+    if (order.status == "Prepared"):
+        setattr(order, "status", "Delivered")
+        filterStatus = "Delivered"
+    else:
+        messages.error(request, "There was an error updating the status of the order")
     order.save()
 
     cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = filterStatus)
