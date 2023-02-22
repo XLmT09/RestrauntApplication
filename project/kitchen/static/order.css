@@ -13,4 +13,12 @@ body {
 }
 
 h3 {text-align: center;}
+
+​.blah {
+    text-align:center
+}
+.blah > div {
+    vertical-align:top;
+    display:inline-block;   
+}
  
