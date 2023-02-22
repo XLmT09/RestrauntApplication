@@ -28,5 +28,5 @@ urlpatterns = [
     path('menu/sort-low-to-high', views.ltohSort),
     path('menu/sort-high-to-low', views.htolSort),
     path('orders/', views.orders, name = 'orders'),
-    path('delete/<int:ID>', views.deleteOrder, name = 'deleteOrder')
+    path('orders/delete/<ID>/', views.deleteOrder, name = 'deleteOrder')
 ]

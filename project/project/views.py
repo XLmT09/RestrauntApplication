@@ -33,6 +33,7 @@ def orders(request):
     return render(request, 'orders.html', {'Orders': orders})
 
 def deleteOrder(request, ID):
+    orders = Order.objects.all()
     order = Order.objects.get(ID=ID)
     order.delete()
-    return HttpResponseRedirect(reverse('orders'))
+    return render(request, 'orders.html', {'Orders': orders})
