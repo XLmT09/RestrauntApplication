@@ -106,11 +106,20 @@ select {
 #right {
   display: flex;
   align-items: left;
-  width: 50%;
 }
 #left {
   display: flex;
+  align-items: left;
+}
+
+#rightList {
+  display: flex;
   width: 50%;
+  align-items: left;
+}
+#leftList {
+  width: 50%;
+  display: flex;
   align-items: left;
 }
 

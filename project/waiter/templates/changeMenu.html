@@ -1,4 +1,4 @@
-{% extends "staffPage.html" %}{% block content %} {% load static %}
+{% extends "waiterBase.html" %}{% block content %} {% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -42,13 +42,13 @@
         </div>
         <ul>
           <div class="containerRow">
-            <div id="left">
+            <div id="leftList">
               <li>
                 Name:
                 <div class="inputBox">{{ form.name }}</div>
               </li>
             </div>
-            <div id="right">
+            <div id="rightList">
               <li>
                 Price:
                 <div class="inputBox">{{ form.price }}</div>
@@ -57,13 +57,13 @@
           </div>
 
           <div class="containerRow">
-            <div id="left">
+            <div id="leftList">
               <li>
                 Calories:
                 <div class="inputBox">{{ form.calories }}</div>
               </li>
             </div>
-            <div id="right">
+            <div id="rightList">
               <li>
                 Course:
                 <div class="inputBox">{{ form.course }}</div>
@@ -72,13 +72,13 @@
           </div>
 
           <div class="containerRow">
-            <div id="left">
+            <div id="leftList">
               <li>
                 Dietary Requirements:
                 <div class="inputBox">{{ form.dietRequirements }}</div>
               </li>
             </div>
-            <div id="right">
+            <div id="rightList">
               <li>
                 allergies:
                 <div class="inputBox">{{ form.alergies }}</div>
