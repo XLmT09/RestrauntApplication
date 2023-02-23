@@ -28,6 +28,9 @@ def updateOrderStatus(request, orderID):
     elif (order.status == "Prepared"):
         setattr(order, "status", "Delivered")
         filterStatus = "Prepared"
+    elif (order.status == "Delivered"):
+        order.delete()
+        filterStatus = "Delivered"
     else:
         messages.error(request, "There was an error updating the status of this order")
     order.save()
