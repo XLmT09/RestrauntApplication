@@ -39,6 +39,16 @@
             </button></a
           >
           {% endif %}
+
+          {% if "Waiters" in user_groups %}
+          <a class="nav-options nav-btn" href="{% url 'waiterPage' %}">
+            <button class="navButton">
+              <div class="text">Waiter Page</div>
+            </button></a
+          >
+          {% endif %}
+
+
           <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
             <button class="navButton">
               <div class="text">Logout</div>
