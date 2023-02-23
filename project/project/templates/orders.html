@@ -17,6 +17,8 @@
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
+    <script src="{% static "javascript/confirm-deletion.js" %}"></script>
+    </script>
   </head>
   <body>
     <div class="background">
@@ -33,11 +35,17 @@
                         <br/>
                         {{order.timeOfOrder}}
                     </div>
-                    <a href="delete/{{order.ID}}">
-                        <button>Delete</button>
-                    </a>
                 </div>
             </div>
+            <button id="deleteBtn{{order.ID}}" onclick="confirmDeletion({{order.ID}})">Delete</button>
+            <div id="confirmation{{order.ID}}" style="display: none;">
+              <text style="color: white;">Are you sure?</text>
+              <a href="delete/{{order.ID}}">
+                <button>Yes</button>
+              </a>
+              <button onclick="sayNo({{order.ID}})">No</button>
+            </div>
+            <br/><br/>
             {% endfor %}
         </div>
   </body>
