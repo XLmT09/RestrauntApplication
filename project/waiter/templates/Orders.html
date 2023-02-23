@@ -24,7 +24,15 @@
                     <button class = "updatestatus"
                             onclick = "updateOrderStatus(this)"
                     >
-                    Mark as prepared
+                    {% if order.status == "Placed" %}
+                        Confirm order
+                    {% endif %}
+                    {% if order.status == "Prepared" %}
+                        Mark as Delivered
+                    {% endif %}
+                    {% if order.status == "Delivered" %}
+                        Delete order
+                    {% endif %}
                     </button>
                 </div>
             </div>
