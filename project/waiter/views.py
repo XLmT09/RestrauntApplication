@@ -18,8 +18,7 @@ def viewOrders(request, orderStatus):
 
 
 
-def updateOrderStatus(request):
-    orderID = request.COOKIES.get('chosenOrderID')
+def updateOrderStatus(request, orderID):
     order = Order.objects.get(ID = orderID)
 
     if (order.status == "Placed"):
@@ -29,6 +28,9 @@ def updateOrderStatus(request):
     elif (order.status == "Prepared"):
         setattr(order, "status", "Delivered")
         filterStatus = "Prepared"
+    elif (order.status == "Delivered"):
+        order.delete()
+        filterStatus = "Delivered"
     else:
         messages.error(request, "There was an error updating the status of this order")
     order.save()
