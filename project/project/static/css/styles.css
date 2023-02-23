@@ -75,6 +75,13 @@ a {
   border-bottom: 20px solid rgb(194, 194, 194);
 }
 
+.bg4 {
+  background-color: rgb(29, 29, 39);
+  height: 80px;
+  padding: 3rem;
+  border-bottom: 5px solid rgb(194, 194, 194);
+}
+
 .bg3 {
   text-align: center;
   background-color: rgb(29, 29, 39);
