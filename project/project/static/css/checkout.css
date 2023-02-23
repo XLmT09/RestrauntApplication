@@ -55,14 +55,3 @@ svg {
   fill: white;
   cursor: pointer;
 }
-
-.submitButton {
-  background-color: transparent;
-  font-family: Montserrat;
-  color: white;
-  border-top: none;
-  border-bottom: none;
-  border-width: 4px;
-  border-color: transparent;
-  transition: border-color 0.7s ease-in;
-}

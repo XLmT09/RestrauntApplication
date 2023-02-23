@@ -23,103 +23,112 @@
     <br />
     <div class="inputContainer">
       <div class="containerRow">
-        <text>Use the below form to update the menu</text>
+        <text style="font-size:150%">Update Menu Item</text>
       </br>
       </br>
       </div>
       <form action="{% url 'changeMenu' %}" method="GET" id="menuForm">
         {% csrf_token %}
-      </form>
-      <div class="containerRow">
-        <select id="menuDropDown" onchange="location = this.value">
-          <option disabled selected hidden>Select Menu Item</option>
-          {% for item in menuData %}
-          <option value="{% url 'refreshMenu' item.name %}">
-            {{ item.name }}
-          </option>
-          {% endfor %}
-        </select>
-      </div>
-      <ul>
+      
         <div class="containerRow">
-          <div id="left">
-            <li>
-              Name:
-              <div class="inputBox">{{ form.name }}</div>
-            </li>
-          </div>
-          <div id="right">
-            <li>
-              Price:
-              <div class="inputBox">{{ form.price }}</div>
-            </li>
-          </div>
+          <select id="menuDropDown" onchange="location = this.value">
+            <option disabled selected hidden>Select Menu Item</option>
+            {% for item in menuData %}
+            <option value="{% url 'refreshMenu' item.name %}">
+              {{ item.name }}
+            </option>
+            {% endfor %}
+          </select>
         </div>
+        <ul>
+          <div class="containerRow">
+            <div id="left">
+              <li>
+                Name:
+                <div class="inputBox">{{ form.name }}</div>
+              </li>
+            </div>
+            <div id="right">
+              <li>
+                Price:
+                <div class="inputBox">{{ form.price }}</div>
+              </li>
+            </div>
+          </div>
 
-        <div class="containerRow">
-          <div id="left">
-            <li>
-              Calories:
-              <div class="inputBox">{{ form.calories }}</div>
-            </li>
+          <div class="containerRow">
+            <div id="left">
+              <li>
+                Calories:
+                <div class="inputBox">{{ form.calories }}</div>
+              </li>
+            </div>
+            <div id="right">
+              <li>
+                Course:
+                <div class="inputBox">{{ form.course }}</div>
+              </li>
+            </div>
           </div>
-          <div id="right">
-            <li>
-              Course:
-              <div class="inputBox">{{ form.course }}</div>
-            </li>
-          </div>
-        </div>
 
-        <div class="containerRow">
-          <div id="left">
-            <li>
-              Dietary Requirements:
-              <div class="inputBox">{{ form.dietRequirements }}</div>
-            </li>
+          <div class="containerRow">
+            <div id="left">
+              <li>
+                Dietary Requirements:
+                <div class="inputBox">{{ form.dietRequirements }}</div>
+              </li>
+            </div>
+            <div id="right">
+              <li>
+                allergies:
+                <div class="inputBox">{{ form.alergies }}</div>
+              </li>
+            </div>
           </div>
-          <div id="right">
-            <li>
-              allergies:
-              <div class="inputBox">{{ form.alergies }}</div>
-            </li>
-          </div>
-        </div>
 
-        <br />
-        <li style="text-align: center">
-          Description: <br />
           <br />
-          {{ form.description }}
-        </li>
-        <br />
-      </ul>
-    
-    <div class="buttonRow">
-      <input type="submit" class="submitButton" value="Save & Submit" />
-      <button type="button" class="submitButton">
-        <a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a>
-      </button>
-    
+          <li style="text-align: center">
+            Description: <br />
+            <br />
+            {{ form.description }}
+          </li>
+          <br />
+        </ul>
       
-        {% if itemToDelete != None %}
-        <button
-          class="submitButton"
-          type="button"
-          value="Enabled"
-          onclick="return confirm('Are you sure you want to delete this item?');"
-        >
-          <a href="{% url 'deleteItem' itemToDelete %}" id="buttonText"
-            >Delete Item</a
+        <div class="buttonRow">
+          <input type="submit" class="submitButton" value="Save & Submit" />
+          <button type="button" class="submitButton">
+            <a href="{% url 'changeMenu' %}" id="buttonText">Clear Form</a>
+          </button>
+      
+        
+          {% if itemToDelete != None %}
+          <button
+            class="submitButton"
+            type="button"
+            value="Enabled"
+            onclick="return confirm('Are you sure you want to delete this item?');"
           >
-        </button>
-        {% else %}
-        <button type="button" disabled value="Disabled" class="submitButton">
-          <a id="buttonText">Delete Item</a>
-        </button>
+            <a href="{% url 'deleteItem' itemToDelete %}" id="buttonText"
+              >Delete Item</a
+            >
+          </button>
+          {% else %}
+          <button type="button" disabled value="Disabled" class="submitButton">
+            <a id="buttonText">Delete Item</a>
+          </button>
+          {% endif %}
+        
+        </div>
+        {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+              {% endfor %}
+          </ul>
         {% endif %}
-      
-    </div>
+        
+      </form>
   </body>
 </html>
 {% endblock content %}
