@@ -30,6 +30,12 @@
       li {
         font-size: 10px;
       }
+
+      #orderHeadings {
+        color: white;
+        font-size: 20px;
+      }
+
     </style>
 
     {% if title %}
@@ -45,6 +51,36 @@
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
+
+    <script>
+      function getSelectedValue(){
+        choices = document.getElementsByName("orderChoices");
+        let selectedOrder = false;
+        for (let i of choices){
+          if (i.checked){
+            setCookie("chosenOrderID", i.value, 3000);
+            selectedOrder = true;
+            break;
+          }
+        }
+        if(selectedOrder){
+          alert("Order has been confirmed");
+        } else {
+          alert("Please select an order that you wish to confirm")
+        }
+      }
+
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 3 * 1000);
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+    </script>
+
+
+
   </head>
 
   <body>
@@ -85,12 +121,37 @@
             <button class="navButton">
               <div class="text">Update Menu</div>
             </button>
+            </a>
+
+            <a class="nav-options nav-btn" href="{% url 'clientHelpRequests' %}">
+              <button class="navButton">
+                <div class="text">Client Help Requests</div>
+              </button>
+            </a>
+            
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Placed' %}">
           </a>
 
           <a class="nav-options nav-btn" , href="{% url 'viewOrders' %}">
             <button class="navButton">
+                <div class="text">Placed Orders</div>
               <div class="text">View Orders</div>
             </button>
+            </a>
+
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Prepared' %}">
+              <button class="navButton">
+                  <div class="text">Prepared Orders</div>
+              </button>
+            </a>
+
+            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Delivered' %}">
+              <button class="navButton">
+                  <div class="text">Delivered Orders</div>
+              </button>
+            </a>
+            
+
           </a>
         </div>
       </div>

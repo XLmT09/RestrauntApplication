@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Client Help Requests</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Customer ID</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for request in help_requests %}
+        <tr>
+          <td>{{ request.customerID }}</td>
+          <td>{{ request.message }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+

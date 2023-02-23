@@ -10,10 +10,39 @@ def staff(request):
     return render(request, "staffPage.html", {'title' : 'staff'})
 
 # Make http requests on page that gives list of customer orders
-def viewOrders(request):
+def viewOrders(request, orderStatus):
     # retrive all customer orders from oldest to newest
-    cust_orders = Order.objects.all().order_by('timeOfOrder')
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
+
     return render(request, "orders.html", {'cust_orders': cust_orders})
+
+
+
+def updateOrderStatus(request):
+    orderID = request.COOKIES.get('chosenOrderID')
+    order = Order.objects.get(ID = orderID)
+
+    if (order.status == "Placed"):
+        setattr(order, "status", "Confirmed")
+        filterStatus = "Placed"
+
+    elif (order.status == "Prepared"):
+        setattr(order, "status", "Delivered")
+        filterStatus = "Prepared"
+    else:
+        messages.error(request, "There was an error updating the status of this order")
+    order.save()
+
+    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = filterStatus)
+
+    #sends message to customer once order is confirmed 
+    customer_id = order.customerID
+    messages.info(request, f"The order (#{orderID}) has been confirmed by a member of staff.")
+
+    #message sent to the waiter notifying them of the message being delivered to the customer 
+    messages.success(request, f"Message confirming this order has been sent to {customer_id}.")
+
+    return render(request, "orders.html", {'cust_orders': cust_orders}) 
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):

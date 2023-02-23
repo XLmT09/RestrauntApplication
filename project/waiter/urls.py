@@ -4,6 +4,10 @@ urlpatterns = [
     path('updateMenu', views.changeMenu, name = 'changeMenu'),
     path('updateMenu/<str:item>', views.refreshMenu, name = 'refreshMenu'),
     path('', views.staff, name = 'staffPage'),
-    path("orders", views.viewOrders, name = "viewOrders"),
+    path("<str:orderStatus> orders", views.viewOrders, name = "viewOrders"),
     path("deleteItem/<str:itemToDelete>", views.deleteItem, name="deleteItem"),
+
+    path("orders/updateStatus", views.updateOrderStatus, name="updateStatus"),
+
+    path('clientHelpRequests', views.viewOrders, name='clientHelpRequests'), 
 ]
