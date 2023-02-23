@@ -1,6 +1,7 @@
 {% extends "kitchenBase.html" %} {% block content %}
 {%load static %}
-<link rel="stylesheet" href="{% static 'order.css' %}" />
+<link rel="stylesheet" href="{% static 'css/order.css' %}" />
+<script src = "{% static 'javascript/order.js' %}"></script>
 <div class = "background">
 	<div class = "orderbox">
 		<div class = "title">Orders</div>
@@ -20,8 +21,8 @@
 				Placed at: {{order.timeOfOrder}}
 			</div>
 			<div class = "statusbar">
-				<button class = "changestatus"
-						onlick = "changeOrderStatus()"
+				<button class = "updatestatus"
+						onclick = "updateOrderStatus(this)"
 				>
 				Mark as prepared
 				</button>
