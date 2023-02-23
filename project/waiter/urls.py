@@ -9,5 +9,5 @@ urlpatterns = [
 
     path("orders/updateStatus/<int:orderID>", views.updateOrderStatus, name="updateStatus"),
 
-    path('clientHelpRequests', views.viewOrders, name='clientHelpRequests'), 
+    path('clientHelpRequests', views.viewHelpRequests, name='clientHelpRequests'), 
 ]

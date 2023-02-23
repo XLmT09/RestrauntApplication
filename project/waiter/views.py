@@ -3,6 +3,7 @@ from django.contrib import messages
 from .forms import menuUpdateForm
 from project.models import MenuItem
 from project.models import Order
+from project.models import HelpRequest
 from django.shortcuts import redirect
 
 # Make http requests to the waiter page
@@ -79,3 +80,6 @@ def refreshMenu(request, item):
     else:
         form = menuUpdateForm(instance=MenuItem.objects.get(name=item))
     return render(request, "changeMenu.html", {'form' : form, 'menuData': MenuItem.objects.all(), 'itemToDelete': item})
+
+def viewHelpRequests(request):
+    return render(request, "clientHelpRequests.html", {'help_requests' : HelpRequest.objects.all()})
