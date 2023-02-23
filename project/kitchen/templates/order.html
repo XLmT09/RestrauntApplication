@@ -1,0 +1,36 @@
+{% extends "kitchenBase.html" %} {% block content %}
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/order.css' %}" />
+<script src = "{% static 'javascript/order.js' %}"></script>
+<div class = "background">
+	<div class = "orderbox">
+		<div class = "title">Orders</div>
+
+		{% for order in cust_orders %} {% if order.status == "Confirmed" %}
+
+		<div class = "order">
+			<div class = "ordersummary">
+				<div class = "orderno">{{order.ID}}</div>
+				<div class = "orderstatus">{{order.status}}</div>
+			</div>
+			<div class = "orderdetails">
+				Items: {{order.orderedItems}}
+				<br/><br/>
+				Placed by: {{order.customerID}}
+				<br/><br/>
+				Placed at: {{order.timeOfOrder}}
+			</div>
+			<div class = "statusbar">
+				<button class = "updatestatus"
+						onclick = "updateOrderStatus(this)"
+				>
+				Mark as prepared
+				</button>
+			</div>
+		</div>
+
+		{%endif%}{%endfor%}
+
+	</div>
+</div>
+{% endblock content %}

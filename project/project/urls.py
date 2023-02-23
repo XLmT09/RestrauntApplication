@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.homePage , name = 'home'),
     path('account/', include('account.url')),
     path('waiter/', include('waiter.urls')),
+    path('kitchen/', include('kitchen.urls')),
     path('customer/', views.home , name = 'home2'),
     path('management/', views.results,  name = 'results'),
     path('menu/', views.menu,  name = 'menu'),
