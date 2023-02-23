@@ -21,9 +21,8 @@
                     Placed at: {{order.timeOfOrder}}
                 </div>
                 <div class = "statusbar">
-                    <button class = "updatestatus"
-                            onclick = "updateOrderStatus(this)"
-                    >
+                    <button class = "updatestatus">
+                    <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
                     {% if order.status == "Placed" %}
                         Confirm order
                     {% endif %}
@@ -33,14 +32,12 @@
                     {% if order.status == "Delivered" %}
                         Delete order
                     {% endif %}
+                    </a>
                     </button>
                 </div>
             </div>
     
             {%endfor%}
-
-            <button type="button" onclick="getSelectedValue();"><a href="{% url 'updateStatus' %}" id="buttonText">Confirm Order</a></button>
-
     
         </div>
     </div>

@@ -18,8 +18,7 @@ def viewOrders(request, orderStatus):
 
 
 
-def updateOrderStatus(request):
-    orderID = request.COOKIES.get('chosenOrderID')
+def updateOrderStatus(request, orderID):
     order = Order.objects.get(ID = orderID)
 
     if (order.status == "Placed"):
