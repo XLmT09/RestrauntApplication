@@ -1,24 +1,39 @@
     {% extends "staffPage.html" %} 
     {% block content %} 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/changeMenu.css' %}" />
+   <link rel="stylesheet" href="{% static 'css/order.css' %}" />
+    <div class = "background">
+        <div class = "orderbox">
+            <div class = "title">Orders</div>
+    
+            {% for order in cust_orders %}
+    
+            <div class = "order">
+                <div class = "ordersummary">
+                    <div class = "orderno">{{order.ID}}</div>
+                    <div class = "orderstatus">{{order.status}}</div>
+                </div>
+                <div class = "orderdetails">
+                    Items: {{order.orderedItems}}
+                    <br/><br/>
+                    Placed by: {{order.customerID}}
+                    <br/><br/>
+                    Placed at: {{order.timeOfOrder}}
+                </div>
+                <div class = "statusbar">
+                    <button class = "updatestatus"
+                            onclick = "updateOrderStatus(this)"
+                    >
+                    Mark as prepared
+                    </button>
+                </div>
+            </div>
+    
+            {%endfor%}
 
-    <div class="bg">
+            <button type="button" onclick="getSelectedValue();"><a href="{% url 'updateStatus' %}" id="buttonText">Confirm Order</a></button>
 
-        <h3 id="heading">Customer Orders</h3>
-        <form name = "myForm">
-        {% for order in cust_orders %}
-
-        <input type="radio" name="orderChoices" value = {{order.ID}}><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
-        <a> Status: {{ order.status }} </a> <br>
-        <a> Ordered by: {{ order.customerID }} </a> <br>
-        <a> Ordered at: {{ order.timeOfOrder }} </a> <br>
-        <a> Ordered items: {{ order.orderedItems }} </a> <br> <br>
-
-        {% endfor %}
-        </form>
-
-        <button type="button" onclick="getSelectedValue();"><a href="{% url 'updateStatus' %}" id="buttonText">Confirm Order</a></button>
-
+    
+        </div>
     </div>
-    {% endblock content %} 
+    {% endblock content %}
