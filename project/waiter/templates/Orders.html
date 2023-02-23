@@ -1,6 +1,9 @@
     {% extends "staffPage.html" %} 
     {% block content %} 
     {% load static %}
+
+    <script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
+
    <link rel="stylesheet" href="{% static 'css/order.css' %}" />
     <div class = "background">
         <div class = "orderbox">
@@ -34,6 +37,19 @@
                     {% endif %}
                     </a>
                     </button>
+                </div>
+                {% if order.status == "Placed" %}
+                <div class = "statusbar">
+                    <button class = "updatestatus"><a href="{% url 'deleteOrder' order.ID %}" id="buttonText">Cancel Order</a></button>
+                    
+                    <div id="confirmation{{order.ID}}" style="display: none;">
+                        <text style="color: white;">Are you sure?</text>
+                        <a href="delete/{{order.ID}}">
+                          <button class = "updatestatus">Yes</button>
+                        </a>
+                        <button class = "updatestatus" onclick="sayNo({{order.ID}})">No</button>
+                      </div>
+                    {% endif %}
                 </div>
             </div>
     

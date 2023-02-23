@@ -83,3 +83,9 @@ def refreshMenu(request, item):
 
 def viewHelpRequests(request):
     return render(request, "clientHelpRequests.html", {'help_requests' : HelpRequest.objects.all()})
+
+def deleteOrder(request, ID):
+    order = Order.objects.get(ID=ID)
+    order.delete()
+    placed_orders = Order.objects.all().order_by('timeOfOrder').filter(status = "Placed")
+    return render(request, 'orders.html', {'cust_orders': placed_orders})
