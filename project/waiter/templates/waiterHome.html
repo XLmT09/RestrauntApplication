@@ -5,21 +5,18 @@
 <div class = "grid-container">
     <div class = "grid-item">
       <button class="choiceButton">
-        <a href="{% url 'clientHelpRequests' %}" class="choiceText">View Help Requests</a>
+        <a href="{% url 'clientHelpRequests' %}" id="choiceText">View Help Requests</a>
       </button>
     </div>
     <div class = "grid-item">
         <button class = "choiceButton" onclick="displayPopup();">
-            <a class="choiceText">View Orders</a>
+            <a id="choiceText">View Orders</a>
         </button>
-        
-
-        <!-- load popup when clicked with choice of status -->
         
     </div>
     <div class = "grid-item">
         <button class="choiceButton">
-            <a href="{% url 'changeMenu' %}" class="choiceText">Update Menu</a>
+            <a href="{% url 'changeMenu' %}" id="choiceText">Update Menu</a>
         </button>
     </div>
     <div class = "grid-item">
