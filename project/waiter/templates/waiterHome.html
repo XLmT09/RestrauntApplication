@@ -1,0 +1,42 @@
+{% extends 'waiterBase.html' %}
+
+{% block content %}
+
+<div class = "grid-container">
+    <div class = "grid-item">
+      <button class="choiceButton">
+        <a href="{% url 'clientHelpRequests' %}" class="choiceText">View Help Requests</a>
+      </button>
+    </div>
+    <div class = "grid-item">
+        <button class = "choiceButton" onclick="displayPopup();">
+            <a class="choiceText">View Orders</a>
+        </button>
+        
+
+        <!-- load popup when clicked with choice of status -->
+        
+    </div>
+    <div class = "grid-item">
+        <button class="choiceButton">
+            <a href="{% url 'changeMenu' %}" class="choiceText">Update Menu</a>
+        </button>
+    </div>
+    <div class = "grid-item">
+      <button class="choiceButton">View Payments</button>
+    </div>
+</div>
+
+<div class="order-popup" id="orderPopup">
+    <button class="navButton">
+        <a href="{% url 'viewOrders' 'Placed' %}" class="choiceText">View Placed Orders</a>
+    </button>
+    <button class="navButton">
+        <a href="{% url 'viewOrders' 'Prepared' %}" class="choiceText">View Prepared Orders</a>
+    </button>
+    <button class="navButton">
+        <a href="{% url 'viewOrders' 'Delivered' %}" class="choiceText">View Delivered Orders</a>
+    </button>
+</div>
+
+{% endblock %}

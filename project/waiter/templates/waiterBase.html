@@ -46,7 +46,10 @@
 
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/waiterHome.css' %}" />
     <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <script src="{% static 'javascript/orderPopup.js' %}" defer></script>
+    
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
@@ -63,6 +66,13 @@
           </div>
         </div>
         <div id="right">
+
+          <a href="{% url 'home' %}">
+            <button class="navButton">
+              <div class="text">Home</div>
+            </button>
+          </a>
+
           {% if user.is_authenticated %}
           <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
             <button class="navButton">
@@ -87,45 +97,10 @@
             </button>
           </a>
           {% endif %}
-
-          <a class="nav-options nav-btn" , href="{% url 'changeMenu' %}">
-            <button class="navButton">
-              <div class="text">Update Menu</div>
-            </button>
-            </a>
-
-            <a class="nav-options nav-btn" href="{% url 'clientHelpRequests' %}">
-              <button class="navButton">
-                <div class="text">Client Help Requests</div>
-              </button>
-            </a>
             
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Placed' %}">
-          </a>
-
-          <a class="nav-options nav-btn" , href="{% url 'viewOrders' 'Placed' %}">
-            <button class="navButton">
-                <div class="text">Placed Orders</div>
-              
-            </button>
-            </a>
-
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Prepared' %}">
-              <button class="navButton">
-                  <div class="text">Prepared Orders</div>
-              </button>
-            </a>
-
-            <a class = "nav-options nav-btn", href="{% url 'viewOrders' 'Delivered' %}">
-              <button class="navButton">
-                  <div class="text">Delivered Orders</div>
-              </button>
-            </a>
-            
-
-          </a>
         </div>
       </div>
+
       <div>{% block content %}{% endblock %}</div>
     </div>
   </body>
