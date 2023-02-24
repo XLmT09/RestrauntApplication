@@ -28,7 +28,15 @@
 </div>
 
 <div class="order-popup" id="orderPopup">
-    <h2 class = "popupText">placeholder text for popup</h2>
+    <button class="navButton">
+        <a href="{% url 'viewOrders' 'Placed' %}" class="choiceText">View Placed Orders</a>
+    </button>
+    <button class="navButton">
+        <a href="{% url 'viewOrders' 'Prepared' %}" class="choiceText">View Prepared Orders</a>
+    </button>
+    <button class="navButton">
+        <a href="{% url 'viewOrders' 'Delivered' %}" class="choiceText">View Delivered Orders</a>
+    </button>
 </div>
 
 {% endblock %}
