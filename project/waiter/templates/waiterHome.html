@@ -9,14 +9,26 @@
       </button>
     </div>
     <div class = "grid-item">
-      <button class="choiceButton">View Orders</button>
+        <button class = "choiceButton" onclick="displayPopup();">
+            <a class="choiceText">View Orders</a>
+        </button>
+        
+
+        <!-- load popup when clicked with choice of status -->
+        
     </div>
     <div class = "grid-item">
-      <a href="{% url 'changeMenu' %}" class="choiceText">Update Menu</a>
+        <button class="choiceButton">
+            <a href="{% url 'changeMenu' %}" class="choiceText">Update Menu</a>
+        </button>
     </div>
     <div class = "grid-item">
       <button class="choiceButton">View Payments</button>
     </div>
+</div>
+
+<div class="order-popup" id="orderPopup">
+    <h2 class = "popupText">placeholder text for popup</h2>
 </div>
 
 {% endblock %}
