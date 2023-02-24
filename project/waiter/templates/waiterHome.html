@@ -1,0 +1,22 @@
+{% extends 'waiterBase.html' %}
+
+{% block content %}
+
+<div class = "grid-container">
+    <div class = "grid-item">
+      <button class="choiceButton">
+        <a href="{% url 'clientHelpRequests' %}" class="choiceText">View Help Requests</a>
+      </button>
+    </div>
+    <div class = "grid-item">
+      <button class="choiceButton">View Orders</button>
+    </div>
+    <div class = "grid-item">
+      <a href="{% url 'changeMenu' %}" class="choiceText">Update Menu</a>
+    </div>
+    <div class = "grid-item">
+      <button class="choiceButton">View Payments</button>
+    </div>
+</div>
+
+{% endblock %}

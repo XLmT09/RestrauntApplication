@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 
 # Make http requests to the waiter page
 def staff(request):
-    return render(request, "staffPage.html", {'title' : 'staff'})
+    return render(request, "waiterHome.html", {'title' : 'staff'})
 
 # Make http requests on page that gives list of customer orders
 def viewOrders(request, orderStatus):
@@ -16,7 +16,6 @@ def viewOrders(request, orderStatus):
     cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
 
     return render(request, "orders.html", {'cust_orders': cust_orders})
-
 
 
 def updateOrderStatus(request, orderID):
