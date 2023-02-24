@@ -52,3 +52,7 @@
   .navButton:hover {
     border-color: white;
   }
+
+  .choiceText{
+    font-size: 30px;
+  }
