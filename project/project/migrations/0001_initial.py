@@ -22,7 +22,6 @@ class Migration(migrations.Migration):
                 ('price', models.FloatField(null=True)),
                 ('calories', models.IntegerField(null=True)),
                 ('cuisine', models.CharField(max_length=10, null=True)),
-                ('ingredients', django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), size=None)),
                 ('alergies', django.contrib.postgres.fields.ArrayField(base_field=models.TextField(), size=None)),
                 ('description', models.TextField()),
                 ('course', models.CharField(choices=[('Starter', 'Starter'), ('Main', 'Main'), ('Dessert', 'Dessert'), ('Side', 'Side'), ('Drink', 'Drink')], default='Main', max_length=10)),

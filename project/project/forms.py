@@ -11,7 +11,7 @@ class menuUpdateForm(forms.ModelForm):
     description = forms.CharField(widget=forms.Textarea(attrs={'rows':4}))
     class Meta:
         model = MenuItem
-        fields = ["name", "price", "calories", "ingredients", "course", "dietRequirements","alergies", "description"]
+        fields = ["name", "price", "calories", "course", "dietRequirements","alergies", "description"]
 
 
 class helpRequestForm(forms.ModelForm):
