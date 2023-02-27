@@ -2,4 +2,23 @@
 
 {% block content %}
 
+<div class="paymentTable">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Amount Paid</th>
+            <th>Paid by</th>
+            <th>Paid at</th>
+        </tr>
+        {% for payment in cust_payments %}
+            <tr>
+                <td>{{payment.paymentID}}</td>
+                <td>{{payment.paymentAmount}}</td>
+                <td>{{payment.customerID}}</td>
+                <td>{{payment.timeOfPayment}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
 {% endblock %}
