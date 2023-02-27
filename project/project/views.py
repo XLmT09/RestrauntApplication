@@ -3,6 +3,7 @@ from django.db import models
 from .models import MenuItem
 from .models import Order
 from .models import HelpRequest
+from waiter.models import Payment
 from django.contrib.auth.decorators import login_required
 from . import models
 from .forms import helpRequestForm
@@ -72,11 +73,19 @@ def checkout(request):
 def orderComplete(request):
     Ids = request.COOKIES.get('itemIds').split(',')
     idIntList = []
+    orderCost = 0
     for id in Ids:
         idIntList.append(int(id))
-    
+
+        orderedItem = MenuItem.objects.get(ID = int(id))
+        orderCost += orderedItem.price
+
     order = models.Order(customerID=request.user,status='Placed',orderedItems=idIntList)
     order.save()
+
+    newPayment = Payment.objects.create(customerID = request.user, orderID = order, paymentAmount = orderCost)
+    newPayment.save()
+
     return render(request, 'orderComplete.html')
 
 # add order - set status to placed
