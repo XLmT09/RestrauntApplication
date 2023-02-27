@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="paymentTable">
+<div class="paymentDetails">
     <table>
         <tr>
             <th>ID</th>
@@ -18,7 +18,14 @@
                 <td>{{payment.timeOfPayment}}</td>
             </tr>
         {% endfor %}
+        <td>Total income: </td>
+        <td>£{{income}}</td>
     </table>
+
+    <div class="incomeLabel">
+        <a>Total Income: £{{income}}</a>
+    </div>
+
 </div>
 
 {% endblock %}

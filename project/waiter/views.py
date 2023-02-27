@@ -92,4 +92,7 @@ def deleteOrder(request, ID):
 
 def customer_payments(request):
     all_payments = Payment.objects.all()
-    return render(request, "paymentInfo.html", {'cust_payments':all_payments})
+    totalIncome = 0
+    for payment in all_payments:
+        totalIncome += payment.paymentAmount
+    return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
