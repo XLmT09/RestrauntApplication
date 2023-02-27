@@ -88,3 +88,8 @@ def deleteOrder(request, ID):
     order.delete()
     placed_orders = Order.objects.all().order_by('timeOfOrder').filter(status = "Placed")
     return render(request, 'orders.html', {'cust_orders': placed_orders})
+
+
+
+def customer_payments(request):
+    return render(request, "paymentInfo.html")
