@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  <script src="{% static 'javascript/menu.js' %}" defer></script>
+  <script src="{% static 'javascript/payment.js' %}" defer></script>
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -17,51 +17,58 @@
   <body>
     <div class="paymentBox">
       Name on card *
-      <input class="nameInput" type="text" placeholder="Name On Card"></input>
+      </br>
+      <text id=nameError style="color:red"></text>
+      <input class="nameInput" type="text" placeholder="Name On Card" id="name"></input>
       Card Number *
-      <input class="cardNumber" type="tel" placeholder="Card Number"></input>
+      </br>
+      <text id=numberError style="color:red"></text>
+      <input class="cardNumber" type="tel" placeholder="Card Number" id="cardNumber" value="4003600000000014"></input>
+     
       expiartion date * <text style="float: right;">security code *</text>
+      </br>
+      <text id ="inavlidSecurity" style="display:block;width:100%;text-align: right;color:red;"></text>
       <div>
         <select >
-          <option value="volvo">1</option>
-          <option value="volvo">2</option>
-          <option value="volvo">3</option>
-          <option value="volvo">4</option>
-          <option value="volvo">5</option>
-          <option value="volvo">6</option>
-          <option value="volvo">7</option>
-          <option value="volvo">8</option>
-          <option value="volvo">9</option>
-          <option value="volvo">10</option>
-          <option value="volvo">11</option>
-          <option value="volvo">12</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="vol3vo">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
         </select>
         <select >
-          <option value="volvo">2023</option>
-          <option value="volvo">2024</option>
-          <option value="volvo">2025</option>
-          <option value="volvo">2026</option>
-          <option value="volvo">2027</option>
-          <option value="volvo">2028</option>
-          <option value="volvo">2029</option>
-          <option value="volvo">2030</option>
-          <option value="volvo">2031</option>
-          <option value="volvo">2032</option>
-          <option value="volvo">2033</option>
-          <option value="volvo">2034</option>
-          <option value="volvo">2035</option>
-          <option value="volvo">2036</option>
-          <option value="volvo">2037</option>
-          <option value="volvo">2038</option>
-          <option value="volvo">2039</option>
-          <option value="volvo">2040</option>
-          <option value="volvo">2041</option>
-          <option value="volvo">2042</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+          <option value="2031">2031</option>
+          <option value="2032">2032</option>
+          <option value="2033">2033</option>
+          <option value="2034">2034</option>
+          <option value="2035">2035</option>
+          <option value="2036">2036</option>
+          <option value="2037">2037</option>
+          <option value="2038">2038</option>
+          <option value="2039">2039</option>
+          <option value="2040">2040</option>
+          <option value="2041">2041</option>
+          <option value="2042">2042</option>
         </select>
         
-        <input type="number" max="999"></input>
+        <input type="number" max="999" id="security"></input>
     </div>
-    <button class="payButton"> Confirm order and pay </button>
+    <button class="payButton" onclick="checkInputs()"> Confirm order and pay </button>
     </div>
   </body>
 </html>
