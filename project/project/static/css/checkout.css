@@ -55,3 +55,51 @@ svg {
   fill: white;
   cursor: pointer;
 }
+
+.paymentBox {
+  text-align: left;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  top: 25%;
+  width: 35%;
+  font-size: 90%;
+  font-family: Montserrat;
+  color: white;
+}
+
+select {
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="tel"] {
+  width: 100%;
+}
+input[type="text"] {
+  width: 100%;
+}
+
+input[type="number"] {
+  float: right;
+  width: 20%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.payButton {
+  width: 100%;
+  border-radius: 90px;
+  padding: 5px;
+}
