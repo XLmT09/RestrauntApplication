@@ -70,13 +70,13 @@ def checkout(request):
     return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
 def orderComplete(request):
-    #Ids = request.COOKIES.get('itemIds').split(',')
-    #idIntList = []
-    #for id in Ids:
-    #    idIntList.append(int(id))
+    Ids = request.COOKIES.get('itemIds').split(',')
+    idIntList = []
+    for id in Ids:
+        idIntList.append(int(id))
     
-    #order = models.Order(customerID=request.user,status='Placed',orderedItems=idIntList)
-    #order.save()
+    order = models.Order(customerID=request.user,status='Placed',orderedItems=idIntList)
+    order.save()
     return render(request, 'orderComplete.html')
 
 # add order - set status to placed
