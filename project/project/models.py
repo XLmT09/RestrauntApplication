@@ -30,6 +30,7 @@ class MenuItem(models.Model):
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
     dietRequirements = models.CharField(max_length=10,choices=MenuItemRequirements.choices, null=False, default="None")
     ID = models.IntegerField(null=True)
+    imgurl = models.URLField(default = 'https://drive.proton.me/urls/ZSNK82MYCM#RLw8zlaNRCxu')
 # Table which will store all live orders from customers
 class Order(models.Model):
     # Add meta data to the order table
