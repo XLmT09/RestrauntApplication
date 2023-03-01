@@ -1,6 +1,6 @@
 function LuhnsAlgorithm() {
   var cardNumber = document.getElementById("cardNumber").value;
-  console.log(typeof cardNumber);
+
   var evenPosition = 0;
   var oddPosition = 0;
   for (let i = 0; i < cardNumber.length; i++) {
@@ -26,9 +26,8 @@ function LuhnsAlgorithm() {
 
 function checkName() {
   var name = document.getElementById("name").value;
-  console.log(name);
 
-  if (name.length == 0) {
+  if (name == "" || /^[A-Za-z]*$/.test(name) == false) {
     document.getElementById("nameError").textContent = "Inavlid name";
     return false;
   } else {
@@ -39,6 +38,7 @@ function checkName() {
 
 function checkSecurity() {
   var security = document.getElementById("security").value;
+
   if (security.length != 3) {
     document.getElementById("inavlidSecurity").textContent =
       "Inavlid security code";
@@ -50,7 +50,11 @@ function checkSecurity() {
 }
 
 function checkInputs() {
-  if (LuhnsAlgorithm() && checkName() && checkSecurity()) {
+  var validCardNumber = LuhnsAlgorithm();
+  var ValidName = checkName();
+  var ValidsecurityCode = checkSecurity();
+
+  if (validCardNumber && ValidName && ValidsecurityCode) {
     window.location.href = "/completePayment/";
   }
 }
