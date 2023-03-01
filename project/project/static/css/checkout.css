@@ -103,3 +103,22 @@ input::-webkit-inner-spin-button {
   border-radius: 90px;
   padding: 5px;
 }
+
+.homeButton {
+  background-color: transparent;
+  border-color: rgba(225, 225, 225, 0);
+  border-style: solid;
+  border-width: 4px;
+  border-bottom: none;
+  font-size: 100%;
+  border-top: none;
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+
+  transition: border-color 0.7s ease-in;
+}
+
+.homeButton:hover {
+  border-color: white;
+}
