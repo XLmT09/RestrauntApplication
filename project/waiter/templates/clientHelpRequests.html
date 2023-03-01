@@ -1,6 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: rgb(29, 29, 39);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid white;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: rgb(44, 44, 59);
+    }
+    tr:nth-child(even) {
+      background-color: rgb(50, 50, 68);
+    }
+    tr:hover {
+      background-color: rgb(71, 71, 91);
+    }
+  </style>
   <h1>Client Help Requests</h1>
   <table>
     <thead>
