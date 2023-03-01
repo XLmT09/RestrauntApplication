@@ -15,7 +15,15 @@ function LuhnsAlgorithm() {
       oddPosition += parseInt(cardNumber.charAt(i));
     }
   }
-  if (!((evenPosition + oddPosition) % 10 == 0)) {
+  console.log((evenPosition + oddPosition) % 10 == 0);
+  console.log(cardNumber.length >= 16 && cardNumber.length <= 19);
+  if (
+    !(
+      (evenPosition + oddPosition) % 10 == 0 &&
+      cardNumber.length >= 16 &&
+      cardNumber.length <= 19
+    )
+  ) {
     document.getElementById("numberError").textContent = "Invalid card number";
     return false;
   } else {
