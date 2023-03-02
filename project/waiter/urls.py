@@ -11,4 +11,5 @@ urlpatterns = [
     path('orders/delete/<int:ID>', views.deleteOrder, name = 'deleteOrder'),
 
     path('clientHelpRequests', views.viewHelpRequests, name='clientHelpRequests'), 
+    path('payment-info', views.customer_payments, name='showPayments'), 
 ]
