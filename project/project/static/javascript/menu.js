@@ -1,6 +1,7 @@
 var itemsOrdered = [];
 var itemIds = [];
 var itemWithId = [];
+
 function addItem(id, addSubtract, price, name, itemId) {
   console.log(itemId);
   var element = document.getElementById(id);
@@ -17,7 +18,7 @@ function addItem(id, addSubtract, price, name, itemId) {
   if (numberOfItems > 0 && addSubtract < 0) {
     numberOfItems = numberOfItems - 1;
     element.innerHTML = numberOfItems;
-    basket.innerHTML = parseFloat(priceText) - parseFloat(newPrice);
+    basket.innerHTML = (parseFloat(priceText) - parseFloat(newPrice)).toFixed(2);
     var index = itemsOrdered.indexOf([name, price]);
     var idIndex = itemIds.indexOf(id);
     itemsOrdered.splice(index, 1);
@@ -26,7 +27,7 @@ function addItem(id, addSubtract, price, name, itemId) {
   } else if (addSubtract > 0) {
     numberOfItems = numberOfItems + 1;
     element.innerHTML = numberOfItems;
-    basket.innerHTML = parseFloat(priceText) + parseFloat(newPrice);
+    basket.innerHTML = (parseFloat(priceText) + parseFloat(newPrice)).toFixed(2);
     itemsOrdered.push([name, price]);
     itemIds.push(itemId);
     itemWithId.push(name);
@@ -56,7 +57,7 @@ function getCookie(cname) {
   return "";
 }
 
-function checkout(user) {
+function checkout() {
   setCookie("items", itemsOrdered, 3000);
   setCookie("itemIds", itemIds, 3000);
   setCookie("itemWithIds", itemWithId, 3000);
@@ -84,12 +85,12 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
     document.getElementById("TotalQuantity").textContent
   );
 
-  if (quantity > 0 && operation < 0) {
+  if (quantity > 1 && operation < 0) {
     document.getElementById(itemName).textContent = quantity - 1;
     var newPrice = itemTotal - individualPrice;
     var newTotal = totalPrice - individualPrice;
-    document.getElementById(itemName + itemPrice).textContent = "£" + newPrice;
-    document.getElementById("TotalPrice").textContent = "£" + newTotal;
+    document.getElementById(itemName + itemPrice).textContent = "£" + newPrice.toFixed(2);
+    document.getElementById("TotalPrice").textContent = "£" + newTotal.toFixed(2);
     document.getElementById("TotalQuantity").textContent = totalQuantity - 1;
     items.splice(items.at(items.indexOf(itemName)), 2);
     Ids.splice(Ids.indexOf(itemId), 1);
@@ -100,8 +101,8 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
     document.getElementById(itemName).textContent = quantity + 1;
     var newPrice = itemTotal + individualPrice;
     var newTotal = totalPrice + individualPrice;
-    document.getElementById(itemName + itemPrice).textContent = "£" + newPrice;
-    document.getElementById("TotalPrice").textContent = "£" + newTotal;
+    document.getElementById(itemName + itemPrice).textContent = "£" + newPrice.toFixed(2);
+    document.getElementById("TotalPrice").textContent = "£" + newTotal.toFixed(2);
     document.getElementById("TotalQuantity").textContent = totalQuantity + 1;
     Ids.push(itemId);
     items.push(itemName);

@@ -40,7 +40,7 @@
         </a>
 
         <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
-          <button class="navButton" onclick="checkout({{ user.id }})">
+          <button class="navButton" onclick="checkout()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -52,7 +52,7 @@
               />
             </svg>
             <div class="text" style="float: right">
-              £<text id="basket">0</text>
+              £<text id="basket">0.00</text>
             </div>
           </button></a>
 
@@ -158,7 +158,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             > -
               
             </button>
@@ -166,7 +166,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             >+
               
             </button>
@@ -195,7 +195,7 @@
             <div class="orderingBar">
               <button
                 class="orderButton"
-                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
               > -
                 
               </button>
@@ -203,7 +203,7 @@
               <button
                 class="orderButton"
                 style="float: right"
-                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
               >+
                 
               </button>
@@ -235,7 +235,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             > -
               
             </button>
@@ -243,7 +243,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             >+
               
             </button>
@@ -273,7 +273,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             > -
               
             </button>
@@ -281,7 +281,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             >+
               
             </button>
@@ -313,7 +313,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             > -
               
             </button>
@@ -321,7 +321,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
             >+
               
             </button>

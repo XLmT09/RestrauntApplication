@@ -63,12 +63,15 @@ def checkout(request):
     for i in usedItems:
         numberOfItems = itemArray.count(i)
         itemNumber = itemNumber + numberOfItems
-        i[1] =round( float(i[1]) * numberOfItems,2)
+        i[1] = "{:.2f}".format(float(i[1]) * numberOfItems)
         i.append(numberOfItems)
         
     print("before")
 
-    
+    price = "{:.2f}".format(price)
+
+    print(usedItems)
+
     return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
 def orderComplete(request):
