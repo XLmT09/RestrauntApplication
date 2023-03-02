@@ -35,10 +35,14 @@ function addItem(id, addSubtract, price, name, itemId) {
   }
 }
 
+function deleteExistingCookies() {
+  document.cookie = "items" + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
+  document.cookie = "itemIds" + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
+  document.cookie = "itemWithIds" + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
+}
+
 function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 3 * 1000);
-  let expires = "expires=" + d.toUTCString();
+  let expires = "expires=";
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
@@ -58,6 +62,9 @@ function getCookie(cname) {
 }
 
 function checkout() {
+  if (itemsOrdered.length == 0){
+    alert("You're basket is currently empty. Try adding items to your basket");
+  }
   setCookie("items", itemsOrdered, 3000);
   setCookie("itemIds", itemIds, 3000);
   setCookie("itemWithIds", itemWithId, 3000);
