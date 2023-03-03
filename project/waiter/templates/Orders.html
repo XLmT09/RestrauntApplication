@@ -3,7 +3,7 @@
 {% load static %}
 
 <script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
-<link rel="stylesheet" href="{% static 'css/order.css' %}" />
+<link rel="stylesheet" href="{% static 'css/orderWaiter.css' %}" />
 
 <div class = "background">
     <div class = "orderbox">
@@ -31,7 +31,7 @@
                         </button>
                         
                         <br><br>
-                        
+
                         <button class = "updatestatus">
                         <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
                         Cancel Order

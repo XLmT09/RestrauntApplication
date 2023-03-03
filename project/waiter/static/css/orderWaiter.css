@@ -27,6 +27,17 @@
   filter: brightness(90%);
 }
 
+.order:hover {
+  background-color:#1d0320;
+  /* To maximise compatability i add a transition effect for mutliple browsers */
+  /* Transition effect for webkit browsers i.e. chrome */
+  -webkit-transition: background-color 1000ms linear;
+  /* Transition effect for ms edge browser */
+  -ms-transition: background-color 1000ms linear;
+  /* Transition effect for every other browser */
+  transition: background-color 1000ms linear;
+}
+
 .title {
     font-family: Montserrat;
     font-size: 120%;
