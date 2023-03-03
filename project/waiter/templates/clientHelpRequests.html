@@ -30,6 +30,18 @@
     tr:hover {
       background-color: rgb(71, 71, 91);
     }
+    .button-select {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .selected {
+      background-color: white;
+    }
   </style>
   <h1>Client Help Requests</h1>
   <table>
@@ -37,6 +49,7 @@
       <tr>
         <th>Customer ID</th>
         <th>Message</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -44,10 +57,12 @@
         <tr>
           <td>{{ request.customerID }}</td>
           <td>{{ request.message }}</td>
+          <td>
+            <div class="button-select"></div>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 {% endblock %}
-
 
