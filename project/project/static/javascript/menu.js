@@ -73,48 +73,60 @@ function checkout() {
 function alterChecout(itemPrice, itemQuantity, itemName, operation) {
   var items = getCookie("items").split(",");
   var Ids = getCookie("itemIds").split(",");
-  var itemWidthIds = getCookie("itemWithIds").split(",");
+  var itemWithIds = getCookie("itemWithIds").split(",");
 
-  var itemId = itemWidthIds.at(itemWidthIds.indexOf(itemName) + 1);
+  var itemId = itemWithIds.at(itemWithIds.indexOf(itemName) + 1);
 
-  var individualPrice = parseFloat(items[items.indexOf(itemName) + 1]);
+  var curValues = getCurrentValues(itemName, itemPrice);
 
-  var itemTotal = parseFloat(
-    document.getElementById(itemName + itemPrice).textContent.substring(1)
-  );
+  var newValues = updateValues(curValues, getItemPrice(items,itemName), operation);
 
-  var quantity = parseInt(document.getElementById(itemName).textContent);
-
-  var totalPrice = parseFloat(
-    document.getElementById("TotalPrice").textContent.substring(1)
-  );
-  var totalQuantity = parseInt(
-    document.getElementById("TotalQuantity").textContent
-  );
-
-  if (quantity > 1 && operation < 0) {
-    document.getElementById(itemName).textContent = quantity - 1;
-    var newPrice = itemTotal - individualPrice;
-    var newTotal = totalPrice - individualPrice;
-    document.getElementById(itemName + itemPrice).textContent = "£" + newPrice.toFixed(2);
-    document.getElementById("TotalPrice").textContent = "£" + newTotal.toFixed(2);
-    document.getElementById("TotalQuantity").textContent = totalQuantity - 1;
+  if (newValues[0] > 0 && operation < 0) {
+    updateHtml(items, Ids, itemName, itemPrice, newValues);
     items.splice(items.at(items.indexOf(itemName)), 2);
     Ids.splice(Ids.indexOf(itemId), 1);
-    setCookie("items", items, 3000);
-    setCookie("itemIds", Ids, 3000);
+    updateCookies();
   } else if (operation > 0) {
-    console.log(items.indexOf(itemName));
-    document.getElementById(itemName).textContent = quantity + 1;
-    var newPrice = itemTotal + individualPrice;
-    var newTotal = totalPrice + individualPrice;
-    document.getElementById(itemName + itemPrice).textContent = "£" + newPrice.toFixed(2);
-    document.getElementById("TotalPrice").textContent = "£" + newTotal.toFixed(2);
-    document.getElementById("TotalQuantity").textContent = totalQuantity + 1;
+    updateHtml(items, Ids, itemName, itemPrice, newValues);
     Ids.push(itemId);
     items.push(itemName);
     items.push(individualPrice);
-    setCookie("items", items, 3000);
-    setCookie("itemIds", Ids, 3000);
+    updateCookies();
   }
+}
+
+function updateHtml(items, Ids, itemName, itemPrice, newValues){
+  // newValues = [newItemQuantity, newItemPrice, newTotalQuantity, newTotalPrice]
+  document.getElementById(itemName).textContent = newValues[0];
+  document.getElementById(itemName + itemPrice).textContent = "£" + newValues[1].toFixed(2);
+  document.getElementById("TotalQuantity").textContent = newValues[2];
+  document.getElementById("TotalPrice").textContent = "£" + newValues[3].toFixed(2);
+}
+
+function updateCookies(){
+  setCookie("items", items, 3000);
+  setCookie("itemIds", Ids, 3000);
+}
+
+function getCurrentValues(itemName, itemPrice){
+  var curValues = [
+    parseInt(document.getElementById(itemName).textContent),
+    parseFloat(document.getElementById(itemName + itemPrice).textContent.substring(1)),
+    parseInt(document.getElementById("TotalQuantity").textContent),
+    parseFloat(document.getElementById("TotalPrice").textContent.substring(1))
+  ];
+  return curValues; // curValues = [curQuantity, curPrice, totalQuantity, totalPrice]
+}
+
+function updateValues(values, priceOfItem, operation) {
+  values[0] += 1 * operation;
+  values[1] += priceOfItem * operation;
+  values[2] += 1 * operation;
+  values[3] += priceOfItem * operation;
+  return values; // newValues = [newItemQuantity, newItemPrice, newTotalQuantity, newTotalPrice]
+}
+  
+function getItemPrice(items, itemName){
+  let priceStr = items[items.indexOf(itemName) + 1];
+  return parseFloat(priceStr);
 }
