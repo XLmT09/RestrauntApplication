@@ -4,6 +4,7 @@ from .forms import menuUpdateForm
 from project.models import MenuItem
 from project.models import Order
 from project.models import HelpRequest
+from .models import Payment
 from django.shortcuts import redirect
 
 # Make http requests to the waiter page
@@ -88,3 +89,10 @@ def deleteOrder(request, ID):
     order.delete()
     placed_orders = Order.objects.all().order_by('timeOfOrder').filter(status = "Placed")
     return render(request, 'orders.html', {'cust_orders': placed_orders})
+
+def customer_payments(request):
+    all_payments = Payment.objects.all()
+    totalIncome = 0
+    for payment in all_payments:
+        totalIncome += payment.paymentAmount
+    return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})

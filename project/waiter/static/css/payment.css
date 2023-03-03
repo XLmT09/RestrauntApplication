@@ -1,0 +1,15 @@
+table, td, td {
+    color: white;
+}
+
+table {
+    border: 1px solid white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+.paymentDetails {
+    color: white;
+}
