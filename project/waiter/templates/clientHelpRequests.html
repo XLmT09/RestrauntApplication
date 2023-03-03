@@ -30,17 +30,8 @@
     tr:hover {
       background-color: rgb(71, 71, 91);
     }
-    .button-select {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background-color: white;
-      border: 2px solid white;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    .selected {
-      background-color: white;
+    .highlight {
+      background-color: yellow;
     }
   </style>
   <h1>Client Help Requests</h1>
@@ -57,12 +48,19 @@
         <tr>
           <td>{{ request.customerID }}</td>
           <td>{{ request.message }}</td>
-          <td>
-            <div class="button-select"></div>
-          </td>
+          <td><button onclick="highlightRow(this)">Select</button></td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+  <script>
+    function highlightRow(button) {
+      var row = button.parentNode.parentNode;
+      if (row.classList.contains("highlight")) {
+        row.classList.remove("highlight");
+      } else {
+        row.classList.add("highlight");
+      }
+    }
+  </script>
 {% endblock %}
-
