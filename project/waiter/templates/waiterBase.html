@@ -12,12 +12,12 @@
     <title>Update Menu</title>
     {% endif %}
 
-    <link rel="stylesheet" href="{% static 'css/waiterBase.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/waiterHome.css' %}" />
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <script src="{% static 'javascript/orderPopup.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/waiterBase.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     
     <link
       rel="stylesheet"
@@ -66,9 +66,12 @@
             </button>
           </a>
           {% endif %}
-            
         </div>
       </div>
+
+      {% if messages %} {% for message in messages %}
+        <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
 
       <div>{% block content %}{% endblock %}</div>
     </div>

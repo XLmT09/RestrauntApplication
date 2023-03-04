@@ -5,3 +5,7 @@
 .alert-danger {
     background-color: red;
 }
+
+.alert-info {
+    background-color: blue;
+}

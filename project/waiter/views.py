@@ -33,25 +33,33 @@ def viewOrders(request, orderStatus):
 # Update the order status of an customer order
 @group_required("Waiters")
 def updateOrderStatus(request, orderID):
+    # Grab the order the user wants to chnage
     order = Order.objects.get(ID = orderID)
+    # Order status will change state in this function so record inital state for that
     orderStatusBefore = order.status
 
     if order.status == "Placed":
+        # Change order status from placed to confirmed
         setattr(order, "status", "Confirmed")
         # Assign waiter to this order using TableServer table
         # The decerator above guarntees the user will be a waiter, so simply call request.user
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
         table.save()
-        messages.info(request, f"Order #{orderID} has been confirmed")
+        messages.info(request, f"Order #{orderID} has been Confirmed.")
     elif order.status == "Prepared": 
+        # Change order status from perepared to delivered
         setattr(order, "status", "Delivered")
+        messages.info(request, f"Order #{orderID} has been Delivered.")
     elif order.status == "Delivered": 
         order.delete()
+        messages.info(request, f"Order #{orderID} has been Deleted.")
     else: 
-        messages.error(request, "There was an error updating the status of this order")
+        messages.error(request, "There was an error updating the status of this order.")
 
     order.save()
 
+    # Refresh the page so waiter cant see order ehich chnaged status
+    # Use the recorded status to stay on the same page
     return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatusBefore}))
 
 # Make http requests on page that shows menu and allows modification to the menu
