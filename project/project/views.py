@@ -37,6 +37,7 @@ def ltohSort(request):
 
 def checkout(request):
     test = request.COOKIES.get('items') 
+    print("test=",test)
     if len(test) == 0:
         return redirect(menu)
     else:

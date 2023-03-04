@@ -85,13 +85,13 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
     updateHtml(items, Ids, itemName, itemPrice, newValues);
     items.splice(items.at(items.indexOf(itemName)), 2);
     Ids.splice(Ids.indexOf(itemId), 1);
-    updateCookies();
+    updateCookies(items, Ids);
   } else if (operation > 0) {
     updateHtml(items, Ids, itemName, itemPrice, newValues);
     Ids.push(itemId);
     items.push(itemName);
     items.push(individualPrice);
-    updateCookies();
+    updateCookies(items, Ids);
   }
 }
 
@@ -103,7 +103,7 @@ function updateHtml(items, Ids, itemName, itemPrice, newValues){
   document.getElementById("TotalPrice").textContent = "£" + newValues[3].toFixed(2);
 }
 
-function updateCookies(){
+function updateCookies(items, Ids){
   setCookie("items", items, 3000);
   setCookie("itemIds", Ids, 3000);
 }
@@ -129,4 +129,17 @@ function updateValues(values, priceOfItem, operation) {
 function getItemPrice(items, itemName){
   let priceStr = items[items.indexOf(itemName) + 1];
   return parseFloat(priceStr);
+}
+
+function deleteItemFromBasket(itemName) {
+  var items = getCookie("items").split(",");
+  var Ids = getCookie("itemIds").split(",");
+
+  for (let i = items.length - 2; i > -1; i = i - 2){
+    if (items[i] == itemName){
+      Ids.splice(Math.floor(i/2),1);
+      items.splice(i,2);
+    }
+  }
+  updateCookies(items, Ids);
 }
