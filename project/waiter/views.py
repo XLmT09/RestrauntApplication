@@ -51,16 +51,36 @@ def updateOrderStatus(request, orderID):
         setattr(order, "status", "Delivered")
         messages.info(request, f"Order #{orderID} has been Delivered.")
     elif order.status == "Delivered": 
-        order.delete()
-        messages.info(request, f"Order #{orderID} has been Deleted.")
+        deleteOrder(request, orderID)
     else: 
         messages.error(request, "There was an error updating the status of this order.")
 
     order.save()
 
-    # Refresh the page so waiter cant see order ehich chnaged status
-    # Use the recorded status to stay on the same page
+    # Refresh so user can see how the page changes as they update the status of an order
+    # Use the recorded status (orderStatusBefore) to stay on the same page
     return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatusBefore}))
+
+# This method deletes an order based on the order ID it is given
+def deleteOrder(request, ID):
+    # Retrive order details from the order id
+    order = Order.objects.get(ID=ID)
+    # Grab order status before delting, so we can pass in the url
+    # This will we stay on the same page
+    orderStatus = order.status
+
+    # When deleting an order, must also delete from the table database to
+    table_order = TableServer.objects.filter(orderID=order)  
+    
+    # Delete from the database
+    table_order.delete()
+    order.delete()
+    
+    # Send message to front end to let the user know deletion was success
+    messages.info(request, f"Order #{ID} has been Deleted.")
+    # Refresh so user can see how the page changes as they update the status of an order
+    return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatus}))
+
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
@@ -98,12 +118,6 @@ def refreshMenu(request, item):
 
 def viewHelpRequests(request):
     return render(request, "clientHelpRequests.html", {'help_requests' : HelpRequest.objects.all()})
-
-def deleteOrder(request, ID):
-    order = Order.objects.get(ID=ID)
-    order.delete()
-    placed_orders = Order.objects.all().order_by('timeOfOrder').filter(status = "Placed")
-    return render(request, 'orders.html', {'cust_orders': placed_orders})
 
 def customer_payments(request):
     all_payments = Payment.objects.all()
