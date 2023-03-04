@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from project.models import Order
 
-# Create your models here.
 class Payment(models.Model):
     class Meta:
         db_table = "Payment"
