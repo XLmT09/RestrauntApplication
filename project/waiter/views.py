@@ -1,31 +1,45 @@
 from django.shortcuts import render
 from django.contrib import messages
 from .forms import menuUpdateForm
-from project.models import MenuItem
-from project.models import Order
-from project.models import HelpRequest
-from .models import Payment
-from django.shortcuts import redirect
+from project.models import MenuItem, Order, HelpRequest
+from .models import Payment, TableServer
+from decerators import group_required
 
 # Make http requests to the waiter page
 def staff(request):
     return render(request, "waiterHome.html", {'title' : 'staff'})
 
 # Make http requests on page that gives list of customer orders
+@group_required("Waiters")
 def viewOrders(request, orderStatus):
-    # retrive all customer orders from oldest to newest
-    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
+    cust_orders = None
+    # If waiter wants to see non PLACED orders, then only get orders the waiter is assigned to
+    # However if order is placed then, just show all the customer orders
+    if orderStatus != "Placed":
+        # Get all tables which the waiter is serving
+        table_orders = TableServer.objects.filter(waiterID=request.user)   
+        # Get the order ids of the tables the waiter is serving
+        order_ids = table_orders.values_list('orderID', flat=True)
+        # Use the order ids to retrive only order info which waiter servers
+        cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus).order_by('timeOfOrder')
+    else:
+        # retrive all customer orders from oldest to newest
+        cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
 
     return render(request, "orders.html", {'cust_orders': cust_orders})
 
-
+# Update the order status of an customer order
+@group_required("Waiters")
 def updateOrderStatus(request, orderID):
     order = Order.objects.get(ID = orderID)
 
     if (order.status == "Placed"):
         setattr(order, "status", "Confirmed")
         filterStatus = "Placed"
-
+        # Assign waiter to this order using TableServer table
+        # The decerator above guarntees the user will be a waiter, so simply call request.user
+        table = TableServer.objects.create(orderID = order, waiterID = request.user)
+        table.save()
     elif (order.status == "Prepared"):
         setattr(order, "status", "Delivered")
         filterStatus = "Prepared"
