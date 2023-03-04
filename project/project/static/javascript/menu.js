@@ -132,14 +132,19 @@ function getItemPrice(items, itemName){
 }
 
 function deleteItemFromBasket(itemName) {
-  var items = getCookie("items").split(",");
-  var Ids = getCookie("itemIds").split(",");
-
-  for (let i = items.length - 2; i > -1; i = i - 2){
-    if (items[i] == itemName){
-      Ids.splice(Math.floor(i/2),1);
-      items.splice(i,2);
+  if (confirm("Are you sure you want to remove this item?")){
+    var items = getCookie("items").split(",");
+    var Ids = getCookie("itemIds").split(",");
+    for (let i = items.length - 2; i > -1; i = i - 2){
+      if (items[i] == itemName){
+        Ids.splice(Math.floor(i/2),1);
+        items.splice(i,2);
+      }
+    }
+    updateCookies(items, Ids);
+    alert(itemName + " has been removed from your basket");
+    if (items.length == 0){
+      alert("You're basket is empty. Redirecting you to the menu");
     }
   }
-  updateCookies(items, Ids);
 }
