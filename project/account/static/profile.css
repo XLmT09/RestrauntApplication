@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(29, 29, 39);
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-family: Montserrat;
+}
+h1{
+    color: aliceblue;
+    align-items: center;
+    align-content: center;
+    font-size: 40px;
+}
+a{
+    color: aliceblue;
+    text-decoration: none;
+}
