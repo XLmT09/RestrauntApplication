@@ -25,3 +25,9 @@ class Command(BaseCommand):
         MenuItem.obejcts.filter(name = 'Guacamole').update(imgurl = 'https://drive.proton.me/urls/71THBMM78G#96NePbacNh0o')
         MenuItem.obejcts.filter(name = 'Pozole').update(imgurl = 'https://drive.proton.me/urls/CM88F7CK4M#7jQHFFT4CNTZ')
         MenuItem.obejcts.filter(name = 'Tomato Avocado Salad').update(imgurl = 'https://drive.proton.me/urls/K39Q6KNAKG#t22HbLQFKSc6')
+
+        #URL's for menu desserts
+        MenuItem.obejcts.filter(name = 'Churros').update(imgurl = 'https://drive.proton.me/urls/E5145B1D98#AV5voldhfte1')
+        MenuItem.obejcts.filter(name = 'Dulce de leche cheesecake').update(imgurl = 'https://drive.proton.me/urls/KWGWXWYJ2R#lR4ukAeQjUug')
+        MenuItem.obejcts.filter(name = 'Sopapillas').update(imgurl = 'https://drive.proton.me/urls/29N9X9CWWM#7V4dIwcbhzeR')
+        MenuItem.obejcts.filter(name = 'Bunuelos').update(imgurl = 'https://drive.proton.me/urls/G10QSNNX3R#2UW8nIFsCQZK')
