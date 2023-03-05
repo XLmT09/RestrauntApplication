@@ -1,16 +1,15 @@
-    {% extends "staffPage.html" %} 
-    {% block content %} 
-    {% load static %}
+{% extends "waiterBase.html" %} 
+{% block content %} 
+{% load static %}
 
-    <script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
+<script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'css/orderWaiter.css' %}" />
+<link rel="stylesheet" href="{% static 'css/popup.css' %}" />
 
-   <link rel="stylesheet" href="{% static 'css/order.css' %}" />
-    <div class = "background">
-        <div class = "orderbox">
-            <div class = "title">Orders</div>
-    
-            {% for order in cust_orders %}
-    
+<div class = "background">
+    <div class = "orderbox">
+        <div class = "title">Orders</div>
+        {% for order in cust_orders %}
             <div class = "order">
                 <div class = "ordersummary">
                     <div class = "orderno">{{order.ID}}</div>
@@ -23,38 +22,46 @@
                     <br/><br/>
                     Placed at: {{order.timeOfOrder}}
                 </div>
+
                 <div class = "statusbar">
-                    <button class = "updatestatus">
-                    <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
                     {% if order.status == "Placed" %}
+                        <button class = "updatestatus">
+                        <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
                         Confirm order
-                    {% endif %}
-                    {% if order.status == "Prepared" %}
-                        Mark as Delivered
-                    {% endif %}
-                    {% if order.status == "Delivered" %}
-                        Delete order
-                    {% endif %}
-                    </a>
-                    </button>
-                </div>
-                {% if order.status == "Placed" %}
-                <div class = "statusbar">
-                    <button class = "updatestatus"><a href="{% url 'deleteOrder' order.ID %}" id="buttonText">Cancel Order</a></button>
-                    
-                    <div id="confirmation{{order.ID}}" style="display: none;">
-                        <text style="color: white;">Are you sure?</text>
-                        <a href="delete/{{order.ID}}">
-                          <button class = "updatestatus">Yes</button>
                         </a>
-                        <button class = "updatestatus" onclick="sayNo({{order.ID}})">No</button>
-                      </div>
+                        </button>
+                        
+                        <br><br>
+
+                        <button class = "updatestatus">
+                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                        Cancel Order
+                        </a>
+                        </button>
+
+                        <!-- <div id="confirmation{{order.ID}}" style="display: none;">
+                            <text style="color: white;">Are you sure?</text>
+                            <a href="delete/{{order.ID}}">
+                            <button class = "updatestatus">Yes</button>
+                            </a>
+                            <button class = "updatestatus" onclick="sayNo({{order.ID}})">No</button>
+                        </div> -->
+                    {% elif order.status == "Prepared" %}
+                        <button class = "updatestatus">
+                        <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                            Mark as Delivered
+                        </a>
+                        </button>
+                    {% elif order.status == "Delivered" %}
+                        <button class = "updatestatus">
+                        <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                            Delete order
+                        </a>
+                        </button>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
-    
-            {%endfor%}
-    
-        </div>
+        {% endfor %}
     </div>
-    {% endblock content %}
+</div>
+{% endblock content %}

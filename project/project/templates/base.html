@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
     {% if title %}
       <title>{{ title }}</title>
     {% else %}
@@ -14,21 +13,16 @@
     {% endif %}
 
     <script src="{% static 'javascript/animations.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
   </head>
 
-  <body style="background-color : background-color: rgb(29, 29, 39)">
-    {% if messages %} {% for message in messages %}
-    <div class="container-fluid p-0">
-      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
-    </div>
-    {% endfor %} {% endif %}
-
+  <body>
     <div>
       <div class="navbar">
         <div id="left">
@@ -71,6 +65,11 @@
           </button>
         </div>
       </div>
+
+      {% if messages %} {% for message in messages %}
+        <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
       <div>{% block content %}{% endblock %}</div>
     </div>
   </body>
