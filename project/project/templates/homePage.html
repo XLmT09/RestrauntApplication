@@ -75,10 +75,11 @@
           <button type="button" class="navButton" onclick="scrollToAboutUs();">
             <div class="text">About Us</div>
           </button>
-
-          <button type="button" class="navButton" onclick="scrollToMenu();">
-            <div class="text">Our Menu</div>
-          </button>
+		  <a class="nav-options nav-btn" href="{% url 'menu' %}">
+			<button class="navButton">
+			  <div class="text">Our Menu</div>
+			</button>
+		  </a>
         </div>
       </div>
 
