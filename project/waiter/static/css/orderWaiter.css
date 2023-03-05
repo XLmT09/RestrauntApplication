@@ -27,7 +27,14 @@
 }
 
 .order:hover {
-  background-position: left;
+  background-color:#1d0320;
+  /* To maximise compatability i add a transition effect for mutliple browsers */
+  /* Transition effect for webkit browsers i.e. chrome */
+  -webkit-transition: background-color 500ms linear;
+  /* Transition effect for ms edge browser */
+  -ms-transition: background-color 500ms linear;
+  /* Transition effect for every other browser */
+  transition: background-color 500ms linear;
 }
 
 .title {
@@ -88,13 +95,20 @@
 }
 
 .updatestatus {
-  border-radius: 20px;
   width: 100%;
+  padding: 3%;
   text-align: center;
-  background-color: gray;
   font-family: Montserrat;
   font-size: 100%;
   color: white;
-  border: none;
+  border: 1px solid grey;
   cursor: pointer;
+  background: linear-gradient(to top, #380095 50%, black 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.3s ease-in-out;
+}
+
+.updatestatus:hover{
+  background-position: bottom;
 }
