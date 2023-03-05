@@ -6,38 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: rgb(29, 29, 39);
-      }
-
-      #menuForm {
-        position: absolute;
-        padding-left: 40%;
-        color: white;
-      }
-      #menuDropDown {
-        margin-left: 35px;
-        padding-left: 40px;
-      }
-
-      a {
-        font-size: 15px;
-      }
-
-      li {
-        font-size: 10px;
-      }
-
-      #orderHeadings {
-        color: white;
-        font-size: 20px;
-      }
-
-    </style>
-
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
@@ -45,11 +13,11 @@
     {% endif %}
 
     <script src="{% static 'javascript/animations.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/waiterHome.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/payment.css' %}" />
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <script src="{% static 'javascript/orderPopup.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/waiterBase.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     
     <link
       rel="stylesheet"
@@ -98,9 +66,12 @@
             </button>
           </a>
           {% endif %}
-            
         </div>
       </div>
+
+      {% if messages %} {% for message in messages %}
+        <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
 
       <div>{% block content %}{% endblock %}</div>
     </div>

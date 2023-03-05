@@ -1,51 +1,86 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib import messages
 from .forms import menuUpdateForm
-from project.models import MenuItem
-from project.models import Order
-from project.models import HelpRequest
-from .models import Payment
-from django.shortcuts import redirect
+from project.models import MenuItem, Order, HelpRequest
+from .models import Payment, TableServer
+from decerators import group_required
 
 # Make http requests to the waiter page
+@group_required("Waiters")
 def staff(request):
     return render(request, "waiterHome.html", {'title' : 'staff'})
 
 # Make http requests on page that gives list of customer orders
+@group_required("Waiters")
 def viewOrders(request, orderStatus):
-    # retrive all customer orders from oldest to newest
-    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
+    cust_orders = None
+    # If waiter wants to see NON PLACED orders, then only get orders the waiter is assigned to
+    # However if order is placed then, just show all the customer orders
+    if orderStatus != "Placed":
+        # Get all tables which the waiter is serving
+        table_orders = TableServer.objects.filter(waiterID=request.user)   
+        # Get the order ids of the tables the waiter is serving
+        order_ids = table_orders.values_list('orderID', flat=True)
+        # Use the order ids to retrive only order info which waiter servers
+        cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus).order_by('timeOfOrder')
+    else:
+        # retrive all customer orders from oldest to newest
+        cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
 
     return render(request, "orders.html", {'cust_orders': cust_orders})
 
-
+# Update the order status of an customer order
+@group_required("Waiters")
 def updateOrderStatus(request, orderID):
+    # Grab the order the user wants to chnage
     order = Order.objects.get(ID = orderID)
+    # Order status will change state in this function so record inital state for that
+    orderStatusBefore = order.status
 
-    if (order.status == "Placed"):
+    if order.status == "Placed":
+        # Change order status from placed to confirmed
         setattr(order, "status", "Confirmed")
-        filterStatus = "Placed"
-
-    elif (order.status == "Prepared"):
+        # Assign waiter to this order using TableServer table
+        # The decerator above guarntees the user will be a waiter, so simply call request.user
+        table = TableServer.objects.create(orderID = order, waiterID = request.user)
+        table.save()
+        messages.info(request, f"Order #{orderID} has been Confirmed.")
+    elif order.status == "Prepared": 
+        # Change order status from perepared to delivered
         setattr(order, "status", "Delivered")
-        filterStatus = "Prepared"
-    elif (order.status == "Delivered"):
-        order.delete()
-        filterStatus = "Delivered"
-    else:
-        messages.error(request, "There was an error updating the status of this order")
+        messages.info(request, f"Order #{orderID} has been Delivered.")
+    elif order.status == "Delivered": 
+        deleteOrder(request, orderID)
+    else: 
+        messages.error(request, "There was an error updating the status of this order.")
+
     order.save()
 
-    cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = filterStatus)
+    # Refresh so user can see how the page changes as they update the status of an order
+    # Use the recorded status (orderStatusBefore) to stay on the same page
+    return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatusBefore}))
 
-    #sends message to customer once order is confirmed 
-    customer_id = order.customerID
-    messages.info(request, f"The order (#{orderID}) has been confirmed by a member of staff.")
+# This method deletes an order based on the order ID it is given
+def deleteOrder(request, ID):
+    # Retrive order details from the order id
+    order = Order.objects.get(ID=ID)
+    # Grab order status before delting, so we can pass in the url
+    # This will we stay on the same page
+    orderStatus = order.status
 
-    #message sent to the waiter notifying them of the message being delivered to the customer 
-    messages.success(request, f"Message confirming this order has been sent to {customer_id}.")
+    # When deleting an order, must also delete from the table database to
+    table_order = TableServer.objects.filter(orderID=order)  
+    
+    # Delete from the database
+    table_order.delete()
+    order.delete()
+    
+    # Send message to front end to let the user know deletion was success
+    messages.info(request, f"Order #{ID} has been Deleted.")
+    # Refresh so user can see how the page changes as they update the status of an order
+    return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatus}))
 
-    return render(request, "orders.html", {'cust_orders': cust_orders}) 
 
 # Make http requests on page that shows menu and allows modification to the menu
 def changeMenu(request):
@@ -83,12 +118,6 @@ def refreshMenu(request, item):
 
 def viewHelpRequests(request):
     return render(request, "clientHelpRequests.html", {'help_requests' : HelpRequest.objects.all()})
-
-def deleteOrder(request, ID):
-    order = Order.objects.get(ID=ID)
-    order.delete()
-    placed_orders = Order.objects.all().order_by('timeOfOrder').filter(status = "Placed")
-    return render(request, 'orders.html', {'cust_orders': placed_orders})
 
 def customer_payments(request):
     all_payments = Payment.objects.all()
