@@ -9,11 +9,34 @@ from .forms import helpRequestForm
 from django.http import HttpResponse
 from django.contrib import messages
 
+def notificationOrders(request):
+    try:
+        Orders = Order.objects.filter(customerID_id=request.user,notificationSent=False)
+        statusList =[]
+        for i in Orders:
+            statusList.append(i.status)
+
+            print(i.status)
+        
+        return statusList
+        
+    except:
+        Orders = ''
+        return Orders
+
+
+
+
+
 # The default home page for the website
 def homePage(request):
+    Orders =  notificationOrders(request)
+    
+        #obj.some_field = some_var
+        #obj.save()
     # Gets a list of all the groups a user is in
     user_groups = request.user.groups.values_list('name', flat=True)
-    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups})
+    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'orders':Orders})
 
 def home(request):
     # this selects the name of the web page and sends the user to that page
@@ -124,6 +147,8 @@ def completePayment(request):
     return render(request,'completePayment.html')
 
 
+def testNotification(request):
+    return render(request,'testNotification.html')
 
 
 

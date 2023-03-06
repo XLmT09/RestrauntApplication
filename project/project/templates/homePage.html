@@ -10,14 +10,15 @@
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <script src="{% static 'javascript/notifications.js' %}" defer></script>
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
   </head>
 
-  <body>
-    {% for message in messages %}
+  <body onload="updateNotification({{order}})">
+    {% for message in messages%}
     <div class="container-fluid p-0">
       <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
     </div>
@@ -31,23 +32,19 @@
           </div>
         </div>
         <div id="right">
-          {% if user.is_authenticated %}
-          {% if "KitchenStaff" in user_groups %}
+          {% if user.is_authenticated %} {% if "KitchenStaff" in user_groups %}
           <a class="nav-options nav-btn" href="{% url 'kitchen-order' %}">
             <button class="navButton">
               <div class="text">Kitchen Page</div>
             </button></a
           >
-          {% endif %}
-
-          {% if "Waiters" in user_groups %}
+          {% endif %} {% if "Waiters" in user_groups %}
           <a class="nav-options nav-btn" href="{% url 'waiterPage' %}">
             <button class="navButton">
               <div class="text">Waiter Page</div>
             </button></a
           >
           {% endif %}
-
 
           <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
             <button class="navButton">
@@ -111,5 +108,8 @@
         </a>
       </div>
     </div>
+    {% for i in orders %}
+    <div>{{i}}</div>
+    {% endfor %}
   </body>
 </html>
