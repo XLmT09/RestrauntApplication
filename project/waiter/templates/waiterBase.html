@@ -36,17 +36,12 @@
         </div>
         <div id="right">
 
-          <a href="{% url 'home' %}">
-            <button class="navButton">
-              <div class="text">Home</div>
-            </button>
-          </a>
-		  <a>
-			<button onclick="history.back()">
-				<div class="text">Go Back<div>
-			</button>
-		
-		  </a>
+        <a>
+        <button class="navButton" onclick="history.back()">
+          <div class="text">Go Back<div>
+        </button>
+      
+        </a>
           {% if user.is_authenticated %}
           <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
             <button class="navButton">
