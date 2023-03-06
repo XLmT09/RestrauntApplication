@@ -35,7 +35,7 @@ class Command(BaseCommand):
         #URL's for menu drink
         MenuItem.objects.filter(name = 'Michelada').update(imgurl = 'https://drive.proton.me/urls/GF35ZDFA70#3jIQlorbbudw')
         MenuItem.objects.filter(name = 'Chamoyada').update(imgurl = 'https://drive.proton.me/urls/RDXG3BZK0M#xJpz3tD9gNll')
-        MenuItem.objects.filter(MenuItemCourse = 'Drink', calories = 570).update(imgurl = 'https://drive.proton.me/urls/W6CTEEZ8TW#95GgZpb9O0Nh')
+        MenuItem.objects.filter(course = 'Drink', calories = 570).update(imgurl = 'https://drive.proton.me/urls/W6CTEEZ8TW#95GgZpb9O0Nh')
         MenuItem.objects.filter(name = 'Classic margarita').update(imgurl = 'https://drive.proton.me/urls/ATBGNF4QHR#C9zbhPvN89bd')
         MenuItem.objects.filter(name = 'Coke').update(imgurl = 'https://drive.proton.me/urls/Z5KXCF2B1W#R0QT0fEcS3yW')
         MenuItem.objects.filter(name = 'Fanta').update(imgurl = 'https://drive.proton.me/urls/PZS7YPXFV0#DHY1nvUIvLqe')
