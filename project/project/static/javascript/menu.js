@@ -65,6 +65,7 @@ function checkout() {
   if (itemsOrdered.length == 0){
     alert("You're basket is currently empty. Try adding items to your basket");
   }
+  console.log(itemsOrdered);
   setCookie("items", itemsOrdered, 3000);
   setCookie("itemIds", itemIds, 3000);
   setCookie("itemWithIds", itemWithId, 3000);
@@ -147,4 +148,9 @@ function deleteItemFromBasket(itemName) {
       alert("You're basket is empty. Redirecting you to the menu");
     }
   }
+}
+
+function setBasketValue(){
+  var basket = document.getElementById("basket");
+  basket.innerHTML = (parseFloat("2.5")).toFixed(2);
 }

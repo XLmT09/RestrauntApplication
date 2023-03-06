@@ -23,7 +23,7 @@
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Menu Oaxaca</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
-  <body onload = "deleteExistingCookies();">
+  <body>
     <div class="navbar">
       <div id="left">
         <div class="text">
@@ -52,7 +52,7 @@
               />
             </svg>
             <div class="text" style="float: right">
-              £<text id="basket">0.00</text>
+              £<text id="basket">{{basketTotal}}</text>
             </div>
           </button></a>
 

@@ -27,8 +27,18 @@ def results(request):
 @login_required
 def menu(request):
     items = MenuItem.objects.all()
+    cookieData = request.COOKIES.get('items')
+    print(cookieData)
+    print(request.COOKIES.get('itemIds'))
+    print(request.COOKIES.get('itemWithIds'))
+    basketPrice = 0
+    if cookieData != None:
+        cookieData = cookieData.split(",")
+        for i in range(1,len(cookieData),2):
+            basketPrice += float(cookieData[i])
+    basketPriceStr = "{:.2f}".format(basketPrice)
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm()})
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr})
 
 def ltohSort(request):
     items = MenuItem.objects.all().order_by('price')
