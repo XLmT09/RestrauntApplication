@@ -31,3 +31,12 @@ class Command(BaseCommand):
         MenuItem.obejcts.filter(name = 'Dulce de leche cheesecake').update(imgurl = 'https://drive.proton.me/urls/KWGWXWYJ2R#lR4ukAeQjUug')
         MenuItem.obejcts.filter(name = 'Sopapillas').update(imgurl = 'https://drive.proton.me/urls/29N9X9CWWM#7V4dIwcbhzeR')
         MenuItem.obejcts.filter(name = 'Bunuelos').update(imgurl = 'https://drive.proton.me/urls/G10QSNNX3R#2UW8nIFsCQZK')
+
+        #URL's for menu drink
+        MenuItem.obejcts.filter(name = 'Michelada').update(imgurl = 'https://drive.proton.me/urls/GF35ZDFA70#3jIQlorbbudw')
+        MenuItem.obejcts.filter(name = 'Chamoyada').update(imgurl = 'https://drive.proton.me/urls/RDXG3BZK0M#xJpz3tD9gNll')
+        MenuItem.obejcts.filter(MenuItemCourse = 'Drink', calories = 570).update(imgurl = 'https://drive.proton.me/urls/W6CTEEZ8TW#95GgZpb9O0Nh')
+        MenuItem.obejcts.filter(name = 'Classic margarita').update(imgurl = 'https://drive.proton.me/urls/ATBGNF4QHR#C9zbhPvN89bd')
+        MenuItem.obejcts.filter(name = 'Coke').update(imgurl = 'https://drive.proton.me/urls/Z5KXCF2B1W#R0QT0fEcS3yW')
+        MenuItem.obejcts.filter(name = 'Fanta').update(imgurl = 'https://drive.proton.me/urls/PZS7YPXFV0#DHY1nvUIvLqe')
+        MenuItem.obejcts.filter(name = 'Paloma').update(imgurl = 'https://drive.proton.me/urls/JZSPT0K4JC#jFKAArg2jD5A')
