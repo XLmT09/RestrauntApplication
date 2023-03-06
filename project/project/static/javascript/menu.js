@@ -1,6 +1,22 @@
-var itemsOrdered = [];
-var itemIds = [];
-var itemWithId = [];
+var itemsOrdered;
+var itemIds;
+var itemWithId;
+
+function initialiseLists() {
+  var itemList = getCookie("items").split(",");
+  var idList = getCookie("itemIds").split(",");
+  var ItemIdList = getCookie("itemWithIds").split(",");
+
+  if (itemList == ""){itemsOrdered = [];}
+  else {itemsOrdered = itemList;}
+
+  if (idList == ""){itemIds = [];}
+  else {itemIds = idList;}
+
+  if (ItemIdList == ""){itemWithId = [];}
+  else {itemWithId = ItemIdList;}
+
+}
 
 function addItem(id, addSubtract, price, name, itemId) {
   console.log(itemId);
@@ -33,6 +49,11 @@ function addItem(id, addSubtract, price, name, itemId) {
     itemWithId.push(name);
     itemWithId.push(itemId);
   }
+
+  // setCookie("items", itemsOrdered, 3000);
+  // setCookie("itemIds", itemIds, 3000);
+  // setCookie("itemWithIds", itemWithId, 3000);
+
 }
 
 function deleteExistingCookies() {
@@ -65,7 +86,6 @@ function checkout() {
   if (itemsOrdered.length == 0){
     alert("You're basket is currently empty. Try adding items to your basket");
   }
-  console.log(itemsOrdered);
   setCookie("items", itemsOrdered, 3000);
   setCookie("itemIds", itemIds, 3000);
   setCookie("itemWithIds", itemWithId, 3000);
