@@ -28,17 +28,26 @@ def results(request):
 def menu(request):
     items = MenuItem.objects.all()
     cookieData = request.COOKIES.get('items')
-    print(cookieData)
+    print("Data=",cookieData)
     print(request.COOKIES.get('itemIds'))
     print(request.COOKIES.get('itemWithIds'))
     basketPrice = 0
+    itemDict = dict()
     if cookieData != None:
         cookieData = cookieData.split(",")
-        for i in range(1,len(cookieData),2):
-            basketPrice += float(cookieData[i])
+        for i in range(len(cookieData)):
+            if i % 2 == 0:
+                itemName = cookieData[i]
+                if itemName in itemDict:
+                    itemDict[itemName] += 1
+                else:
+                    itemDict[itemName] = 1
+            else:
+                basketPrice += float(cookieData[i])
+    print("DICT=",itemDict)
     basketPriceStr = "{:.2f}".format(basketPrice)
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr})
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict})
 
 def ltohSort(request):
     items = MenuItem.objects.all().order_by('price')

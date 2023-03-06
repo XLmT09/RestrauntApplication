@@ -162,7 +162,14 @@
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"
@@ -199,7 +206,14 @@
               > -
                 
               </button>
-              <text id="{{item.name}}item">0</text>
+              <text id="{{item.name}}item">
+                {% if item.name in itemDict %}
+                  {% for key, value in itemDict.items %}
+                    {% if item.name == key %} {{value}}
+                    {% endif %}
+                  {% endfor %}
+                {% else %} 0 {% endif %}
+              </text>
               <button
                 class="orderButton"
                 style="float: right"
@@ -239,7 +253,14 @@
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"

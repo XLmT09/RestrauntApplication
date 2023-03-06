@@ -19,7 +19,6 @@ function initialiseLists() {
 }
 
 function addItem(id, addSubtract, price, name, itemId) {
-  console.log(itemId);
   var element = document.getElementById(id);
   var text = element.textContent;
   var numberOfItems = parseInt(text);
@@ -35,25 +34,17 @@ function addItem(id, addSubtract, price, name, itemId) {
     numberOfItems = numberOfItems - 1;
     element.innerHTML = numberOfItems;
     basket.innerHTML = (parseFloat(priceText) - parseFloat(newPrice)).toFixed(2);
-    var index = itemsOrdered.indexOf([name, price]);
-    var idIndex = itemIds.indexOf(id);
-    itemsOrdered.splice(index, 1);
-    itemIds.splice(idIndex, 1);
-    itemWithId.splice(itemIds.indexOf(name), 2);
+    itemsOrdered.splice(itemsOrdered.indexOf(name), 2);
+    itemIds.splice(itemIds.indexOf(itemId), 1);
+    itemWithId.splice(itemWithId.indexOf(name), 2);
   } else if (addSubtract > 0) {
     numberOfItems = numberOfItems + 1;
     element.innerHTML = numberOfItems;
     basket.innerHTML = (parseFloat(priceText) + parseFloat(newPrice)).toFixed(2);
     itemsOrdered.push([name, price]);
     itemIds.push(itemId);
-    itemWithId.push(name);
-    itemWithId.push(itemId);
+    itemWithId.push([name,itemId]);
   }
-
-  // setCookie("items", itemsOrdered, 3000);
-  // setCookie("itemIds", itemIds, 3000);
-  // setCookie("itemWithIds", itemWithId, 3000);
-
 }
 
 function deleteExistingCookies() {
@@ -100,20 +91,23 @@ function alterChecout(itemPrice, itemQuantity, itemName, operation) {
 
   var curValues = getCurrentValues(itemName, itemPrice);
 
-  var newValues = updateValues(curValues, getItemPrice(items,itemName), operation);
+  var priceStr = items[items.indexOf(itemName) + 1]
+  var priceOfItem =  parseFloat(priceStr);
+
+  var newValues = updateValues(curValues, priceOfItem, operation);
 
   if (newValues[0] > 0 && operation < 0) {
     updateHtml(items, Ids, itemName, itemPrice, newValues);
-    items.splice(items.at(items.indexOf(itemName)), 2);
+    items.splice(items.indexOf(itemName), 2);
     Ids.splice(Ids.indexOf(itemId), 1);
-    updateCookies(items, Ids);
+    itemWithIds.splice(itemWithIds.indexOf(itemName), 2);
   } else if (operation > 0) {
     updateHtml(items, Ids, itemName, itemPrice, newValues);
     Ids.push(itemId);
-    items.push(itemName);
-    items.push(individualPrice);
-    updateCookies(items, Ids);
+    items.push([itemName, priceStr]);
+    itemWithIds.push([itemName,itemId]);
   }
+  updateCookies(items, Ids, itemWithIds);
 }
 
 function updateHtml(items, Ids, itemName, itemPrice, newValues){
@@ -124,9 +118,10 @@ function updateHtml(items, Ids, itemName, itemPrice, newValues){
   document.getElementById("TotalPrice").textContent = "£" + newValues[3].toFixed(2);
 }
 
-function updateCookies(items, Ids){
+function updateCookies(items, Ids, itemWithIds){
   setCookie("items", items, 3000);
   setCookie("itemIds", Ids, 3000);
+  setCookie("itemWithIds", itemWithIds, 3000);
 }
 
 function getCurrentValues(itemName, itemPrice){
@@ -146,23 +141,21 @@ function updateValues(values, priceOfItem, operation) {
   values[3] += priceOfItem * operation;
   return values; // newValues = [newItemQuantity, newItemPrice, newTotalQuantity, newTotalPrice]
 }
-  
-function getItemPrice(items, itemName){
-  let priceStr = items[items.indexOf(itemName) + 1];
-  return parseFloat(priceStr);
-}
 
 function deleteItemFromBasket(itemName) {
   if (confirm("Are you sure you want to remove this item?")){
     var items = getCookie("items").split(",");
+    alert(items);
     var Ids = getCookie("itemIds").split(",");
+    var itemWithIds = getCookie("itemWithIds").split(",");
     for (let i = items.length - 2; i > -1; i = i - 2){
       if (items[i] == itemName){
         Ids.splice(Math.floor(i/2),1);
-        items.splice(i,2);
+        items.splice(i,1);
+        itemWithIds.splice(i,1);
       }
     }
-    updateCookies(items, Ids);
+    updateCookies(items, Ids, itemWithIds);
     alert(itemName + " has been removed from your basket");
     if (items.length == 0){
       alert("You're basket is empty. Redirecting you to the menu");
