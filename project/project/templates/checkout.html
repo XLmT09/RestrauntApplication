@@ -48,7 +48,13 @@
           <path d="M400 776V376l200 200-200 200Z" />
         </svg>
         <a href="{% url 'checkout' %}">
-        <button type="button" class="deleteItemButton" onclick="deleteItemFromBasket('{{i.0}}');">X</button>
+          <button
+            type="button"
+            class="deleteItemButton"
+            onclick="deleteItemFromBasket('{{i.0}}');"
+          >
+            X
+          </button>
         </a>
       </div>
       {% endfor %}
@@ -68,8 +74,12 @@
           <button class="submitButton">Checkout</button></a
         >
       </form>
-
     </div>
+    {% for i in statuses %}
+    <script>
+      alert("Your order has been {{i}}");
+    </script>
+    {% endfor %}
   </body>
 </html>
 {% endblock content %}

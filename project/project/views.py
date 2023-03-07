@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 
 def notificationOrders(request):
+    # If user is not logged in then empty string is returned
     try:
         Orders = Order.objects.filter(customerID_id=request.user,notificationSent=False)
         statusList =[]
@@ -23,7 +24,6 @@ def notificationOrders(request):
         return statusList
         
     except:
-        print('nope')
         Orders = ''
         return Orders
     
@@ -37,13 +37,13 @@ def notificationOrders(request):
 
 # The default home page for the website
 def homePage(request):
-    Orders =  notificationOrders(request)
+    Statuses =  notificationOrders(request)
     
         #obj.some_field = some_var
         #obj.save()
     # Gets a list of all the groups a user is in
     user_groups = request.user.groups.values_list('name', flat=True)
-    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'orders':Orders})
+    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'statuses':Statuses})
 
 def home(request):
     # this selects the name of the web page and sends the user to that page
@@ -55,6 +55,7 @@ def results(request):
 
 @login_required
 def menu(request):
+    Statuses =  notificationOrders(request)
     items = MenuItem.objects.all()
     cookieData = request.COOKIES.get('items')
     print("Data=",cookieData)
@@ -76,14 +77,16 @@ def menu(request):
     print("DICT=",itemDict)
     basketPriceStr = "{:.2f}".format(basketPrice)
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict})
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses})
 
 def ltohSort(request):
+    Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('price')
-    return render(request, 'ltohsort.html', {'MenuItems': items})
+    return render(request, 'ltohsort.html', {'MenuItems': items,'statuses':Statuses})
 
 
 def checkout(request):
+    Statuses =  notificationOrders(request)
     test = request.COOKIES.get('items') 
     print("test=",test)
     if len(test) == 0:
@@ -113,21 +116,24 @@ def checkout(request):
 
         price = "{:.2f}".format(price)
 
-        return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
+        return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber,'statuses':Statuses})
 
 
 def orderComplete(request):
-    return render(request, 'orderComplete.html')
+    Statuses =  notificationOrders(request)
+    return render(request,'orderComplete.html',context={'statuses':Statuses})
 
 
 def htolSort(request):
+    Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('-price')
-    return render(request, 'htolsort.html', {'MenuItems': items})
+    return render(request, 'htolsort.html', {'MenuItems': items,'statuses':Statuses})
 
 def customerOrder(request):
+    Statuses =  notificationOrders(request)
     Orders = Order.objects.filter(customerID_id=request.user)
 
-    return render(request, 'customerOrders.html',{'Orders':Orders})
+    return render(request, 'customerOrders.html',{'Orders':Orders,'statuses':Statuses})
     
 
 
@@ -155,6 +161,7 @@ def clientHelpRequests(request):
 
 
 def completePayment(request):
+    Statuses =  notificationOrders(request)
     orderedItems = request.COOKIES.get('items').split(",")
     itemDict = dict()
     orderCost = 0
@@ -174,7 +181,7 @@ def completePayment(request):
     newPayment = Payment.objects.create(customerID = request.user, orderID = order, paymentAmount = orderCost)
     newPayment.save()
 
-    return render(request,'completePayment.html')
+    return render(request,'completePayment.html',context={'statuses':Statuses})
 
 
 def testNotification(request):

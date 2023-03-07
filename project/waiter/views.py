@@ -41,6 +41,7 @@ def updateOrderStatus(request, orderID):
     if order.status == "Placed":
         # Change order status from placed to confirmed
         setattr(order, "status", "Confirmed")
+        setattr(order, "notificationSent", False)
         # Assign waiter to this order using TableServer table
         # The decerator above guarntees the user will be a waiter, so simply call request.user
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
@@ -49,6 +50,7 @@ def updateOrderStatus(request, orderID):
     elif order.status == "Prepared": 
         # Change order status from perepared to delivered
         setattr(order, "status", "Delivered")
+        setattr(order, "notificationSent", False)
         messages.info(request, f"Order #{orderID} has been Delivered.")
     elif order.status == "Delivered": 
         deleteOrder(request, orderID)

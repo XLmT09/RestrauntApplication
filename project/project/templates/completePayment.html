@@ -25,6 +25,11 @@
       </br>
       <button class="homeButton">Return to home page</button>
     </div>
+    {% for i in statuses %}
+    <script>
+      alert("Your order has been {{i}}");
+    </script>
+    {% endfor %}
   </body>
 </html>
 {% endblock content %}

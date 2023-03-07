@@ -17,7 +17,7 @@
     />
   </head>
 
-  <body onload="updateNotification({{order|safe}})">
+  <body>
     {% for message in messages%}
     <div class="container-fluid p-0">
       <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    {% for i in orders %}
+    {% for i in statuses %}
     <script>
       alert("Your order has been {{i}}");
     </script>

@@ -62,11 +62,11 @@
             <div class="text">Logout</div>
           </button></a
         >
-        <a class="nav-options nav-btn" href="{% url 'account-profile' %}"'>
+        <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
           <button class="navButton">
             <div class="text">Profile</div>
-          </button></a
-        >
+          </button>
+        </a>
 
         {% else %}
         <a href="/account/login/">
@@ -360,6 +360,11 @@
         </form>
       </div>
     </div>
+    {% for i in statuses %}
+    <script>
+      alert("Your order has been {{i}}");
+    </script>
+    {% endfor %}
   </body>
 </html>
 {% endblock content %}
