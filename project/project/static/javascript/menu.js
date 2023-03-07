@@ -145,16 +145,17 @@ function updateValues(values, priceOfItem, operation) {
 function deleteItemFromBasket(itemName) {
   if (confirm("Are you sure you want to remove this item?")){
     var items = getCookie("items").split(",");
-    alert(items);
     var Ids = getCookie("itemIds").split(",");
     var itemWithIds = getCookie("itemWithIds").split(",");
-    for (let i = items.length - 2; i > -1; i = i - 2){
-      if (items[i] == itemName){
-        Ids.splice(Math.floor(i/2),1);
-        items.splice(i,1);
-        itemWithIds.splice(i,1);
-      }
+
+    var index = items.indexOf(itemName);
+    while (index != -1){
+      items.splice(index, 2);
+      itemWithIds.splice(index, 2);
+      Ids.splice(Math.floor(index/2), 1);
+      index = items.indexOf(itemName);
     }
+
     updateCookies(items, Ids, itemWithIds);
     alert(itemName + " has been removed from your basket");
     if (items.length == 0){
