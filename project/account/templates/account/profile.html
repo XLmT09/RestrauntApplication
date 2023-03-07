@@ -2,7 +2,12 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'profile.css' %}" />
-<h1>Hello {{ user.username }}!!</h1>
-<a href="{% url 'customerOrder' %}">View Orders </a>
+<div class="description">
+    <h1>Hello {{ user.username }}!!</h1>
+
+</div>
+<div class="button">
+    <a href="{% url 'customerOrder' %}">View Orders </a>
+</div>
 
 {% endblock content %}
