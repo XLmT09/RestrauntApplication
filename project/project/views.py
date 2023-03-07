@@ -15,15 +15,21 @@ def notificationOrders(request):
         Orders = Order.objects.filter(customerID_id=request.user,notificationSent=False)
         statusList =[]
         for i in Orders:
-            statusList.append(i.status)
-
+            statusList.append(str(i.status))
             print(i.status)
+        
+        Order.objects.filter(customerID_id=request.user,notificationSent=False).update(notificationSent=True)
         
         return statusList
         
     except:
+        print('nope')
         Orders = ''
         return Orders
+    
+
+        
+
 
 
 

@@ -52,6 +52,7 @@ class Order(models.Model):
     # Will automatically get the current time due to the auto_now attrbuite
     timeOfOrder = models.TimeField(auto_now=True, null=False)
     orderedItems = models.JSONField(null=False)
+    notificationSent = models.BooleanField(default=False)
 
 # Table which stores help request messages a customer makes
 class HelpRequest(models.Model):
