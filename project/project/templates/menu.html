@@ -141,7 +141,7 @@
       
         {% for item in MenuItems %} {% if item.course == "Starter" %}
 
-        <div class="container">
+        <div class="container", style = "background-image: url('{{item.imgurl}}');">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>

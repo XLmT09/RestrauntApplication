@@ -6,37 +6,37 @@ from project.models import MenuItem
 class Command(BaseCommand):
     def handle(self, *args, **options):
         # URL's for menu starters
-        MenuItem.objects.filter(name = 'Chicken Taquitos').update(imgurl = 'https://drive.proton.me/urls/WQEAJ7N6D8#r4xpYnfCgFOg')
-        MenuItem.objects.filter(name = 'Nachos').update(imgurl = 'https://drive.proton.me/urls/2EPT1Y71J8#oddAauKkfajp')
-        MenuItem.objects.filter(name = 'Elote').update(imgurl = 'https://drive.proton.me/urls/G9C83QPSPW#4XR1jCZgCHVu')
-        MenuItem.objects.filter(name = 'Cheviche').update(imgurl = 'https://drive.proton.me/urls/TA5GXZRCC0#E47ClL6sE6a8')
-        MenuItem.objects.filter(name = 'Black Bean Salsa').update(imgurl = 'https://drive.proton.me/urls/2FHQ3TA15M#xcaOcnQdHOht')
+        MenuItem.objects.filter(name = 'Chicken Taquitos').update(imgurl = 'https://i.postimg.cc/K8nnSp8C/Chicken-Taquitos.jpg')
+        MenuItem.objects.filter(name = 'Nachos').update(imgurl = 'https://i.postimg.cc/HWJhfMfX/Nachos.jpg')
+        MenuItem.objects.filter(name = 'Elote').update(imgurl = 'https://i.postimg.cc/fLCxJ8tk/Elote.jpg')
+        MenuItem.objects.filter(name = 'Cheviche').update(imgurl = 'https://i.postimg.cc/c1fZ3PXv/Cheviche.jpg')
+        MenuItem.objects.filter(name = 'Black Bean Salsa').update(imgurl = 'https://i.postimg.cc/tJdjHVY3/Black-Bean-Salsa.jpg')
 
         # URL's for menu mains
-        MenuItem.objects.filter(name = 'Bean Salad').update(imgurl = 'https://drive.proton.me/urls/1H071CWTQR#uWOzzhM4HfxI')
-        MenuItem.objects.filter(name = 'Prawn Fajitas').update(imgurl = 'https://drive.proton.me/urls/H9210X57RM#wxwy3QC0rJQB')
-        MenuItem.objects.filter(name = 'Prawn Chirizo Quesadilla').update(imgurl = 'https://drive.proton.me/urls/3S9P2WZ1TM#ByLYhWP3zDzq')
-        MenuItem.objects.filter(name = 'King Prawn Taco').update(imgurl = 'https://drive.proton.me/urls/3ZG76XQBXC#yosxnefXP6ll')
-        MenuItem.objects.filter(name = 'Burrito').update(imgurl = 'https://drive.proton.me/urls/E2P74KH424#A6DvyZCsUIcN')
+        MenuItem.objects.filter(name = 'Bean Salad').update(imgurl = 'https://i.postimg.cc/DfQk0Lws/Bean-Salad.jpg')
+        MenuItem.objects.filter(name = 'Prawn Fajitas').update(imgurl = 'https://i.postimg.cc/HsXPLgWL/Prawn-Fajitas.jpg')
+        MenuItem.objects.filter(name = 'Prawn Chirizo Quesadilla').update(imgurl = 'https://i.postimg.cc/bw992Y2m/Prawn-Chirizo-Quesadilla.jpg')
+        MenuItem.objects.filter(name = 'King Prawn Taco').update(imgurl = 'https://i.postimg.cc/1Xpcyy0h/King-Prawn-Taco.jpg')
+        MenuItem.objects.filter(name = 'Burrito').update(imgurl = 'https://i.postimg.cc/prMH7BXV/Burrito.jpg')
 
         #URL's for menu sides
-        MenuItem.objects.filter(name = 'Black Beans and Rice').update(imgurl = 'https://drive.proton.me/urls/5HQCY29ES0#WWDdClus1lZF')
-        MenuItem.objects.filter(name = 'Salsa').update(imgurl = 'https://drive.proton.me/urls/4A10TPMTNC#VY9LhQlOQ8W0')
-        MenuItem.objects.filter(name = 'Guacamole').update(imgurl = 'https://drive.proton.me/urls/71THBMM78G#96NePbacNh0o')
-        MenuItem.objects.filter(name = 'Pozole').update(imgurl = 'https://drive.proton.me/urls/CM88F7CK4M#7jQHFFT4CNTZ')
-        MenuItem.objects.filter(name = 'Tomato Avocado Salad').update(imgurl = 'https://drive.proton.me/urls/K39Q6KNAKG#t22HbLQFKSc6')
+        MenuItem.objects.filter(name = 'Black Beans and Rice').update(imgurl = 'https://i.postimg.cc/ncZxGTP0/Black-Beans-and-Rice.jpg')
+        MenuItem.objects.filter(name = 'Salsa').update(imgurl = 'https://i.postimg.cc/Bbw71SL8/Salsa.jpg')
+        MenuItem.objects.filter(name = 'Guacamole').update(imgurl = 'https://i.postimg.cc/133ZLXPF/Guacamole.jpg')
+        MenuItem.objects.filter(name = 'Pozole').update(imgurl = 'https://i.postimg.cc/tTW0hVdK/Pozole.jpg')
+        MenuItem.objects.filter(name = 'Tomato Avocado Salad').update(imgurl = 'https://i.postimg.cc/9QT4SLBK/Tomato-Avocado-Salad.jpg')
 
         #URL's for menu desserts
-        MenuItem.objects.filter(name = 'Churros').update(imgurl = 'https://drive.proton.me/urls/E5145B1D98#AV5voldhfte1')
-        MenuItem.objects.filter(name = 'Dulce de leche cheesecake').update(imgurl = 'https://drive.proton.me/urls/KWGWXWYJ2R#lR4ukAeQjUug')
-        MenuItem.objects.filter(name = 'Sopapillas').update(imgurl = 'https://drive.proton.me/urls/29N9X9CWWM#7V4dIwcbhzeR')
-        MenuItem.objects.filter(name = 'Bunuelos').update(imgurl = 'https://drive.proton.me/urls/G10QSNNX3R#2UW8nIFsCQZK')
+        MenuItem.objects.filter(name = 'Churros').update(imgurl = 'https://i.postimg.cc/t4vHybCM/Churros.jpg')
+        MenuItem.objects.filter(name = 'Dulce de leche cheesecake').update(imgurl = 'https://i.postimg.cc/yYnMXK98/Dulce-de-leche-cheesecake.jpg')
+        MenuItem.objects.filter(name = 'Sopapillas').update(imgurl = 'https://i.postimg.cc/9FJf4vQG/Sopapillas.jpg')
+        MenuItem.objects.filter(name = 'Bunuelos').update(imgurl = 'https://i.postimg.cc/tC5jSW0y/Bunuelos.jpg')
 
         #URL's for menu drink
-        MenuItem.objects.filter(name = 'Michelada').update(imgurl = 'https://drive.proton.me/urls/GF35ZDFA70#3jIQlorbbudw')
-        MenuItem.objects.filter(name = 'Chamoyada').update(imgurl = 'https://drive.proton.me/urls/RDXG3BZK0M#xJpz3tD9gNll')
-        MenuItem.objects.filter(course = 'Drink', calories = 570).update(imgurl = 'https://drive.proton.me/urls/W6CTEEZ8TW#95GgZpb9O0Nh')
-        MenuItem.objects.filter(name = 'Classic margarita').update(imgurl = 'https://drive.proton.me/urls/ATBGNF4QHR#C9zbhPvN89bd')
-        MenuItem.objects.filter(name = 'Coke').update(imgurl = 'https://drive.proton.me/urls/Z5KXCF2B1W#R0QT0fEcS3yW')
-        MenuItem.objects.filter(name = 'Fanta').update(imgurl = 'https://drive.proton.me/urls/PZS7YPXFV0#DHY1nvUIvLqe')
-        MenuItem.objects.filter(name = 'Paloma').update(imgurl = 'https://drive.proton.me/urls/JZSPT0K4JC#jFKAArg2jD5A')
+        MenuItem.objects.filter(name = 'Michelada').update(imgurl = 'https://i.postimg.cc/pT3n93VW/Michelada.jpg')
+        MenuItem.objects.filter(name = 'Chamoyada').update(imgurl = 'https://i.postimg.cc/C1k6nsh8/Chamoyada.jpg')
+        MenuItem.objects.filter(course = 'Drink', calories = 570).update(imgurl = 'https://i.postimg.cc/KjBWMSbx/Don-P-rignon-Brut-2003.jpg')
+        MenuItem.objects.filter(name = 'Classic margarita').update(imgurl = 'https://i.postimg.cc/kM0wtpDh/Classic-margarita.jpg')
+        MenuItem.objects.filter(name = 'Coke').update(imgurl = 'https://i.postimg.cc/t4xjNfzZ/Coke.jpg')
+        MenuItem.objects.filter(name = 'Fanta').update(imgurl = 'https://i.postimg.cc/qM14jynn/Fanta.jpg')
+        MenuItem.objects.filter(name = 'Paloma').update(imgurl = 'https://i.postimg.cc/vmpFgvn7/Paloma.jpg')
