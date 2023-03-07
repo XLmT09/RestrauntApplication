@@ -47,10 +47,13 @@ function addItem(id, addSubtract, price, name, itemId) {
   }
 }
 
-function deleteExistingCookies() {
+function deleteCookies() {
   document.cookie = "items" + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
   document.cookie = "itemIds" + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
   document.cookie = "itemWithIds" + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;"
+  itemsOrdered = [];
+  itemIds = [];
+  itemWithId = [];
 }
 
 function setCookie(cname, cvalue, exdays) {
