@@ -87,16 +87,20 @@ def checkout(request):
         return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
 def orderComplete(request):
-    Ids = request.COOKIES.get('itemIds').split(',')
-    idIntList = []
+    orderedItems = request.COOKIES.get('items').split(",")
+    itemDict = dict()
     orderCost = 0
-    for id in Ids:
-        idIntList.append(int(id))
+    for i in range(len(orderedItems)):
+        if i % 2 == 0:
+            itemName = orderedItems[i]
+            if itemName in itemDict:
+                itemDict[itemName] += 1
+            else:
+                itemDict[itemName] = 1
+        else:
+            orderCost += float(orderedItems[i])
 
-        orderedItem = MenuItem.objects.get(ID = int(id))
-        orderCost += orderedItem.price
-
-    order = models.Order(customerID=request.user,status='Placed',orderedItems=idIntList)
+    order = models.Order(customerID=request.user,status='Placed',orderedItems=itemDict)
     order.save()
 
     newPayment = Payment.objects.create(customerID = request.user, orderID = order, paymentAmount = orderCost)
