@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.db import models
 from .models import MenuItem
 from .models import Order
@@ -27,8 +27,27 @@ def results(request):
 @login_required
 def menu(request):
     items = MenuItem.objects.all()
+    cookieData = request.COOKIES.get('items')
+    print("Data=",cookieData)
+    print(request.COOKIES.get('itemIds'))
+    print(request.COOKIES.get('itemWithIds'))
+    basketPrice = 0
+    itemDict = dict()
+    if cookieData != None:
+        cookieData = cookieData.split(",")
+        for i in range(len(cookieData)):
+            if i % 2 == 0:
+                itemName = cookieData[i]
+                if itemName in itemDict:
+                    itemDict[itemName] += 1
+                else:
+                    itemDict[itemName] = 1
+            else:
+                basketPrice += float(cookieData[i])
+    print("DICT=",itemDict)
+    basketPriceStr = "{:.2f}".format(basketPrice)
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm()})
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict})
 
 def ltohSort(request):
     items = MenuItem.objects.all().order_by('price')
@@ -37,39 +56,35 @@ def ltohSort(request):
 
 def checkout(request):
     test = request.COOKIES.get('items') 
+    print("test=",test)
     if len(test) == 0:
-        items = MenuItem.objects.all()
-    # this selects the name of the web page and sends the user to that page
-        return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm()})
-        
-    testArray = test.split(',')
-    print(testArray)
-    print("tes")
-    itemArray=[]
-    usedItems = []
-    price = 0
-    itemNumber = 0
-    for i in range(0, len(testArray)):
-        if(i%2 ==0):
-            tempArray = []
-            tempArray.append(testArray[i])
-            tempArray.append(testArray[i+1])
-            price = price + float(testArray[i+1])
-            itemArray.append(tempArray)
-            
-    for i in itemArray:
-        if not (i in usedItems):
-            usedItems.append(i)
-    for i in usedItems:
-        numberOfItems = itemArray.count(i)
-        itemNumber = itemNumber + numberOfItems
-        i[1] =round( float(i[1]) * numberOfItems,2)
-        i.append(numberOfItems)
-        
-    print("before")
+        return redirect(menu)
+    else:
+        testArray = test.split(',')
+        itemArray=[]
+        usedItems = []
+        price = 0
+        itemNumber = 0
+        for i in range(0, len(testArray)):
+            if(i%2 ==0):
+                tempArray = []
+                tempArray.append(testArray[i])
+                tempArray.append(testArray[i+1])
+                price = price + float(testArray[i+1])
+                itemArray.append(tempArray)
+                
+        for i in itemArray:
+            if not (i in usedItems):
+                usedItems.append(i)
+        for i in usedItems:
+            numberOfItems = itemArray.count(i)
+            itemNumber = itemNumber + numberOfItems
+            i[1] = "{:.2f}".format(float(i[1]) * numberOfItems)
+            i.append(numberOfItems)
 
-    
-    return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
+        price = "{:.2f}".format(price)
+
+        return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
 def orderComplete(request):
     Ids = request.COOKIES.get('itemIds').split(',')

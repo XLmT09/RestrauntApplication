@@ -45,6 +45,11 @@ body {
   height: 100%;
   margin-bottom: 2px;
 }
+.deleteItemButton {
+  text-align: right;
+  float: right;
+  margin-bottom: 2px;
+}
 
 .arrows {
   height: 100%;
