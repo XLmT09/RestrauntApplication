@@ -86,31 +86,9 @@ def checkout(request):
 
         return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
+
 def orderComplete(request):
-    orderedItems = request.COOKIES.get('items').split(",")
-    itemDict = dict()
-    orderCost = 0
-    for i in range(len(orderedItems)):
-        if i % 2 == 0:
-            itemName = orderedItems[i]
-            if itemName in itemDict:
-                itemDict[itemName] += 1
-            else:
-                itemDict[itemName] = 1
-        else:
-            orderCost += float(orderedItems[i])
-
-    order = models.Order(customerID=request.user,status='Placed',orderedItems=itemDict)
-    order.save()
-
-    newPayment = Payment.objects.create(customerID = request.user, orderID = order, paymentAmount = orderCost)
-    newPayment.save()
-
     return render(request, 'orderComplete.html')
-
-# add order - set status to placed
-
-
 
 
 def htolSort(request):
@@ -148,13 +126,25 @@ def clientHelpRequests(request):
 
 
 def completePayment(request):
-    Ids = request.COOKIES.get('itemIds').split(',')
-    idIntList = []
-    for id in Ids:
-        idIntList.append(int(id))
-    
-    order = models.Order(customerID=request.user,status='Placed',orderedItems=idIntList)
+    orderedItems = request.COOKIES.get('items').split(",")
+    itemDict = dict()
+    orderCost = 0
+    for i in range(len(orderedItems)):
+        if i % 2 == 0:
+            itemName = orderedItems[i]
+            if itemName in itemDict:
+                itemDict[itemName] += 1
+            else:
+                itemDict[itemName] = 1
+        else:
+            orderCost += float(orderedItems[i])
+
+    order = models.Order(customerID=request.user,status='Placed',orderedItems=itemDict)
     order.save()
+
+    newPayment = Payment.objects.create(customerID = request.user, orderID = order, paymentAmount = orderCost)
+    newPayment.save()
+
     return render(request,'completePayment.html')
 
 
