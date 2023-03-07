@@ -1,0 +1,31 @@
+{% extends 'waiterBase.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/payment.css' %}" />
+<div class="paymentDetails">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Amount Paid</th>
+            <th>Paid by</th>
+            <th>Paid at</th>
+        </tr>
+        {% for payment in cust_payments %}
+            <tr>
+                <td>{{payment.paymentID}}</td>
+                <td>{{payment.paymentAmount}}</td>
+                <td>{{payment.customerID}}</td>
+                <td>{{payment.timeOfPayment}}</td>
+            </tr>
+        {% endfor %}
+        <td>Total income: </td>
+        <td>£{{income}}</td>
+    </table>
+
+    <div class="incomeLabel">
+        <a>Total Income: £{{income}}</a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'waiterBase.html' %}
-
 {% block content %}
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/waiterHome.css' %}" />
 <div class = "grid-container">
     <div class = "grid-item">
       <button class="choiceButton">
@@ -20,7 +20,9 @@
         </button>
     </div>
     <div class = "grid-item">
-      <button class="choiceButton">View Payments</button>
+        <button class="choiceButton">
+            <a href="{% url 'showPayments' %}" id="choiceText">View Payments</a>
+        </button>
     </div>
 </div>
 

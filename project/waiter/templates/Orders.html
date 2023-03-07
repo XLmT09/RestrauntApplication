@@ -1,60 +1,74 @@
-    {% extends "staffPage.html" %} 
-    {% block content %} 
-    {% load static %}
+{% extends "waiterBase.html" %} 
+{% block content %} 
+{% load static %}
 
-    <script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
+<script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'css/orderWaiter.css' %}" />
+<link rel="stylesheet" href="{% static 'css/popup.css' %}" />
 
-   <link rel="stylesheet" href="{% static 'css/order.css' %}" />
-    <div class = "background">
-        <div class = "orderbox">
-            <div class = "title">Orders</div>
-    
-            {% for order in cust_orders %}
-    
+<div class = "background">
+    <div class = "orderbox">
+        <div class = "title">Orders</div>
+        {% for order in cust_orders %}
             <div class = "order">
                 <div class = "ordersummary">
                     <div class = "orderno">{{order.ID}}</div>
                     <div class = "orderstatus">{{order.status}}</div>
+                    <div>{{order.timeOfOrder}}</div>
                 </div>
                 <div class = "orderdetails">
-                    Items: {{order.orderedItems}}
-                    <br/><br/>
                     Placed by: {{order.customerID}}
-                    <br/><br/>
-                    Placed at: {{order.timeOfOrder}}
-                </div>
-                <div class = "statusbar">
-                    <button class = "updatestatus">
-                    <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
-                    {% if order.status == "Placed" %}
-                        Confirm order
-                    {% endif %}
-                    {% if order.status == "Prepared" %}
-                        Mark as Delivered
-                    {% endif %}
-                    {% if order.status == "Delivered" %}
-                        Delete order
-                    {% endif %}
-                    </a>
-                    </button>
-                </div>
-                {% if order.status == "Placed" %}
-                <div class = "statusbar">
-                    <button class = "updatestatus"><a href="{% url 'deleteOrder' order.ID %}" id="buttonText">Cancel Order</a></button>
+                    <br><br>
+                    Ordered Items: 
+                    <br><br>
+                    <div style="width:300px;height:30px;line-height:3em;overflow:auto;padding:5px;" class="orderScrollBox">
+                    {% for key, value in order.orderedItems.items %}
+                        {{key}} {{value}} <br class="newLineClass">
+                    {% endfor %}
+                    </div>
+
                     
-                    <div id="confirmation{{order.ID}}" style="display: none;">
-                        <text style="color: white;">Are you sure?</text>
-                        <a href="delete/{{order.ID}}">
-                          <button class = "updatestatus">Yes</button>
-                        </a>
-                        <button class = "updatestatus" onclick="sayNo({{order.ID}})">No</button>
-                      </div>
                 </div>
-                {% endif %}
+
+                <div class = "statusbar">
+                    {% if order.status == "Placed" %}
+                        <button class = "updatestatus">
+                        <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                        Confirm order
+                        </a>
+                        </button>
+                        
+                        <br><br>
+
+                        <button class = "updatestatus">
+                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                        Cancel Order
+                        </a>
+                        </button>
+
+                        <!-- <div id="confirmation{{order.ID}}" style="display: none;">
+                            <text style="color: white;">Are you sure?</text>
+                            <a href="delete/{{order.ID}}">
+                            <button class = "updatestatus">Yes</button>
+                            </a>
+                            <button class = "updatestatus" onclick="sayNo({{order.ID}})">No</button>
+                        </div> -->
+                    {% elif order.status == "Prepared" %}
+                        <button class = "updatestatus">
+                        <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                            Mark as Delivered
+                        </a>
+                        </button>
+                    {% elif order.status == "Delivered" %}
+                        <button class = "updatestatus">
+                        <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                            Delete order
+                        </a>
+                        </button>
+                    {% endif %}
+                </div>
             </div>
-    
-            {%endfor%}
-    
-        </div>
+        {% endfor %}
     </div>
-    {% endblock content %}
+</div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+.pop-message {
+    padding-left:20%;
+}
+
+.alert-danger {
+    background-color: red;
+}
+
+.alert-info {
+    background-color: blue;
+}

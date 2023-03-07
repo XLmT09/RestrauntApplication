@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
 
@@ -8,6 +9,7 @@ def group_required(group_name):
     def decerator(view_func):
         def wrapper(request, *args, **kwargs):
             if not request.user.is_authenticated or not request.user.groups.filter(name=group_name).exists():
+                messages.error(request, f'You must be logged in as a {group_name}')
                 # Redirect to the login URL
                 return redirect(reverse("account-login"))
             response = view_func(request, *args, **kwargs)
