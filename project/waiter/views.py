@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
 from .forms import menuUpdateForm
 from project.models import MenuItem
@@ -88,3 +88,9 @@ def deleteOrder(request, ID):
     order.delete()
     placed_orders = Order.objects.all().order_by('timeOfOrder').filter(status = "Placed")
     return render(request, 'orders.html', {'cust_orders': placed_orders})
+
+def deleteHelpRequest(request, help_request_id):
+    help_request = get_object_or_404(HelpRequest, id=help_request_id, customerID=request.user)
+    HelpRequest.objects.get(id=help_request_id).delete()
+    help_requests = HelpRequest.objects.all()
+    return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
