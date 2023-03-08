@@ -112,11 +112,3 @@
 .updatestatus:hover{
   background-position: bottom;
 }
-
-.newLineClass {
-  line-height: 1px;
-}
-
-.orderScrollBox {
-  border: 2px solid black;
-}
