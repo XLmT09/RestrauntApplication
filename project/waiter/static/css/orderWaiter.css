@@ -63,9 +63,8 @@
 }
 
 .orderno {
-  float: left;
-  width: 20%;
-  text-align: left;
+  width: 100%;
+  text-align: center;
   color: white;
   font-family: Montserrat;
   font-size: 120%;
@@ -82,8 +81,8 @@
 
 .orderdetails {
     width: 100%;
-    height: 10vh;
-    padding-top: 4%;
+    padding-top: 10%;
+    padding-left: 25%;
 }
 
 .statusbar {
@@ -113,10 +112,6 @@
   background-position: bottom;
 }
 
-.newLineClass {
-  line-height: 1px;
-}
-
-.orderScrollBox {
-  border: 2px solid black;
+.detailText {
+  text-align: center;
 }

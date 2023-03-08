@@ -8,26 +8,24 @@
 
 <div class = "background">
     <div class = "orderbox">
-        <div class = "title">Orders</div>
+        <div class = "title">{{pageTitle}}</div>
         {% for order in cust_orders %}
             <div class = "order">
                 <div class = "ordersummary">
                     <div class = "orderno">{{order.ID}}</div>
-                    <div class = "orderstatus">{{order.status}}</div>
-                    <div>{{order.timeOfOrder}}</div>
                 </div>
                 <div class = "orderdetails">
-                    Placed by: {{order.customerID}}
-                    <br><br>
-                    Ordered Items: 
-                    <br><br>
-                    <div style="width:300px;height:30px;line-height:3em;overflow:auto;padding:5px;" class="orderScrollBox">
-                    {% for key, value in order.orderedItems.items %}
-                        {{key}} {{value}} <br class="newLineClass">
-                    {% endfor %}
-                    </div>
-
-                    
+                    <select class="detailText">
+                        <option disabled selected hidden>Order Details</option>
+                        <option disabled>Order Placed at: {{order.timeOfOrder}}</option>
+                        <option disabled></option>
+                        <option disabled>Order placed by: {{order.customerID}}</option>
+                        <option disabled></option>
+                        <option disabled>Items Ordered:</option>
+                        {% for key, value in order.orderedItems.items %}
+                            <option disabled>{{key}}: x{{value}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
 
                 <div class = "statusbar">
