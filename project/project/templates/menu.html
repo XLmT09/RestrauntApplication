@@ -297,7 +297,7 @@
         <div class="titles"><div class="name">Drink</div></div>
   
         {% for item in MenuItems %} {% if item.course == "Drink" %}
-        <div class="container", style = "background-image: url({{item.imgurl}}); background-size: contain; background-repeat: no-repeat;">
+        <div class="container", style = "background-image: url({{item.imgurl}}); background-size: contain; background-repeat: no-repeat; width: 100%; height:100%;">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>
