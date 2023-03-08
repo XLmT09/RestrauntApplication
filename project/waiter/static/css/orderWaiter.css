@@ -1,25 +1,18 @@
 .order-container {
-  left: 50%;
-  transform: translate(-50%, 0);
+  left: 10%;
   position: absolute;
   margin-top: 5%;
   width: 80%;
 }
 
 .order-box-outer {
-  position: relative;
-  padding: 1%;
-  float: left;
-  text-align: left;
-  border-bottom: solid;
-  width: 26%;
-  color: white;
-  font-size: 75%;
-  font-family: Montserrat;
-  border-color: white;
+  background-color: transparent;
   margin: 2%;
-  filter: brightness(90%);
-  background: #FFFFFF08
+  float: left;
+  width: 500px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
 }
 
 .order-box-inner {
@@ -31,7 +24,7 @@
   transform-style: preserve-3d;
 }
 
-.order-box-outer:hover .order-box-inner {
+.order-box-outer:focus  .order-box-inner {
   transform: rotateY(180deg);
 }
 
