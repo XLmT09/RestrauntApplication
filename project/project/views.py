@@ -113,5 +113,3 @@ def sendHelpRequest(request):
 def clientHelpRequests(request):
     help_requests = HelpRequest.objects.all()
     return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
-
-
