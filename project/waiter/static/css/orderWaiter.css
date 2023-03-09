@@ -54,6 +54,11 @@
   transform: rotateY(180deg);
 }
 
+/** Hide the scroll bar **/
+.order-box-back::-webkit-scrollbar {
+  display: none;
+}
+
 .title {
   font-family: Montserrat;
   font-size: 120%;
