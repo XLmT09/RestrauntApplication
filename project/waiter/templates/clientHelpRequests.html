@@ -64,11 +64,12 @@ function highlightRow(button) {
   if (row.classList.contains("highlight")) {
     var confirmed = confirm("Do you want to delete this row?");
     if (confirmed) {
-      row.parentNode.removeChild(row);
-    } else {
-      row.classList.remove("highlight");
+       deleteHelpRequest();
+       row.parentNode.removeChild(row);
+      } else {
+        row.classList.remove("highlight");
+      }
     }
-  }
 }
   </script>
 {% endblock %}
