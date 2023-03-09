@@ -64,8 +64,8 @@ function highlightRow(button) {
   if (row.classList.contains("highlight")) {
     var confirmed = confirm("Do you want to delete this row?");
     if (confirmed) {
-       deleteHelpRequest();
        row.parentNode.removeChild(row);
+       deleteHelpRequest();
       } else {
         row.classList.remove("highlight");
       }
