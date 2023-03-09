@@ -1,117 +1,127 @@
-.orderbox {
-    left: 50%;
-    transform: translate(-50%, 0);
-    position: absolute;
-    margin-top: 5%;
-    width: 80%;
-    opacity: 1;
-    transition: opacity 1s ease-in;
-}
-
-.order {
-  position: relative;
-  padding: 1%;
-  float: left;
-  text-align: left;
-  border-bottom: solid;
-  width: 26%;
-  color: white;
-  font-size: 75%;
+* {
   font-family: Montserrat;
-  border-color: white;
-  margin: 2%;
-  filter: brightness(90%);
-  background: linear-gradient(to left, #FFFFFF08 50%, #1d0320 50%) right;
-  background-size: 200%;
-  transition: .8s ease-out;
 }
 
-.order:hover {
-  background-color:#1d0320;
-  /* To maximise compatability i add a transition effect for mutliple browsers */
-  /* Transition effect for webkit browsers i.e. chrome */
-  -webkit-transition: background-color 500ms linear;
-  /* Transition effect for ms edge browser */
-  -ms-transition: background-color 500ms linear;
-  /* Transition effect for every other browser */
-  transition: background-color 500ms linear;
+/* Body class of the page */
+.order-container {
+  left: 10%;
+  position: absolute;
+  margin-top: 5%;
+  width: 80%;
+}
+
+.order-box-outer {
+  background-color: transparent;
+  margin: 2%;
+  float: left;
+  width: 350px;
+  height: 250px;
+  font-size: 1em;
+  perspective: 1000px;
+}
+
+.order-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.order-box-outer.rotate  .order-box-inner {
+  transform: rotateX(180deg);
+}
+
+.order-box-front, .order-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-bottom: 2px solid white;
+}
+
+.order-box-front {
+  background-color: #15202B;
+  color: white;
+}
+
+.order-box-back {
+  background-color: #15202B;
+  color: white;
+  opacity: auto;
+  overflow: auto;
+  transform: rotateX(180deg);
+}
+
+/** Hide the scroll bar **/
+.order-box-back::-webkit-scrollbar {
+  display: none;
 }
 
 .title {
-    font-family: Montserrat;
-    font-size: 120%;
-    color: white;
-    border-style: solid;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    padding-bottom: 1%;
-}
-
-.ordersummary {
-  width: 100%;
-  border: solid;
+  font-family: Montserrat;
+  font-size: 120%;
+  color: white;
+  border-style: solid;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-width: 1px;
-  border-color: white;
-  padding-bottom: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.orderno {
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-family: Montserrat;
-  font-size: 120%;
-}
-
-.orderstatus {
-  margin-right: 1%;
-  float: right;
-  color: white;
-  font-family: Montserrat;
-  font-size: 120%;
-  margin-right: 1%;
+  padding-bottom: 1%;
 }
 
 .orderdetails {
-    width: 100%;
-    padding-top: 10%;
-    padding-left: 25%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-.statusbar {
-  padding-top: 10%;
-  position: static;
-  width: 97%;
-  height: 35%;
+.ordersummary {
+  display: flex;
+  justify-content: space-between;
+  border: solid;
   border: none;
+  border-bottom: 1px solid white;
+  padding: 2% 2% 2% 2%;
 }
 
 .updatestatus {
-  width: 100%;
-  padding: 3%;
+  width: 90%;
+  padding: 2%;
   text-align: center;
-  font-family: Montserrat;
-  font-size: 1.2em;
+  font-size: 1em;
   color: white;
-  border: 1px solid grey;
   cursor: pointer;
-  background: linear-gradient(to top, #380095 50%, black 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.3s ease-in-out;
+  border: 1px solid grey;
+  background: #818181;
+  transition: background-color 0.5s ease;
 }
 
 .updatestatus:hover{
-  background-position: bottom;
+  background-color: #212121;
 }
 
-.detailText {
-  text-align: center;
+.food-text {
+  /* Move text to next line instead of overflowing the box
+  horiziontaly */
+  clear: left;
+}
+
+.view-item-btn {
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 1%;
+  color: white;
+  background:#818181;
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-color 0.5s ease;
+}
+
+.view-item-btn:hover{
+  background-color: #212121;
+}
+
+.order-card-head {
+  margin-top: 1%;
 }

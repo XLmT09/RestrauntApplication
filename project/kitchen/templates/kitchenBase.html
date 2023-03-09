@@ -12,25 +12,18 @@
       <title>Exl Plato Dorado</title>
     {% endif %}
 
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <script src="{% static 'javascript/orderPopup.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/waiterBase.css' %}" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
     />
   </head>
 
-  <body>
-    {% if messages %}
-      {% for message in messages %}
-      <div class="container-fluid p-0">
-        <div class="pop-message {{ message.tags }}">{{ message }}</div>
-      </div>
-      {% endfor %}
-    {% endif %}
-    
-    <div class="bg">
+  <body>    
+    <div>
       <div class="navbar">
         <div id="left">
           <div class="text">
@@ -52,6 +45,11 @@
           {% endif %}
         </div>
       </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
       <div>{% block content %}{% endblock %}</div>
     </div>
   </body>
