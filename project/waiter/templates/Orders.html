@@ -13,12 +13,9 @@
             <div class = "order-box-inner">
                 <div class = "order-box-front">
                     <div class = "ordersummary">
-                        <div class = "orderno">{{order.ID}}</div>
-                        <div class = "orderstatus">{{order.status}}</div>
+                        <div class = "orderno">#{{order.ID}}</div>
                     </div>
                     <div class = "orderdetails">
-                        Items: {{order.orderedItems}}
-                        <br/><br/>
                         Placed by: {{order.customerID}}
                         <br/><br/>
                         Placed at: {{order.timeOfOrder}}
@@ -55,7 +52,16 @@
                     </div>
                 </div>
                 <div class="order-box-back">
-                    <h2>Back Side</h2>
+                    <p> Items </p>
+                    {% with items=order.orderedItems %}
+                        {% for food, quantity in items.items %}
+                            <p class="food-text">{{ food }} X {{ quantity }}</p>
+                        {% endfor %}
+                    {% endwith %}
+                    {% for order in cust_orders %}
+                        i <br>
+                        i <br>
+                    {% endfor %}
                 </div>
             </div>
         </div>
