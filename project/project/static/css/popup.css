@@ -9,3 +9,7 @@
 .alert-info {
     background-color: blue;
 }
+
+.alert-success {
+    background-color: limegreen;
+}
