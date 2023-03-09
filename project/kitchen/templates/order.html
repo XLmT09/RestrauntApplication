@@ -1,36 +1,58 @@
 {% extends "kitchenBase.html" %} {% block content %}
-{%load static %}
-<link rel="stylesheet" href="{% static 'css/order.css' %}" />
+{% load static %}
+<script src="{% static 'javascript/order-box.js' %}" defer></script>
 <script src = "{% static 'javascript/order.js' %}"></script>
-<div class = "background">
-	<div class = "orderbox">
-		<div class = "title">Orders</div>
+<link rel="stylesheet" href="{% static 'css/orderWaiter.css' %}" />
+<link rel="stylesheet" href="{% static 'css/popup.css' %}" />
 
-		{% for order in cust_orders %} {% if order.status == "Confirmed" %}
 
-		<div class = "order">
-			<div class = "ordersummary">
-				<div class = "orderno">{{order.ID}}</div>
-				<div class = "orderstatus">{{order.status}}</div>
-			</div>
-			<div class = "orderdetails">
-				Items: {{order.orderedItems}}
-				<br/><br/>
-				Placed by: {{order.customerID}}
-				<br/><br/>
-				Placed at: {{order.timeOfOrder}}
-			</div>
-			<div class = "statusbar">
-				<button class = "updatestatus"
-						onclick = "updateOrderStatus(this)"
-				>
-				Mark as prepared
-				</button>
+<div class = "order-container">
+    <div class = "title">Orders</div>
+	{% for order in cust_orders %}
+		<div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
+			<div class = "order-box-inner">
+				<div class = "order-box-front">
+					<div class = "ordersummary">
+						<span class = "order-card-head">#{{order.ID}}</span>
+						<button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
+							View Orderd Items
+						</button>
+					</div>
+
+					<div class = "orderdetails">
+						Placed by: {{order.customerID}}
+						<br/><br/>
+						Placed at: {{order.timeOfOrder}}
+					</div>
+					<div class = "statusbar">
+						{% if order.status == "Confirmed" %}
+						
+							<button class = "updatestatus"
+									onclick = "updateOrderStatus('{{ order.ID }}')"
+							>
+							Mark as prepared
+							</button>
+						{% endif %}
+					</div>
+				</div>
+
+				<div class="order-box-back">
+					<div class = "ordersummary">
+						<span class = "order-card-head"> Items </span>
+						<button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
+							View Order Details
+						</button>
+					</div>
+					{% with items=order.orderedItems %}
+						{% for food, quantity in items.items %}
+							<p class="food-text">{{ food }} X {{ quantity }}</p>
+						{% endfor %}
+					{% endwith %}
+				</div>
 			</div>
 		</div>
-
-		{%endif%}{%endfor%}
-
-	</div>
+	{% endfor %}
 </div>
 {% endblock content %}
+
+
