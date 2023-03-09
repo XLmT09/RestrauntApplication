@@ -25,8 +25,17 @@ def viewOrders(request, orderStatus):
         # Use the order ids to retrive only order info which waiter servers
         cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus).order_by('timeOfOrder')
     else:
-        # retrive all customer orders from oldest to newest
+        # retrieve all customer orders from oldest to newest
         cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
+    
+    # deletes the earliest delivered orders so that only (at most) 20 orders exist on the system
+    if (orderStatus == "Delivered"):
+        # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
+        excess_orders_num = Order.objects.all().filter(status = "Delivered").count() - 20
+        
+        if (excess_orders_num > 0):
+            excess_orders = Order.objects.all().filter(status = "Delivered")[:excess_orders_num]
+            excess_orders.delete()
 
     return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus+" orders"})
 
