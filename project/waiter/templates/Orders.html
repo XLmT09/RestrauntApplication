@@ -14,7 +14,7 @@
             <div class = "order-box-inner">
                 <div class = "order-box-front">
                     <div class = "ordersummary">
-                        <span class = "orderno">#{{order.ID}}</span>
+                        <span class = "order-card-head">#{{order.ID}}</span>
                         <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
                             View Orderd Items
                         </button>
@@ -56,16 +56,17 @@
                     </div>
                 </div>
                 <div class="order-box-back">
-                    <p> Items </p>
+                    <div class = "ordersummary">
+                        <span class = "order-card-head"> Items </span>
+                        <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
+                            View Order Details
+                        </button>
+                    </div>
                     {% with items=order.orderedItems %}
                         {% for food, quantity in items.items %}
                             <p class="food-text">{{ food }} X {{ quantity }}</p>
                         {% endfor %}
                     {% endwith %}
-                    {% for order in cust_orders %}
-                        i <br>
-                        i <br>
-                    {% endfor %}
                 </div>
             </div>
         </div>
