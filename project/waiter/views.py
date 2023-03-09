@@ -5,6 +5,7 @@ from .forms import menuUpdateForm
 from project.models import MenuItem, Order, HelpRequest
 from .models import Payment, TableServer
 from decerators import group_required
+from django.utils.safestring import mark_safe
 
 # Make http requests to the waiter page
 @group_required("Waiters")
@@ -55,12 +56,13 @@ def updateOrderStatus(request, ID):
         # The decerator above guarntees the user will be a waiter, so simply call request.user
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
         table.save()
-        messages.info(request, f"Order #{ID} has been Confirmed.")
+        messages.success(request, f"Order #{ID} has been Confirmed.")
     elif order.status == "Confirmed": 
         # Change order status from prepared to delivered
         setattr(order, "status", "Delivered")
         setattr(order, "notificationSent", False)
-        messages.info(request, f"Order #{ID} has been Delivered.")
+        messages.success(request, f"Order #{ID} has been Delivered.")
+        messages.info(request, mark_safe(f'Click <a href=" deleteOrder {ID}">here</a> to delete delivered order #{ID}'))
     else: 
         messages.error(request, "There was an error updating the status of this order.")
 
@@ -88,7 +90,7 @@ def deleteOrder(request, ID):
     order.delete()
     
     # Send message to front end to let the user know deletion was success
-    messages.info(request, f"Order #{ID} has been Deleted.")
+    messages.success(request, f"Order #{ID} has been Deleted.")
     # Refresh so user can see how the page changes as they update the status of an order
     return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatus}))
 
