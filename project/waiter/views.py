@@ -32,9 +32,9 @@ def viewOrders(request, orderStatus):
 
 # Update the order status of an customer order
 @group_required("Waiters")
-def updateOrderStatus(request, orderID):
+def updateOrderStatus(request, ID):
     # Grab the order the user wants to chnage
-    order = Order.objects.get(ID = orderID)
+    order = Order.objects.get(ID = ID)
     # Order status will change state in this function so record inital state for that
     orderStatusBefore = order.status
 
@@ -46,16 +46,18 @@ def updateOrderStatus(request, orderID):
         # The decerator above guarntees the user will be a waiter, so simply call request.user
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
         table.save()
-        messages.info(request, f"Order #{orderID} has been Confirmed.")
+        messages.info(request, f"Order #{ID} has been Confirmed.")
     elif order.status == "Confirmed": 
         # Change order status from prepared to delivered
         setattr(order, "status", "Delivered")
         setattr(order, "notificationSent", False)
-        messages.info(request, f"Order #{orderID} has been Delivered.")
+        messages.info(request, f"Order #{ID} has been Delivered.")
     else: 
         messages.error(request, "There was an error updating the status of this order.")
 
     order.save()
+
+    
 
     # Refresh so user can see how the page changes as they update the status of an order
     # Use the recorded status (orderStatusBefore) to stay on the same page
