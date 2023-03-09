@@ -79,7 +79,7 @@
   border: solid;
   border: none;
   border-bottom: 1px solid white;
-  padding: 0 2% 2% 0;
+  padding: 2% 2% 2% 2%;
 }
 
 .updatestatus {
@@ -104,4 +104,8 @@ background-position: bottom;
   /* Move text to next line instead of overflowing the box
   horiziontaly */
   clear: left;
+}
+
+.view-item-btn {
+  float: right;
 }
