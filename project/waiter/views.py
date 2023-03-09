@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
+from django.utils.safestring import mark_safe
+from django.core.mail import send_mail
+from decerators import group_required
 from .forms import menuUpdateForm
 from project.models import MenuItem, Order, HelpRequest
 from .models import Payment, TableServer
-from decerators import group_required
-from django.utils.safestring import mark_safe
 
 # Make http requests to the waiter page
 @group_required("Waiters")
@@ -160,3 +161,19 @@ def customer_payments(request):
         totalIncome += payment.paymentAmount
     # Render the webpage, displaying all payment information including the calculated total income
     return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
+
+def deleteHelpRequest(request, help_request_id):
+    help_request = get_object_or_404(HelpRequest, id=help_request_id, customerID=request.user)
+    deleted_help_request = HelpRequest.objects.get(id=help_request_id)
+    deleted_customerID = deleted_help_request.customerID
+    deleted_help_request.delete()
+    help_requests = HelpRequest.objects.all()
+
+    customer_email = deleted_customerID.email
+    subject = 'Help Request Deleted'
+    message = 'The help will arrive shortly'
+    send_mail(subject, message, 'admin@example.com', [customer_email])
+
+    messages.success(request, f"Help request with ID {help_request_id} has been deleted for customer {deleted_customerID}. An email has been sent to the customer.")
+
+    return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
