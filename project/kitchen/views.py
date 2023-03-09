@@ -7,14 +7,16 @@ from django.contrib import messages
 @group_required("KitchenStaff")
 def order(request):
     if "orderID" in request.COOKIES:
+        # Retrieve cookie data
         orderID = request.COOKIES.get("orderID")
+        # Retrieve an order object from the database with a given orderID
         order = Order.objects.get(ID = orderID)
-
+        # Set the "status" attribute to prepared for this order
         setattr(order, "status", "Prepared")
+        # save the changes to the database
         order.save()
-
         messages.info(request, f"The order (#{orderID}) has been made by a member of the kitchen staff.")
-
+        # Retrieve the associated customer for the given order
         customer_id = order.customerID
         messages.success(request, f"Message confirming this order has been sent to {customer_id}.")
 

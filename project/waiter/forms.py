@@ -1,7 +1,7 @@
 from django import forms
 from project.models import MenuItem
 
-# This python code will be converted to an HTML form, when its renderd on the website
+# This python code will be converted to an HTML form, when its rendered on the website
 # by inherting from the ModelForm class.
 # This form is used to update/add/delete items from the current menu
 class menuUpdateForm(forms.ModelForm):

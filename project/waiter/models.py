@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from project.models import Order
-
+# This table represents each payment that is made by a customer upon placing an order
 class Payment(models.Model):
     class Meta:
         db_table = "Payment"

@@ -27,4 +27,5 @@ def signup(request):
 #user must be logged in to use this page
 @login_required
 def profile(request):
+    # Render the webpage for displaying profile information
     return render(request, 'account/profile.html', {'title': 'Profile'})
