@@ -5,6 +5,7 @@ from project.models import MenuItem
 from project.models import Order
 from project.models import HelpRequest
 from django.shortcuts import redirect
+from django.core.mail import send_mail
 
 # Make http requests to the waiter page
 def staff(request):
@@ -91,6 +92,16 @@ def deleteOrder(request, ID):
 
 def deleteHelpRequest(request, help_request_id):
     help_request = get_object_or_404(HelpRequest, id=help_request_id, customerID=request.user)
-    HelpRequest.objects.get(id=help_request_id).delete()
+    deleted_help_request = HelpRequest.objects.get(id=help_request_id)
+    deleted_customerID = deleted_help_request.customerID
+    deleted_help_request.delete()
     help_requests = HelpRequest.objects.all()
+
+    customer_email = deleted_customerID.email
+    subject = 'Help Request Deleted'
+    message = 'The help will arrive shortly'
+    send_mail(subject, message, 'admin@example.com', [customer_email])
+
+    messages.success(request, f"Help request with ID {help_request_id} has been deleted for customer {deleted_customerID}. An email has been sent to the customer.")
+
     return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
