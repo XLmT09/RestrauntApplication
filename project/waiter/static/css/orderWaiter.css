@@ -94,3 +94,9 @@ transition: background-position 0.3s ease-in-out;
 .updatestatus:hover{
 background-position: bottom;
 }
+
+.food-text {
+  /* Move text to next line instead of overflowing the box
+  horiziontaly */
+  clear: left;
+}
