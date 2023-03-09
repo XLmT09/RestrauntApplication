@@ -45,12 +45,12 @@
     </thead>
     <tbody>
       {% for request in help_requests %}
-        <tr>
-          <td>{{ request.customerID }}</td>
-          <td>{{ request.message }}</td>
-          <td><button onclick="highlightRow(this)">Select</button></td>
-        </tr>
-      {% endfor %}
+      <tr data-request-id="{{ request.id }}">
+        <td>{{ request.customerID }}</td>
+        <td>{{ request.message }}</td>
+        <td><button onclick="highlightRow(this)">Select</button></td>
+      </tr>
+    {% endfor %}
     </tbody>
   </table>
   <script>
