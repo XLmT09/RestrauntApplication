@@ -47,14 +47,11 @@ def updateOrderStatus(request, orderID):
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
         table.save()
         messages.info(request, f"Order #{orderID} has been Confirmed.")
-    elif order.status == "Prepared": 
+    elif order.status == "Confirmed": 
         # Change order status from prepared to delivered
         setattr(order, "status", "Delivered")
         setattr(order, "notificationSent", False)
         messages.info(request, f"Order #{orderID} has been Delivered.")
-    elif order.status == "Delivered": 
-        # Delete an order from the database
-        deleteOrder(request, orderID)
     else: 
         messages.error(request, "There was an error updating the status of this order.")
 
