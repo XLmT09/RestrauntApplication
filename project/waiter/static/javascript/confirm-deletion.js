@@ -1,15 +1,11 @@
-function confirmDeletion(order) {
-    var deleteBtn = document.getElementById("deleteBtn" + order);
-    var confirmation = document.getElementById("confirmation" + order);
+function confirmDeletion() {
+    var deleteBtn = document.getElementById("deleteBtn");
+    var confirmation = document.getElementById("confirmation");
+    var yes = document.getElementById("yes");
+    var no = document.getElementById("no");
     
     deleteBtn.style.display = "none";
     confirmation.style.display = "block";
-}
-
-function sayNo(order) {
-    var deleteBtn = document.getElementById("deleteBtn" + order);
-    var confirmation = document.getElementById("confirmation" + order);
-    
-    deleteBtn.style.display = "block";
-    confirmation.style.display = "none";
+    yes.style.display = "block";
+    no.style.display = "block";
 }

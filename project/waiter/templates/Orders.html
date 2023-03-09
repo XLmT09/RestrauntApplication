@@ -38,19 +38,9 @@
                         
                         <br><br>
 
-                        <button class = "updatestatus">
-                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
-                        Cancel Order
-                        </a>
+                        <button class = "updatestatus" id = "deleteBtn" onclick = "confirmDeletion()">
+                            Cancel Order
                         </button>
-
-                        <!-- <div id="confirmation{{order.ID}}" style="display: none;">
-                            <text style="color: white;">Are you sure?</text>
-                            <a href="delete/{{order.ID}}">
-                            <button class = "updatestatus">Yes</button>
-                            </a>
-                            <button class = "updatestatus" onclick="sayNo({{order.ID}})">No</button>
-                        </div> -->
                     {% elif order.status == "Confirmed" %}
                         <button class = "updatestatus">
                         <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
@@ -58,12 +48,18 @@
                         </a>
                         </button>
                     {% elif order.status == "Delivered" %}
-                        <button class = "updatestatus">
-                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                        <button class = "updatestatus" id = "deleteBtn" onclick="confirmDeletion()">
                             Delete order
-                        </a>
                         </button>
                     {% endif %}
+
+                    <p style = "display: none;" id="confirmation">Are you sure?</p>
+
+                    <button class = "updatestatus" style = "display: none;" id = "yes">
+                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                            Yes
+                        </a>
+                    </button>
                 </div>
             </div>
         {% endfor %}
