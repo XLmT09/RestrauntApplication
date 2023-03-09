@@ -2,6 +2,7 @@
   font-family: Montserrat;
 }
 
+/* Body class of the page */
 .order-container {
   left: 10%;
   position: absolute;
@@ -76,6 +77,8 @@
 }
 
 .ordersummary {
+  display: flex;
+  justify-content: space-between;
   border: solid;
   border: none;
   border-bottom: 1px solid white;
@@ -83,21 +86,19 @@
 }
 
 .updatestatus {
-width: 100%;
-padding: 3%;
+width: 90%;
+padding: 2%;
 text-align: center;
 font-size: 1em;
 color: white;
-border: 1px solid grey;
 cursor: pointer;
-background: linear-gradient(to top, #192734 50%, #212121 50%);
-background-size: 100% 200%;
-background-position: top;
-transition: background-position 0.3s ease-in-out;
+border: 1px solid grey;
+background: #818181;
+transition: background-color 0.5s ease;
 }
 
 .updatestatus:hover{
-background-position: bottom;
+  background-color: #212121;
 }
 
 .food-text {
@@ -107,5 +108,20 @@ background-position: bottom;
 }
 
 .view-item-btn {
-  float: right;
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 1%;
+  color: white;
+  background:#818181;
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-color 0.5s ease;
+}
+
+.view-item-btn:hover{
+  background-color: #212121;
+}
+
+.orderno {
+  margin-top: 1%;
 }
