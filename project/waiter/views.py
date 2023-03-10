@@ -35,11 +35,12 @@ def viewOrders(request, orderStatus):
         order_ids = table_orders.values_list('orderID', flat=True)
         # Use the order ids to retrive only order info which waiter servers
         cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus).order_by('timeOfOrder')
+        print(cust_orders)
     else:
         # retrieve all customer orders from oldest to newest
         cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
     
-    return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus+" orders"})
+    return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus + " Orders"})
 
 # Update the order status of an customer order
 @group_required("Waiters")
