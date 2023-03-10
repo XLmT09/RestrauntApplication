@@ -9,7 +9,7 @@ class Payment(models.Model):
     paymentID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
     timeOfPayment = models.TimeField(auto_now=True, null=False)
-    paymentAmount = models.FloatField(null=False)
+    paymentAmount = models.DecimalField(max_digits=10,decimal_places=2,null=False)
     orderID = models.ForeignKey(Order, on_delete=models.CASCADE,null=False)
 
 # This table represents the table an waiter will be assigned to in the restraunt
