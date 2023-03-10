@@ -59,7 +59,7 @@ def updateOrderStatus(request, ID):
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
         table.save()
         messages.success(request, f"Order #{ID} has been Confirmed.")
-    elif order.status == "Confirmed": 
+    elif order.status == "Prepared": 
         # Change order status from prepared to delivered
         setattr(order, "status", "Delivered")
         setattr(order, "notificationSent", False)
@@ -162,7 +162,6 @@ def customer_payments(request):
     return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
 
 def deleteHelpRequest(request, help_request_id):
-    help_request = get_object_or_404(HelpRequest, id=help_request_id, customerID=request.user)
     deleted_help_request = HelpRequest.objects.get(id=help_request_id)
     deleted_customerID = deleted_help_request.customerID
     deleted_help_request.delete()

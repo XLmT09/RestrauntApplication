@@ -40,7 +40,7 @@
                             Cancel Order
                             </a>
                             </button>
-                        {% elif order.status == "Confirmed" %}
+                        {% elif order.status == "Prepared" %}
                             <button class = "updatestatus">
                             <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
                                 Mark as Delivered
