@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
 
 <div class = "order-container">
-    <div class = "title">{{ pageTite }}</div>
+    <div class = "title">{{ pageTitle }}</div>
     {% for order in cust_orders %}"
         <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
             <div class = "order-box-inner">
@@ -48,7 +48,7 @@
                             </button>
                         {% elif order.status == "Delivered" %}
                             <button class = "updatestatus">
-                            <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                            <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
                                 Delete order
                             </a>
                             </button>

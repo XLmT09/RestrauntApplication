@@ -35,11 +35,12 @@ def viewOrders(request, orderStatus):
         order_ids = table_orders.values_list('orderID', flat=True)
         # Use the order ids to retrive only order info which waiter servers
         cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus).order_by('timeOfOrder')
+        print(cust_orders)
     else:
         # retrieve all customer orders from oldest to newest
         cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
     
-    return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus+" orders"})
+    return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus + " Orders"})
 
 # Update the order status of an customer order
 @group_required("Waiters")
@@ -58,7 +59,7 @@ def updateOrderStatus(request, ID):
         table = TableServer.objects.create(orderID = order, waiterID = request.user)
         table.save()
         messages.success(request, f"Order #{ID} has been Confirmed.")
-    elif order.status == "Confirmed": 
+    elif order.status == "Prepared": 
         # Change order status from prepared to delivered
         setattr(order, "status", "Delivered")
         setattr(order, "notificationSent", False)
@@ -68,8 +69,6 @@ def updateOrderStatus(request, ID):
         messages.error(request, "There was an error updating the status of this order.")
 
     order.save()
-
-    
 
     # Refresh so user can see how the page changes as they update the status of an order
     # Use the recorded status (orderStatusBefore) to stay on the same page
@@ -163,7 +162,6 @@ def customer_payments(request):
     return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
 
 def deleteHelpRequest(request, help_request_id):
-    help_request = get_object_or_404(HelpRequest, id=help_request_id, customerID=request.user)
     deleted_help_request = HelpRequest.objects.get(id=help_request_id)
     deleted_customerID = deleted_help_request.customerID
     deleted_help_request.delete()
