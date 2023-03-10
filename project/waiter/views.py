@@ -70,8 +70,6 @@ def updateOrderStatus(request, ID):
 
     order.save()
 
-    
-
     # Refresh so user can see how the page changes as they update the status of an order
     # Use the recorded status (orderStatusBefore) to stay on the same page
     return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatusBefore}))
