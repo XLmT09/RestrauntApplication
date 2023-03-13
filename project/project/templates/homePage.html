@@ -9,7 +9,7 @@
     <title>Homepage Oaxaca</title>
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     <script src="{% static 'javascript/notifications.js' %}" defer></script>
     <link
       rel="stylesheet"
@@ -18,12 +18,6 @@
   </head>
 
   <body>
-    {% for message in messages%}
-    <div class="container-fluid p-0">
-      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
-    </div>
-    {% endfor %}
-
     <div class="bg">
       <div class="navbar">
         <div id="left">
@@ -80,6 +74,14 @@
         </div>
       </div>
 
+      {% if messages %} {% for message in messages %}
+      <div class="pop-message {{ message.tags }}">
+        <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        {{ message }}
+      </div>
+      <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
       <div class="logobox">
         <img src="/static/images/OaxacaLogo.png" />
       </div>
@@ -115,5 +117,6 @@
       alert("Your order has been {{i}}");
     </script>
     {% endfor %}
+
   </body>
 </html>

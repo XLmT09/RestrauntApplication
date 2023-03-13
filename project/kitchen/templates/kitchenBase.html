@@ -47,7 +47,10 @@
       </div>
 
       {% if messages %} {% for message in messages %}
-      <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      <div class="pop-message {{ message.tags }}">
+        {{ message }}
+        <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      </div>
       {% endfor %} {% endif %}
 
       <div>{% block content %}{% endblock %}</div>

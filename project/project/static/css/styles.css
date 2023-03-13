@@ -122,6 +122,10 @@ a {
   transition: border-color 0.7s ease-in;
 }
 
+.text:hover navButton {
+  border-color: rgba(225, 225, 225, 1);
+}
+
 .logobox {
   top: 10vh;
   height: 80vh;
@@ -134,18 +138,6 @@ a {
 
 .logobox > img {
   width: 50%;
-}
-
-.logotext {
-  text-align: center;
-  font-size: 150%;
-  font-family: Montserrat;
-  color: white;
-
-  position: relative;
-  top: 20%;
-  border-bottom: 1px;
-  border-color: white;
 }
 
 .aboutConatiner {
@@ -213,10 +205,6 @@ a {
   color: white;
   color: white;
   letter-spacing: 2px;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {

@@ -11,6 +11,8 @@
   line-height: 20px;
   cursor: pointer;
   transition: 0.3s;
+  display: inline;
+  padding: 0;
 }
 
 .pop-close-btn:hover {

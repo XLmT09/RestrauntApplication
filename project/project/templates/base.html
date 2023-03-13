@@ -12,8 +12,6 @@
       <title>Login Page</title>
     {% endif %}
 
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     <link
@@ -68,7 +66,10 @@
       </div>
 
       {% if messages %} {% for message in messages %}
-        <div class="pop-message {{ message.tags }}">{{ message }}</div>
+      <div class="pop-message {{ message.tags }}">
+        {{ message }}
+        <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      </div>
       {% endfor %} {% endif %}
 
       <div>{% block content %}{% endblock %}</div>
