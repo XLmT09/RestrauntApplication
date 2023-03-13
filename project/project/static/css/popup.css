@@ -34,7 +34,9 @@
 }
 
 .alert-info {
-    background-color: blue;
+  background-color: rgb(3, 48, 155);
+  border: 1px solid #0022ff;
+  color: white
 }
 
 .alert-success {
