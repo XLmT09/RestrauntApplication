@@ -171,3 +171,24 @@ function setBasketValue(){
   var basket = document.getElementById("basket");
   basket.innerHTML = (parseFloat("2.5")).toFixed(2);
 }
+
+var containers = document.getElementsByClassName("container");
+for (var i = 0; i < containers.length; i++) {
+  var container = containers[i];
+  container.addEventListener("click", function() {
+    var text = this.querySelector(".descriptionBox");
+    var img = document.createElement("img");
+    img.src = this.getAttribute("data-imgurl");
+    img.onload = function() {
+      text.style.opacity = 0;
+      text.parentNode.insertBefore(img, text);
+      img.style.opacity = 1;
+    };
+    img.style.transition = "opacity 1s ease-in";
+    img.addEventListener("click", function() {
+      img.style.opacity = 0;
+      img.parentNode.removeChild(img);
+      text.style.opacity = 1;
+    });
+  });
+}
