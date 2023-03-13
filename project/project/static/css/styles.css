@@ -111,12 +111,10 @@ a {
 .navButton {
   background-color: transparent;
   border-color: rgba(225, 225, 225, 0);
-  border-color: rgba(225, 225, 225, 0);
   border-style: solid;
   border-width: 4px;
   border-bottom: none;
   border-top: none;
-  cursor: pointer;
   cursor: pointer;
   float: right;
   margin-left: 5px;
@@ -124,12 +122,7 @@ a {
   transition: border-color 0.7s ease-in;
 }
 
-.text:hover navButton {
-  border-color: rgba(225, 225, 225, 1);
-}
-
 .logobox {
-  position: absolute;
   top: 10vh;
   height: 80vh;
   left: 0;
@@ -138,37 +131,7 @@ a {
   justify-content: center;
   align-items: center;
 }
-.logobox > img {
-  width: 50%;
-}
 
-.logotext {
-  width: 35%;
-  position: relative;
-  top: 10%;
-  font-size: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-family: Montserrat;
-  color: white;
-  letter-spacing: 2px;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.text:hover navButton {
-  border-color: rgba(225, 225, 225, 1);
-}
-
-.logobox {
-  position: absolute;
-  top: 10vh;
-  height: 80vh;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .logobox > img {
   width: 50%;
 }
