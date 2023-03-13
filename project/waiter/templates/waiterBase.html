@@ -15,6 +15,7 @@
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <script src="{% static 'javascript/animations.js' %}" defer></script>
     <script src="{% static 'javascript/orderPopup.js' %}" defer></script>
+    <script src="{% static 'javascript/logout.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/waiterBase.css' %}" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
@@ -43,7 +44,7 @@
       
         </a>
           {% if user.is_authenticated %}
-          <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
+          <a class="nav-options nav-btn" onclick="showLogoutAlert();" href="{% url 'account-logout' %}">
             <button class="navButton">
               <div class="text">Logout</div>
             </button></a

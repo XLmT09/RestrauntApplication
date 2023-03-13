@@ -25,16 +25,51 @@
                         Placed at: {{order.timeOfOrder}}
                     </div>
 
-        <input type="radio" name="orderChoices" value = {{order.ID}}><a id="orderHeadings"> Order {{ order.ID }}: </a> <br>
-        <a> Status: {{ order.status }} </a> <br>
-        <a> Ordered by: {{ order.customerID }} </a> <br>
-        <a> Ordered at: {{ order.timeOfOrder }} </a> <br>
-        <a> Ordered items: {{ order.orderedItems }} </a> <br> <br>
+                    <div class = "statusbar">
+                        {% if order.status == "Placed" %}
+                            <button class = "updatestatus">
+                            <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                            Confirm order
+                            </a>
+                            </button>
+                            
+                            <br><br>
 
-        {% endfor %}
-        </form>
-
-        <button type="button" onclick="getSelectedValue();"><a href="{% url 'updateStatus' %}" id="buttonText">Confirm Order</a></button>
-
-    </div>
-    {% endblock content %} 
+                            <button class = "updatestatus">
+                            <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                            Cancel Order
+                            </a>
+                            </button>
+                        {% elif order.status == "Prepared" %}
+                            <button class = "updatestatus">
+                            <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
+                                Mark as Delivered
+                            </a>
+                            </button>
+                        {% elif order.status == "Delivered" %}
+                            <button class = "updatestatus">
+                            <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                                Delete order
+                            </a>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="order-box-back">
+                    <div class = "ordersummary">
+                        <span class = "order-card-head"> Items </span>
+                        <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
+                            View Order Details
+                        </button>
+                    </div>
+                    {% with items=order.orderedItems %}
+                        {% for food, quantity in items.items %}
+                            <p class="food-text">{{ food }} X {{ quantity }}</p>
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

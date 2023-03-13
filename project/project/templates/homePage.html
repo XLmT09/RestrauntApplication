@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
     <script src="{% static 'javascript/notifications.js' %}" defer></script>
+    <script src="{% static 'javascript/logout.js' %}" defer></script>
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
@@ -40,7 +41,7 @@
           >
           {% endif %}
 
-          <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
+          <a class="nav-options nav-btn" onclick="showLogoutAlert();" href="{% url 'account-logout' %}">
             <button class="navButton">
               <div class="text">Logout</div>
             </button></a
