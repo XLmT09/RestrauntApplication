@@ -1,9 +1,5 @@
-.pop-message {
-    padding-left:20%;
-}
-
-.alert-danger {
-    background-color: red;
+* {
+  font-family: Montserrat;
 }
 
 .alert-info {
@@ -12,4 +8,33 @@
 
 .alert-success {
     background-color: limegreen;
+}
+
+.pop-message {
+  width: 50%;
+  padding: 0.6em;
+  text-align: center;
+  margin: auto;
+  margin-top: 1%;
+}
+
+.alert-danger {
+  background-color: #c10d00;
+  border: 1px solid #ff5b50;
+  color: white;
+}
+
+.pop-close-btn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pop-close-btn:hover {
+  color: black;
 }
