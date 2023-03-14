@@ -93,12 +93,12 @@
   color: white;
   cursor: pointer;
   border: 1px solid grey;
-  background: #818181;
+  background:#51308a;
   transition: background-color 0.5s ease;
 }
 
 .updatestatus:hover{
-  background-color: #212121;
+  background-color: #41039f;
 }
 
 .food-text {
@@ -112,14 +112,14 @@
   cursor: pointer;
   padding: 1%;
   color: white;
-  background:#818181;
+  background:#51308a;
   background-size: 100% 200%;
   background-position: top;
-  transition: background-color 0.5s ease;
+  transition: border-color 1s ease;
 }
 
 .view-item-btn:hover{
-  background-color: #212121;
+  background-color: #41039f;
 }
 
 .order-card-head {
