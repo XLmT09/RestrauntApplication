@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/payment.css' %}" />
 <div class="paymentDetails">
     <table>
+        <td>Today's payments</td>
         <tr>
             <th>ID</th>
             <th>Amount Paid</th>
@@ -18,14 +19,9 @@
                 <td>{{payment.timeOfPayment}}</td>
             </tr>
         {% endfor %}
-        <td>Total income: </td>
+        <td>Today's income: </td>
         <td>£{{income}}</td>
     </table>
-
-    <div class="incomeLabel">
-        <a>Total Income: £{{income}}</a>
-    </div>
-
 </div>
 
 {% endblock %}

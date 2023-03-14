@@ -153,13 +153,14 @@ def viewHelpRequests(request):
 # This method displays a webpage for tracking payments within the restaurant
 def customer_payments(request):
     # Retrieve all payment objects from the database
-    all_payments = Payment.objects.all()
-    totalIncome = 0
+    currentDate = localdate()
+    todays_payments = Payment.objects.all().filter(dateOfPayment = currentDate)
+    todaysIncome = 0
     # Calculate the total income for all the payments in the database
-    for payment in all_payments:
-        totalIncome += payment.paymentAmount
+    for payment in todays_payments:
+        todaysIncome += payment.paymentAmount
     # Render the webpage, displaying all payment information including the calculated total income
-    return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
+    return render(request, "paymentInfo.html", {'cust_payments':todays_payments,'income':todaysIncome})
 
 def deleteHelpRequest(request, help_request_id):
     deleted_help_request = HelpRequest.objects.get(id=help_request_id)
