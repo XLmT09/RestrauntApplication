@@ -1,3 +1,4 @@
+from django.utils.timezone import localdate
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
@@ -25,6 +26,7 @@ def viewOrders(request, orderStatus):
             excess_orders = Order.objects.all().filter(status = "Delivered")[:excess_orders_num]
             excess_orders.delete()
     
+    currentDate = localdate()
     cust_orders = None
     # If waiter wants to see NON PLACED orders, then only get orders the waiter is assigned to
     # However if order is placed then, just show all the customer orders
@@ -34,12 +36,10 @@ def viewOrders(request, orderStatus):
         # Get the order ids of the tables the waiter is serving
         order_ids = table_orders.values_list('orderID', flat=True)
         # Use the order ids to retrive only order info which waiter servers
-        cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus).order_by('timeOfOrder')
-        print(cust_orders)
+        cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus, dateOfOrder = currentDate).order_by('timeOfOrder')
     else:
         # retrieve all customer orders from oldest to newest
-        cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus)
-    
+        cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus, dateOfOrder = currentDate)
     return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus + " Orders"})
 
 # Update the order status of an customer order
