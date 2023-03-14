@@ -182,55 +182,51 @@
         {%endif%}{%endfor%}
       </div>
  
-  
         <div class = "course" id = "mains">
           <div class="titles"><div class="name">Mains</div></div>
           {% for item in MenuItems %} {% if item.course == "Main" %}
-          <div class="container", style = "background-image: url({{item.imgurl}}); background-size: contain; background-repeat: no-repeat;">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <br />
-            <div class="descriptionBox">{{item.description}}</div>
-            <br />
-            <div class="nutritionBox" >Calories : {{item.calories}}
-              {% if item.dietRequirements != 'N'%}
-                <text style="float: right">{{item.dietRequirements}}</text>
-              {% endif %}
-            </div>
-            <div class="orderingBar">
-              <button
-                class="orderButton"
-                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
-              > -
-                
-              </button>
-              <text id="{{item.name}}item">
-                {% if item.name in itemDict %}
-                  {% for key, value in itemDict.items %}
-                    {% if item.name == key %} {{value}}
-                    {% endif %}
-                  {% endfor %}
-                {% else %} 0 {% endif %}
-              </text>
-              <button
-                class="orderButton"
-                style="float: right"
-                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
-              >+
-                
-              </button>
-            </div>
+          <div class="container" data-imgurl="{{item.imgurl}}">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
           </div>
-          {%endif%}{%endfor%}
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+        
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
+            >+
+              
+            </button>
+          </div>
         </div>
-
-          
+        {%endif%}{%endfor%}
+      </div>
+     
       <div class = "course" id = "sides">
-
-  
-
         <div class="titles"><div class="name">Sides</div></div>
         {% for item in MenuItems %} {% if item.course == "Side" %}
         <div class="container" data-imgurl="{{item.imgurl}}">
@@ -274,53 +270,7 @@
         {%endif%}{%endfor%}
       </div>
  
-  
-        <div class = "course" id = "mains">
-          <div class="titles"><div class="name">Mains</div></div>
-          {% for item in MenuItems %} {% if item.course == "Main" %}
-          <div class="container", style = "background-image: url({{item.imgurl}}); background-size: contain; background-repeat: no-repeat;">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <br />
-            <div class="descriptionBox">{{item.description}}</div>
-            <br />
-            <div class="nutritionBox" >Calories : {{item.calories}}
-              {% if item.dietRequirements != 'N'%}
-                <text style="float: right">{{item.dietRequirements}}</text>
-              {% endif %}
-            </div>
-            <div class="orderingBar">
-              <button
-                class="orderButton"
-                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
-              > -
-                
-              </button>
-              <text id="{{item.name}}item">
-                {% if item.name in itemDict %}
-                  {% for key, value in itemDict.items %}
-                    {% if item.name == key %} {{value}}
-                    {% endif %}
-                  {% endfor %}
-                {% else %} 0 {% endif %}
-              </text>
-              <button
-                class="orderButton"
-                style="float: right"
-                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
-              >+
-                
-              </button>
-            </div>
-          </div>
-        {%endif%}{%endfor%}
-      </div>
       <div class = "course" id = "desserts">
-        
-  
-
         <div class="titles"><div class="name">Desserts</div></div>
         {% for item in MenuItems %} {% if item.course == "Dessert" %}
         <div class="container", style = "background-image: url({{item.imgurl}}); background-size: contain; background-repeat: no-repeat;">
