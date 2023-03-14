@@ -4,10 +4,9 @@ from .models import MenuItem
 from .models import Order
 from .models import HelpRequest
 from waiter.models import Payment
-from django.contrib.auth.decorators import login_required
+from decerators import login_required
 from . import models
 from .forms import helpRequestForm
-from django.http import HttpResponse
 from django.contrib import messages
 
 def notificationOrders(request):
