@@ -82,9 +82,7 @@ form button:hover{
     box-shadow: 0 0.5em 0.5em -0.4em;
     transform: translateY(-0.25em);
 }
-span{
-    display: none;
-}
+
 .alert{
     color: white;
     display: flex;

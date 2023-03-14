@@ -10,13 +10,14 @@ a {
   outline: none;
 }
 
-.aboutTitle {
+.home-sub-title {
   position: relative;
   top: 20%;
+  font-weight: bold;
   color: white;
   font-family: Montserrat;
   text-align: center;
-  font-size: 150%;
+  font-size: 3em;
   margin-right: 20px;
   margin-left: 20px;
 }
@@ -64,29 +65,27 @@ a {
   background-size: cover;
   margin: 0;
   padding: 0;
-  border-bottom: 20px solid rgb(194, 194, 194);
-  border-bottom: 20px solid rgb(194, 194, 194);
+  border-bottom: 20px solid black;
 }
 
 .bg2 {
   background-color: rgb(29, 29, 39);
   height: 70vh;
   padding: 3rem;
-  border-bottom: 20px solid rgb(194, 194, 194);
 }
 
 .bg4 {
   background-color: rgb(29, 29, 39);
   height: 80px;
   padding: 3rem;
-  border-bottom: 5px solid rgb(194, 194, 194);
+  border-bottom: 5px solid black;
 }
 
 .bg3 {
   text-align: center;
   background-color: rgb(29, 29, 39);
   height: 70vh;
-  border-bottom: 20px solid rgb(194, 194, 194);
+  border-bottom: 20px solid black;
   padding: 3rem;
 }
 
@@ -111,12 +110,10 @@ a {
 .navButton {
   background-color: transparent;
   border-color: rgba(225, 225, 225, 0);
-  border-color: rgba(225, 225, 225, 0);
   border-style: solid;
   border-width: 4px;
   border-bottom: none;
   border-top: none;
-  cursor: pointer;
   cursor: pointer;
   float: right;
   margin-left: 5px;
@@ -129,7 +126,6 @@ a {
 }
 
 .logobox {
-  position: absolute;
   top: 10vh;
   height: 80vh;
   left: 0;
@@ -138,51 +134,9 @@ a {
   justify-content: center;
   align-items: center;
 }
+
 .logobox > img {
   width: 50%;
-}
-
-.logotext {
-  width: 35%;
-  position: relative;
-  top: 10%;
-  font-size: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-family: Montserrat;
-  color: white;
-  letter-spacing: 2px;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.text:hover navButton {
-  border-color: rgba(225, 225, 225, 1);
-}
-
-.logobox {
-  position: absolute;
-  top: 10vh;
-  height: 80vh;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.logobox > img {
-  width: 50%;
-}
-
-.logotext {
-  text-align: center;
-  font-size: 150%;
-  font-family: Montserrat;
-  color: white;
-
-  position: relative;
-  top: 20%;
-  border-bottom: 1px;
-  border-color: white;
 }
 
 .aboutConatiner {
@@ -252,17 +206,12 @@ a {
   letter-spacing: 2px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
   padding: 0;
 }
 
 .text {
-  font-size: 150%;
   font-size: 150%;
   font-family: Arial, Helvetica, sans-serif;
   font-family: Montserrat;
@@ -275,23 +224,21 @@ body {
   border-color: white;
 }
 
-.menuButton {
-  margin-top: 5px;
-  background-color: transparent;
-  border-color: transparent;
-  border-width: 1px;
-  background-color: transparent;
-  border-color: transparent;
-  border-width: 1px;
+/** Menu button on the home page **/
+.home-menu-button {
+  margin-top: 40%;
+  padding: 0.8em;
+  border: 1px solid rgb(82, 82, 82);
+  background:#51308a;  
   text-align: center;
   position: relative;
-  top: 40%;
   cursor: pointer;
-  transition: border-color 1s ease;
+  background-size: 100% 200%;
+  transition: background-color 1s ease;
 }
 
-.menuButton:hover {
-  border-color: white;
+.home-menu-button:hover {
+  background-color: #41039f;
 }
 
 ::-webkit-scrollbar {

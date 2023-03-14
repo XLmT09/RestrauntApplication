@@ -1,15 +1,50 @@
+* {
+  font-family: Montserrat;
+}
+
+.pop-close-btn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline;
+  padding: 0;
+}
+
+.pop-close-btn:hover {
+  color: black;
+  cursor: pointer;
+}
+
 .pop-message {
-    padding-left:20%;
+  width: 50%;
+  padding: 0.6em;
+  text-align: center;
+  margin: auto;
+  margin-top: 1%;
+  z-index: 100;
 }
 
 .alert-danger {
-    background-color: red;
+  background-color: #c10d00;
+  border: 1px solid #ff5b50;
+  color: white;
 }
 
 .alert-info {
-    background-color: blue;
+  background-color: rgb(3, 48, 155);
+  border: 1px solid #0022ff;
+  color: white
 }
 
 .alert-success {
-    background-color: limegreen;
+    background-color: rgb(3, 134, 3);
+    border: 1px solid #2bff00;
+    color: white
 }
+
+

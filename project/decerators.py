@@ -16,3 +16,14 @@ def group_required(group_name):
             return response
         return wrapper
     return decerator
+
+def login_required(view_func):
+    # param view_fun the function which the decerator will be applied to
+        def wrapper(request, *args, **kwargs):
+            if not request.user.is_authenticated:
+                messages.error(request, f'You must be logged to access this page.')
+                # Redirect to the login URL
+                return redirect(reverse("account-login"))
+            response = view_func(request, *args, **kwargs)
+            return response
+        return wrapper

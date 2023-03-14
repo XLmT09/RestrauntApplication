@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from .forms import UserRegisterForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from decerators import login_required
 
 # This view handles all HTTP requests and responses for the sign up page
 def signup(request):

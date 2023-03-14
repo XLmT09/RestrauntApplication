@@ -126,9 +126,7 @@ form{
     box-sizing: border-box;
     box-shadow: rgb(12, 22, 33) 0px 20px 30px -10px;
 }
-span{
-    display: none;
-}
+
 form div small{
     display: none;
 }
