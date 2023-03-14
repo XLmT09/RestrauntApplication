@@ -161,12 +161,16 @@ def customer_payments(request):
     # Render the webpage, displaying all payment information including the calculated total income
     return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
 
+#This method allows for deletion of help requests from the client Help Requests database
 def deleteHelpRequest(request, help_request_id):
+    #retrieve the ID of the user who's request is being deleted
     deleted_help_request = HelpRequest.objects.get(id=help_request_id)
     deleted_customerID = deleted_help_request.customerID
+    #Delete the request and update the database 
     deleted_help_request.delete()
     help_requests = HelpRequest.objects.all()
 
+    #Fetch and send an email to the customer to notify them about the status of their request
     customer_email = deleted_customerID.email
     subject = 'Help Request Deleted'
     message = 'The help will arrive shortly'
