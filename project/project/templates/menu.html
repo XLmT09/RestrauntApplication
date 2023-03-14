@@ -158,7 +158,7 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             > -
               
             </button>
@@ -173,7 +173,7 @@
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             >+
               
             </button>
