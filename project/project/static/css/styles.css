@@ -64,29 +64,28 @@ a {
   background-size: cover;
   margin: 0;
   padding: 0;
-  border-bottom: 20px solid rgb(194, 194, 194);
-  border-bottom: 20px solid rgb(194, 194, 194);
+  border-bottom: 20px solid black;
 }
 
 .bg2 {
   background-color: rgb(29, 29, 39);
   height: 70vh;
   padding: 3rem;
-  border-bottom: 20px solid rgb(194, 194, 194);
+  border-bottom: 20px solid black;
 }
 
 .bg4 {
   background-color: rgb(29, 29, 39);
   height: 80px;
   padding: 3rem;
-  border-bottom: 5px solid rgb(194, 194, 194);
+  border-bottom: 5px solid black;
 }
 
 .bg3 {
   text-align: center;
   background-color: rgb(29, 29, 39);
   height: 70vh;
-  border-bottom: 20px solid rgb(194, 194, 194);
+  border-bottom: 20px solid black;
   padding: 3rem;
 }
 
