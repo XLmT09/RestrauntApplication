@@ -9,6 +9,15 @@
     color: white
 }
 
+.rev-sub-title {
+    position: relative;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0.4em;
+}
+
 .marquee {
     margin: 0 auto;
     white-space: nowrap;
