@@ -60,17 +60,6 @@
   display: none;
 }
 
-.title {
-  font-family: Montserrat;
-  font-size: 120%;
-  color: white;
-  border-style: solid;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  padding-bottom: 1%;
-}
-
 .orderdetails {
   margin-top: 5%;
   margin-bottom: 5%;

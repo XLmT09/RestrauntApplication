@@ -4,23 +4,26 @@
 
 <link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
 <script src="{% static 'javascript/waiterRequest.js' %}" defer></script>
-<h1>Client Help Requests</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Customer ID</th>
-      <th>Message</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for request in help_requests %}
-    <tr data-request-id="{{ request.id }}">
-      <td>{{ request.customerID }}</td>
-      <td>{{ request.message }}</td>
-      <td><button onclick="highlightRow(this)">Select</button></td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+
+<div class = "request-container">
+  <h1 class = "title">Client Help Requests</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Customer ID</th>
+        <th>Message</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for request in help_requests %}
+      <tr data-request-id="{{ request.id }}">
+        <td>{{ request.customerID }}</td>
+        <td>{{ request.message }}</td>
+        <td><button onclick="highlightRow(this)">Select</button></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

@@ -1,5 +1,8 @@
-h1 {
-    font-size: 30px;
+.request-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5%
 }
 
 table {
