@@ -29,16 +29,14 @@
                         {% if order.status == "Placed" %}
                             <button class = "updatestatus">
                             <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
-                            Confirm order
+                                Confirm order
                             </a>
                             </button>
                             
                             <br><br>
 
-                            <button class = "updatestatus">
-                            <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
-                            Cancel Order
-                            </a>
+                            <button class = "updatestatus" id="deleteBtn" onclick="confirmDeletion()">
+                                Cancel Order
                             </button>
                         {% elif order.status == "Prepared" %}
                             <button class = "updatestatus">
@@ -47,12 +45,17 @@
                             </a>
                             </button>
                         {% elif order.status == "Delivered" %}
-                            <button class = "updatestatus">
-                            <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                            <button class = "updatestatus" id="deleteBtn" onclick="confirmDeletion()">
                                 Delete order
-                            </a>
                             </button>
                         {% endif %}
+
+                        <button class = "updatestatus" style = "visibility: hidden;" id = "confirmation">
+                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
+                            Are you sure?
+                        </a>
+                        </button>
+
                     </div>
                 </div>
                 <div class="order-box-back">
