@@ -56,6 +56,16 @@ width: 60%;
 width: 10%;
 }
 
+/** trash icon **/
+i.icon {
+    color: red;
+    font-size: 1.5em;
+}
+
+i.icon:hover {
+    color: rgb(129, 0, 0);
+}
+
 .highlight {
 background-color: yellow;
 }

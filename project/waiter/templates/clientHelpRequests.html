@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
 <script src="{% static 'javascript/waiterRequest.js' %}" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class = "request-container">
   <h1 class = "title">Client Help Requests</h1>
@@ -20,7 +21,7 @@
       <tr data-request-id="{{ request.id }}">
         <td class="left-col">{{ request.customerID }}</td>
         <td class="mid-col">{{ request.message }}</td>
-        <td class="right-col"><button onclick="highlightRow(this)">Select</button></td>
+        <td class="right-col"><a onclick="highlightRow(this)"><i class="fa fa-trash-o icon"></i></a></td>
       </tr>
     {% endfor %}
     </tbody>
