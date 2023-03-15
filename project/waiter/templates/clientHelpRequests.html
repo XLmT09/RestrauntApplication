@@ -1,58 +1,27 @@
-{% extends 'base.html' %}
-
+{% extends 'waiterBase.html' %}
 {% block content %}
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: rgb(29, 29, 39);
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      font-size: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid white;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: rgb(44, 44, 59);
-    }
-    tr:nth-child(even) {
-      background-color: rgb(50, 50, 68);
-    }
-    tr:hover {
-      background-color: rgb(71, 71, 91);
-    }
-    .highlight {
-      background-color: yellow;
-    }
-  </style>
-  <h1>Client Help Requests</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Customer ID</th>
-        <th>Message</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for request in help_requests %}
-      <tr data-request-id="{{ request.id }}">
-        <td>{{ request.customerID }}</td>
-        <td>{{ request.message }}</td>
-        <td><button onclick="highlightRow(this)">Select</button></td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
+<h1>Client Help Requests</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Customer ID</th>
+      <th>Message</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for request in help_requests %}
+    <tr data-request-id="{{ request.id }}">
+      <td>{{ request.customerID }}</td>
+      <td>{{ request.message }}</td>
+      <td><button onclick="highlightRow(this)">Select</button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
   <script>
 //This function allows the waiter to select a help request and choose if they want to delete it from the webpage
 function highlightRow(button) {
