@@ -16,7 +16,7 @@
                     <div class = "ordersummary">
                         <span class = "order-card-head">#{{order.ID}}</span>
                         <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
-                            View Orderd Items
+                            View Ordered Items
                         </button>
                     </div>
                     <div class = "orderdetails">
@@ -50,13 +50,12 @@
                             </button>
                         {% endif %}
 
-                        <p style = "display: none;" id = "confirmation">Are you sure?</p>
-
-                        <button class = "updatestatus" style = "display: none;" id = "yes">
+                        <button class = "updatestatus" style = "visibility: hidden;" id = "confirmation">
                         <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
-                            Yes
+                            Are you sure?
                         </a>
                         </button>
+
                     </div>
                 </div>
                 <div class="order-box-back">
