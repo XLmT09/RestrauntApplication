@@ -10,17 +10,17 @@
   <table>
     <thead>
       <tr>
-        <th>Customer Name</th>
-        <th>Message</th>
-        <th>Action's</th>
+        <th class="left-col">Customer Name</th>
+        <th class="mid-col">Message</th>
+        <th class="right-col">Action's</th>
       </tr>
     </thead>
     <tbody>
       {% for request in help_requests %}
       <tr data-request-id="{{ request.id }}">
-        <td>{{ request.customerID }}</td>
-        <td>{{ request.message }}</td>
-        <td><button onclick="highlightRow(this)">Select</button></td>
+        <td class="left-col">{{ request.customerID }}</td>
+        <td class="mid-col">{{ request.message }}</td>
+        <td class="right-col"><button onclick="highlightRow(this)">Select</button></td>
       </tr>
     {% endfor %}
     </tbody>
