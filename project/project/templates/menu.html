@@ -321,13 +321,14 @@
         <div class="titles"><div class="name">Drink</div></div>
   
         {% for item in MenuItems %} {% if item.course == "Drink" %}
-        <div class="container", style = "background-image: url({{item.imgurl}}); background-size: contain; background-repeat: no-repeat; width: 100%; height:100%;">
+        <div class="container" data-imgurl="{{item.imgurl}}">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
           <div class="descriptionBox">{{item.description}}</div>
+        
           <br />
           <div class="nutritionBox" >Calories : {{item.calories}}
             {% if item.dietRequirements != 'N'%}
@@ -337,15 +338,22 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}')"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             >+
               
             </button>
