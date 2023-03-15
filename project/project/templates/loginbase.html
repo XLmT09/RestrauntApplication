@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if title %}
+      <title>{{ title }}</title>
+    {% else %}
+      <title>Login Page</title>
+    {% endif %}
+
+    <script src="{% static 'javascript/logout.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Montserrat"
+    />
+  </head>
+
+  <body>
+    <div>
+      <div class="navbar">
+        <div id="left">
+          <div class="text">
+            <a class="nav-options" href="/">Home</a>
+          </div>
+        </div>
+        
+      </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="pop-message {{ message.tags }}">
+        {{ message }}
+        <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      </div>
+      {% endfor %} {% endif %}
+
+      <div>{% block content %}{% endblock %}</div>
+    </div>
+  </body>
+</html>
