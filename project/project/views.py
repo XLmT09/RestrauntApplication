@@ -83,6 +83,7 @@ def menu(request):
     # this selects the name of the web page and sends the user to that page
     return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses})
 
+@login_required
 def ltohSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('price')
@@ -128,7 +129,7 @@ def orderComplete(request):
     Statuses =  notificationOrders(request)
     return render(request,'orderComplete.html',context={'statuses':Statuses})
 
-
+@login_required
 def htolSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('-price')
