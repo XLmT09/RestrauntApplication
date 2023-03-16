@@ -1,16 +1,3 @@
-function displayPopup(){
-    document.getElementById("orderPopup").style.display = "block";
-}
-
-
-function hidePopup(){
-    document.getElementById("orderPopup").style.display = "none";
-}
-
-function showOrders(){
-    alert("shpwing orders");
-}
-
 var menuChoices = document.getElementsByClassName("collapsible");
 var i;
 

@@ -16,18 +16,16 @@ def staff(request):
 
 # Make http requests on page that gives list of customer orders
 @group_required("Waiters")
-def viewOrders(request, orderStatus):
+def viewOrders(request):
     # deletes the earliest delivered orders so that only (at most) 20 orders exist on the system
-    if (orderStatus == "Delivered"):
-        # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
-        excess_orders_num = Order.objects.all().filter(status = "Delivered").count() - 20
+    # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
+    excess_orders_num = Order.objects.all().filter(status = "Delivered").count() - 20
         
-        if (excess_orders_num > 0):
-            excess_orders = Order.objects.all().filter(status = "Delivered")[:excess_orders_num]
-            excess_orders.delete()
+    if (excess_orders_num > 0):
+        excess_orders = Order.objects.all().filter(status = "Delivered")[:excess_orders_num]
+        excess_orders.delete()
     
     currentDate = localdate()
-    cust_orders = None
     # If waiter wants to see NON PLACED orders, then only get orders the waiter is assigned to
     # However if order is placed then, just show all the customer orders
 
@@ -41,7 +39,7 @@ def viewOrders(request, orderStatus):
     # retrieve all customer orders from oldest to newest
     placed_orders = Order.objects.all().filter(dateOfOrder = currentDate, status = "Placed").order_by('timeOfOrder')
     
-    return render(request, "orders.html", {'placed_orders':placed_orders,'waiter_orders': waiter_orders, 'noOfOrders':1, 'pageTitle':orderStatus + " Orders"})
+    return render(request, "orders.html", {'placed_orders':placed_orders,'waiter_orders': waiter_orders, 'noOfOrders':1})
 
 # Update the order status of an customer order
 @group_required("Waiters")
