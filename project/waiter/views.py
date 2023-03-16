@@ -163,14 +163,21 @@ def customer_payments(request):
 
 #This method allows for deletion of help requests from the client Help Requests database
 def deleteHelpRequest(request, help_request_id):
-    #retrieve the ID of the user who's request is being deleted
-    deleted_help_request = HelpRequest.objects.get(id=help_request_id)
-    deleted_customerID = deleted_help_request.customerID
-    #Delete the request and update the database 
-    deleted_help_request.delete()
-    help_requests = HelpRequest.objects.all()
+    try:
+        # retrieve the HelpRequest object with the given ID
+        deleted_help_request = HelpRequest.objects.get(id=help_request_id)
+    except:
+        # Display an error message if the HelpRequest object does not exist
+        messages.error(request, f'Help request with ID {help_request_id} does not exist')
+        return redirect('clientHelpRequests')
 
-    #Fetch and send an email to the customer to notify them about the status of their request
+    # retrieve the ID of the customer who made the request
+    deleted_customerID = deleted_help_request.customerID
+    
+    # delete the HelpRequest object from the database
+    deleted_help_request.delete()
+
+    # fetch and send an email to the customer to notify them about the status of their request
     customer_email = deleted_customerID.email
     subject = 'Help Request Deleted'
     message = 'The help will arrive shortly'
@@ -178,4 +185,6 @@ def deleteHelpRequest(request, help_request_id):
 
     messages.success(request, f"Help request with ID {help_request_id} has been deleted for customer {deleted_customerID}. An email has been sent to the customer.")
 
+    # retrieve all HelpRequest objects and render the updated page
+    help_requests = HelpRequest.objects.all()
     return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
