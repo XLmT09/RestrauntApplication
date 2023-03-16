@@ -26,4 +26,4 @@ def order(request):
     cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status="Confirmed", dateOfOrder = currentDate)
 
     # list of confimred orders are passed to the html page
-    return render(request, 'order.html', {'title': 'Kitchen Staff Orders','cust_orders': cust_orders})
+    return render(request, 'order.html', {'title': 'Kitchen Staff Orders','cust_orders': cust_orders, 'noOfOrders':len(cust_orders)})

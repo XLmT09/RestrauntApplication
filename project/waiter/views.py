@@ -40,7 +40,8 @@ def viewOrders(request, orderStatus):
     else:
         # retrieve all customer orders from oldest to newest
         cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus, dateOfOrder = currentDate)
-    return render(request, "orders.html", {'cust_orders': cust_orders, 'pageTitle':orderStatus + " Orders"})
+    
+    return render(request, "orders.html", {'cust_orders': cust_orders, 'noOfOrders':len(cust_orders), 'pageTitle':orderStatus + " Orders"})
 
 # Update the order status of an customer order
 @group_required("Waiters")

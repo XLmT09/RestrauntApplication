@@ -9,6 +9,10 @@
 
 <div class = "order-container">
     <div class = "title">{{ pageTitle }}</div>
+
+    {% if noOfOrders == 0 %}
+        <h3 style="color: white;">There are currently no orders to view</h3>
+    {% else %}
     {% for order in cust_orders %}"
         <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
             <div class = "order-box-inner">
@@ -71,5 +75,6 @@
             </div>
         </div>
     {% endfor %}
+    {% endif %}
 </div>
 {% endblock content %}
