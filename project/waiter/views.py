@@ -30,18 +30,18 @@ def viewOrders(request, orderStatus):
     cust_orders = None
     # If waiter wants to see NON PLACED orders, then only get orders the waiter is assigned to
     # However if order is placed then, just show all the customer orders
-    if orderStatus != "Placed":
-        # Get all tables which the waiter is serving
-        table_orders = TableServer.objects.filter(waiterID=request.user)   
-        # Get the order ids of the tables the waiter is serving
-        order_ids = table_orders.values_list('orderID', flat=True)
-        # Use the order ids to retrive only order info which waiter servers
-        cust_orders = Order.objects.filter(ID__in=order_ids, status=orderStatus, dateOfOrder = currentDate).order_by('timeOfOrder')
-    else:
-        # retrieve all customer orders from oldest to newest
-        cust_orders = Order.objects.all().order_by('timeOfOrder').filter(status = orderStatus, dateOfOrder = currentDate)
+
+    # Get all tables which the waiter is serving
+    table_orders = TableServer.objects.filter(waiterID=request.user)   
+    # Get the order ids of the tables the waiter is serving
+    order_ids = table_orders.values_list('orderID', flat=True)
+    # Use the order ids to retrive only order info which waiter servers
+    waiter_orders = Order.objects.filter(ID__in=order_ids, dateOfOrder = currentDate).order_by('timeOfOrder')
+
+    # retrieve all customer orders from oldest to newest
+    placed_orders = Order.objects.all().filter(dateOfOrder = currentDate, status = "Placed").order_by('timeOfOrder')
     
-    return render(request, "orders.html", {'cust_orders': cust_orders, 'noOfOrders':len(cust_orders), 'pageTitle':orderStatus + " Orders"})
+    return render(request, "orders.html", {'placed_orders':placed_orders,'waiter_orders': waiter_orders, 'noOfOrders':1, 'pageTitle':orderStatus + " Orders"})
 
 # Update the order status of an customer order
 @group_required("Waiters")
