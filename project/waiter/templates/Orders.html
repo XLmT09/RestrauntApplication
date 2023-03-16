@@ -10,91 +10,140 @@
 
 <div class = "order-container">
     <div class = "title">{{ pageTitle }}</div>
-
-    {% if noOfOrders == 0 %}
-        <h3 style="color: white;">There are currently no orders to view</h3>
-    {% else %}
-    {% for order in cust_orders %}"
-        <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
-            <div class = "order-box-inner">
-                <div class = "order-box-front">
-                    <div class = "ordersummary">
-                        <span class = "order-card-head">#{{order.ID}}</span>
-                        <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
-                            Items
-                        </button>
-                    </div>
-                    <div class = "orderdetails">
-                        Placed by: {{order.customerID}}
-                        <br/><br/>
-                        Placed at: {{order.timeOfOrder}}
-                    </div>
-
-                    <div class = "statusbar">
-                        {% if order.status == "Placed" %}
-                            <button class = "updatestatus">
-                            <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
-                                Confirm order
-                            </a>
-                            </button>
-                            
-                            <br><br>
-
-                            <button class = "updatestatus" id="deleteBtn" onclick="confirmDeletion()">
-                                Cancel Order
-                            </button>
-                        {% elif order.status == "Prepared" %}
-                            <button class = "updatestatus">
-                            <a href="{% url 'updateStatus' order.ID %}" id="buttonText">
-                                Mark as Delivered
-                            </a>
-                            </button>
-                        {% elif order.status == "Delivered" %}
-                            <button class = "updatestatus" id="deleteBtn" onclick="confirmDeletion()">
-                                Delete order
-                            </button>
-                        {% endif %}
-
-                        <button class = "updatestatus" style = "visibility: hidden;" id = "confirmation">
-                        <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">
-                            Are you sure?
-                        </a>
-                        </button>
-
-                    </div>
-                </div>
-                <div class="order-box-back">
-                    <div class = "ordersummary">
-                        <span class = "order-card-head"> Items </span>
-                        <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
-                            View Order Details
-                        </button>
-                    </div>
-                    {% with items=order.orderedItems %}
-                        {% for food, quantity in items.items %}
-                            <p class="food-text">{{ food }} X {{ quantity }}</p>
-                        {% endfor %}
-                    {% endwith %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-    {% endif %}
-
     <div class="collapsibleMenu">
         <button type="button" class="collapsible">View Placed Orders</button>
         <div class="content">
-            <p>Place placed orders here...</p>
+            {% if noOfOrders == 0 %}
+                <h3 style="color: black;">There are currently no orders to view</h3>
+            {% else %}
+            {% for order in cust_orders %}
+            <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
+                <div class = "order-box-inner">
+                    <div class = "order-box-front">
+                        <div class = "ordersummary">
+                            <span class = "order-card-head">#{{order.ID}}</span>
+                            <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">Items</button>
+                        </div>
+                        <div class = "orderdetails">
+                            Placed by: {{order.customerID}}
+                            <br/><br/>
+                            Placed at: {{order.timeOfOrder}}
+                        </div>
+                        <div class = "statusbar">
+                                <button class = "updatestatus">
+                                    <a href="{% url 'updateStatus' order.ID %}" id="buttonText">Confirm order</a>
+                                </button>
+                                <br><br>
+                                <button class = "updatestatus" id="deleteBtn" onclick="confirmDeletion()">Cancel Order</button>
+                            <button class = "updatestatus" style = "visibility: hidden;" id = "confirmation">
+                                <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">Are you sure?</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="order-box-back">
+                        <div class = "ordersummary">
+                            <span class = "order-card-head"> Items </span>
+                            <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">View Order Details</button>
+                        </div>
+                        {% with items=order.orderedItems %}
+                            {% for food, quantity in items.items %}
+                                <p class="food-text">{{ food }} X {{ quantity }}</p>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
 
         <button type="button" class="collapsible">View Prepared Orders</button>
         <div class="content">
-            <p>Place prepared orders here...</p>
+            {% if noOfOrders == 0 %}
+                <h3 style="color: black;">There are currently no orders to view</h3>
+            {% else %}
+            {% for order in cust_orders %}
+            <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
+                <div class = "order-box-inner">
+                    <div class = "order-box-front">
+                        <div class = "ordersummary">
+                            <span class = "order-card-head">#{{order.ID}}</span>
+                            <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
+                                Items
+                            </button>
+                        </div>
+                        <div class = "orderdetails">
+                            Placed by: {{order.customerID}}
+                            <br/><br/>
+                            Placed at: {{order.timeOfOrder}}
+                        </div>
+                        <div class = "statusbar">
+                            <button class = "updatestatus">
+                                <a href="{% url 'updateStatus' order.ID %}" id="buttonText">Mark as Delivered</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="order-box-back">
+                        <div class = "ordersummary">
+                            <span class = "order-card-head"> Items </span>
+                            <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">View Order Details</button>
+                        </div>
+                        {% with items=order.orderedItems %}
+                            {% for food, quantity in items.items %}
+                                <p class="food-text">{{ food }} X {{ quantity }}</p>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
 
         <button type="button" class="collapsible">View Delivered Orders</button>
         <div class="content">
-            <p>Place delivered orders here...</p>
+            {% if noOfOrders == 0 %}
+                <h3 style="color: black;">There are currently no orders to view</h3>
+            {% else %}
+            {% for order in cust_orders %}
+            <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
+                <div class = "order-box-inner">
+                    <div class = "order-box-front">
+                        <div class = "ordersummary">
+                            <span class = "order-card-head">#{{order.ID}}</span>
+                            <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">Items</button>
+                        </div>
+                        <div class = "orderdetails">
+                            Placed by: {{order.customerID}}
+                            <br/><br/>
+                            Placed at: {{order.timeOfOrder}}
+                        </div>
+
+                        <div class = "statusbar">
+                            <button class = "updatestatus" id="deleteBtn" onclick="confirmDeletion()">Delete order</button>
+
+                            <button class = "updatestatus" style = "visibility: hidden;" id = "confirmation">
+                                <a href="{% url 'deleteOrder' order.ID %}" id="buttonText">Are you sure?</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="order-box-back">
+                        <div class = "ordersummary">
+                            <span class = "order-card-head"> Items </span>
+                            <button onclick="rotate('{{ order.ID }}')" class = "view-item-btn">
+                                View Order Details
+                            </button>
+                        </div>
+                        {% with items=order.orderedItems %}
+                            {% for food, quantity in items.items %}
+                                <p class="food-text">{{ food }} X {{ quantity }}</p>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
