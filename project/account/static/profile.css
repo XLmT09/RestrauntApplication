@@ -43,8 +43,7 @@ h1{
 .description h1{
     left: 50%;
     transform: translateX(10%);
-    color: #26293a;
-    -webkit-text-stroke: 0.3vw #383d52;
+    color: #fdfdff;
     width: fit-content;
 
 }
