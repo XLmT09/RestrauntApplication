@@ -14,7 +14,7 @@
         <button type="button" class="collapsible">View Placed Orders</button>
         <div class="content">
             {% if placed_orders == None %}
-                <h3 style="color: black;">There are currently no orders to view</h3>
+                <h3 style="color: white;">There are currently no orders to view</h3>
             {% else %}
             {% for order in placed_orders %}
                 <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
@@ -60,7 +60,7 @@
         <button type="button" class="collapsible">View Prepared Orders</button>
         <div class="content">
             {% if prepared_orders == None %}
-                <h3 style="color: black;">There are currently no orders to view</h3>
+                <h3 style="color: white;">There are currently no orders to view</h3>
             {% else %}
             {% for order in prepared_orders %}
                 <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
@@ -103,7 +103,7 @@
         <button type="button" class="collapsible">View Delivered Orders</button>
         <div class="content">
             {% if delivered_orders == None %}
-                <h3 style="color: black;">There are currently no orders to view</h3>
+                <h3 style="color: white;">There are currently no orders to view</h3>
             {% else %}
             {% for order in delivered_orders %}
                 <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
