@@ -4,6 +4,7 @@
 
 <script src="{% static 'javascript/confirm-deletion.js' %}" defer></script>
 <script src="{% static 'javascript/order-box.js' %}" defer></script>
+<script src="{% static 'javascript/orderPopup.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/orderWaiter.css' %}" />
 <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
 
@@ -79,5 +80,22 @@
         </div>
     {% endfor %}
     {% endif %}
+
+    <div class="collapsibleMenu">
+        <button type="button" class="collapsible">View Placed Orders</button>
+        <div class="content">
+            <p>Place placed orders here...</p>
+        </div>
+
+        <button type="button" class="collapsible">View Prepared Orders</button>
+        <div class="content">
+            <p>Place prepared orders here...</p>
+        </div>
+
+        <button type="button" class="collapsible">View Delivered Orders</button>
+        <div class="content">
+            <p>Place delivered orders here...</p>
+        </div>
+    </div>
 </div>
 {% endblock content %}
