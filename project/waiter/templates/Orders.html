@@ -13,7 +13,7 @@
     <div class="collapsibleMenu">
         <button type="button" class="collapsible">View Placed Orders</button>
         <div class="content">
-            {% if noOfOrders == 0 %}
+            {% if placed_orders == None %}
                 <h3 style="color: black;">There are currently no orders to view</h3>
             {% else %}
             {% for order in placed_orders %}
@@ -59,11 +59,10 @@
 
         <button type="button" class="collapsible">View Prepared Orders</button>
         <div class="content">
-            {% if noOfOrders == 0 %}
+            {% if prepared_orders == None %}
                 <h3 style="color: black;">There are currently no orders to view</h3>
             {% else %}
-            {% for order in waiter_orders %}
-                {% if order.status == "Prepared" %}
+            {% for order in prepared_orders %}
                 <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
                     <div class = "order-box-inner">
                         <div class = "order-box-front">
@@ -97,18 +96,16 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
             {% endfor %}
             {% endif %}
         </div>
 
         <button type="button" class="collapsible">View Delivered Orders</button>
         <div class="content">
-            {% if noOfOrders == 0 %}
+            {% if delivered_orders == None %}
                 <h3 style="color: black;">There are currently no orders to view</h3>
             {% else %}
-            {% for order in waiter_orders %}
-                {% if order.status == "Delivered" %}
+            {% for order in delivered_orders %}
                 <div class = "order-box-outer" id = "{{ order.ID }}" tabindex="0" id="outer">
                     <div class = "order-box-inner">
                         <div class = "order-box-front">
@@ -145,7 +142,6 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
             {% endfor %}
             {% endif %}
         </div>

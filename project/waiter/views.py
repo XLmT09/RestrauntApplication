@@ -36,10 +36,17 @@ def viewOrders(request):
     # Use the order ids to retrive only order info which waiter servers
     waiter_orders = Order.objects.filter(ID__in=order_ids, dateOfOrder = currentDate).order_by('timeOfOrder')
 
+    # Retrieve all orders with prepared status that the waiter is assigned to
+    prepared_orders = waiter_orders.filter(status = "Prepared")
+    # Retrieve all orders with delivered status that the waiter is assigned to
+    deliverd_orders = waiter_orders.filter(status = "Delivered")
+
     # retrieve all customer orders from oldest to newest
     placed_orders = Order.objects.all().filter(dateOfOrder = currentDate, status = "Placed").order_by('timeOfOrder')
     
-    return render(request, "orders.html", {'placed_orders':placed_orders,'waiter_orders': waiter_orders, 'noOfOrders':1})
+    return render(request, "orders.html", {'placed_orders':(placed_orders if len(placed_orders) > 0 else None),
+                                           'prepared_orders':(prepared_orders if len(prepared_orders) > 0 else None),
+                                           'delivered_orders':(deliverd_orders if len(deliverd_orders) > 0 else None)})
 
 # Update the order status of an customer order
 @group_required("Waiters")
@@ -71,7 +78,7 @@ def updateOrderStatus(request, ID):
 
     # Refresh so user can see how the page changes as they update the status of an order
     # Use the recorded status (orderStatusBefore) to stay on the same page
-    return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatusBefore}))
+    return redirect(viewOrders)
 
 # This method deletes an order based on the order ID it is given
 def deleteOrder(request, ID):
@@ -91,7 +98,7 @@ def deleteOrder(request, ID):
     # Send message to front end to let the user know deletion was success
     messages.success(request, f"Order #{ID} has been Deleted.")
     # Refresh so user can see how the page changes as they update the status of an order
-    return redirect(reverse('viewOrders', kwargs={'orderStatus': orderStatus}))
+    return redirect(viewOrders)
 
 
 # Make http requests on page that shows menu and allows modification to the menu
