@@ -17,7 +17,7 @@ urlpatterns = [
 
     # ================================ Order urls =================================
     # Show list of orders depending on status, i.e orderStatus = "Placed" will show all placed orders
-    path("<str:orderStatus> orders", views.viewOrders, name = "viewOrders"),
+    path("orders", views.viewOrders, name = "viewOrders"),
     # Retrives the specific order to edit from the order page by passing its ID in the url
     path("updateStatus <int:ID>", views.updateOrderStatus, name="updateStatus"),
     # Delete order by passing the id of the order to url, so that backend can handle delete logic

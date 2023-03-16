@@ -9,10 +9,9 @@
       </button>
     </div>
     <div class = "grid-item">
-        <button class = "choiceButton" onclick="displayPopup();">
-            <a id="choiceText">View Orders</a>
-        </button>
-        
+        <button class="choiceButton">
+            <a href="{% url 'viewOrders' %}" id="choiceText">View Orders</a>
+          </button>
     </div>
     <div class = "grid-item">
         <button class="choiceButton">
@@ -24,18 +23,6 @@
             <a href="{% url 'showPayments' %}" id="choiceText">View Payments</a>
         </button>
     </div>
-</div>
-
-<div class="order-popup" id="orderPopup">
-    <button class="navButton">
-        <a href="{% url 'viewOrders' 'Placed' %}" class="choiceText">View Placed Orders</a>
-    </button>
-    <button class="navButton">
-        <a href="{% url 'viewOrders' 'Prepared' %}" class="choiceText">View Prepared Orders</a>
-    </button>
-    <button class="navButton">
-        <a href="{% url 'viewOrders' 'Delivered' %}" class="choiceText">View Delivered Orders</a>
-    </button>
 </div>
 
 {% endblock %}
