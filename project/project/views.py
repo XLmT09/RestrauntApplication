@@ -8,6 +8,7 @@ from decerators import login_required
 from . import models
 from .forms import helpRequestForm
 from django.contrib import messages
+from django.utils.timezone import localdate
 
 def notificationOrders(request):
     # If user is not logged in then empty string is returned
@@ -199,4 +200,14 @@ def testNotification(request):
     return render(request,'testNotification.html')
 
 
+def cleanupDatabase():
+    # Retrieve the current system date
+    currentDate = localdate()
+    # Retrieve all orders from the database
+    all_orders = Order.objects.all()
+    for order in all_orders:
+        # Check to see if the date of the order matches the current date of the system
+        if order.dateOfOrder != currentDate:
+            # Delete the order from the database
+            order.delete()
     
