@@ -23,9 +23,6 @@ def order_status_update(request):
 # The default home page for the website
 def homePage(request):
     Statuses =  order_status_update(request)
-    
-        #obj.some_field = some_var
-        #obj.save()
     # Gets a list of all the groups a user is in
     user_groups = request.user.groups.values_list('name', flat=True)
     return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'statuses':Statuses})

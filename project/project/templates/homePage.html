@@ -81,7 +81,6 @@
         <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
         {{ message }}
       </div>
-      <div class="pop-message {{ message.tags }}">{{ message }}</div>
       {% endfor %} {% endif %}
 
       <div class="logobox">
@@ -130,12 +129,5 @@
         </a>
       </div>
     </div>
-
-    {% for i in statuses %}
-    <script>
-      alert("Your order has been {{i}}");
-    </script>
-    {% endfor %}
-
   </body>
 </html>
