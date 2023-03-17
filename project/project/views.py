@@ -2,31 +2,19 @@ from django.shortcuts import redirect, render
 from django.db import models
 from .models import MenuItem, Order, HelpRequest
 from waiter.models import Payment
-from decerators import login_required
+from decerators import login_required, order_status_update
 from . import models
 from .forms import helpRequestForm
 from django.contrib import messages
 from django.utils.timezone import localdate
 
-# This function checks if there has been an update to the order status, so that the user can be notified
-def order_status_update(request):
-    # Only retrive the order if the latest status hasent been sent
-    # We only want to notify them if they havent seen the update
-    if request.user.is_authenticated:
-        orders = Order.objects.filter(customerID_id=request.user, notificationSent=False)
-        if orders != None:
-            for order in orders:
-                messages.info(request, f'Your order has been {order.status}')
-                # Mark that notification has been seen 
-                order.notificationSent = True
-                order.save() 
     
 # The default home page for the website
+@order_status_update
 def homePage(request):
-    Statuses =  order_status_update(request)
     # Gets a list of all the groups a user is in
     user_groups = request.user.groups.values_list('name', flat=True)
-    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'statuses':Statuses})
+    return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups})
 
 def home(request):
     # this selects the name of the web page and sends the user to that page
@@ -36,9 +24,8 @@ def results(request):
     # this selects the name of the web page and sends the user to that page
     return render(request, 'results.html')
 
-@login_required
+@order_status_update
 def menu(request):
-    Statuses =  order_status_update(request)
     # Retrieve all MenuItems from the database
     items = MenuItem.objects.all()
     # Retrive data from 'items' cookie
@@ -64,16 +51,15 @@ def menu(request):
     #Format the basket price so that it displays to 2dp
     basketPriceStr = "{:.2f}".format(basketPrice)
     # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses})
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict})
 
+@order_status_update
 def ltohSort(request):
-    Statuses =  order_status_update(request)
     items = MenuItem.objects.all().order_by('price')
-    return render(request, 'ltohsort.html', {'MenuItems': items,'statuses':Statuses})
+    return render(request, 'ltohsort.html', {'MenuItems': items})
 
-
+@order_status_update
 def checkout(request):
-    Statuses =  order_status_update(request)
     test = request.COOKIES.get('items') 
     if len(test) == 0:
         # Redirect the user to the menu page if the basket is empty
@@ -104,24 +90,21 @@ def checkout(request):
         # Format the price so that it is displayed to 2dp
         price = "{:.2f}".format(price)
         # Render the webpage for displaying the checkout
-        return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber,'statuses':Statuses})
+        return render(request, 'checkout.html',context={'MenuItems': usedItems , 'total':price,'items':itemNumber})
 
-
+@order_status_update
 def orderComplete(request):
-    Statuses =  order_status_update(request)
-    return render(request,'orderComplete.html', context={'statuses':Statuses})
+    return render(request,'orderComplete.html')
 
-
+@order_status_update
 def htolSort(request):
-    Statuses =  order_status_update(request)
     items = MenuItem.objects.all().order_by('-price')
-    return render(request, 'htolsort.html', {'MenuItems': items,'statuses':Statuses})
+    return render(request, 'htolsort.html', {'MenuItems': items})
 
+@order_status_update
 def customerOrder(request):
-    Statuses =  order_status_update(request)
     Orders = Order.objects.filter(customerID_id=request.user)
-
-    return render(request, 'customerOrders.html',{'Orders':Orders,'statuses':Statuses})
+    return render(request, 'customerOrders.html',{'Orders':Orders})
     
 
 
@@ -143,12 +126,13 @@ def sendHelpRequest(request):
     # Render the menu web page and close the popup containing the help request form
     return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
 
+@order_status_update
 def clientHelpRequests(request):
     # Render the webpage for displaying all customer help requests to the waiter
     return render(request, 'clientHelpRequests.html', {'help_requests': HelpRequest.objects.all()})
 
+@order_status_update
 def completePayment(request):
-    Statuses =  order_status_update(request)
     # Retrieve all the ordered items from cookie data
     orderedItems = request.COOKIES.get('items').split(",")
     itemDict = dict()
@@ -176,7 +160,7 @@ def completePayment(request):
     # Save the new payment object to the database
     newPayment.save()
     # Render the webpage stating that the order has successfully been placed
-    return render(request,'completePayment.html',context={'statuses':Statuses})
+    return render(request,'completePayment.html')
 
 
 def testNotification(request):
