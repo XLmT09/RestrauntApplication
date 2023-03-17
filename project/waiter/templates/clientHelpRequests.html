@@ -1,76 +1,42 @@
-{% extends 'base.html' %}
-
+{% extends 'waiterBase.html' %}
 {% block content %}
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: rgb(29, 29, 39);
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      font-size: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid white;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: rgb(44, 44, 59);
-    }
-    tr:nth-child(even) {
-      background-color: rgb(50, 50, 68);
-    }
-    tr:hover {
-      background-color: rgb(71, 71, 91);
-    }
-    .highlight {
-      background-color: yellow;
-    }
-  </style>
   <h1>Client Help Requests</h1>
+  
   <table>
     <thead>
       <tr>
+        <th>Request ID</th>
         <th>Customer ID</th>
         <th>Message</th>
-        <th>Action</th>
+        <th>Delete?</th>
       </tr>
     </thead>
     <tbody>
-      {% for request in help_requests %}
-      <tr data-request-id="{{ request.id }}">
-        <td>{{ request.customerID }}</td>
-        <td>{{ request.message }}</td>
-        <td><button onclick="highlightRow(this)">Select</button></td>
-      </tr>
-    {% endfor %}
+      {% for help_request in help_requests %}
+        <tr>
+          <td>{{ help_request.requestID }}</td>
+          <td>{{ help_request.customerID }}</td>
+          <td>{{ help_request.message }}</td>
+          <td>
+            <form action="{% url 'deleteHelpRequests' %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this help request?')">
+              {% csrf_token %}
+              <input type="hidden" name="customerID" value="{{ help_request.customerID.id }}">
+              <input type="hidden" name="requestID" value="{{ help_request.requestID }}">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
     </tbody>
   </table>
-  <script>
-//This function allows the waiter to select a help request and choose if they want to delete it from the webpage
-function highlightRow(button) {
-  var row = button.parentNode.parentNode;
-  if (row.classList.contains("highlight")) {
-    row.classList.remove("highlight");
-  } else {
-    row.classList.add("highlight");
-  }
-  if (row.classList.contains("highlight")) {
-    var confirmed = confirm("Do you want to delete this row?");
-    if (confirmed) {
-       row.parentNode.removeChild(row);
-       deleteHelpRequest();
-      } else {
-        row.classList.remove("highlight");
-      }
-    }
-}
-</script>
+
+  <hr>
+
+  <h2>New Help Request</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ help_request_form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
 {% endblock %}

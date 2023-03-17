@@ -21,5 +21,8 @@ urlpatterns = [
     # Retrives the specific order to edit from the order page by passing its ID in the url
     path("updateStatus <int:ID>", views.updateOrderStatus, name="updateStatus"),
     # Delete order by passing the id of the order to url, so that backend can handle delete logic
-    path('deleteOrder <int:ID>', views.deleteOrder, name = 'deleteOrder')
+    path('deleteOrder <int:ID>', views.deleteOrder, name = 'deleteOrder'),
+
+    # ================================ Client Help Request urls =================================
+    path('deleteHelpRequests/', views.deleteHelpRequests, name='deleteHelpRequests'),
 ]

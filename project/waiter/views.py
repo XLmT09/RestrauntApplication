@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
@@ -6,7 +7,9 @@ from django.core.mail import send_mail
 from decerators import group_required
 from .forms import menuUpdateForm
 from project.models import MenuItem, Order, HelpRequest
+from project.forms import helpRequestForm
 from .models import Payment, TableServer
+from django.core.exceptions import ObjectDoesNotExist
 
 # Make http requests to the waiter page
 @group_required("Waiters")
@@ -162,29 +165,13 @@ def customer_payments(request):
     return render(request, "paymentInfo.html", {'cust_payments':all_payments,'income':totalIncome})
 
 #This method allows for deletion of help requests from the client Help Requests database
-def deleteHelpRequest(request, help_request_id):
-    try:
-        # retrieve the HelpRequest object with the given ID
-        deleted_help_request = HelpRequest.objects.get(id=help_request_id)
-    except:
-        # Display an error message if the HelpRequest object does not exist
-        messages.error(request, f'Help request with ID {help_request_id} does not exist')
-        return redirect('clientHelpRequests')
-
-    # retrieve the ID of the customer who made the request
-    deleted_customerID = deleted_help_request.customerID
-    
-    # delete the HelpRequest object from the database
-    deleted_help_request.delete()
-
-    # fetch and send an email to the customer to notify them about the status of their request
-    customer_email = deleted_customerID.email
-    subject = 'Help Request Deleted'
-    message = 'The help will arrive shortly'
-    send_mail(subject, message, 'admin@example.com', [customer_email])
-
-    messages.success(request, f"Help request with ID {help_request_id} has been deleted for customer {deleted_customerID}. An email has been sent to the customer.")
-
-    # retrieve all HelpRequest objects and render the updated page
-    help_requests = HelpRequest.objects.all()
-    return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
+def deleteHelpRequests(request):
+    if request.method == 'POST':
+        customerID = int(request.POST['customerID'])
+        requestID = int(request.POST['requestID'])
+        help_request = HelpRequest.objects.get(customerID=customerID, requestID=requestID)
+        help_request.delete()
+        messages.success(request, f"Help request #{requestID} has been deleted for customer #{customerID}.")
+        return render(request, "clientHelpRequests.html", {'help_request_form' : helpRequestForm(), 'help_requests': HelpRequest.objects.all()})
+    else:
+        return HttpResponseBadRequest("Invalid request method")
