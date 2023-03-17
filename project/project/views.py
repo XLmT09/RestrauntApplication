@@ -1,8 +1,6 @@
 from django.shortcuts import redirect, render
 from django.db import models
-from .models import MenuItem
-from .models import Order
-from .models import HelpRequest
+from .models import MenuItem, Order, HelpRequest
 from waiter.models import Payment
 from decerators import login_required
 from . import models
@@ -10,34 +8,21 @@ from .forms import helpRequestForm
 from django.contrib import messages
 from django.utils.timezone import localdate
 
-def notificationOrders(request):
-    # If user is not logged in then empty string is returned
-    try:
-        Orders = Order.objects.filter(customerID_id=request.user,notificationSent=False)
-        statusList =[]
-        for i in Orders:
-            statusList.append(str(i.status))
-            print(i.status)
-        
-        Order.objects.filter(customerID_id=request.user,notificationSent=False).update(notificationSent=True)
-        
-        return statusList
-        
-    except:
-        Orders = ''
-        return Orders
+# This function checks if there has been an update to the order status, so that the user can be notified
+def order_status_update(request):
+    # Only retrive the order if the latest status hasent been sent
+    # We only want to notify them if they havent seen the update
+    orders = Order.objects.filter(customerID_id=request.user, notificationSent=False)
+    if orders != None:
+        for order in orders:
+            messages.info(request, f'Your order has been {order.status}')
+            # Mark that notification has been seen 
+            order.notificationSent = True
+            order.save() 
     
-
-        
-
-
-
-
-
-
 # The default home page for the website
 def homePage(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     
         #obj.some_field = some_var
         #obj.save()
@@ -55,7 +40,7 @@ def results(request):
 
 @login_required
 def menu(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     # Retrieve all MenuItems from the database
     items = MenuItem.objects.all()
     # Retrive data from 'items' cookie
@@ -84,13 +69,13 @@ def menu(request):
     return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses})
 
 def ltohSort(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     items = MenuItem.objects.all().order_by('price')
     return render(request, 'ltohsort.html', {'MenuItems': items,'statuses':Statuses})
 
 
 def checkout(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     test = request.COOKIES.get('items') 
     if len(test) == 0:
         # Redirect the user to the menu page if the basket is empty
@@ -125,17 +110,17 @@ def checkout(request):
 
 
 def orderComplete(request):
-    Statuses =  notificationOrders(request)
-    return render(request,'orderComplete.html',context={'statuses':Statuses})
+    Statuses =  order_status_update(request)
+    return render(request,'orderComplete.html', context={'statuses':Statuses})
 
 
 def htolSort(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     items = MenuItem.objects.all().order_by('-price')
     return render(request, 'htolsort.html', {'MenuItems': items,'statuses':Statuses})
 
 def customerOrder(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     Orders = Order.objects.filter(customerID_id=request.user)
 
     return render(request, 'customerOrders.html',{'Orders':Orders,'statuses':Statuses})
@@ -165,7 +150,7 @@ def clientHelpRequests(request):
     return render(request, 'clientHelpRequests.html', {'help_requests': HelpRequest.objects.all()})
 
 def completePayment(request):
-    Statuses =  notificationOrders(request)
+    Statuses =  order_status_update(request)
     # Retrieve all the ordered items from cookie data
     orderedItems = request.COOKIES.get('items').split(",")
     itemDict = dict()
