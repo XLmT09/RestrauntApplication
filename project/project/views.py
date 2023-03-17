@@ -12,13 +12,14 @@ from django.utils.timezone import localdate
 def order_status_update(request):
     # Only retrive the order if the latest status hasent been sent
     # We only want to notify them if they havent seen the update
-    orders = Order.objects.filter(customerID_id=request.user, notificationSent=False)
-    if orders != None:
-        for order in orders:
-            messages.info(request, f'Your order has been {order.status}')
-            # Mark that notification has been seen 
-            order.notificationSent = True
-            order.save() 
+    if request.user.is_authenticated:
+        orders = Order.objects.filter(customerID_id=request.user, notificationSent=False)
+        if orders != None:
+            for order in orders:
+                messages.info(request, f'Your order has been {order.status}')
+                # Mark that notification has been seen 
+                order.notificationSent = True
+                order.save() 
     
 # The default home page for the website
 def homePage(request):
