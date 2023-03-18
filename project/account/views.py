@@ -24,7 +24,12 @@ def signup(request):
         form = UserRegisterForm()
     return render(request, 'account/signup.html', {'form': form, 'title':'Sign Up'})
 
-#user must be logged in to use this page
+#user must be logged in to use the below pages
 @login_required
 def profile(request):
     return render(request, 'account/profile.html', {'title': 'Profile'})
+
+@login_required
+def userInformation(request):
+    user_groups = request.user.groups.values_list('name', flat=True)
+    return render(request, 'account/information.html', {'title':'Information', 'user_groups' : user_groups})

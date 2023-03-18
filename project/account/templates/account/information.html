@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'profile.css' %}" />
+
+<div class = "profile">
+    <h2>User Information</h2>   
+    <div class = "sidelining">
+        <div style = "margin-left: 7.5px;">
+            <p>Your username is {{ user.username }}</p>
+            {% if user.email %}
+            <p>The email associated with this account is {{ user.email }}</p>
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% if "Waiters" in user_groups %}
+                <p>You are a waiter!</p>
+                {% endif %}
+                {% if "Chefs" in user_groups %}
+                <p>You are one of the chefs heading our kitchen!</p>
+                {% endif %}
+                {% if "Managers" in user_groups %}
+                <p>You are one of our managers!</p>
+                {% endif %}
+                {% if "KitchenStaff" in user_groups %}
+                <p>You are a member of our kitchen staff!</p>
+                {% endif %}
+            {% endif %}
+            <p>Your account was created {{ user.date_joined }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

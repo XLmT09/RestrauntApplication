@@ -73,8 +73,14 @@ p {
     width: 390px;
     border-width: 1px;
     border-color: white;
-    border-style: solid;
-    border-left: none;
-    border-right: none;
-    border-top: none;
+    border-style: solid none none none;
+}
+
+.sidelining {
+    position: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-color: white;
+    border-style: none none none solid;
 }
