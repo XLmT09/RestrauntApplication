@@ -3,14 +3,24 @@
 
 <link rel="stylesheet" href="{% static 'profile.css' %}" />
 <div class="description">
-    <h1 data-text="Welcome {{ user.username }} to Oaxaca London . . .">Welcome {{ user.username }} to Oaxaca London . . .</h1>
-    <p>We offer you the best mexican cuisine you would love. We would be love to serve you.</p>
-    <p class="click">Click below for your orders information.</p>
-    
-
+    <h2>Welcome {{ user.username }} to Oaxaca London . . .</h1>
+    <h2 style = "font-size: 20px;">We offer you the best mexican cuisine around - we would love to serve you!</p>
 </div>
-<div class="button">
-    <a href="{% url 'customerOrder' %}"><span>View Orders</span>  </a>
+
+<br/><br/>
+
+<div class = "menu">
+    <p>What would you like to see?</p>
+    <div class = "titles"></div>
+    
+    <br/>
+
+    <div style = "margin-left: 5px;" class = "button">
+        <a href = "{% url 'customerOrder' %}">
+            View Orders
+        </a>
+    </div>
+
 </div>
 
 {% endblock content %}
