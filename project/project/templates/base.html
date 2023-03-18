@@ -39,25 +39,21 @@
               <div class="text">Our Menu</div>
             </button>
           </a>
-          {% if user.is_authenticated %}
-            {% if "KitchenStaff" in user_groups %}
-              <a class="nav-options nav-btn" href="{% url 'kitchen-order' %}">
-                <button class="navButton">
-                  <div class="text">Kitchen Page</div>
-                </button>
-              </a>
-            {% endif %}
-            {% if "Waiters" in user_groups %}
-              <div class="myDropDown">
-                <button class="dropDownBtn">Waiter Features</button>
-                <div class="dropDownContent">
-                  <a href="{% url 'viewOrders' %}"> View Orders </a><br>
+          {% if user.is_authenticated %}  
+            <div class="myDropDown">
+              <button class="dropDownBtn">Staff</button>
+              <div class="dropDownContent">
+                {% if "Waiters" in user_groups %}
+                  <a href="{% url 'viewOrders' %}"> View Waiter Orders </a><br>
                   <a href="{% url 'changeMenu' %}"> Update Menu </a><br>
                   <a href="{% url 'clientHelpRequests' %}"> View Help Requests </a><br>
                   <a href="{% url 'showPayments' %}"> View Payments </a><br>
-                </div>
+                {% endif %}
+                {% if "KitchenStaff" in user_groups %}
+                  <a href="{% url 'kitchen-order' %}">View Kitchen Orders</a>
+                {% endif %}
               </div>
-            {% endif %}
+            </div>
           {% endif %}
           <div class="myDropDown">
             <button class="dropDownBtn"> Account </button>
