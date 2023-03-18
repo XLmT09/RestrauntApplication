@@ -13,8 +13,12 @@
     {% endif %}
 
     <script src="{% static 'javascript/logout.js' %}" defer></script>
+    <script src="{% static 'javascript/navbar.js' %}"></script>
+    <script src="{% static 'javascript/dropdown.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
@@ -22,7 +26,7 @@
   </head>
 
   <body>
-    <div>
+    <div id="main">
       <div class="navbar">
         <div id="left">
           <div class="text">
@@ -39,11 +43,15 @@
             </a>
             {% endif %}
             {% if "Waiters" in user_groups %}
-            <a class="nav-options nav-btn" href="{% url 'waiterPage' %}">
-              <button class="navButton">
-                <div class="text">Waiter Page</div>
-              </button>
-              </a>
+            <div class="myDropDown">
+              <button class="dropDownBtn">Waiter Features</button>
+              <div class="dropDownContent">
+                <a href="{% url 'viewOrders' %}"> View Orders </a><br>
+                <a href="{% url 'changeMenu' %}"> Update Menu </a><br>
+                <a href="{% url 'clientHelpRequests' %}"> View Help Requests </a><br>
+                <a href="{% url 'showPayments' %}"> View Payments </a><br>
+              </div>
+            </div>
             {% endif %}
 
             <a class="nav-options nav-btn" onclick="showLogoutAlert();" href="{% url 'account-logout' %}">
@@ -73,6 +81,10 @@
                 <div class="text">Our Menu</div>
               </button>
           </a>
+
+          
+
+
         </div>
       </div>
 
