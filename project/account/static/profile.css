@@ -10,7 +10,7 @@ body {
 h2 {
     color: aliceblue;
     font-size: 40px;
-    text-align: center;
+    text-align: left;
 }
 
 p {
@@ -61,8 +61,8 @@ p {
     font-size: 22px;
 }
 
-.menu {
-    width: 1000px;
+.profile {
+    width: 1250px;
     margin: 0 auto;
 }
 
