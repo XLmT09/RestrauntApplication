@@ -66,11 +66,11 @@ p {
     margin: 0 auto;
 }
 
-.titles {
+.underlining {
     position: left;
     margin-top: 10px;
     margin-bottom: 20px;
-    width: 272px;
+    width: 390px;
     border-width: 1px;
     border-color: white;
     border-style: solid;
