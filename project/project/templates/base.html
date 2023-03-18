@@ -34,14 +34,17 @@
           </div>
         </div>
         <div id="right">
-          <a href="{% url 'menu' %}">
-            <button type="button" class="navButton">
-              <div class="text">Our Menu</div>
-            </button>
-          </a>
+          <div class="myDropDown">
+            <button class="dropDownBtn"> Options </button>
+            <div class="dropDownContent">
+                <a href="{% url 'viewOrders' %}"> View Menu </a><br>
+                <a href="{% url 'home' %}" onclick="scrollToAboutUs();"> About Us </a><br>
+                <a href="{% url 'home' %}"> Home Page </a><br>
+            </div>
+          </div>
           {% if user.is_authenticated %}  
             <div class="myDropDown">
-              <button class="dropDownBtn">Staff</button>
+              <button class="dropDownBtn"> Staff </button>
               <div class="dropDownContent">
                 {% if "Waiters" in user_groups %}
                   <a href="{% url 'viewOrders' %}"> View Waiter Orders </a><br>
