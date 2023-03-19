@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
   <body>
     <div class="checkOutBox">
+      <br><br><br><br>
       <div
         class="itemRow"
         style="border-bottom: 1px solid white; padding-bottom: 3px"
@@ -47,6 +48,15 @@
         >
           <path d="M400 776V376l200 200-200 200Z" />
         </svg>
+        <a href="{% url 'checkout' %}">
+          <button
+            type="button"
+            class="deleteItemButton"
+            onclick="deleteItemFromBasket('{{i.0}}');"
+          >
+            X
+          </button>
+        </a>
       </div>
       {% endfor %}
 
@@ -62,10 +72,15 @@
       <form action="{% url 'orderComplete' %}" method="POST" id="menuForm">
         {% csrf_token %} {{ form.errors }} {{ form.non_field_errors }}
         <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
-          <button class="submitButton">Confirm Order</button></a
+          <button class="submitButton">Checkout</button></a
         >
       </form>
     </div>
+    {% for i in statuses %}
+    <script>
+      alert("Your order has been {{i}}");
+    </script>
+    {% endfor %}
   </body>
 </html>
 {% endblock content %}

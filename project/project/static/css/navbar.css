@@ -3,12 +3,11 @@
   backdrop-filter: blur(10px);
   margin-left: 0;
   margin-right: auto;
+  padding-left: 30%;
+  padding-right: 30%;
   width: 100%;
   height: 10vh;
   background-color: rgba(17, 23, 23, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 #right {
@@ -36,3 +35,59 @@
   border-color: rgba(225, 225, 225, 1);
 }
 
+.dropDownBtn {
+  background-color: transparent;
+  color: white;
+  font-size: 150%;
+  border-color: rgba(225, 225, 225, 0);
+  border-style: solid;
+  border-width: 4px;
+  border-bottom: none;
+  border-top: none;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 15px;
+  transition: border-color 0.7s ease-in;
+  min-width: 160px;
+}
+
+.dropDownBtn:hover {
+  border-color:white;
+}
+
+.myDropDown {
+  position:relative;
+  display: inline-block;
+}
+
+.dropDownContent {
+  display: none;
+  position: absolute;
+  background-color: rgb(11, 11, 36);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.myDropDown:hover .dropDownContent {
+  display: block;
+}
+
+.myDropDown a:hover {
+  border-color: white;
+}
+
+a {
+  background-color: transparent;
+  color: white;
+  font-size: 100%;
+  border-color: rgba(225, 225, 225, 0);
+  border-style: solid;
+  border-width: 4px;
+  border-bottom: none;
+  border-top: none;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 15px;
+  transition: border-color 0.7s ease-in;
+}

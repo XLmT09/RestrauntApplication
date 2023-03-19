@@ -1,0 +1,139 @@
+* {
+  font-family: Montserrat;
+}
+
+/* Body class of the page */
+.order-container {
+  left: 10%;
+  position: absolute;
+  margin-top: 5%;
+  width: 80%;
+}
+
+.order-box-outer {
+  background-color: transparent;
+  margin: 2%;
+  float: left;
+  width: 350px;
+  height: 250px;
+  font-size: 1em;
+  perspective: 1000px;
+}
+
+.order-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.order-box-outer.rotate  .order-box-inner {
+  transform: rotateX(180deg);
+}
+
+.order-box-front, .order-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-bottom: 2px solid white;
+}
+
+.order-box-front {
+  background-color: #15202B;
+  color: white;
+}
+
+.order-box-back {
+  background-color: #15202B;
+  color: white;
+  opacity: auto;
+  overflow: auto;
+  transform: rotateX(180deg);
+}
+
+/** Hide the scroll bar **/
+.order-box-back::-webkit-scrollbar {
+  display: none;
+}
+
+.orderdetails {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.ordersummary {
+  display: flex;
+  justify-content: space-between;
+  border: solid;
+  border: none;
+  border-bottom: 1px solid white;
+  padding: 2% 2% 2% 2%;
+}
+
+.updatestatus {
+  width: 90%;
+  padding: 2%;
+  text-align: center;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  border: 1px solid grey;
+  background:#51308a;
+  transition: background-color 0.5s ease;
+}
+
+.updatestatus:hover{
+  background-color: #41039f;
+}
+
+.food-text {
+  /* Move text to next line instead of overflowing the box
+  horiziontaly */
+  clear: left;
+}
+
+.view-item-btn {
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 1%;
+  color: white;
+  background:#51308a;
+  background-size: 100% 200%;
+  background-position: top;
+  transition: border-color 1s ease;
+}
+
+.view-item-btn:hover{
+  background-color: #41039f;
+}
+
+.order-card-head {
+  margin-top: 1%;
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #1c3043;
+}

@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from .forms import UserRegisterForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from decerators import login_required
 
 # This view handles all HTTP requests and responses for the sign up page
 def signup(request):
@@ -27,6 +26,7 @@ def signup(request):
 #user must be logged in to use the below pages
 @login_required
 def profile(request):
+    # Render the webpage for displaying profile information
     return render(request, 'account/profile.html', {'title': 'Profile'})
 
 @login_required

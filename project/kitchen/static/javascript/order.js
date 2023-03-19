@@ -1,5 +1,4 @@
-function updateOrderStatus(value) {
-    orderID = value.parentNode.parentNode.getElementsByClassName("ordersummary")[0].getElementsByClassName("orderno")[0].innerHTML;
+function updateOrderStatus(orderID) {
     cookieData = "orderID=" + orderID + "; ";
     expiryDate = new Date();
     expiryDate.setTime(expiryDate.getTime() + (5 * 1000));

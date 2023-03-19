@@ -1,4 +1,4 @@
-{% load static %}
+{% extends "base.html" %} {% block content %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,8 +8,11 @@
 
     <title>Homepage Oaxaca</title>
     <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <script src="{% static 'javascript/notifications.js' %}" defer></script>
+    <script src="{% static 'javascript/logout.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="{% static 'javascript/animations.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/marquee.css' %}" />
     <link
       rel="stylesheet"
       href="//fonts.googleapis.com/css?family=Montserrat"
@@ -17,70 +20,16 @@
   </head>
 
   <body>
-    {% for message in messages %}
-    <div class="container-fluid p-0">
-      <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
-    </div>
-    {% endfor %}
-
     <div class="bg">
-      <div class="navbar">
-        <div id="left">
-          <div class="text">
-            <a class="nav-options" href="/">Oaxaca</a>
+      {% if messages %} 
+        {% for message in messages %}
+          <div class="pop-message {{ message.tags }}">
+            <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            {{ message }}
           </div>
-        </div>
-        <div id="right">
-          {% if user.is_authenticated %}
-          {% if "KitchenStaff" in user_groups %}
-          <a class="nav-options nav-btn" href="{% url 'kitchen-order' %}">
-            <button class="navButton">
-              <div class="text">Kitchen Page</div>
-            </button></a
-          >
-          {% endif %}
-
-          {% if "Waiters" in user_groups %}
-          <a class="nav-options nav-btn" href="{% url 'waiterPage' %}">
-            <button class="navButton">
-              <div class="text">Waiter Page</div>
-            </button></a
-          >
-          {% endif %}
-
-
-          <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
-            <button class="navButton">
-              <div class="text">Logout</div>
-            </button></a
-          >
-          <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
-            <button class="navButton">
-              <div class="text">Profile</div>
-            </button></a
-          >
-          {% else %}
-          <a href="/account/login/">
-            <button class="navButton">
-              <div class="text">Login</div>
-            </button>
-          </a>
-          <a href="/account/signup/">
-            <button class="navButton">
-              <div class="text">Register</div>
-            </button>
-          </a>
-          {% endif %}
-
-          <button type="button" class="navButton" onclick="scrollToAboutUs();">
-            <div class="text">About Us</div>
-          </button>
-
-          <button type="button" class="navButton" onclick="scrollToMenu();">
-            <div class="text">Our Menu</div>
-          </button>
-        </div>
-      </div>
+          <div class="pop-message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
 
       <div class="logobox">
         <img src="/static/images/OaxacaLogo.png" />
@@ -89,7 +38,7 @@
     <div class="bg2" id="about">
       <div class="dishbox" id="aboutImage"></div>
       <div class="aboutConatiner" id="aboutText">
-        <div class="aboutTitle">About Us</div>
+        <div class="home-sub-title">About Us</div>
         <div class="informationtext">
           Since our modest beginnings in 2001 with a little space in Eghams
           stylish high street, Oaxacas development has been enlivened with the
@@ -99,17 +48,43 @@
         <br />
       </div>
     </div>
+    <div class="customer-reviews-bg">
+      <div class="rev-sub-title">Customer Reviews</div>
+      <p class="marquee">
+        <span>
+          &#9733; &#9733; &#9733; &#9733; &#9733; - "Glad Oxaca opened, it's a good place to eat. Food is good, seating is good & so is service. Nothing to complain about."
+          &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; - "So good we went 3 times while visiting London! You have to try the loaded chips and queso!"
+          &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Expect a warm welcome and a tasty meal at this lovely Mexican restaurant. The food has a home cooked feel."
+          &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Food is always good...atmosphere is great and the wait staff is very friendly. "
+          &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; - "I really like this place. I think the food is delicious, and the margaritas are even better!"
+          &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Awesome food I love Mexican food!"
+        </span>
+      </p>
+    </div>
     <div class="bg3" id="Menu">
       <div class="dishbox2" id="menuImage"></div>
       <div class="menuConatiner" id="menuText">
-        <div class="aboutTitle">Menu</div>
-        <div class="informationtext">PlaceHolder Text for Menu</div>
+        <div class="home-sub-title">Menu</div>
+        <div class="informationtext">Checkout our menu now!
+           Our dishes are carefully crafted by our expert 
+          chefs to provide you with the best dining experience possible.
+           From appetizers to desserts, we offer a wide range of options 
+           to satisfy any craving.</div>
         <a href="{% url 'menu' %}">
-          <button class="menuButton">
-            <div class="text">Menu</div>
+          <button class="home-menu-button">
+            <div class="text">View Menu</div>
           </button>
         </a>
       </div>
     </div>
+
+    {% for i in statuses %}
+    <script>
+      alert("Your order has been {{i}}");
+    </script>
+    {% endfor %}
+
   </body>
 </html>
+
+{% endblock content %}

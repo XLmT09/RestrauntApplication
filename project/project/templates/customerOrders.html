@@ -97,6 +97,11 @@
       </div>
       {% endif %} {% endfor %}
     </div>
+    {% for i in statuses %}
+    <script>
+      alert("Your order has been {{i}}");
+    </script>
+    {% endfor %}
   </body>
 </html>
 {% endblock content %}

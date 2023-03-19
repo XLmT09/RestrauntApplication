@@ -1,10 +1,10 @@
 from django import forms
-from django.db import models
 from project.models import MenuItem
-from project.models import Order
 
+# This python code will be converted to an HTML form, when its rendered on the website
+# by inherting from the ModelForm class.
+# This form is used to update/add/delete items from the current menu
 class menuUpdateForm(forms.ModelForm):
-
     name = forms.CharField(widget=forms.TextInput(attrs={'id':'nameTextField','placeholder':'Enter name'}))
     price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Enter price'}))
     calories = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Enter calories'}))

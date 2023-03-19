@@ -1,23 +1,30 @@
-{% extends 'base.html' %}
-
+{% extends 'waiterBase.html' %}
 {% block content %}
-  <h1>Client Help Requests</h1>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
+<script src="{% static 'javascript/waiterRequest.js' %}" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class = "request-container">
+  <h1 class = "title">Client Help Requests</h1>
   <table>
     <thead>
       <tr>
-        <th>Customer ID</th>
-        <th>Message</th>
+        <th class="left-col">Customer Name</th>
+        <th class="mid-col">Message</th>
+        <th class="right-col">Action's</th>
       </tr>
     </thead>
     <tbody>
       {% for request in help_requests %}
-        <tr>
-          <td>{{ request.customerID }}</td>
-          <td>{{ request.message }}</td>
-        </tr>
-      {% endfor %}
+      <tr data-request-id="{{ request.id }}">
+        <td class="left-col">{{ request.customerID }}</td>
+        <td class="mid-col">{{ request.message }}</td>
+        <td class="right-col"><a onclick="highlightRow(this)"><i class="fa fa-trash-o icon"></i></a></td>
+      </tr>
+    {% endfor %}
     </tbody>
   </table>
+</div>
 {% endblock %}
-
-

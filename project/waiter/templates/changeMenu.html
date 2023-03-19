@@ -120,13 +120,12 @@
           {% endif %}
         
         </div>
-        {% if messages %}
-          <ul class="messages">
-              {% for message in messages %}
-              <div class="buttonRow"><li style="text-align:center" {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li></div>
-              {% endfor %}
-          </ul>
-        {% endif %}
+        {% if messages %} {% for message in messages %}
+        <div class="pop-message {{ message.tags }}">
+          {{ message }}
+          <span class="pop-close-btn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        </div>
+        {% endfor %} {% endif %}
         
       </form>
   </body>
