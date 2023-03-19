@@ -55,10 +55,16 @@ def results(request):
 
 @login_required
 def menu(request):
+    print("HELLO")
     Statuses =  notificationOrders(request)
     # Retrieve all MenuItems from the database
     items = MenuItem.objects.all()
-    # Retrive data from 'items' cookie
+    basketPriceStr,itemDict = getPriceOfBasket(request)
+    # this selects the name of the web page and sends the user to that page
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'dlt'})
+
+def getPriceOfBasket(request):
+    # Retrieve data from 'items' cookie
     cookieData = request.COOKIES.get('items')
     basketPrice = 0
     itemDict = dict()
@@ -80,13 +86,14 @@ def menu(request):
                 basketPrice += float(cookieData[i])
     #Format the basket price so that it displays to 2dp
     basketPriceStr = "{:.2f}".format(basketPrice)
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses})
+    return basketPriceStr,itemDict
 
 def ltohSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('price')
-    return render(request, 'ltohsort.html', {'MenuItems': items,'statuses':Statuses})
+    basketPriceStr,itemDict = getPriceOfBasket(request)
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'ltoh'})
+
 
 
 def checkout(request):
@@ -132,7 +139,9 @@ def orderComplete(request):
 def htolSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('-price')
-    return render(request, 'htolsort.html', {'MenuItems': items,'statuses':Statuses})
+    basketPriceStr,itemDict = getPriceOfBasket(request)
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'htol'})
+
 
 def customerOrder(request):
     Statuses =  notificationOrders(request)
