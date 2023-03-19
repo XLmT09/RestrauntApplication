@@ -94,7 +94,7 @@
         <div class="form-popup" id="myHelpForm">
           <form class="form-container" method="get" action="{% url 'requestHelp' %}">
             {{ helpForm.message }}
-            <br><input type="submit" class = "btn" value="Submit">
+            <br><input type="submit" class = "btn" value="Submit" onclick="saveBasket();">
             <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
           </form>
         </div>

@@ -171,3 +171,9 @@ function setBasketValue(){
   var basket = document.getElementById("basket");
   basket.innerHTML = (parseFloat("2.5")).toFixed(2);
 }
+
+function saveBasket() {
+  setCookie("items", itemsOrdered, 3000);
+  setCookie("itemIds", itemIds, 3000);
+  setCookie("itemWithIds", itemWithId, 3000);
+}

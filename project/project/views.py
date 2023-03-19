@@ -27,14 +27,6 @@ def notificationOrders(request):
         Orders = ''
         return Orders
     
-
-        
-
-
-
-
-
-
 # The default home page for the website
 def homePage(request):
     Statuses =  notificationOrders(request)
@@ -45,17 +37,8 @@ def homePage(request):
     user_groups = request.user.groups.values_list('name', flat=True)
     return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'statuses':Statuses})
 
-def home(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'home.html')
-
-def results(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'results.html')
-
 @login_required
 def menu(request):
-    print("HELLO")
     Statuses =  notificationOrders(request)
     # Retrieve all MenuItems from the database
     items = MenuItem.objects.all()
@@ -167,7 +150,8 @@ def sendHelpRequest(request):
     # Display a message stating that the help request was successfully sent
     messages.success(request, f'Your request has been sent successfully')
     # Render the menu web page and close the popup containing the help request form
-    return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+    #return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+    return redirect(menu)
 
 def clientHelpRequests(request):
     # Render the webpage for displaying all customer help requests to the waiter
