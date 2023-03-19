@@ -80,7 +80,7 @@
         </div>
         <div class = "sort">
           <label for = "sort">Sort by : </label>
-          <select name = "sort" id = "sort" onchange = "sort(this)">
+          <select name = "sort" id = "sort" onchange = "sort(this)" onclick="saveBasket();">
             <option value = "dlt">Default</option>
             <optgroup label = "Price">
               <option value = "ltoh">Low to High</option>
@@ -94,7 +94,7 @@
         <div class="form-popup" id="myHelpForm">
           <form class="form-container" method="get" action="{% url 'requestHelp' %}">
             {{ helpForm.message }}
-            <br><input type="submit" class = "btn" value="Submit" onclick="saveBasket();">
+            <br><input type="submit" class = "btn" value="Submit" onclick="saveBasket();"onclick="saveBasket();">
             <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
           </form>
         </div>
