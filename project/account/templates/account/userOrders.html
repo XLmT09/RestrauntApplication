@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'profile.css' %}" />
+<link rel="stylesheet" href="{% static 'css/customerOrder.css' %}" />
+<link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+<script src="{% static 'javascript/menu.js' %}" defer></script>
+<script src="{% static 'javascript/oldOrders.js' %}" defer></script>
+
+<div class="profile" style="text-color: alice-blue;">
+    {% if Orders %}
+    <br/>
+    <h2>Your Orders</h2>
+    <br/>
+    <div class="itemRow" style="margin-bottom: 10px">
+        <div id="right">
+            <p class="itemText">Order Id</p>
+            <p class="itemText">Time of Order</p>
+            <p class="itemText">Order Status</p>
+            <p class="itemText">Items</p>
+        </div>
+    </div>
+    <div class = "underlining" style = "width: 1000px;"></div>
+    {% for order in Orders %} {% if order.status == "Delivered"%}
+    <div class="itemRow">
+        <div id="right">
+            <p class="itemText">{{order.ID}}</p>
+            <p class="itemText">{{order.timeOfOrder}}</p>
+            <p class="itemText">{{order.status}}</p>
+            <p class="itemText">{{order.orderedItems}}</p>
+        </div>
+    </div>
+    {% endif %} {% endfor %}
+    {% else %}
+    <br/><br/>
+    <h2>You currently have no orders!</h2>
+    {% endif %}
+</div>
+{% endblock content %}

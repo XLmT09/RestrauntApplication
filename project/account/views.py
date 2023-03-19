@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import UserRegisterForm
 from django.contrib import messages
 from decerators import login_required
+from project.models import Order, MenuItem
+from project.views import checkout
 
 # This view handles all HTTP requests and responses for the sign up page
 def signup(request):
@@ -33,3 +35,15 @@ def profile(request):
 def userInformation(request):
     user_groups = request.user.groups.values_list('name', flat=True)
     return render(request, 'account/information.html', {'title':'Information', 'user_groups' : user_groups})
+
+@login_required
+def userOrders(request):
+    Orders = Order.objects.filter(customerID_id=request.user)
+
+    return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders})
+
+def redoOrder(request):
+    test = request.COOKIES.get('items')
+    print(test)
+
+    return redirect(checkout)
