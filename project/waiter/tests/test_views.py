@@ -5,9 +5,14 @@ from django.core import mail
 from waiter.models import HelpRequest
 
 
-class blankFormTest(){
-        
-}
+class blankFormTest(TestCase):
+    
+    def test_blank_form(self):
+        response = self.client.get(reverse('viewOrders', kwargs={'orderStatus': 'Placed'}))
+        # Check if page is accessible
+        self.assertEqual(response.status_code, 200)
+        # Checks if there are no orders displayed on the website
+        self.assertContains(response, "No orders available")
 
 class addItemTest(){
         
