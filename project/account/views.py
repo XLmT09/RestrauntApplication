@@ -1,9 +1,11 @@
-from django.shortcuts import redirect, render
+from django.db.models import Sum
+from django.shortcuts import render
 from .forms import UserRegisterForm
 from django.contrib import messages
 from decerators import login_required
-from project.models import Order, MenuItem
+from project.models import Order
 from project.views import checkout
+from waiter.models import Payment
 
 # This view handles all HTTP requests and responses for the sign up page
 def signup(request):
@@ -42,8 +44,16 @@ def userOrders(request):
 
     return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders})
 
-def redoOrder(request):
-    test = request.COOKIES.get('items')
-    print(test)
+@login_required
+def userPayments(request):
+    Payments = Payment.objects.filter(customerID_id=request.user)
+    paymentTotal = Payments.aggregate(Sum('paymentAmount'))['paymentAmount__sum']
+    print(paymentTotal)
+    paymentNum = Payments.count()
+    if (paymentNum > 1):
+        paymentAverage = paymentTotal / paymentNum
+        return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
+                                                           'paymentNum':paymentNum, 'paymentAverage':paymentAverage})
 
-    return redirect(checkout)
+    return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
+                                                       'paymentNum':paymentNum})
