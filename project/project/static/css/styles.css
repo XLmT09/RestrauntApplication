@@ -69,7 +69,7 @@ a {
 
 .bg2 {
   background-color: rgb(29, 29, 39);
-  height: 70vh;
+  height: 80vh;
   padding: 3rem;
 }
 
@@ -83,45 +83,9 @@ a {
 .bg3 {
   text-align: center;
   background-color: rgb(29, 29, 39);
-  height: 70vh;
+  height: 80vh;
   border-bottom: 20px solid black;
   padding: 3rem;
-}
-
-.navbar {
-  backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  margin-left: 0;
-  margin-right: auto;
-  width: 100%;
-  height: 10vh;
-  background-color: rgba(17, 23, 23, 1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#right {
-  display: flex;
-  align-items: center;
-}
-
-.navButton {
-  background-color: transparent;
-  border-color: rgba(225, 225, 225, 0);
-  border-style: solid;
-  border-width: 4px;
-  border-bottom: none;
-  border-top: none;
-  cursor: pointer;
-  float: right;
-  margin-left: 5px;
-  margin-right: 15px;
-  transition: border-color 0.7s ease-in;
-}
-
-.text:hover navButton {
-  border-color: rgba(225, 225, 225, 1);
 }
 
 .logobox {
@@ -226,7 +190,8 @@ body {
 /** Menu button on the home page **/
 .home-menu-button {
   margin-top: 40%;
-  padding: 0.8em;
+  font-size: 15px;
+  padding: 0.6em;
   border: 1px solid rgb(82, 82, 82);
   background:#51308a;  
   text-align: center;
