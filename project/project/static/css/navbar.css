@@ -1,33 +1,32 @@
 .navbar {
   backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   width: 100%;
   height: 10vh;
+  margin: 0 auto;
   background-color: black;
+  align-items: center;
   display: flex;
-  justify-content: flex-start; /* align items to the left */
-  align-items: center;}
-
-.left {
-  margin-right: auto;
-  margin-top: 1%;
+  justify-content: center;
+  padding-right: 1%;
 }
-
-
 
 .navButton {
   background-color: transparent;
-  border-color: rgba(225, 225, 225, 0);
   border-color: rgba(225, 225, 225, 0);
   border-style: solid;
   border-width: 4px;
   border-bottom: none;
   border-top: none;
   cursor: pointer;
-  cursor: pointer;
-  float: right;
   transition: border-color 0.7s ease-in;
 }
+
+/** Position the logo button on the navbar **/
+.nav-left {
+  margin-top: 1%;
+  margin-right: auto;
+}
+
 
 .text:hover navButton {
   border-color: rgba(225, 225, 225, 1);
@@ -36,15 +35,13 @@
 .dropDownBtn {
   background-color: transparent;
   color: white;
-  font-size: 150%;
+  font-size: 20px;
   border-color: rgba(225, 225, 225, 0);
   border-style: solid;
   border-width: 4px;
   border-bottom: none;
   border-top: none;
   cursor: pointer;
-  margin-left: 5px;
-  margin-right: 15px;
   transition: border-color 0.7s ease-in;
   min-width: 160px;
 }
@@ -61,16 +58,19 @@
 .dropDownContent {
   display: none;
   position: absolute;
-  background-color: rgb(11, 11, 36);
-  min-width: 160px;
+  margin-top: 2.7vh;
+  background-color: #1c3043;
+  border-color:white;
+  border-width: 5px;
+  width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   text-align: center;
 }
 
-.myDropDown:hover .dropDownContent {
+.myDropDown:focus-within .dropDownContent {
   display: block;
 }
 
-.myDropDown a:hover {
+.dropDownBtn:focus {
   border-color: white;
 }
