@@ -177,3 +177,26 @@ function saveBasket() {
   setCookie("itemIds", itemIds, 3000);
   setCookie("itemWithIds", itemWithId, 3000);
 }
+
+var containers = document.getElementsByClassName("container");
+for (var i = 0; i < containers.length; i++) {
+  var container = containers[i];
+  container.addEventListener("click", function() {
+    var text = this.querySelector(".descriptionBox");
+    var img = this.querySelector("img");
+    if (img) {
+      img.parentNode.removeChild(img);
+      text.style.opacity = 1;
+    } else {
+      img = document.createElement("img");
+      img.style.opacity = 0;
+      img.src = this.getAttribute("data-imgurl");
+      img.onload = function() {
+        text.style.opacity = 0;
+        text.parentNode.insertBefore(img, text);
+        img.style.opacity = 1;
+      };
+      this.appendChild(img);
+    }
+  });
+}

@@ -15,6 +15,7 @@ function search(searchText) {
         
         if (itemNameValue == searchValue) {
             itemContainer.classList.toggle("highlight");
+            itemContainer.scrollIntoView({ behavior: 'smooth' });
 
             break;
         }
