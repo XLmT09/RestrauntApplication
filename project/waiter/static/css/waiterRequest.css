@@ -1,0 +1,71 @@
+* {
+color: white;
+}
+
+.request-container {
+display: flex;
+justify-content: center;
+flex-direction: column;
+margin: 5%;
+}
+
+table {
+width: 100%;
+}
+
+th, td {
+padding: 0.8em;
+text-align: left;
+}
+
+th {
+background-color: black;
+}
+
+/** Overflow handling on columns **/
+td {
+max-width: 200px;
+overflow-x: auto;
+}
+
+td::-webkit-scrollbar {
+display: none;
+}
+
+tr:nth-child(even) {
+background-color: #15202B;
+}
+
+tr:nth-child(odd) {
+background-color: #172c40;
+}
+
+tr:hover {
+background-color: #0f3a63;
+}
+
+.left-col {
+width: 30%;
+}
+
+.mid-col {
+width: 60%;
+}
+
+.right-col {
+width: 10%;
+}
+
+/** trash icon **/
+i.icon {
+    color: red;
+    font-size: 1.5em;
+}
+
+i.icon:hover {
+    color: rgb(129, 0, 0);
+}
+
+.highlight {
+background-color: yellow;
+}

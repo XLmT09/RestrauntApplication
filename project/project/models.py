@@ -30,7 +30,7 @@ class MenuItem(models.Model):
     course = models.CharField(max_length=10,choices=MenuItemCourse.choices, null=False, default="Main")
     dietRequirements = models.CharField(max_length=10,choices=MenuItemRequirements.choices, null=False, default="None")
     ID = models.IntegerField(null=True)
-    imgurl = models.URLField(default = 'https://drive.proton.me/urls/ZSNK82MYCM#RLw8zlaNRCxu')
+    imgurl = models.URLField(default = 'https://i.postimg.cc/PqLn57Cr/No-Image-Available.png')
 # Table which will store all live orders from customers
 class Order(models.Model):
     # Add meta data to the order table
@@ -51,6 +51,7 @@ class Order(models.Model):
     status = models.CharField(max_length=10, choices=orderStatuses.choices, null=False, default="Placed")
     # Will automatically get the current time due to the auto_now attrbuite
     timeOfOrder = models.TimeField(auto_now=True, null=False)
+    dateOfOrder = models.DateField(auto_now=True, null=False)
     orderedItems = models.JSONField(null=False)
     notificationSent = models.BooleanField(default=False)
 

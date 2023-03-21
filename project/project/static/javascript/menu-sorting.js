@@ -16,3 +16,17 @@ function sort(selectedOption) {
             break;
     }
 }
+
+function setDropDown(optionValue){
+    switch (optionValue) {
+        case 'dlt':
+            document.getElementById("sort").selectedIndex = 0;
+            break;
+        case 'ltoh':
+            document.getElementById("sort").selectedIndex = 1;
+            break;
+        case 'htol':
+            document.getElementById("sort").selectedIndex = 2;
+            break;
+    }
+}

@@ -11,6 +11,7 @@ class Payment(models.Model):
     timeOfPayment = models.TimeField(auto_now=True, null=False)
     paymentAmount = models.DecimalField(max_digits=10,decimal_places=2,null=False)
     orderID = models.ForeignKey(Order, on_delete=models.CASCADE,null=False)
+    dateOfPayment = models.DateField(auto_now=True,null=False)
 
 # This table represents the table an waiter will be assigned to in the restraunt
 class TableServer(models.Model):

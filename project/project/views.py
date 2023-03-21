@@ -8,6 +8,7 @@ from decerators import login_required
 from . import models
 from .forms import helpRequestForm
 from django.contrib import messages
+from django.utils.timezone import localdate
 
 def notificationOrders(request):
     # If user is not logged in then empty string is returned
@@ -26,14 +27,6 @@ def notificationOrders(request):
         Orders = ''
         return Orders
     
-
-        
-
-
-
-
-
-
 # The default home page for the website
 def homePage(request):
     Statuses =  notificationOrders(request)
@@ -44,20 +37,17 @@ def homePage(request):
     user_groups = request.user.groups.values_list('name', flat=True)
     return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'statuses':Statuses})
 
-def home(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'home.html')
-
-def results(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'results.html')
-
 @login_required
 def menu(request):
     Statuses =  notificationOrders(request)
     # Retrieve all MenuItems from the database
     items = MenuItem.objects.all()
-    # Retrive data from 'items' cookie
+    basketPriceStr,itemDict = getPriceOfBasket(request)
+    # this selects the name of the web page and sends the user to that page
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'dlt'})
+
+def getPriceOfBasket(request):
+    # Retrieve data from 'items' cookie
     cookieData = request.COOKIES.get('items')
     basketPrice = 0
     itemDict = dict()
@@ -79,13 +69,15 @@ def menu(request):
                 basketPrice += float(cookieData[i])
     #Format the basket price so that it displays to 2dp
     basketPriceStr = "{:.2f}".format(basketPrice)
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses})
+    return basketPriceStr,itemDict
 
+@login_required
 def ltohSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('price')
-    return render(request, 'ltohsort.html', {'MenuItems': items,'statuses':Statuses})
+    basketPriceStr,itemDict = getPriceOfBasket(request)
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'ltoh'})
+
 
 
 def checkout(request):
@@ -127,11 +119,13 @@ def orderComplete(request):
     Statuses =  notificationOrders(request)
     return render(request,'orderComplete.html',context={'statuses':Statuses})
 
-
+@login_required
 def htolSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('-price')
-    return render(request, 'htolsort.html', {'MenuItems': items,'statuses':Statuses})
+    basketPriceStr,itemDict = getPriceOfBasket(request)
+    return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'htol'})
+
 
 def customerOrder(request):
     Statuses =  notificationOrders(request)
@@ -157,7 +151,8 @@ def sendHelpRequest(request):
     # Display a message stating that the help request was successfully sent
     messages.success(request, f'Your request has been sent successfully')
     # Render the menu web page and close the popup containing the help request form
-    return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+    #return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+    return redirect(menu)
 
 def clientHelpRequests(request):
     # Render the webpage for displaying all customer help requests to the waiter
@@ -199,4 +194,23 @@ def testNotification(request):
     return render(request,'testNotification.html')
 
 
+def cleanupDatabase():
+    # Retrieve the current system date
+    currentDate = localdate()
+    # Retrieve all orders from the database
+    all_orders = Order.objects.all()
+    for order in all_orders:
+        # Check to see if the date of the order matches the current date of the system
+        if order.dateOfOrder != currentDate:
+            # Delete the order from the database
+            order.delete()
     
+def deleteExcessDeliveries():
+    # deletes the earliest delivered orders so that only (at most) 20 orders exist on the system
+    # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
+    delivered_orders = Order.objects.all().filter(status = "Delivered")
+    excess_orders_num = delivered_orders.count() - 20
+        
+    if (excess_orders_num > 0):
+        excess_orders = delivered_orders[:excess_orders_num]
+        excess_orders.delete()

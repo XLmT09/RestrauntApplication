@@ -1,5 +1,41 @@
 {% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
-<h1>Hello {{ user.username }}!!</h1>
-<a href="{% url 'customerOrder' %}" style="color: black">View Orders </a>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'profile.css' %}" />
+
+<div class = "profile">
+    <div class="description">
+        <h2>Welcome {{ user.username }} to Oaxaca London . . .</h1>
+        <h2 style = "font-size: 20px;">We offer you the best mexican cuisine around - we would love to serve you!</p>
+    </div>
+    
+    <br/><br/>
+
+    <p>What would you like to see?</p>
+    <div class = "underlining"></div>
+    
+    <br/>
+
+    <div style = "margin-left: 5px;">
+        <div class = "button">
+            <a href = "{% url 'userInformation' %}">
+                Profile Information
+            </a>
+        </div>
+        <br/><br/>
+        <div class = "button">
+            <a href = "{% url 'userOrders' %}">
+                View All Orders
+            </a>
+        </div>
+        <br/><br/>
+        <div class = "button">
+            <a href = "{% url 'userPayments' %}">
+                View All Payments
+            </a>
+        </div>
+    </div>
+
+</div>
 
 {% endblock content %}

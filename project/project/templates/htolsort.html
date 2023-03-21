@@ -14,23 +14,33 @@
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
   <script src = "{% static 'javascript/menu-searching.js' %}"></script>
+  <script src = "{% static 'javascript/helpform.js' %}"></script>
+
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
   />
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
-  <title>Document</title>
+  <title>Menu Oaxaca</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
-  <body>
+  <body onload="initialiseLists();">
     <div class="navbar">
       <div id="left">
         <div class="text">
           <a class="nav-options" href="/">Oaxaca</a>
         </div>
       </div>
+
       <div id="right">
+
+        <a class="nav-options nav-btn">
+          <button class="navButton" onclick="openHelpForm();">
+            <div class="text">Request Help</div>
+          </button>
+        </a>
+
         <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
-          <button class="navButton" onclick="checkout({{ user.id }})">
+          <button class="navButton" onclick="checkout()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24"
@@ -42,22 +52,21 @@
               />
             </svg>
             <div class="text" style="float: right">
-              £<text id="basket">0</text>
+              £<text id="basket">{{basketTotal}}</text>
             </div>
-          </button></a
-        >
+          </button></a>
 
         {% if user.is_authenticated %}
-        <a class="nav-options nav-btn" href="{% url 'account-logout' %}"'>
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
           <button class="navButton">
             <div class="text">Logout</div>
           </button></a
         >
-        <a class="nav-options nav-btn" href="{% url 'account-profile' %}"'>
+        <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
           <button class="navButton">
             <div class="text">Profile</div>
-          </button></a
-        >
+          </button>
+        </a>
 
         {% else %}
         <a href="/account/login/">
@@ -76,10 +85,6 @@
     
     <div class="background">
 
-
-
-
-
     <div class="menuBox" id="menuBox">
         <div class = "filter">
           <label for = "filter">Filter by : </label>
@@ -96,7 +101,7 @@
         </div>
         <div class = "sort">
           <label for = "sort">Sort by : </label>
-          <select name = "sort" id = "sort" onchange = "sort(this)">
+          <select name = "sort" id = "sort" onchange = "sort(this)" onclick="saveBasket();">
             <option value = "dlt">Default</option>
             <optgroup label = "Price">
               <option value = "ltoh">Low to High</option>
@@ -106,6 +111,13 @@
         </div>
         <div class = "searchbar">
           <input type = "text" placeholder = "Search menu" oninput = "search(this)" required />
+        </div>
+        <div class="form-popup" id="myHelpForm">
+          <form class="form-container" method="get" action="{% url 'requestHelp' %}">
+            {{ helpForm.message }}
+            <br><input type="submit" class = "btn" value="Submit">
+            <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
+          </form>
         </div>
 
         <div class = "resultcontainer" id = "resultcontainer">
@@ -128,13 +140,15 @@
         <div class="titles"><div class="name">Starters</div></div>
       
         {% for item in MenuItems %} {% if item.course == "Starter" %}
-        <div class="container">
+
+        <div class="container" data-imgurl="{{item.imgurl}}">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
           <div class="descriptionBox">{{item.description}}</div>
+        
           <br />
           <div class="nutritionBox" >Calories : {{item.calories}}
             {% if item.dietRequirements != 'N'%}
@@ -144,15 +158,22 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             >+
               
             </button>
@@ -161,57 +182,17 @@
         {%endif%}{%endfor%}
       </div>
  
-  
         <div class = "course" id = "mains">
           <div class="titles"><div class="name">Mains</div></div>
           {% for item in MenuItems %} {% if item.course == "Main" %}
-          <div class="container">
-            <div class="header">
-              <div class="name">{{item.name}}</div>
-              <div class="price">£{{item.price}}</div>
-            </div>
-            <br />
-            <div class="descriptionBox">{{item.description}}</div>
-            <br />
-            <div class="nutritionBox" >Calories : {{item.calories}}
-              {% if item.dietRequirements != 'N'%}
-                <text style="float: right">{{item.dietRequirements}}</text>
-              {% endif %}
-            </div>
-            <div class="orderingBar">
-              <button
-                class="orderButton"
-                onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
-              > -
-                
-              </button>
-              <text id="{{item.name}}item">0</text>
-              <button
-                class="orderButton"
-                style="float: right"
-                onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
-              >+
-                
-              </button>
-            </div>
-          </div>
-          {%endif%}{%endfor%}
-        </div>
-
-          
-      <div class = "course" id = "sides">
-
-  
-
-        <div class="titles"><div class="name">Sides</div></div>
-        {% for item in MenuItems %} {% if item.course == "Side" %}
-        <div class="container">
+          <div class="container" data-imgurl="{{item.imgurl}}">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
           <div class="descriptionBox">{{item.description}}</div>
+        
           <br />
           <div class="nutritionBox" >Calories : {{item.calories}}
             {% if item.dietRequirements != 'N'%}
@@ -221,15 +202,22 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             >+
               
             </button>
@@ -237,19 +225,18 @@
         </div>
         {%endif%}{%endfor%}
       </div>
-      <div class = "course" id = "desserts">
-        
-  
-
-        <div class="titles"><div class="name">Desserts</div></div>
-        {% for item in MenuItems %} {% if item.course == "Dessert" %}
-        <div class="container">
+     
+      <div class = "course" id = "sides">
+        <div class="titles"><div class="name">Sides</div></div>
+        {% for item in MenuItems %} {% if item.course == "Side" %}
+        <div class="container" data-imgurl="{{item.imgurl}}">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
           <div class="descriptionBox">{{item.description}}</div>
+        
           <br />
           <div class="nutritionBox" >Calories : {{item.calories}}
             {% if item.dietRequirements != 'N'%}
@@ -259,15 +246,66 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
+            >+
+              
+            </button>
+          </div>
+        </div>
+        {%endif%}{%endfor%}
+      </div>
+ 
+      <div class = "course" id = "desserts">
+        <div class="titles"><div class="name">Desserts</div></div>
+        {% for item in MenuItems %} {% if item.course == "Dessert" %}
+        <div class="container" data-imgurl="{{item.imgurl}}">
+          <div class="header">
+            <div class="name">{{item.name}}</div>
+            <div class="price">£{{item.price}}</div>
+          </div>
+          <br />
+          <div class="descriptionBox">{{item.description}}</div>
+        
+          <br />
+          <div class="nutritionBox" >Calories : {{item.calories}}
+            {% if item.dietRequirements != 'N'%}
+              <text style="float: right">{{item.dietRequirements}}</text>
+            {% endif %}
+          </div>
+          <div class="orderingBar">
+            <button
+              class="orderButton"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
+            > -
+              
+            </button>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
+            <button
+              class="orderButton"
+              style="float: right"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             >+
               
             </button>
@@ -283,13 +321,14 @@
         <div class="titles"><div class="name">Drink</div></div>
   
         {% for item in MenuItems %} {% if item.course == "Drink" %}
-        <div class="container">
+        <div class="container" data-imgurl="{{item.imgurl}}">
           <div class="header">
             <div class="name">{{item.name}}</div>
             <div class="price">£{{item.price}}</div>
           </div>
           <br />
           <div class="descriptionBox">{{item.description}}</div>
+        
           <br />
           <div class="nutritionBox" >Calories : {{item.calories}}
             {% if item.dietRequirements != 'N'%}
@@ -299,15 +338,22 @@
           <div class="orderingBar">
             <button
               class="orderButton"
-              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',-1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             > -
               
             </button>
-            <text id="{{item.name}}item">0</text>
+            <text id="{{item.name}}item">
+              {% if item.name in itemDict %}
+                {% for key, value in itemDict.items %}
+                  {% if item.name == key %} {{value}}
+                  {% endif %}
+                {% endfor %}
+              {% else %} 0 {% endif %}
+            </text>
             <button
               class="orderButton"
               style="float: right"
-              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}',{{item.ID}})"
+              onclick="addItem('{{item.name}}item',1,'{{item.price}}','{{item.name}}','{{item.ID}}'); event.stopPropagation();"
             >+
               
             </button>
@@ -317,6 +363,13 @@
       </div>
       
 
+      <div class="form-popup" id="myHelpForm">
+        <form class="form-container" method="get" action="{% url 'requestHelp' %}">
+          {{ helpForm.message }}
+          <br><input type="submit" class = "btn" value="Submit">
+          <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
+        </form>
+      </div>
     </div>
     {% for i in statuses %}
     <script>
