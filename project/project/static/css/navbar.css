@@ -25,6 +25,7 @@
 .nav-left {
   margin-top: 1%;
   margin-right: auto;
+  font-family: Verdana,sans-serif;
 }
 
 .text:hover navButton {
@@ -35,6 +36,7 @@
   background-color: transparent;
   color: white;
   font-size: 20px;
+  font-family: Verdana,sans-serif;
   border-color: rgba(225, 225, 225, 0);
   border-style: solid;
   border-width: 4px;
@@ -47,6 +49,10 @@
 
 .dropDownBtn:hover, .nav-option:hover {
   border-color: white;
+}
+
+.nav-option a {
+  font-family: Verdana,sans-serif;
 }
 
 .myDropDown {
