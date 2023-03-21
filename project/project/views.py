@@ -71,6 +71,7 @@ def getPriceOfBasket(request):
     basketPriceStr = "{:.2f}".format(basketPrice)
     return basketPriceStr,itemDict
 
+@login_required
 def ltohSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('price')
@@ -118,7 +119,7 @@ def orderComplete(request):
     Statuses =  notificationOrders(request)
     return render(request,'orderComplete.html',context={'statuses':Statuses})
 
-
+@login_required
 def htolSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('-price')

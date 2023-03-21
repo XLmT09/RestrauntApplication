@@ -10,8 +10,6 @@
   <link rel = "stylesheet" href = "{% static 'css/search.css' %}" />
   <link rel = "stylesheet" href = "{% static 'css/result.css' %}" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="{% static 'javascript/menu.js' %}" defer></script>
   <script src = "{% static 'javascript/menu-filtering.js' %}"></script>
   <script src = "{% static 'javascript/menu-sorting.js' %}"></script>
@@ -25,46 +23,69 @@
   <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
   <title>Menu Oaxaca</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
-  <body onload="initialiseLists(); setDropDown('{{sortValue}}');">
+  <body onload="initialiseLists();">
     <div class="navbar">
-      <a href="{% url 'home' %}" class="nav-options navButton text"> Home </a><br><br>
-
-      <div class="myDropDown">
-        <button class="dropDownBtn"> Account </button>
-        <div class="dropDownContent"><br>
-          <a href="{% url 'account-profile' %}"> View Profile </a><br><br>
-          <a href="{% url 'account-logout' %}" onclick="showLogoutAlert();"> Logout </a><br><br>
+      <div id="left">
+        <div class="text">
+          <a class="nav-options" href="/">Oaxaca</a>
         </div>
       </div>
 
-      <a class="nav-options nav-btn">
-        <button class="navButton" onclick="openHelpForm();">
-          <div class="text">Request Help</div>
-        </button>
-      </a>
-      <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
-        <button class="navButton" onclick="checkout()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24"
-            width="24"
-            class="basket"
-          >
-            <path
-              d="M7 22q-.825 0-1.412-.587Q5 20.825 5 20q0-.825.588-1.413Q6.175 18 7 18t1.412.587Q9 19.175 9 20q0 .825-.588 1.413Q7.825 22 7 22Zm10 0q-.825 0-1.412-.587Q15 20.825 15 20q0-.825.588-1.413Q16.175 18 17 18t1.413.587Q19 19.175 19 20q0 .825-.587 1.413Q17.825 22 17 22ZM6.15 6l2.4 5h7l2.75-5ZM7 17q-1.125 0-1.7-.988-.575-.987-.05-1.962L6.6 11.6 3 4H1.975q-.425 0-.7-.288Q1 3.425 1 3t.288-.713Q1.575 2 2 2h1.625q.275 0 .525.15t.375.425L5.2 4h14.75q.675 0 .925.5t-.025 1.05l-3.55 6.4q-.275.5-.725.775-.45.275-1.025.275H8.1L7 15h11.025q.425 0 .7.287.275.288.275.713t-.288.712Q18.425 17 18 17Zm1.55-6h7Z"
-            />
-          </svg>
-          <div class="text" style="float: right">
-            £<text id="basket">{{basketTotal}}</text>
-          </div>
-        </button>
-      </a>
+      <div id="right">
+
+        <a class="nav-options nav-btn">
+          <button class="navButton" onclick="openHelpForm();">
+            <div class="text">Request Help</div>
+          </button>
+        </a>
+
+        <a class="nav-options nav-btn"  href="{% url 'checkout' %}">
+          <button class="navButton" onclick="checkout()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              width="24"
+              class="basket"
+            >
+              <path
+                d="M7 22q-.825 0-1.412-.587Q5 20.825 5 20q0-.825.588-1.413Q6.175 18 7 18t1.412.587Q9 19.175 9 20q0 .825-.588 1.413Q7.825 22 7 22Zm10 0q-.825 0-1.412-.587Q15 20.825 15 20q0-.825.588-1.413Q16.175 18 17 18t1.413.587Q19 19.175 19 20q0 .825-.587 1.413Q17.825 22 17 22ZM6.15 6l2.4 5h7l2.75-5ZM7 17q-1.125 0-1.7-.988-.575-.987-.05-1.962L6.6 11.6 3 4H1.975q-.425 0-.7-.288Q1 3.425 1 3t.288-.713Q1.575 2 2 2h1.625q.275 0 .525.15t.375.425L5.2 4h14.75q.675 0 .925.5t-.025 1.05l-3.55 6.4q-.275.5-.725.775-.45.275-1.025.275H8.1L7 15h11.025q.425 0 .7.287.275.288.275.713t-.288.712Q18.425 17 18 17Zm1.55-6h7Z"
+              />
+            </svg>
+            <div class="text" style="float: right">
+              £<text id="basket">{{basketTotal}}</text>
+            </div>
+          </button></a>
+
+        {% if user.is_authenticated %}
+        <a class="nav-options nav-btn" href="{% url 'account-logout' %}">
+          <button class="navButton">
+            <div class="text">Logout</div>
+          </button></a
+        >
+        <a class="nav-options nav-btn" href="{% url 'account-profile' %}">
+          <button class="navButton">
+            <div class="text">Profile</div>
+          </button>
+        </a>
+
+        {% else %}
+        <a href="/account/login/">
+          <button class="navButton">
+            <div class="text">Login</div>
+          </button>
+        </a>
+        <a href="/account/signup/">
+          <button class="navButton">
+            <div class="text">Register</div>
+          </button>
+        </a>
+        {% endif %}
+      </div>
     </div>
     
     <div class="background">
 
     <div class="menuBox" id="menuBox">
-      <br><br><br><br>
         <div class = "filter">
           <label for = "filter">Filter by : </label>
           <select name = "filter" id = "filter" onchange = "filter(this)">
@@ -80,11 +101,11 @@
         </div>
         <div class = "sort">
           <label for = "sort">Sort by : </label>
-          <select name = "sort" id = "sort" onchange = "sort(this)" onclick="saveBasket();">
+          <select name = "sort" id = "sort" onchange = "sort(this)">
             <option value = "dlt">Default</option>
             <optgroup label = "Price">
               <option value = "ltoh">Low to High</option>
-              <option value = "htol">High to Low</option>
+              <option value = "htol" selected>High to Low</option>
             </optgroup>
           </select>
         </div>
@@ -94,7 +115,7 @@
         <div class="form-popup" id="myHelpForm">
           <form class="form-container" method="get" action="{% url 'requestHelp' %}">
             {{ helpForm.message }}
-            <br><input type="submit" class = "btn" value="Submit" onclick="saveBasket();"onclick="saveBasket();">
+            <br><input type="submit" class = "btn" value="Submit">
             <button type="button" class="btn" onclick="closeHelpForm();">Close</button>
           </form>
         </div>
