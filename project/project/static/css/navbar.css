@@ -90,3 +90,7 @@
 .drop-down-option:hover {
   border-color: white;
 }
+
+.down-sym {
+  font-size: 15px;
+}

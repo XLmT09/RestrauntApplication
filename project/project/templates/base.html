@@ -39,7 +39,7 @@
             </div>
 
             <div class="myDropDown">
-              <button class="dropDownBtn"> Account </button>
+              <button class="dropDownBtn"> Account <span class="down-sym">&#9660;</span></button>
               <div class="dropDownContent"><br>
                 {% if user.is_authenticated %}
                 <a class="drop-down-option" href="{% url 'account-profile' %}"> View Profile </a><br><br>
@@ -54,7 +54,7 @@
             {% if user.is_authenticated %}
               {% if "Waiters" in user_groups or "KitchenStaff" in user_groups %}
                 <div class="myDropDown">
-                  <button class="dropDownBtn"> Staff </button>
+                  <button class="dropDownBtn"> Staff <span class="down-sym">&#9660;</span></button>
                   <div class="dropDownContent"><br>
                     {% if "Waiters" in user_groups %}
                       <a class="drop-down-option" class="hello" href="{% url 'viewOrders' %}"> Waiter Orders </a><br><br>
