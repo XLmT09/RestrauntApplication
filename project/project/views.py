@@ -205,3 +205,12 @@ def cleanupDatabase():
             # Delete the order from the database
             order.delete()
     
+def deleteExcessDeliveries():
+    # deletes the earliest delivered orders so that only (at most) 20 orders exist on the system
+    # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
+    delivered_orders = Order.objects.all().filter(status = "Delivered")
+    excess_orders_num = delivered_orders.count() - 20
+        
+    if (excess_orders_num > 0):
+        excess_orders = delivered_orders[:excess_orders_num]
+        excess_orders.delete()
