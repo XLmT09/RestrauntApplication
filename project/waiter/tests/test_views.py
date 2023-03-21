@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core import mail
+from project.project.models import Order
 from waiter.models import HelpRequest
 
 
@@ -31,10 +32,23 @@ class addItemTest(TestCase):
         # Check if the order status is 'Placed'
         self.assertContains(response, "Placed")
 
-class removeItemTest(){
+class removeItemTest(TestCase):
+    
+    def test_remove_item(self):
+        # Create a user
+        user = User.objects.create_user('testuser', 'testuser@example.com', 'testpass')
+        # Login as the user
+        self.client.login(username='testuser', password='testpass')
+        # Create an order
+        order = Order.objects.create(customerID=user, orderedItems={'item1': 1})
+        # Delete the order
+        order.delete()
+        response = self.client.get(reverse('viewOrders', kwargs={'orderStatus': 'Placed'}))
+        # Check if page is accessible
+        self.assertEqual(response.status_code, 200)
+        # Check if there are no orders displayed
+        self.assertContains(response, "No orders available")
         
-}
-
 class alterItemTest(){
         
 }
