@@ -15,7 +15,7 @@
   margin: 2%;
   float: left;
   width: 350px;
-  height: 250px;
+  height: 260px;
   font-size: 1em;
   perspective: 1000px;
 }
@@ -97,14 +97,12 @@
 }
 
 .view-item-btn {
-  border: 1px solid grey;
   cursor: pointer;
   padding: 1%;
   color: white;
   background:#51308a;
-  background-size: 100% 200%;
-  background-position: top;
-  transition: border-color 1s ease;
+  border: 1px solid grey;
+  transition: background-color 0.5s ease;
 }
 
 .view-item-btn:hover{
@@ -116,24 +114,30 @@
 }
 
 .collapsible {
-  background-color: #eee;
-  color: #444;
+  background-color: black;
+  color: white;
   cursor: pointer;
   padding: 18px;
   width: 100%;
-  border: none;
   text-align: left;
-  outline: none;
   font-size: 15px;
+  border: none;
+  border-bottom: 2px solid grey;
+  transition: background-color 2s ease;
+}
+
+.collapsible:first-child {
+  margin-top: 2%;
+  border-top: 1px solid grey;
 }
 
 .active, .collapsible:hover {
-  background-color: #ccc;
+  background-color: lightslategray;
 }
 
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: #1c3043;
+  background-color: #0f3a63;
 }
