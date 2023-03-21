@@ -31,22 +31,22 @@
           </div>
 
             <div class="myDropDown">
-              <button class="dropDownBtn"> Options </button>
-              <div class="dropDownContent"><br>
-                  <a href="{% url 'menu' %}"> View Menu </a><br><br>
-                  <a href="{% url 'home' %}" onclick="scrollToAboutUs();"> About Us </a><br><br>
-              </div>
+              <button class="nav-option"><a href="{% url 'menu' %}"> View Menu </a></button>
+            </div>
+
+            <div class="myDropDown">
+              <button class="nav-option" onclick="scrollToAboutUs();"><a> About Us </a></button>
             </div>
 
             <div class="myDropDown">
               <button class="dropDownBtn"> Account </button>
               <div class="dropDownContent"><br>
                 {% if user.is_authenticated %}
-                <a href="{% url 'account-profile' %}"> View Profile </a><br><br>
-                <a href="{% url 'account-logout' %}" onclick="showLogoutAlert();"> Logout </a><br><br>
+                <a class="drop-down-option" href="{% url 'account-profile' %}"> View Profile </a><br><br>
+                <a class="drop-down-option" href="{% url 'account-logout' %}" onclick="showLogoutAlert();"> Logout </a><br><br>
                 {% else %}
-                <a href="/account/login/"> Login </a><br><br>
-                <a href="/account/signup/"> Register </a><br><br>
+                <a class="drop-down-option" href="/account/login/"> Login </a><br><br>
+                <a class="drop-down-option" href="/account/signup/"> Register </a><br><br>
                 {% endif %}
               </div>
             </div>
@@ -57,13 +57,13 @@
                   <button class="dropDownBtn"> Staff </button>
                   <div class="dropDownContent"><br>
                     {% if "Waiters" in user_groups %}
-                      <a class="hello" href="{% url 'viewOrders' %}"> View Waiter Orders </a><br><br>
-                      <a href="{% url 'changeMenu' %}"> Update Menu </a><br><br>
-                      <a href="{% url 'clientHelpRequests' %}"> View Help Requests </a><br><br>
-                      <a href="{% url 'showPayments' %}"> View Payments </a><br><br>
+                      <a class="drop-down-option" class="hello" href="{% url 'viewOrders' %}"> Waiter Orders </a><br><br>
+                      <a class="drop-down-option" href="{% url 'changeMenu' %}"> Update Menu </a><br><br>
+                      <a class="drop-down-option" href="{% url 'clientHelpRequests' %}"> Help Requests </a><br><br>
+                      <a class="drop-down-option" href="{% url 'showPayments' %}"> Payments </a><br><br>
                     {% endif %}
                     {% if "KitchenStaff" in user_groups %}
-                      <a href="{% url 'kitchen-order' %}">View Kitchen Orders</a><br><br>
+                      <a class="drop-down-option" href="{% url 'kitchen-order' %}"> Kitchen Orders </a><br><br>
                     {% endif %}
                   </div>
                 </div>
