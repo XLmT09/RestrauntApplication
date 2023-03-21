@@ -33,15 +33,6 @@
   transform: rotateX(180deg);
 }
 
-.order-box-front, .order-box-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-bottom: 2px solid white;
-}
-
 .order-box-front {
   background-color: #15202B;
   color: white;
@@ -58,6 +49,15 @@
 /** Hide the scroll bar **/
 .order-box-back::-webkit-scrollbar {
   display: none;
+}
+
+.order-box-front, .order-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-bottom: 2px solid white;
 }
 
 .orderdetails {
