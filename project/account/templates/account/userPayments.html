@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'profile.css' %}" />
+<link rel="stylesheet" href="{% static 'css/customerOrder.css' %}" />
+<link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+
+<div class="profile" style="text-color: alice-blue;">
+    {% if Payments %}
+    <br/>
+    <h2>Your Payments</h2>
+    {% if paymentNum == 1 %}
+    <p>You've spent £{{paymentTotal}} with us today on a single order!</p>
+    {% else %}
+    <p>You've spent £{{paymentTotal}} with us today on {{paymentNum}} orders - averaging at £{{paymentAverage}} per order!</p>
+    {% endif %}
+    <br/>
+    <div class="itemRow" style="margin-bottom: 10px">
+        <div id="right">
+            <p class="itemText">Order ID for Payment</p>
+            <p class="itemText">Time of Payment</p>
+            <p class="itemText">Order Status</p>
+        </div>
+    </div>
+    <div class = "underlining" style = "width: 595px;"></div>
+    {% for payment in Payments %}
+    <div class="itemRow">
+        <div id="right">
+            <p class="itemText">{{payment.orderID.ID}}</p>
+            <p class="itemText">{{payment.timeOfPayment}}</p>
+            <p class="itemText">£{{payment.paymentAmount}}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <br/><br/>
+    <h2>You currently have no payments!</h2>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -17,14 +17,6 @@ def staff(request):
 # Make http requests on page that gives list of customer orders
 @group_required("Waiters")
 def viewOrders(request):
-    # deletes the earliest delivered orders so that only (at most) 20 orders exist on the system
-    # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
-    excess_orders_num = Order.objects.all().filter(status = "Delivered").count() - 20
-        
-    if (excess_orders_num > 0):
-        excess_orders = Order.objects.all().filter(status = "Delivered")[:excess_orders_num]
-        excess_orders.delete()
-    
     currentDate = localdate()
     # If waiter wants to see NON PLACED orders, then only get orders the waiter is assigned to
     # However if order is placed then, just show all the customer orders

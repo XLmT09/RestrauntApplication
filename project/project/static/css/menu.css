@@ -15,10 +15,36 @@
   margin-top: 2%;
   margin-bottom: 2%;
   filter: brightness(90%);
+  cursor: pointer;
 }
 
 .container:hover {
   filter: brightness(110%);
+}
+
+.container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.container.show-image img {
+  opacity: 1;
+}
+
+.container .text {
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.container.hide-text .text {
+  opacity: 0;
 }
 
 .titles {

@@ -27,14 +27,6 @@ def notificationOrders(request):
         Orders = ''
         return Orders
     
-
-        
-
-
-
-
-
-
 # The default home page for the website
 def homePage(request):
     Statuses =  notificationOrders(request)
@@ -45,17 +37,8 @@ def homePage(request):
     user_groups = request.user.groups.values_list('name', flat=True)
     return render(request, 'homePage.html', {'title': 'Home', 'user_groups' : user_groups,'statuses':Statuses})
 
-def home(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'home.html')
-
-def results(request):
-    # this selects the name of the web page and sends the user to that page
-    return render(request, 'results.html')
-
 @login_required
 def menu(request):
-    print("HELLO")
     Statuses =  notificationOrders(request)
     # Retrieve all MenuItems from the database
     items = MenuItem.objects.all()
@@ -88,6 +71,7 @@ def getPriceOfBasket(request):
     basketPriceStr = "{:.2f}".format(basketPrice)
     return basketPriceStr,itemDict
 
+@login_required
 def ltohSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('price')
@@ -135,7 +119,7 @@ def orderComplete(request):
     Statuses =  notificationOrders(request)
     return render(request,'orderComplete.html',context={'statuses':Statuses})
 
-
+@login_required
 def htolSort(request):
     Statuses =  notificationOrders(request)
     items = MenuItem.objects.all().order_by('-price')
@@ -167,7 +151,8 @@ def sendHelpRequest(request):
     # Display a message stating that the help request was successfully sent
     messages.success(request, f'Your request has been sent successfully')
     # Render the menu web page and close the popup containing the help request form
-    return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+    #return render(request, 'menu.html',{'MenuItems': MenuItem.objects.all(), 'helpForm': helpRequestForm()})
+    return redirect(menu)
 
 def clientHelpRequests(request):
     # Render the webpage for displaying all customer help requests to the waiter
@@ -220,3 +205,12 @@ def cleanupDatabase():
             # Delete the order from the database
             order.delete()
     
+def deleteExcessDeliveries():
+    # deletes the earliest delivered orders so that only (at most) 20 orders exist on the system
+    # fetches how many "excess" delivered orders there are - "excess" means if there is a delivered order count above 20
+    delivered_orders = Order.objects.all().filter(status = "Delivered")
+    excess_orders_num = delivered_orders.count() - 20
+        
+    if (excess_orders_num > 0):
+        excess_orders = delivered_orders[:excess_orders_num]
+        excess_orders.delete()

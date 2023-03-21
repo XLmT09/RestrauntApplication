@@ -24,7 +24,7 @@ class Command(BaseCommand):
         MenuItem.objects.filter(name = 'Salsa').update(imgurl = 'https://i.postimg.cc/Bbw71SL8/Salsa.jpg')
         MenuItem.objects.filter(name = 'Guacamole').update(imgurl = 'https://i.postimg.cc/133ZLXPF/Guacamole.jpg')
         MenuItem.objects.filter(name = 'Pozole').update(imgurl = 'https://i.postimg.cc/tTW0hVdK/Pozole.jpg')
-        MenuItem.objects.filter(name = 'Tomato Avocado Salad').update(imgurl = 'https://i.postimg.cc/9QT4SLBK/Tomato-Avocado-Salad.jpg')
+        MenuItem.objects.filter(name = 'Tomato Avacado Salad').update(imgurl = 'https://i.postimg.cc/9QT4SLBK/Tomato-Avocado-Salad.jpg')
 
         #URL's for menu desserts
         MenuItem.objects.filter(name = 'Churros').update(imgurl = 'https://i.postimg.cc/t4vHybCM/Churros.jpg')

@@ -11,5 +11,8 @@ urlpatterns = [
     # we use a template for logout to because by default it will redirect to the admin page
     path('logout/', auth_views.LogoutView.as_view(), {'next-page':settings.LOGOUT_REDIRECT_URL}, name = 'account-logout'),
     path('profile/', views.profile, name='account-profile'),
+    path('profile/information/', views.userInformation, name='userInformation'),
+    path('profile/user_orders/', views.userOrders, name='userOrders'),
+    path('profile/user_payments/', views.userPayments, name='userPayments'),
     path('signup/', views.signup, name = 'account-signup'),
 ]

@@ -1,7 +1,11 @@
+from django.db.models import Sum
 from django.shortcuts import render
 from .forms import UserRegisterForm
 from django.contrib import messages
 from decerators import login_required
+from project.models import Order
+from project.views import checkout
+from waiter.models import Payment
 
 # This view handles all HTTP requests and responses for the sign up page
 def signup(request):
@@ -23,8 +27,33 @@ def signup(request):
         form = UserRegisterForm()
     return render(request, 'account/signup.html', {'form': form, 'title':'Sign Up'})
 
-#user must be logged in to use this page
+#user must be logged in to use the below pages
 @login_required
 def profile(request):
     # Render the webpage for displaying profile information
     return render(request, 'account/profile.html', {'title': 'Profile'})
+
+@login_required
+def userInformation(request):
+    user_groups = request.user.groups.values_list('name', flat=True)
+    return render(request, 'account/information.html', {'title':'Information', 'user_groups' : user_groups})
+
+@login_required
+def userOrders(request):
+    Orders = Order.objects.filter(customerID_id=request.user)
+
+    return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders})
+
+@login_required
+def userPayments(request):
+    Payments = Payment.objects.filter(customerID_id=request.user)
+    paymentTotal = Payments.aggregate(Sum('paymentAmount'))['paymentAmount__sum']
+    print(paymentTotal)
+    paymentNum = Payments.count()
+    if (paymentNum > 1):
+        paymentAverage = paymentTotal / paymentNum
+        return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
+                                                           'paymentNum':paymentNum, 'paymentAverage':paymentAverage})
+
+    return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
+                                                       'paymentNum':paymentNum})
