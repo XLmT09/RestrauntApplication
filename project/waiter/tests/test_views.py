@@ -48,10 +48,26 @@ class removeItemTest(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check if there are no orders displayed
         self.assertContains(response, "No orders available")
-        
-class alterItemTest(){
-        
-}
+
+class alterItemTest(TestCase):
+    
+    def test_alter_item(self):
+        # Create a user
+        user = User.objects.create_user('testuser', 'testuser@example.com', 'testpass')
+        # Login as the user
+        self.client.login(username='testuser', password='testpass')
+        # Create an order
+        order = Order.objects.create(customerID=user, orderedItems={'item1': 1})
+        # Change the order status to 'Confirmed'
+        order.status = 'Confirmed'
+        order.save()
+        response = self.client.get(reverse('viewOrders', kwargs={'orderStatus': 'Confirmed'}))
+        # Check if page is accessible
+        self.assertEqual(response.status_code, 200)
+        # Check if the order is displayed
+        self.assertContains(response, "Order #1")
+        # Check if the order status is 'Confirmed'
+        self.assertContains(response, "Confirmed")
 
 class HelpRequestTests(TestCase):
     def setUp(self):
