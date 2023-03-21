@@ -33,10 +33,12 @@
             <div class="myDropDown">
               <button class="nav-option"><a href="{% url 'menu' %}"> View Menu </a></button>
             </div>
-
-            <div class="myDropDown">
-              <button class="nav-option" onclick="scrollToAboutUs();">About Us</button>
-            </div>
+            
+            {% if request.path == '/' %}
+              <div class="myDropDown">
+                <button class="nav-option" onclick="scrollToAboutUs();">About Us</button>
+              </div>
+            {% endif %}
 
             <div class="myDropDown">
               <button class="dropDownBtn"> Account <span class="down-sym">&#9660;</span></button>
