@@ -12,4 +12,11 @@ function filter(selectedOption) {
             }
         }
     }
+
+    if (optionValue == "none") {
+        document.getElementById("sort").disabled = false;
+    }
+    else {
+        document.getElementById("sort").disabled = true;
+    }
 }
