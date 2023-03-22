@@ -24,12 +24,14 @@ select {
   color: white;
   padding: 2%;
   background-color: rgba(17, 23, 23, 1);
+  border-bottom: 2px solid grey;
 }
 
 .menuDropDown {
   padding: 2%;
   width: 75%;
   margin-bottom: 2%;
+  border-bottom: 2px solid grey;
 }
 
 .input-container {
@@ -46,6 +48,12 @@ select {
 .inputBox {
   margin-top: 2%;
   margin-bottom: 2%;
+}
+
+.input-label {
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding-bottom: 3px;
 }
 
 
@@ -74,6 +82,7 @@ input[type="text"] {
   border: solid;
   border-color: rgb(17 17 17);
   width: 75%;
+  border-bottom: 2px solid grey;
 }
 
 input[type="number"] {
@@ -83,6 +92,7 @@ input[type="number"] {
   border: solid;
   border-color: rgb(17 17 17);
   width: 75%;
+  border-bottom: 2px solid grey;
 }
 
 textarea {
@@ -91,6 +101,7 @@ textarea {
   border: solid;
   border-color: rgb(17 17 17);
   font-family: Montserrat;
+  border-bottom: 2px solid grey;
 }
 
 .itemText {
@@ -120,8 +131,8 @@ textarea {
 }
 
 .submitButton:disabled {
-  background-color: grey;
   cursor: default;
+  display: 0.5;
 }
 
 #menuForm {

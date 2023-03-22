@@ -6,6 +6,7 @@ body{
     overflow: hidden;
     font-family: Montserrat;
 }
+
 .center{
     position: absolute;
     align-items: center;
@@ -14,15 +15,19 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    background-color: #15202B;    
-    border: #beddf1 1px solid;
+    background-color: #172c40;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   
 }
+
 .login {
+    font-family: Verdana,sans-serif;
+    margin-top: 0;
     color: white;
+    background-color: #15202B;
     text-align: center;
-    padding: 0px 0px 4px 0px;
-    
+    padding: 2%;
 }
+
 .center form{
     padding: 0 40px;
     box-sizing: border-box;
@@ -31,6 +36,14 @@ body{
 .center form div{
     position: relative;
     margin: 20px 0;
+}
+
+input { 
+    color: white;
+    background-color: rgba(17, 23, 23, 1);
+    border: 1px solid white;
+    width: 75%;
+    padding: 5%;
 }
 
 .requiredField{
@@ -46,9 +59,8 @@ body{
 
 .form-control{
     width: 100%;
-    padding: 0 5px;
-    height: 30px;
-    font-size: 16px ;
+    font-size: 16px;
+    padding: 3%;
     border: none;
     border-bottom: 2px solid #adadad;
     outline: none;
@@ -75,6 +87,7 @@ form button:hover{
 span{
     display: none;
 }
+
 .alert{
     color: white;
     display: flex;
