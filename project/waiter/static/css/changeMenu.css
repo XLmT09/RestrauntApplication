@@ -132,7 +132,7 @@ textarea {
 
 .submitButton:disabled {
   cursor: default;
-  display: 0.5;
+  background-color: gray;
 }
 
 #menuForm {
