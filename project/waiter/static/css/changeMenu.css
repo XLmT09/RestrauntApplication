@@ -119,6 +119,10 @@ textarea {
   background-color: #41039f;
 }
 
+.submitButton:disabled {
+  background-color: grey;
+  cursor: default;
+}
 
 #menuForm {
   position: relative;
