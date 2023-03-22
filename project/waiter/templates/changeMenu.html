@@ -7,14 +7,17 @@
     {% csrf_token %}
 
     <div class="input-container">
-      <select class="menuDropDown" id="menuDropDown" onchange="location = this.value">
-        <option disabled selected hidden>Select Menu Item</option>
+      <div class="input-field">
+      <label class="input-label" for="menu">Choose item to edit or leave as "Select" to make a new item:</label>
+      <select class="menuDropDown" name="menu" id="menuDropDown" onchange="location = this.value">
+        <option disabled selected hidden>Select</option>
         {% for item in menuData %}
         <option value="{% url 'refreshMenu' item.name %}">
           {{ item.name }}
         </option>
         {% endfor %}
       </select>
+      </div>
 
       <div class="input-field">
         <label class="input-label" for="name">Name:</label>
