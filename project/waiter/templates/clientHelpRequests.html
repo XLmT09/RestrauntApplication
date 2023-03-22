@@ -1,7 +1,50 @@
 {% extends 'waiterBase.html' %}
+
 {% block content %}
+{% load static %}
+<style>
+  h1 {
+    font-size: 36px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  td form {
+    display: flex;
+    justify-content: center;
+  }
+
+  td button[type="submit"] {
+    background-color: #b52323;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+  }
+
+  td button[type="submit"]:hover {
+    background-color: #b52323;
+  }
+</style>
+
+  </style>
   <h1>Client Help Requests</h1>
-  
   <table>
     <thead>
       <tr>
@@ -29,14 +72,4 @@
       {% endfor %}
     </tbody>
   </table>
-
-  <hr>
-
-  <h2>New Help Request</h2>
-
-  <form method="POST">
-    {% csrf_token %}
-    {{ help_request_form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
 {% endblock %}
