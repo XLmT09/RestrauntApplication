@@ -23,14 +23,11 @@
 }
 
 .container img {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
 }
 
 .container.show-image img {
@@ -154,7 +151,13 @@ body {
   position: static;
   width: 97%;
   height: 15%;
-  border: none;
+  border: solid;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
+  border-color: white;
+  padding-top: 5%;
 }
 
 .cross {
@@ -183,7 +186,8 @@ body {
 
 .descriptionBox {
   width: 100%;
-  height: 10vh;
+  height: 20vh;
+  overflow: hidden;
 }
 
 .nutritionBox {
@@ -215,4 +219,49 @@ body {
 .btn {
   margin-right: 30px;
   margin-left: 30px;
+}
+
+
+.containerClass {
+  position: relative;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.imageClass {
+  display: block;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.overlayClass {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20vh;
+  width: auto;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #1b233a;
+}
+
+.containerClass:hover .overlayClass {
+  opacity: 1;
+}
+
+.overlayText {
+  padding: 10%;
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
