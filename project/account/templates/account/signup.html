@@ -1,7 +1,7 @@
-{% extends "loginbase.html" %} {% block content %} {% load crispy_forms_tags %} 
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %} 
 {% load static %}
 <div class="center">
-  <h1>Sign Up</h1>
+  <h1 class="register">Sign Up</h1>
   <link rel="stylesheet" href="{% static 'register.css' %}" />
   <form method="POST">
     <!-- Use csrf_token to add security to the registration-->

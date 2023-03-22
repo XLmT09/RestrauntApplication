@@ -1,54 +1,84 @@
 body {
-  font-family: Montserrat;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(29, 29, 39);
-  color: white;
+  padding-bottom: 25px;
 }
 
-li {
-  font-size: 120%;
-  width: 100%;
-  content: "> ";
+.menu-container {
+  width: 80%;
+  margin-left: 10%;
+}
+
+form {
+  margin-top: 3%;
+  background-color: #172c40;
+  width: 50%;
+  margin-left: 25%;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+select {
+  width: 90%;
+  border: 1px solid rgb(17 17 17);
   color: white;
-  font-size: 1.5em;
-  text-align: left;
-  margin-bottom: 15px;
-  margin-right: 20px;
+  padding: 2%;
+  background-color: rgba(17, 23, 23, 1);
+  border-bottom: 2px solid grey;
+}
+
+.menuDropDown {
+  padding: 2%;
+  width: 90%;
+  margin-bottom: 2%;
+  border-bottom: 2px solid grey;
+  margin-top: 2%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10%;
+}
+
+.input-container {
+  margin-top: 5px;
 }
 
 .inputBox {
-  float: right;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
-ul {
-  list-style-type: none;
-  margin: none;
+
+.input-label {
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding-bottom: 3px;
 }
 
 button {
   background-color: white;
 }
 
-p {
-  color: white;
-}
-
 input[type="text"] {
-  padding: 5px 5px;
-  box-sizing: border-box;
+  padding: 2%;
   background-color: rgba(17, 23, 23, 1);
   color: white;
   border: solid;
   border-color: rgb(17 17 17);
+  width: 90%;
+  border-bottom: 2px solid grey;
 }
 
 input[type="number"] {
-  padding: 5px 5px;
-  box-sizing: border-box;
+  padding: 2%;
   background-color: rgba(17, 23, 23, 1);
   color: white;
   border: solid;
   border-color: rgb(17 17 17);
+  width: 90%;
+  border-bottom: 2px solid grey;
 }
 
 textarea {
@@ -57,89 +87,39 @@ textarea {
   border: solid;
   border-color: rgb(17 17 17);
   font-family: Montserrat;
-}
-
-select {
-  border: 1px solid rgb(17 17 17);
-
-  color: rgba(225, 225, 225, 0.5);
-  padding: 4px 4px;
-  background-color: rgba(17, 23, 23, 1);
-  border-radius: 5px;
-}
-
-.inputContainer {
-  text-align: center;
-  left: 50%;
-  transform: translate(-50%, 0);
-  position: absolute;
-  top: 20%;
-  width: 75%;
-  font-size: 70%;
-  font-family: Montserrat;
-  color: white;
+  border-bottom: 2px solid grey;
+  width: 90%;
 }
 
 .itemText {
   display: table;
   text-align: left;
-  width: 20%;
   margin-bottom: 2px;
 }
 
-.containerRow {
-  margin-left: 0;
-  margin-right: 50px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: space-between;
-  flex-direction: column;
-}
 
 .buttonRow {
-  width: 100%;
   text-align: center;
-  margin-bottom: 25px;
-}
-
-#right {
-  display: flex;
-  align-items: left;
-}
-#left {
-  display: flex;
-  align-items: left;
-}
-
-#rightList {
-  display: flex;
-  width: 50%;
-  align-items: left;
-}
-#leftList {
-  width: 50%;
-  display: flex;
-  align-items: left;
 }
 
 .submitButton {
-  background-color: transparent;
-  font-family: Montserrat;
+  padding: 1%;
+  text-align: center;
+  font-size: 1em;
   color: white;
-  border-top: none;
-  border-bottom: none;
-  width: 116px;
-  border-width: 4px;
-  margin-left: 15px;
-  margin-right: 15px;
-  border-color: transparent;
-  transition: border-color 0.7s ease-in;
+  cursor: pointer;
+  border: 1px solid grey;
+  background:#51308a;
+  transition: background-color 0.5s ease;
 }
 
 .submitButton:hover {
-  border-color: white;
+  background-color: #41039f;
+}
+
+.submitButton:disabled {
+  cursor: default;
+  background-color: gray;
 }
 
 #menuForm {
