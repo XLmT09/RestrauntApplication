@@ -6,8 +6,8 @@
   <form action="{% url 'changeMenu' %}" method="GET" id="menuForm">
     {% csrf_token %}
 
-    <div class="containerRow">
-      <select id="menuDropDown" onchange="location = this.value">
+    <div class="input-container">
+      <select class="menuDropDown" id="menuDropDown" onchange="location = this.value">
         <option disabled selected hidden>Select Menu Item</option>
         {% for item in menuData %}
         <option value="{% url 'refreshMenu' item.name %}">
@@ -15,59 +15,43 @@
         </option>
         {% endfor %}
       </select>
-    </div>
-    <ul>
-      <div class="containerRow">
-        <div id="leftList">
-          <li>
-            <div class="inputBox">{{ form.name }}</div>
-          </li>
-        </div>
-        <div id="rightList">
-          <li>
-            Price: 
-            <div class="inputBox">{{ form.price }}</div>
-          </li>
-        </div>
+
+      <div class="input-field">
+        <label class="input-label" for="name">Name:</label>
+        <div class="inputBox" name="name">{{ form.name }}</div>
+      </div>
+    
+      <div class="input-field">
+        <label class="input-label" for="price">Price:</label> 
+        <div class="inputBox" name="price">{{ form.price }}</div>
+      </div>
+    
+      <div class="input-field">
+        <label class="input-label" for="calories">Calories:</label> 
+        <div class="inputBox" name="calories">{{ form.calories }}</div>
+      </div>
+    
+      <div class="input-field">
+        <label class="input-label" for="course">Course:</label> 
+        <div class="inputBox" name="course">{{ form.course }}</div>
       </div>
 
-      <div class="containerRow">
-        <div id="leftList">
-          <li>
-            Calories:
-            <div class="inputBox">{{ form.calories }}</div>
-          </li>
-        </div>
-        <div id="rightList">
-          <li>
-            Course:
-            <div class="inputBox">{{ form.course }}</div>
-          </li>
-        </div>
+      <div class="input-field">
+        <label class="input-label" for="diet">Dietary Requirements:</label> 
+        <div class="inputBox" name="diet">{{ form.dietRequirements }}</div>
       </div>
 
-      <div class="containerRow">
-        <div id="leftList">
-          <li>
-            Dietary Requirements:
-            <div class="inputBox">{{ form.dietRequirements }}</div>
-          </li>
-        </div>
-        <div id="rightList">
-          <li>
-            <div class="inputBox">{{ form.alergies }}</div>
-          </li>
-        </div>
+      <div class="input-field">
+        <label class="input-label" for="alergies">Alergies:</label> 
+        <div class="inputBox" name="alergies">{{ form.alergies }}</div>
       </div>
 
-      <br />
-      <li style="text-align: center">
-        Description: <br />
-        <br />
+      <li>
+        <p>Description:</p>
         {{ form.description }}
       </li>
-      <br />
-    </ul>
+
+    </div>
   
     <div class="buttonRow">
       <input type="submit" class="submitButton" value="Save & Submit" />

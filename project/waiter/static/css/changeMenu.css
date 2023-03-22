@@ -12,25 +12,51 @@ form {
   background-color: #1B2631;
   width: 50%;
   margin-left: 25%;
-  padding-top: 5%;
+  padding-top: 2%;
   padding-right: 2%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-li {
-  font-size: 120%;
-  width: 100%;
-  content: "> ";
+select {
+  width: 75%;
+  border: 1px solid rgb(17 17 17);
   color: white;
-  font-size: 1.5em;
+  padding: 2%;
+  background-color: rgba(17, 23, 23, 1);
+}
+
+.menuDropDown {
+  padding: 2%;
+  width: 75%;
+  margin-bottom: 2%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20%;
+}
+
+.input-container {
+  margin-top: 5px;
+}
+
+.inputBox {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+
+li {
+  width: 100%;
+  color: white;
+  font-size: 1em;
   text-align: center;
   margin-bottom: 15px;
   margin-right: 20px;
 }
 
-.inputBox {
-  float: right;
-}
 ul {
   list-style-type: none;
   margin: none;
@@ -40,26 +66,22 @@ button {
   background-color: white;
 }
 
-p {
-  color: white;
-}
-
 input[type="text"] {
-  padding: 5px 5px;
-  box-sizing: border-box;
+  padding: 2%;
   background-color: rgba(17, 23, 23, 1);
   color: white;
   border: solid;
   border-color: rgb(17 17 17);
+  width: 75%;
 }
 
 input[type="number"] {
-  padding: 5px 5px;
-  box-sizing: border-box;
+  padding: 2%;
   background-color: rgba(17, 23, 23, 1);
   color: white;
   border: solid;
   border-color: rgb(17 17 17);
+  width: 75%;
 }
 
 textarea {
@@ -70,68 +92,16 @@ textarea {
   font-family: Montserrat;
 }
 
-select {
-  border: 1px solid rgb(17 17 17);
-
-  color: rgba(225, 225, 225, 0.5);
-  padding: 4px 4px;
-  background-color: rgba(17, 23, 23, 1);
-  border-radius: 5px;
-}
-
-.inputContainer {
-  text-align: center;
-  left: 50%;
-  transform: translate(-50%, 0);
-  position: absolute;
-  top: 20%;
-  width: 75%;
-  font-size: 70%;
-  font-family: Montserrat;
-  color: white;
-}
-
 .itemText {
   display: table;
   text-align: left;
-  width: 20%;
   margin-bottom: 2px;
 }
 
-.containerRow {
-  margin-left: 0;
-  margin-right: 50px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: space-between;
-  flex-direction: column;
-}
 
 .buttonRow {
   text-align: center;
   margin-bottom: 10%;
-}
-
-#right {
-  display: flex;
-  align-items: left;
-}
-#left {
-  display: flex;
-  align-items: left;
-}
-
-#rightList {
-  display: flex;
-  width: 50%;
-  align-items: left;
-}
-#leftList {
-  width: 50%;
-  display: flex;
-  align-items: left;
 }
 
 .submitButton {
