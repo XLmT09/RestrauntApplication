@@ -9,14 +9,33 @@ body{
     font-family: Montserrat;
     color: aliceblue;
 }
+
+input { 
+    color: white;
+    background-color: rgba(17, 23, 23, 1);
+    border-bottom: 1px solid white;
+    padding: 5%;
+}
+
+.register {
+    font-family: Verdana,sans-serif;
+    margin-top: 0;
+    color: white;
+    background-color: #15202B;
+    text-align: center;
+    padding: 2%;
+}
+
 small{
     position: relative;
     display: flex;
 }
+
 #hint_id_username{
     padding: 5px 5px;
     margin-bottom: 7px;
 }
+
 #hint_id_password2{
     padding: 5px 10px;
     margin-bottom: 4px;
@@ -29,20 +48,12 @@ small{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -42%);
-    background: #15202B    ;
-    border: #beddf1 1px solid;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-}
-.center h1{
-    align-items: center;
-    align-content: center;
-    text-align: center;
+    background-color: #172c40;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   
 }
 
 .center button {
-    width: 100%;
+    width: 75%;
     font-size: 16px;
     cursor: pointer;
     outline: none;
@@ -61,38 +72,44 @@ small{
 
 .form-control {
     width: 700px;
+    padding: 3%;
 }
+
 #id_username{
-    width: 100%;
+    width: 75%;
     margin: 10px 10px;
-    padding: 5px 0px;
+    padding: 2%;
 }
+
 #div_id_username label{
     position: relative;
     margin-left: 10px;
 }
+
 #id_email{
-    width: 100%;
+    width: 75%;
     margin: 10px 10px;
-    padding: 5px 0px;
+    padding: 2%;
 }
 #div_id_email label{
     position: relative;
     margin-left: 10px;
 }
+
 #id_password1{
-    width: 100%;
+    width: 75%;
     margin: 10px 10px;
-    padding: 5px 0px;
-}
+    padding: 2%;
+}    
+
 #div_id_password1 label{
     position: relative;
     margin-left: 10px;
 }
 #id_password2{
-    width: 100%;
+    width: 75%;
     margin: 10px 10px;
-    padding: 5px 0px;
+    padding: 2%;
 }
 #div_id_password2 label{
     position: relative;
@@ -105,16 +122,11 @@ small{
 #id_role{
     width: 80%;
 }
-form{
-    width: 450px;
-    padding: 0 20px;
-    margin-right: 20px;
-    box-sizing: border-box;
-}
 
 form div small{
     display: none;
 }
+
 #id_username:valid ~ #hint_id_username,
 #id_username:focus ~ #hint_id_username{
     display: block;
@@ -126,4 +138,16 @@ form div small{
 #id_password2:valid ~ #hint_id_password2,
 #id_password2:focus ~ #hint_id_password2{
     display: block;
+}
+
+
+form{
+    width: 450px;
+    margin-left: 10%;
+}
+
+input {
+    border: none;
+    padding: 3%;
+    border-bottom: 2px solid grey;
 }
