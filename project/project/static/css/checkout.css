@@ -88,6 +88,13 @@ input {
   margin-bottom: 10px;
 }
 
+span {
+  font-size: 1em;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding-bottom: 3px;
+}
+
 input[type="tel"] {
   width: 100%;
 }

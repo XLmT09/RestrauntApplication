@@ -3,16 +3,17 @@
 <script src="{% static 'javascript/payment.js' %}" defer></script>
 
 <div class="paymentBox">
-  Name on card *
+  <span>Name on card *</span>
   </br>
   <text id=nameError style="color:red"></text>
   <input class="nameInput" type="text" placeholder="Name On Card" id="name"></input>
-  Card Number *
+  <span>Card Number *</span>
   </br>
   <text id=numberError style="color:red"></text>
   <input class="cardNumber" type="tel" placeholder="Card Number" id="cardNumber"></input>
   
-  expiartion date * <text style="float: right;">security code *</text>
+  <span>Expiartion Date *</span> 
+  <text style="float: right;"><span>security code *</span></text>
   </br>
   <text id ="inavlidSecurity" style="display:block;width:100%;text-align: right;color:red;"></text>
   <div>
