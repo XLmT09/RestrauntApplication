@@ -44,10 +44,6 @@ tr:hover {
 background-color: #0f3a63;
 }
 
-.left-col {
-width: 30%;
-}
-
 .mid-col {
 width: 60%;
 }
@@ -62,10 +58,12 @@ i.icon {
     font-size: 1.5em;
 }
 
-i.icon:hover {
-    color: rgb(129, 0, 0);
+.trashBtn {
+    background-color: transparent;
+    border: none;
 }
 
-.highlight {
-background-color: yellow;
+i.icon:hover {
+    color: rgb(129, 0, 0);
+    cursor: pointer;
 }

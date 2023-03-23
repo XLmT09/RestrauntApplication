@@ -3,7 +3,6 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
-<script src="{% static 'javascript/waiterRequest.js' %}" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class = "request-container">
@@ -11,19 +10,28 @@
   <table>
     <thead>
       <tr>
-        <th class="left-col">Customer Name</th>
+        <th>Request ID</th>
+        <th>Customer ID</th>
         <th class="mid-col">Message</th>
         <th class="right-col">Action's</th>
       </tr>
     </thead>
     <tbody>
-      {% for request in help_requests %}
-      <tr data-request-id="{{ request.id }}">
-        <td class="left-col">{{ request.customerID }}</td>
-        <td class="mid-col">{{ request.message }}</td>
-        <td class="right-col"><a onclick="highlightRow(this)"><i class="fa fa-trash-o icon"></i></a></td>
-      </tr>
-    {% endfor %}
+      {% for help_request in help_requests %}
+        <tr>
+          <td>{{ help_request.requestID }}</td>
+          <td>{{ help_request.customerID }}</td>
+          <td class="mid-col">{{ help_request.message }}</td>
+          <td class="right-col">
+            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this help request?')">
+              {% csrf_token %}
+              <input type="hidden" name="customerID" value="{{ help_request.customerID.id }}">
+              <input type="hidden" name="requestID" value="{{ help_request.requestID }}">
+              <button type="submit" class="trashBtn"><i class="fa fa-trash-o icon"></i></button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
