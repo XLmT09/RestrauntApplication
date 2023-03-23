@@ -179,8 +179,10 @@ body {
   font-family: Montserrat;
   font-size: 100%;
   color: white;
-  border: none;
+  border: 1px solid grey;
   cursor: pointer;
+  transition: background-color 0.5s ease;
+
 }
 
 .orderButton:hover {
