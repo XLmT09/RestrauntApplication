@@ -5,7 +5,7 @@
 
 <div class="checkout-container">
   <div class="checkOutBox">
-    <h1 class="title">Your Basket</h1>
+    <h1 class="title">Your Basket &#128722;</h1>
 
     <div class="itemRow headRow">
       <text class="itemName">Item</text>
@@ -19,8 +19,8 @@
       <text class="itemPrice" id="{{i.0}} {{i.1}}">£ {{i.1}}</text>
       <div class="quantity-change">
         <button class="arrow" onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', -1))">&#9664;</button>
-        <text class="itemNumber" id="{{i.0}}"> {{i.2}} </text>
-        <buttom class="arrow" onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', 1))">&#9654;</button>
+        <text class="itemNumber" id="{{i.0}}"> {{i.2}}</text>
+        <button class="arrow" onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', 1))">&#9654;</button>
 
         <a href="{% url 'checkout' %}">
           <button type="button" class="deleteItemButton" onclick="deleteItemFromBasket('{{i.0}}');">
@@ -31,7 +31,7 @@
     </div>
     {% endfor %}
 
-    <div class="itemRow">
+    <div class="itemRow itemFinalRow">
       <text class="itemName">Total</text>
       <text class="itemPrice" id="TotalPrice">£ {{total}}</text>
       <text class="itemNumber" id="TotalQuantity">{{items}}</text>

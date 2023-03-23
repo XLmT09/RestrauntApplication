@@ -56,7 +56,6 @@ i.icon:hover {
 
 .headRow {
   background-color: black;
-  font-weight: 500;
 }
 
 .arrow {
@@ -72,22 +71,24 @@ i.icon:hover {
 
 .itemNumber {
   display: inline-block;
-  padding-bottom: 2%;
-  padding-right: 1%;
 }
 
 .itemName {
   text-align: left;
   float: left;
   width: 50%;
-  margin-bottom: 2px;
 }
+
 .itemPrice {
   text-align: right;
   float: right;
   width: 15%;
   height: 100%;
-  margin-bottom: 2px;
+}
+
+.itemFinalRow {
+  background-color: #15202B;
+  font-weight: 900;
 }
 
 .quantity-change {
