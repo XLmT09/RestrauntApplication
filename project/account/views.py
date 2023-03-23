@@ -42,7 +42,19 @@ def userInformation(request):
 def userOrders(request):
     Orders = Order.objects.filter(customerID_id=request.user)
 
-    return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders})
+    all_ordered_items = dict()
+    for order in Orders:
+        for itemName in order.orderedItems:
+            quantity = order.orderedItems[itemName]
+            if itemName in all_ordered_items:
+                all_ordered_items[itemName] += quantity
+            else:
+                all_ordered_items[itemName] = quantity
+
+    max_value = max(all_ordered_items.values())
+    commonItems = [itemName for itemName in all_ordered_items if all_ordered_items[itemName] == max_value]
+
+    return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders, 'numOfOrders':len(Orders), 'commonItems':commonItems})
 
 @login_required
 def userPayments(request):
