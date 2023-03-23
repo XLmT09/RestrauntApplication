@@ -62,6 +62,8 @@ svg {
 }
 
 .paymentBox {
+  background-color: #172c40;;
+  padding: 1%;
   text-align: left;
   left: 50%;
   transform: translate(-50%, 0);
@@ -70,6 +72,7 @@ svg {
   width: 35%;
   font-size: 90%;
   font-family: Montserrat;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: white;
 }
 
@@ -83,6 +86,13 @@ input {
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.payment-label {
+  font-size: 1em;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  padding-bottom: 3px;
 }
 
 input[type="tel"] {
@@ -104,9 +114,36 @@ input::-webkit-inner-spin-button {
 }
 
 .payButton {
+  padding: 2%;
+  text-align: center;
   width: 100%;
-  border-radius: 90px;
-  padding: 5px;
+  font-size: 1.1em;
+  color: white;
+  cursor: pointer;
+  border: 1px solid grey;
+  background:#51308a;
+  transition: background-color 0.5s ease;
+}
+
+input {
+  width: 90%;
+  border: 1px solid rgb(17 17 17);
+  color: white;
+  padding: 2%;
+  background-color: rgba(17, 23, 23, 1);
+  border-bottom: 2px solid grey;
+}
+
+select {
+  border: 1px solid rgb(17 17 17);
+  color: white;
+  padding: 2%;
+  background-color: rgba(17, 23, 23, 1);
+  border-bottom: 2px solid grey;
+}
+
+.payButton:hover {
+  background-color: #41039f;
 }
 
 .homeButton {
@@ -127,3 +164,4 @@ input::-webkit-inner-spin-button {
 .homeButton:hover {
   border-color: white;
 }
+
