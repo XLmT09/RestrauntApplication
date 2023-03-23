@@ -5,18 +5,15 @@
 
 <div class = "profile">
     <div class="description">
-        <h2>Welcome {{ user.username }} to Oaxaca London . . .</h1>
-        <h2 style = "font-size: 20px;">We offer you the best mexican cuisine around - we would love to serve you!</p>
+        <h2>{{ user.username }} Profile Page</h1>
+        <h2 class="description">We offer you the best mexican cuisine around - we would love to serve you!</h2>
     </div>
     
     <br/><br/>
 
     <p>What would you like to see?</p>
-    <div class = "underlining"></div>
-    
-    <br/>
 
-    <div style = "margin-left: 5px;">
+    <div class = "content">
         <div class = "button">
             <a href = "{% url 'userInformation' %}">
                 Profile Information
