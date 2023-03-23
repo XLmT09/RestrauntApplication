@@ -5,14 +5,13 @@
 <div class="checkout-container">
   <div class="checkOutBox">
     <h1 class="title">Your Basket</h1>
-    <div
-      class="itemRow headRow"
-      style="border-bottom: 1px solid white; padding-bottom: 3px"
-    >
+    
+    <div class="itemRow headRow">
       <text class="itemName">Item</text>
       <text class="itemPrice">Price</text>
       <text class="itemNumber">Quantity</text>
     </div>
+
     {% for i in MenuItems %}
     <div class="itemRow">
       <text class="itemName">{{i.0}}</text>
@@ -48,10 +47,7 @@
     </div>
     {% endfor %}
 
-    <div
-      class="itemRow"
-      style="border-top: 1px solid white; padding-top: 3px"
-    >
+    <div class="itemRow">
       <text class="itemName">Total</text>
       <text class="itemPrice" id="TotalPrice">£ {{total}}</text>
       <text class="itemNumber" id="TotalQuantity">{{items}}</text>
