@@ -59,15 +59,23 @@ i.icon:hover {
   font-weight: 500;
 }
 
-.itemNumber {
-  text-align: left;
-  height: 100%;
-  margin-bottom: 2px;
-  top: 0%;
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
+.arrow {
+  background-color: transparent;
+  color: white;
+  border: none;
 }
+
+.arrow:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.itemNumber {
+  display: inline-block;
+  padding-bottom: 2%;
+  padding-right: 1%;
+}
+
 .itemName {
   text-align: left;
   float: left;
@@ -81,20 +89,9 @@ i.icon:hover {
   height: 100%;
   margin-bottom: 2px;
 }
-.deleteItemButton {
-  text-align: right;
-  float: right;
-  margin-bottom: 2px;
-}
 
-.arrows {
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.03);
-}
-
-svg {
-  fill: white;
-  cursor: pointer;
+.quantity-change {
+  padding-left: 5%;
 }
 
 /** completePayment.html **/

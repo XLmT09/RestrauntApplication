@@ -17,30 +17,17 @@
     <div class="itemRow">
       <text class="itemName">{{i.0}}</text>
       <text class="itemPrice" id="{{i.0}} {{i.1}}">£ {{i.1}}</text>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24"
-        viewBox="0 96 960 960"
-        width="24"
-        onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', -1))"
-      >
-        <path d="M560 776 360 576l200-200v400Z" />
-      </svg>
-      <text class="itemNumber" id="{{i.0}}"> {{i.2}} </text>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="24"
-        viewBox="0 96 960 960"
-        width="24"
-        onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', 1))"
-      >
-        <path d="M400 776V376l200 200-200 200Z" />
-      </svg>
-      <a href="{% url 'checkout' %}">
-        <button type="button" class="deleteItemButton" onclick="deleteItemFromBasket('{{i.0}}');">
-          <i class="fa fa-trash-o icon"></i>
-        </button>
-      </a>
+      <div class="quantity-change">
+        <button class="arrow" onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', -1))">&#9664;</button>
+        <text class="itemNumber" id="{{i.0}}"> {{i.2}} </text>
+        <buttom class="arrow" onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', 1))">&#9654;</button>
+
+        <a href="{% url 'checkout' %}">
+          <button type="button" class="deleteItemButton" onclick="deleteItemFromBasket('{{i.0}}');">
+            <i class="fa fa-trash-o icon"></i>
+          </button>
+        </a>
+      </div>
     </div>
     {% endfor %}
 
