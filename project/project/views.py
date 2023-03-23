@@ -78,8 +78,6 @@ def ltohSort(request):
     basketPriceStr,itemDict = getPriceOfBasket(request)
     return render(request, 'menu.html',{'MenuItems': items, 'helpForm': helpRequestForm(),"basketTotal":basketPriceStr, "itemDict": itemDict,'statuses':Statuses,'sortValue':'ltoh'})
 
-
-
 def checkout(request):
     Statuses =  notificationOrders(request)
     test = request.COOKIES.get('items') 
