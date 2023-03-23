@@ -159,7 +159,6 @@ def clientHelpRequests(request):
     return render(request, 'clientHelpRequests.html', {'help_requests': HelpRequest.objects.all()})
 
 def completePayment(request):
-    Statuses =  notificationOrders(request)
     # Retrieve all the ordered items from cookie data
     orderedItems = request.COOKIES.get('items').split(",")
     itemDict = dict()
@@ -187,7 +186,8 @@ def completePayment(request):
     # Save the new payment object to the database
     newPayment.save()
     # Render the webpage stating that the order has successfully been placed
-    return render(request,'completePayment.html',context={'statuses':Statuses})
+    messages.success(request, f"Thank you for your Order, we will notify you as your order is processed")
+    return redirect(homePage)
 
 
 def testNotification(request):
