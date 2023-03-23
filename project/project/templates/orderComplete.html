@@ -3,19 +3,19 @@
 <script src="{% static 'javascript/payment.js' %}" defer></script>
 
 <div class="paymentBox">
-  <span>Name on card *</span>
+  <span class = "payment-label">Name on card *</span>
   </br>
-  <text id=nameError style="color:red"></text>
+  <text class="error-payment" id=nameError style="color:red"></text>
   <input class="nameInput" type="text" placeholder="Name On Card" id="name"></input>
-  <span>Card Number *</span>
+  <span class = "payment-label">Card Number *</span>
   </br>
-  <text id=numberError style="color:red"></text>
+  <text class="error-payment" id=numberError style="color:red"></text>
   <input class="cardNumber" type="tel" placeholder="Card Number" id="cardNumber"></input>
   
-  <span>Expiartion Date *</span> 
-  <text style="float: right;"><span>security code *</span></text>
+  <span class = "payment-label">Expiartion Date *</span> 
+  <text class="error-payment" style="float: right;"><span class = "payment-label">security code *</span></text>
   </br>
-  <text id ="inavlidSecurity" style="display:block;width:100%;text-align: right;color:red;"></text>
+  <text class="error-payment" id ="inavlidSecurity" style="display:block;width:100%;text-align: right;color:red;"></text>
   <div>
     <select >
       <option value="1">1</option>

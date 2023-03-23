@@ -88,7 +88,7 @@ input {
   margin-bottom: 10px;
 }
 
-span {
+.payment-label {
   font-size: 1em;
   text-decoration: none;
   border-bottom: 1px solid white;
@@ -164,3 +164,4 @@ select {
 .homeButton:hover {
   border-color: white;
 }
+
