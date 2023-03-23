@@ -1,27 +1,31 @@
 {% extends 'waiterBase.html' %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/payment.css' %}" />
-<div class="paymentDetails">
+<link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
+<div class="request-container">
+    <h1 class = "title">Today's Payments: £{{income}}</h1>
     <table>
-        <td>Today's payments</td>
-        <tr>
-            <th>ID</th>
-            <th>Amount Paid</th>
-            <th>Paid by</th>
-            <th>Paid at</th>
-        </tr>
-        {% for payment in cust_payments %}
+        <thead>
             <tr>
-                <td>{{payment.paymentID}}</td>
-                <td>{{payment.paymentAmount}}</td>
-                <td>{{payment.customerID}}</td>
-                <td>{{payment.timeOfPayment}}</td>
+                <th>ID</th>
+                <th>Amount Paid</th>
+                <th>Paid by</th>
+                <th>Paid at</th>
             </tr>
-        {% endfor %}
-        <td>Today's income: </td>
-        <td>£{{income}}</td>
+        </thead>
+        <tbody>
+            {% for payment in cust_payments %}
+                <tr>
+                    <td>{{payment.paymentID}}</td>
+                    <td>{{payment.paymentAmount}}</td>
+                    <td>{{payment.customerID}}</td>
+                    <td>{{payment.timeOfPayment}}</td>
+                </tr>
+            {% endfor %}
+            <tr class="totalRow">
+                <td>Today's Income: £{{income}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>
-
 {% endblock %}
