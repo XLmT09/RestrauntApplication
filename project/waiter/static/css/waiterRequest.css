@@ -70,3 +70,7 @@ i.icon:hover {
     color: rgb(129, 0, 0);
     cursor: pointer;
 }
+
+.totalRow {
+    font-weight: 900;
+}

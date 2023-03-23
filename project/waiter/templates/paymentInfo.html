@@ -3,7 +3,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
 <div class="request-container">
-    <h1 class = "title">Today's Payments</h1>
+    <h1 class = "title">Today's Payments: £{{income}}</h1>
     <table>
         <thead>
             <tr>
@@ -22,8 +22,9 @@
                     <td>{{payment.timeOfPayment}}</td>
                 </tr>
             {% endfor %}
-        <td>Today's income: </td>
-        <td>£{{income}}</td>
+            <tr class="totalRow">
+                <td>Today's Income: £{{income}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
