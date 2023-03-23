@@ -29,7 +29,7 @@
   <body onload="initialiseLists(); setDropDown('{{sortValue}}');">
     <div class="navbar">
       <div class = "nav-left">
-        <a href="{% url 'home' %}" class="text navTitle"> Oaxaca </a><br><br>
+        <a href="{% url 'home' %}" class="text navTitle" onclick="return confirm('Are you sure you want to leave? You will lose the contents of your basket');"> Oaxaca </a><br><br>
       </div>
 
       <a class="myDropDown">
