@@ -42,17 +42,20 @@ def userInformation(request):
 def userOrders(request):
     Orders = Order.objects.filter(customerID_id=request.user)
 
-    all_ordered_items = dict()
-    for order in Orders:
-        for itemName in order.orderedItems:
-            quantity = order.orderedItems[itemName]
-            if itemName in all_ordered_items:
-                all_ordered_items[itemName] += quantity
-            else:
-                all_ordered_items[itemName] = quantity
+    if len(Orders) > 0:
+        all_ordered_items = dict()
+        for order in Orders:
+            for itemName in order.orderedItems:
+                quantity = order.orderedItems[itemName]
+                if itemName in all_ordered_items:
+                    all_ordered_items[itemName] += quantity
+                else:
+                    all_ordered_items[itemName] = quantity
 
-    max_value = max(all_ordered_items.values())
-    commonItems = [itemName for itemName in all_ordered_items if all_ordered_items[itemName] == max_value]
+        max_value = max(all_ordered_items.values())
+        commonItems = [itemName for itemName in all_ordered_items if all_ordered_items[itemName] == max_value]
+    else:
+        commonItems = None
 
     return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders, 'numOfOrders':len(Orders), 'commonItems':commonItems})
 
@@ -64,8 +67,7 @@ def userPayments(request):
     if (paymentNum > 1):
         paymentAverage = paymentTotal / paymentNum
         paymentAverage = "{:.2f}".format(paymentAverage)
-        return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
-                                                           'paymentNum':paymentNum, 'paymentAverage':paymentAverage})
-
+    else:
+        paymentAverage = None
     return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
-                                                       'paymentNum':paymentNum})
+                                                       'paymentNum':paymentNum,'paymentAverage':paymentAverage})
