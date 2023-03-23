@@ -23,7 +23,7 @@
           <td>{{ help_request.customerID }}</td>
           <td class="mid-col">{{ help_request.message }}</td>
           <td class="right-col">
-            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this help request?')">
+            <form action="{% url 'deleteHelpRequests' %}" method="POST" onsubmit="return confirm('Are you sure you want to delete this help request?')">
               {% csrf_token %}
               <input type="hidden" name="customerID" value="{{ help_request.customerID.id }}">
               <input type="hidden" name="requestID" value="{{ help_request.requestID }}">
