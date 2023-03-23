@@ -1,40 +1,38 @@
 {% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
 {% load static %}
-
 <link rel="stylesheet" href="{% static 'profile.css' %}" />
-<link rel="stylesheet" href="{% static 'css/customerOrder.css' %}" />
-<link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+<link rel="stylesheet" href="{% static 'css/waiterRequest.css' %}" />
 
-<div class="profile" style="color: alice-blue;">
+<div class = "request-container">
     {% if Payments %}
-    <br/>
-    <h2>Your Payments</h2>
-    {% if paymentNum == 1 %}
-    <p>You've spent £{{paymentTotal}} with us today on a single order!</p>
-    {% else %}
-    <p>You've spent £{{paymentTotal}} with us today on {{paymentNum}} orders - averaging at £{{paymentAverage}} per order!</p>
-    {% endif %}
-    <br/>
-    <div class="itemRow" style="margin-bottom: 10px">
-        <div id="right">
-            <p class="itemText">Order ID for Payment</p>
-            <p class="itemText">Time of Payment</p>
-            <p class="itemText">Amount Paid</p>
-        </div>
-    </div>
-    <div class = "underlining" style = "width: 595px;"></div>
-    {% for payment in Payments %}
-    <div class="itemRow">
-        <div id="right">
-            <p class="itemText">{{payment.orderID.ID}}</p>
-            <p class="itemText">{{payment.timeOfPayment}}</p>
-            <p class="itemText">£{{payment.paymentAmount}}</p>
-        </div>
-    </div>
-    {% endfor %}
-    {% else %}
-    <br/><br/>
-    <h2>You currently have no payments!</h2>
+        <h1 class = "title">Client Help Requests</h1>
+        {% if paymentNum == 1 %}
+            <p>You've spent £{{paymentTotal}} with us today on a single order!</p>
+        {% else %}
+            <p>You've spent £{{paymentTotal}} with us today on {{paymentNum}} orders - averaging at £{{paymentAverage}} per order!</p>
+        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID for Payment</th>
+                    <th>Time of Payment</th>
+                    <th>Amount Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in Payments %}
+                    <tr>
+                        <td>{{payment.orderID.ID}}</td>
+                        <td>{{payment.timeOfPayment}}</td>
+                        <td>£{{payment.paymentAmount}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <br/><br/>
+        <h2>You currently have no payments!</h2>
     {% endif %}
 </div>
 {% endblock content %}
+

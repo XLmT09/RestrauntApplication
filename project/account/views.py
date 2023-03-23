@@ -3,8 +3,6 @@ from django.shortcuts import render
 from .forms import UserRegisterForm
 from django.contrib import messages
 from decerators import login_required
-from project.models import Order
-from project.views import checkout
 from waiter.models import Payment
 
 # This view handles all HTTP requests and responses for the sign up page
@@ -37,27 +35,6 @@ def profile(request):
 def userInformation(request):
     user_groups = request.user.groups.values_list('name', flat=True)
     return render(request, 'account/information.html', {'title':'Information', 'user_groups' : user_groups})
-
-@login_required
-def userOrders(request):
-    Orders = Order.objects.filter(customerID_id=request.user)
-
-    if len(Orders) > 0:
-        all_ordered_items = dict()
-        for order in Orders:
-            for itemName in order.orderedItems:
-                quantity = order.orderedItems[itemName]
-                if itemName in all_ordered_items:
-                    all_ordered_items[itemName] += quantity
-                else:
-                    all_ordered_items[itemName] = quantity
-
-        max_value = max(all_ordered_items.values())
-        commonItems = [itemName for itemName in all_ordered_items if all_ordered_items[itemName] == max_value]
-    else:
-        commonItems = None
-
-    return render(request, 'account/userOrders.html', {'title':'Old Orders', 'Orders':Orders, 'numOfOrders':len(Orders), 'commonItems':commonItems})
 
 @login_required
 def userPayments(request):
