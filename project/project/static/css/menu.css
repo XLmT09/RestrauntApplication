@@ -3,8 +3,8 @@
   padding: 1%;
   float: left;
   text-align: left;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-bottom: solid;
+  background-color: #15202B;
+  border: 1px solid gray;
   width: 26%;
   color: white;
   font-size: 75%;
@@ -126,7 +126,7 @@ body {
   top: 30%;
   transform: translate(-50%, 0);
   width: 30%;
-  background-color: rgba(17, 23, 23);
+  background-color: rgb(29, 29, 39);
   opacity: 0;
   transition: opacity 1s ease-in;
 }
@@ -172,16 +172,19 @@ body {
 }
 
 .orderButton {
-  border-radius: 20px;
   width: 35%;
   height: 100%;
   float: left;
-  background-color: gray;
+  background:#51308a;
   font-family: Montserrat;
   font-size: 100%;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.orderButton:hover {
+  background-color: #41039f;
 }
 
 .descriptionBox {
@@ -246,7 +249,7 @@ body {
   width: auto;
   opacity: 0;
   transition: .5s ease;
-  background-color: #1b233a;
+  background-color: #15202B;
 }
 
 .containerClass:hover .overlayClass {
