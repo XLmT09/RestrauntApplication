@@ -1,12 +1,12 @@
 from django.utils.timezone import localdate
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.http import HttpResponseBadRequest
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils.safestring import mark_safe
-from django.core.mail import send_mail
 from decerators import group_required
-from .forms import menuUpdateForm
+from .forms import menuUpdateForm 
 from project.models import MenuItem, Order, HelpRequest
+from project.forms import helpRequestForm
 from .models import Payment, TableServer
 
 # Make http requests to the waiter page
@@ -45,8 +45,6 @@ def viewOrders(request):
 def updateOrderStatus(request, ID):
     # Grab the order the user wants to chnage
     order = Order.objects.get(ID = ID)
-    # Order status will change state in this function so record inital state for that
-    orderStatusBefore = order.status
 
     if order.status == "Placed":
         # Change order status from placed to confirmed
@@ -68,17 +66,12 @@ def updateOrderStatus(request, ID):
 
     order.save()
 
-    # Refresh so user can see how the page changes as they update the status of an order
-    # Use the recorded status (orderStatusBefore) to stay on the same page
     return redirect(viewOrders)
 
 # This method deletes an order based on the order ID it is given
 def deleteOrder(request, ID):
     # Retrive order details from the order id
     order = Order.objects.get(ID=ID)
-    # Grab order status before delting, so we can pass in the url
-    # This will we stay on the same page
-    orderStatus = order.status
 
     # When deleting an order, must also delete from the table database to
     table_order = TableServer.objects.filter(orderID=order)  
@@ -161,20 +154,13 @@ def customer_payments(request):
     return render(request, "paymentInfo.html", {'cust_payments':todays_payments,'income':todaysIncome})
 
 #This method allows for deletion of help requests from the client Help Requests database
-def deleteHelpRequest(request, help_request_id):
-    #retrieve the ID of the user who's request is being deleted
-    deleted_help_request = HelpRequest.objects.get(id=help_request_id)
-    deleted_customerID = deleted_help_request.customerID
-    #Delete the request and update the database 
-    deleted_help_request.delete()
-    help_requests = HelpRequest.objects.all()
-
-    #Fetch and send an email to the customer to notify them about the status of their request
-    customer_email = deleted_customerID.email
-    subject = 'Help Request Deleted'
-    message = 'The help will arrive shortly'
-    send_mail(subject, message, 'admin@example.com', [customer_email])
-
-    messages.success(request, f"Help request with ID {help_request_id} has been deleted for customer {deleted_customerID}. An email has been sent to the customer.")
-
-    return render(request, 'clientHelpRequests.html', {'help_requests': help_requests})
+def deleteHelpRequests(request):
+    if request.method == 'POST':
+        customerID = int(request.POST['customerID'])
+        requestID = int(request.POST['requestID'])
+        help_request = HelpRequest.objects.get(customerID=customerID, requestID=requestID)
+        help_request.delete()
+        messages.success(request, f"Help request #{requestID} has been deleted for customer #{customerID}.")
+        return render(request, "clientHelpRequests.html", {'help_request_form' : helpRequestForm(), 'help_requests': HelpRequest.objects.all()})
+    else:
+        return HttpResponseBadRequest("Invalid request method")
