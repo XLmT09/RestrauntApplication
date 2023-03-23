@@ -13,6 +13,22 @@ body {
   padding: 2%;
 }
 
+/** trash icon **/
+i.icon {
+  color: red;
+  font-size: 1.5em;
+}
+
+.deleteItemButton {
+  background-color: transparent;
+  border: none;
+}
+
+i.icon:hover {
+  color: rgb(129, 0, 0);
+  cursor: pointer;
+}
+
 /** Checkout.html **/
 .checkout-container {
   align-items: center;
