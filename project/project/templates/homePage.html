@@ -1,53 +1,56 @@
 {% extends "base.html" %} {% block content %} {% load static %}
 <script src="{% static 'javascript/animations.js' %}" defer></script>
 <script src="{% static 'javascript/notifications.js' %}" defer></script>
+<script src="{% static 'javascript/menu.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/marquee.css' %}" />
 
-<div class="bg">
-  <div class="logobox">
-    <img src="/static/images/OaxacaLogo.png" />
-  </div>
-</div>
-<div class="bg2" id="about">
-  <div class="dishbox" id="aboutImage"></div>
-  <div class="aboutConatiner" id="aboutText">
-    <div class="home-sub-title">About Us</div>
-    <div class="informationtext">
-      Since our modest beginnings in 2001 with a little space in Eghams
-      stylish high street, Oaxacas development has been enlivened with the
-      energy to cook and serve solid, Mexican fine dining.
+<body onload="deleteCookies();">
+  <div class="bg">
+    <div class="logobox">
+      <img src="/static/images/OaxacaLogo.png" />
     </div>
-    <br />
-    <br />
   </div>
-</div>
-<div class="customer-reviews-bg">
-  <div class="rev-sub-title">Customer Reviews</div>
-  <p class="marquee">
-    <span>
-      &#9733; &#9733; &#9733; &#9733; &#9733; - "Glad Oxaca opened, it's a good place to eat. Food is good, seating is good & so is service. Nothing to complain about."
-      &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; - "So good we went 3 times while visiting London! You have to try the loaded chips and queso!"
-      &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Expect a warm welcome and a tasty meal at this lovely Mexican restaurant. The food has a home cooked feel."
-      &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Food is always good...atmosphere is great and the wait staff is very friendly. "
-      &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; - "I really like this place. I think the food is delicious, and the margaritas are even better!"
-      &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Awesome food I love Mexican food!"
-    </span>
-  </p>
-</div>
-<div class="bg3" id="Menu">
-  <div class="dishbox2" id="menuImage"></div>
-  <div class="menuConatiner" id="menuText">
-    <div class="home-sub-title">Menu</div>
-    <div class="informationtext">Checkout our menu now!
-        Our dishes are carefully crafted by our expert 
-      chefs to provide you with the best dining experience possible.
-        From appetizers to desserts, we offer a wide range of options 
-        to satisfy any craving.</div>
-    <a href="{% url 'menu' %}">
-      <button class="home-menu-button">
-        <div class="text">View Menu</div>
-      </button>
-    </a>
+  <div class="bg2" id="about">
+    <div class="dishbox" id="aboutImage"></div>
+    <div class="aboutConatiner" id="aboutText">
+      <div class="home-sub-title">About Us</div>
+      <div class="informationtext">
+        Since our modest beginnings in 2001 with a little space in Eghams
+        stylish high street, Oaxacas development has been enlivened with the
+        energy to cook and serve solid, Mexican fine dining.
+      </div>
+      <br />
+      <br />
+    </div>
   </div>
-</div>
+  <div class="customer-reviews-bg">
+    <div class="rev-sub-title">Customer Reviews</div>
+    <p class="marquee">
+      <span>
+        &#9733; &#9733; &#9733; &#9733; &#9733; - "Glad Oxaca opened, it's a good place to eat. Food is good, seating is good & so is service. Nothing to complain about."
+        &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; - "So good we went 3 times while visiting London! You have to try the loaded chips and queso!"
+        &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Expect a warm welcome and a tasty meal at this lovely Mexican restaurant. The food has a home cooked feel."
+        &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Food is always good...atmosphere is great and the wait staff is very friendly. "
+        &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; - "I really like this place. I think the food is delicious, and the margaritas are even better!"
+        &nbsp; &nbsp; &nbsp; &nbsp; &#9733; &#9733; &#9733; &#9733; &#9733; - "Awesome food I love Mexican food!"
+      </span>
+    </p>
+  </div>
+  <div class="bg3" id="Menu">
+    <div class="dishbox2" id="menuImage"></div>
+    <div class="menuConatiner" id="menuText">
+      <div class="home-sub-title">Menu</div>
+      <div class="informationtext">Checkout our menu now!
+          Our dishes are carefully crafted by our expert 
+        chefs to provide you with the best dining experience possible.
+          From appetizers to desserts, we offer a wide range of options 
+          to satisfy any craving.</div>
+      <a href="{% url 'menu' %}">
+        <button class="home-menu-button">
+          <div class="text">View Menu</div>
+        </button>
+      </a>
+    </div>
+  </div>
+</body>
 {% endblock content %}
