@@ -48,10 +48,10 @@ def userOrders(request):
 def userPayments(request):
     Payments = Payment.objects.filter(customerID_id=request.user)
     paymentTotal = Payments.aggregate(Sum('paymentAmount'))['paymentAmount__sum']
-    print(paymentTotal)
     paymentNum = Payments.count()
     if (paymentNum > 1):
         paymentAverage = paymentTotal / paymentNum
+        paymentAverage = "{:.2f}".format(paymentAverage)
         return render(request, 'account/userPayments.html', {'title':'Old Orders', 'Payments':Payments, 'paymentTotal':paymentTotal, 
                                                            'paymentNum':paymentNum, 'paymentAverage':paymentAverage})
 
