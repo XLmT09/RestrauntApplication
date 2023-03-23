@@ -4,65 +4,118 @@ body {
   background-color: rgb(29, 29, 39);
 }
 
+.title {
+  margin: 0;
+  font-family: Verdana,sans-serif;
+  color: white;
+  background-color: #15202B;
+  text-align: center;
+  padding: 2%;
+}
+
+/** trash icon **/
+i.icon {
+  color: red;
+  font-size: 1.5em;
+}
+
+.deleteItemButton {
+  background-color: transparent;
+  border: none;
+}
+
+i.icon:hover {
+  color: rgb(129, 0, 0);
+  cursor: pointer;
+}
+
+/** Checkout.html **/
+.checkout-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
 .checkOutBox {
   text-align: center;
-  left: 50%;
-  transform: translate(-50%, 0);
-  position: absolute;
-  top: 15%;
+  background-color: #172c40;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 40%;
-  font-size: 90%;
   font-family: Montserrat;
   color: white;
 }
 
 .itemRow {
   width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
   text-align: center;
+  padding: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.headRow {
+  background-color: black;
+}
+
+.arrow {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.arrow:hover {
+  cursor: pointer;
+  color: black;
 }
 
 .itemNumber {
-  text-align: left;
-  height: 100%;
-  margin-bottom: 2px;
-  top: 0%;
-  position: relative;
   display: inline-block;
-  vertical-align: middle;
 }
+
 .itemName {
   text-align: left;
   float: left;
   width: 50%;
-  margin-bottom: 2px;
 }
+
 .itemPrice {
   text-align: right;
   float: right;
   width: 15%;
   height: 100%;
-  margin-bottom: 2px;
-}
-.deleteItemButton {
-  text-align: right;
-  float: right;
-  margin-bottom: 2px;
 }
 
-.arrows {
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.03);
+.itemFinalRow {
+  background-color: #15202B;
+  font-weight: 900;
+  margin-bottom: 2%;
 }
 
-svg {
-  fill: white;
+.quantity-change {
+  padding-left: 5%;
+}
+
+.checkout-btn {
+  padding: 2%;
+  text-align: center;
+  width: 90%;
+  font-size: 1.1em;
+  color: white;
   cursor: pointer;
+  border: 1px solid grey;
+  background:#51308a;
+  transition: background-color 0.5s ease;
+  margin-bottom: 2%;
 }
 
+.checkout-btn:hover {
+  background-color: #41039f;
+}
+
+/** completePayment.html **/
 .paymentBox {
-  background-color: #172c40;;
+  background-color: #172c40;
   padding: 1%;
   text-align: left;
   left: 50%;
