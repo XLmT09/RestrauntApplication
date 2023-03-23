@@ -40,7 +40,7 @@
     <form action="{% url 'orderComplete' %}" method="POST" id="menuForm">
       {% csrf_token %} {{ form.errors }} {{ form.non_field_errors }}
       <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
-        <button class="submitButton">Checkout</button></a
+        <button class="checkout-btn">Checkout</button></a
       >
     </form>
   </div>
