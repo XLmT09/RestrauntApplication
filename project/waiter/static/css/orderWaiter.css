@@ -30,7 +30,7 @@
 }
 
 .order-box-outer.rotate  .order-box-inner {
-  transform: rotateX(180deg);
+  transform: rotateY(180deg);
 }
 
 .order-box-front {
@@ -43,7 +43,7 @@
   color: white;
   opacity: auto;
   overflow: auto;
-  transform: rotateX(180deg);
+  transform: rotateY(180deg);
 }
 
 /** Hide the scroll bar **/
@@ -57,7 +57,7 @@
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-bottom: 2px solid white;
+  border: 1px solid gray;
 }
 
 .orderdetails {
@@ -70,7 +70,7 @@
   justify-content: space-between;
   border: solid;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid gray;
   padding: 2% 2% 2% 2%;
 }
 
@@ -136,8 +136,8 @@
 }
 
 .content {
-  padding: 0 18px;
+
   display: none;
   overflow: hidden;
-  background-color: #0f3a63;
+  background-color: rgb(29, 29, 39);
 }
