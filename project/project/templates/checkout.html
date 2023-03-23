@@ -1,86 +1,73 @@
 {% extends "base.html" %} {% block content %} {% load static %}
-<!DOCTYPE html>
-<html>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  <script src="{% static 'javascript/menu.js' %}" defer></script>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-  />
-  <!-- "document.getElementById('{{d.getName}}').innerHTML = 'text'" -->
-  <title>Document</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat" />
-  <body>
-    <div class="checkOutBox">
-      <br><br><br><br>
-      <div
-        class="itemRow"
-        style="border-bottom: 1px solid white; padding-bottom: 3px"
-      >
-        <text class="itemName">Item</text>
-        <text class="itemPrice">Price</text>
-        <text class="itemNumber">Quantity</text>
-      </div>
-      {% for i in MenuItems %}
-      <div class="itemRow">
-        <text class="itemName">{{i.0}}</text>
-        <text class="itemPrice" id="{{i.0}} {{i.1}}">£ {{i.1}}</text>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 96 960 960"
-          width="24"
-          onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', -1))"
-        >
-          <path d="M560 776 360 576l200-200v400Z" />
-        </svg>
-        <text class="itemNumber" id="{{i.0}}"> {{i.2}} </text>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 96 960 960"
-          width="24"
-          onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', 1))"
-        >
-          <path d="M400 776V376l200 200-200 200Z" />
-        </svg>
-        <a href="{% url 'checkout' %}">
-          <button
-            type="button"
-            class="deleteItemButton"
-            onclick="deleteItemFromBasket('{{i.0}}');"
-          >
-            X
-          </button>
-        </a>
-      </div>
-      {% endfor %}
-
-      <div
-        class="itemRow"
-        style="border-top: 1px solid white; padding-top: 3px"
-      >
-        <text class="itemName">Total</text>
-        <text class="itemPrice" id="TotalPrice">£ {{total}}</text>
-        <text class="itemNumber" id="TotalQuantity">{{items}}</text>
-      </div>
-
-      <form action="{% url 'orderComplete' %}" method="POST" id="menuForm">
-        {% csrf_token %} {{ form.errors }} {{ form.non_field_errors }}
-        <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
-          <button class="submitButton">Checkout</button></a
-        >
-      </form>
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+<script src="{% static 'javascript/menu.js' %}" defer></script>
+]
+<div class="checkout-container">
+  <div class="checkOutBox">
+    <h1 class="title">Your Basket</h1>
+    <div
+      class="itemRow headRow"
+      style="border-bottom: 1px solid white; padding-bottom: 3px"
+    >
+      <text class="itemName">Item</text>
+      <text class="itemPrice">Price</text>
+      <text class="itemNumber">Quantity</text>
     </div>
-    {% for i in statuses %}
-    <script>
-      alert("Your order has been {{i}}");
-    </script>
+    {% for i in MenuItems %}
+    <div class="itemRow">
+      <text class="itemName">{{i.0}}</text>
+      <text class="itemPrice" id="{{i.0}} {{i.1}}">£ {{i.1}}</text>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24"
+        viewBox="0 96 960 960"
+        width="24"
+        onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', -1))"
+      >
+        <path d="M560 776 360 576l200-200v400Z" />
+      </svg>
+      <text class="itemNumber" id="{{i.0}}"> {{i.2}} </text>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24"
+        viewBox="0 96 960 960"
+        width="24"
+        onClick="(alterChecout(' {{i.1}}', '{{i.2}}', '{{i.0}}', 1))"
+      >
+        <path d="M400 776V376l200 200-200 200Z" />
+      </svg>
+      <a href="{% url 'checkout' %}">
+        <button
+          type="button"
+          class="deleteItemButton"
+          onclick="deleteItemFromBasket('{{i.0}}');"
+        >
+          X
+        </button>
+      </a>
+    </div>
     {% endfor %}
-  </body>
-</html>
+
+    <div
+      class="itemRow"
+      style="border-top: 1px solid white; padding-top: 3px"
+    >
+      <text class="itemName">Total</text>
+      <text class="itemPrice" id="TotalPrice">£ {{total}}</text>
+      <text class="itemNumber" id="TotalQuantity">{{items}}</text>
+    </div>
+
+    <form action="{% url 'orderComplete' %}" method="POST" id="menuForm">
+      {% csrf_token %} {{ form.errors }} {{ form.non_field_errors }}
+      <a class="nav-options nav-btn" href="{% url 'orderComplete' %}">
+        <button class="submitButton">Checkout</button></a
+      >
+    </form>
+  </div>
+</div>
+{% for i in statuses %}
+<script>
+  alert("Your order has been {{i}}");
+</script>
+{% endfor %}
 {% endblock content %}

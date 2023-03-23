@@ -4,23 +4,39 @@ body {
   background-color: rgb(29, 29, 39);
 }
 
+.title {
+  margin: 0;
+  font-family: Verdana,sans-serif;
+  color: white;
+  background-color: #15202B;
+  text-align: center;
+  padding: 2%;
+}
+
+/** Checkout.html **/
+.checkout-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .checkOutBox {
   text-align: center;
-  left: 50%;
-  transform: translate(-50%, 0);
-  position: absolute;
-  top: 15%;
+  background-color: #172c40;
   width: 40%;
-  font-size: 90%;
   font-family: Montserrat;
   color: white;
 }
 
 .itemRow {
   width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
   text-align: center;
+  padding: 1%;
+}
+
+.headRow {
+  background-color: black;
+  font-weight: 500;
 }
 
 .itemNumber {
@@ -61,8 +77,9 @@ svg {
   cursor: pointer;
 }
 
+/** completePayment.html **/
 .paymentBox {
-  background-color: #172c40;;
+  background-color: #172c40;
   padding: 1%;
   text-align: left;
   left: 50%;
