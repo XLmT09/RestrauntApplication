@@ -201,7 +201,7 @@ def cleanupDatabase():
         # Check to see if the date of the order matches the current date of the system
         if order.dateOfOrder != currentDate:
             # Delete the payment linked to the given order from the database
-            payment = Payment.objects.get(orderID = order.ID)
+            payment = Payment.objects.all().filter(orderID = order)
             payment.delete()
             # Delete the order from the database
             order.delete()
