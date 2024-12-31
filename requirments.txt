@@ -3,4 +3,5 @@ bitdotio
 requests_toolbelt
 psycopg2 
 django-crispy-forms
+crispy-bootstrap4
 

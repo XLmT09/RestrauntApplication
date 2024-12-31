@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     # This app contains the kitchen staff page and functionality
     'kitchen.apps.KitchenConfig',
     # A built in djnago form we are using to make form styling easier
-    'crispy_forms', 
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -67,24 +68,24 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 
 # KEEP THIS CODE IF WE EVER WANT TO USE THE SQL DATABASE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-#THIS CODE CONNECTS DATABSE WITH AN BIT.IO DB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'zkac226/restaurantDB',
-        'USER': 'zkac226',
-        'PASSWORD': 'v2_3yDhd_4vkmgPmQcRBh3RBQKEZzLvy',
-        'HOST': 'db.bit.io',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#THIS CODE CONNECTS DATABSE WITH AN BIT.IO DB
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': '<DATABASE_NAME>',
+#     'USER': '<USERNAME>',
+#     'PASSWORD': '<v2_YOUR_PASSWORD_HERE>',
+#     'HOST': 'db.bit.io',
+#     'PORT': '5432',
+#   }
+# }
 
 # This is the test db to be used during testing.
 # db is automatically created and deleted when running the test command.
