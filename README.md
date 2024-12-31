@@ -8,8 +8,7 @@ _**Important:** The online database used has been taken down. When running the a
 
 A web interface that helps in managing crucial daily tasks of a restaurant.
 
-
-![restaurant image](restaurant.png)
+![restaraunt website gif](restarauntGif.gif)
 
 ## **1 Setup**
 ### **1.1 Configuration**
