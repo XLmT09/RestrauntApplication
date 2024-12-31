@@ -2,10 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
-from .views import cleanupDatabase, deleteExcessDeliveries
-cleanupDatabase()
-deleteExcessDeliveries()
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homePage , name = 'home'),
